@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CESAG - Évaluations 2025-2026</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        :root {
+            --cesag-green: #008751;
+            --cesag-red: #E30613;
+            --dark-gray: #2d3436;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            color: var(--dark-gray);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        header {
+            background: var(--white);
+            padding: 20px 10px;
+            text-align: center;
+            border-bottom: 5px solid var(--cesag-green);
+        }
+
+        .main-icon {
+            font-size: 2.5rem;
+            color: var(--cesag-green);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--cesag-green) 0%, #005a36 100%);
+            color: white;
+            padding: 30px 15px;
+            text-align: center;
+            border-bottom: 5px solid var(--cesag-red);
+        }
+
+        .hero h1 { margin: 0; font-size: 1.3rem; text-transform: uppercase; }
+
+        .container { max-width: 1100px; margin: -20px auto 40px; padding: 0 15px; }
+
+        .controls {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .search-wrapper { position: relative; margin-bottom: 15px; }
+        .search-wrapper i { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8; }
+
+        #searchInput {
+            width: 100%;
+            padding: 12px 12px 12px 40px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+            scrollbar-width: none;
+        }
+        .tabs::-webkit-scrollbar { display: none; }
+
+        .tab-btn {
+            white-space: nowrap;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #f1f5f9;
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .tab-btn.active { background: var(--cesag-green); color: white; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 5px solid var(--cesag-green);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .class-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        .class-name { font-weight: 700; font-size: 0.9rem; color: #1e293b; }
+
+        .actions { display: flex; gap: 8px; }
+        .btn {
+            flex: 1;
+            padding: 12px 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-main { background: var(--cesag-green); color: white; }
+        .btn-qr { background: #f1f5f9; color: var(--cesag-green); }
+
+        #qrModal {
+            position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8);
+            display:none; justify-content:center; align-items:center; z-index:9999; padding: 20px;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+        }
+        #qrcode img { margin: 0 auto; max-width: 100%; height: auto; }
+
+        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+
+<header>
+    <i class="fa-solid fa-graduation-cap main-icon"></i>
+    <div style="font-weight: 900; color: var(--cesag-green); font-size: 1.5rem;">CESAG</div>
+</header>
+
+<div class="hero">
+    <h1>Évaluations des Enseignements</h1>
+    <p>Session 2025-2026</p>
+</div>
+
+<div class="container">
+    <div class="controls">
+        <div class="search-wrapper">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" placeholder="Votre classe..." onkeyup="filter()">
+        </div>
+        <div class="tabs">
+            <button class="tab-btn active" onclick="filterTab('all', this)">Tous</button>
+            <button class="tab-btn" onclick="filterTab('Licence', this)">Licences</button>
+            <button class="tab-btn" onclick="filterTab('Master', this)">Masters</button>
+            <button class="tab-btn" onclick="filterTab('MBA', this)">MBA / MBF</button>
+            <button class="tab-btn" onclick="filterTab('PRO', this)">Professionnel</button>
+        </div>
+    </div>
+
+    <div class="grid" id="classGrid"></div>
+</div>
+
+<div id="qrModal" onclick="this.style.display='none'">
+    <div class="modal-content" onclick="event.stopPropagation()">
+        <h3 id="qrTitle" style="font-size:1rem; margin-bottom:15px;"></h3>
+        <div id="qrcode"></div>
+        <p style="margin-top:15px; font-size:0.8rem; color:#64748b;">Fermer</p>
+    </div>
+</div>
+
+<script>
+const classes = [
+  { name: "LG 1 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1169" },
+  { name: "LG 1 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1170" },
+  { name: "LG 1 C 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1171" },
+  { name: "LG 1 D 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1172" },
+  { name: "LCCA 1 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1163" },
+  { name: "LCCA 1 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1164" },
+  { name: "LCCA 1 C 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1165" },
+  { name: "DECOGEF 1 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1155" },
+  { name: "DECOGEF 1 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1156" },
+  { name: "LSMD 1 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1186" },
+  { name: "LMIAGE 1 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1178" },
+  { name: "LG 2 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1173" },
+  { name: "LG 2 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1174" },
+  { name: "LG 2 C 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1175" },
+  { name: "LG 2 D 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1176" },
+  { name: "LCCA 2 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1166" },
+  { name: "LCCA 2 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1167" },
+  { name: "LCCA 2 C 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1168" },
+  { name: "DECOGEF 2 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1157" },
+  { name: "DECOGEF 2 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1158" },
+  { name: "LSMD 2 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1187" },
+  { name: "LMIAGE 2 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1179" },
+  { name: "LTCF 3 A 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1189" },
+  { name: "LTCF 3 B 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1190" },
+  { name: "LSMD 3 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1188" },
+  { name: "LPSG 3 TBF Classe A", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1184" },
+  { name: "LPSG 3 TBF Classe B", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1185" },
+  { name: "LPSG 3 EGP 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1183" },
+  { name: "LPSG 3 CCA Classe A", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1180" },
+  { name: "LPSG 3 CCA Classe B", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1181" },
+  { name: "LPSG 3 CCA Classe C", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1182" },
+  { name: "LGEO 3 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1177" },
+  { name: "DECOGEF 3 25-26", type: "Licence", url: "https://formations.cesagonline.com/course/view.php?id=1159" },
+  { name: "MCGF 1 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1219" },
+  { name: "MCGF 1 JOUR B 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1220" },
+  { name: "MCGF 1 SOIR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1221" },
+  { name: "MCGF 2 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1222" },
+  { name: "MCGF 2 SOIR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1223" },
+  { name: "MCCA 1 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1212" },
+  { name: "MCCA 1 JOUR B 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1213" },
+  { name: "MCCA 1 SOIR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1214" },
+  { name: "MCCA 2 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1215" },
+  { name: "MCCA 2 JOUR B 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1216" },
+  { name: "MCCA 2 SOIR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1217" },
+  { name: "MCCA 2 SOIR B 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1218" },
+  { name: "MACG 1 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1191" },
+  { name: "MACG 1 SOIR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1192" },
+  { name: "MACG 2 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1193" },
+  { name: "MACG 2 SOIR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1194" },
+  { name: "MGRH 1 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1234" },
+  { name: "MGRH 2 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1235" },
+  { name: "MDGL 1 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1228" },
+  { name: "ME3P 1 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1229" },
+  { name: "ME3P 2 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1230" },
+  { name: "MMS 1 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1236" },
+  { name: "MMS 2 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1237" },
+  { name: "MSMD 1 JOUR 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1238" },
+  { name: "MSMD 2 Actuariat", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1239" },
+  { name: "MSMD 2 Finance", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1240" },
+  { name: "MGP 1 JOUR 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1231" },
+  { name: "MGP 1 SOIR 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1232" },
+  { name: "MGP 2 SOIR 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1233" },
+  { name: "MDBFA 1 JOUR A 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1224" },
+  { name: "MDBFA 1 JOUR B 25-26", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1225" },
+  { name: "MDBFA 2 Droit Bancaire", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1226" },
+  { name: "MDBFA 2 IT-Finance", type: "Master", url: "https://formations.cesagonline.com/course/view.php?id=1227" },
+  { name: "MBF A 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1210" },
+  { name: "MBF B 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1211" },
+  { name: "MBA AG 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1197" },
+  { name: "MBA ACG 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1195" },
+  { name: "MBA ES 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1199" },
+  { name: "MBA GP 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1201" },
+  { name: "MBA MS 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1206" },
+  { name: "MBA MSS 25-26", type: "MBA", url: "https://formations.cesagonline.com/course/view.php?id=1208" },
+  { name: "DESCOGEF 1 SOIR", type: "PRO", url: "https://formations.cesagonline.com/course/view.php?id=1160" },
+  { name: "DESCOGEF 2 SOIR A", type: "PRO", url: "https://formations.cesagonline.com/course/view.php?id=1161" },
+  { name: "DESCOGEF 2 SP", type: "PRO", url: "https://formations.cesagonline.com/course/view.php?id=1162" }
+];
+
+function render(data) {
+  const grid = document.getElementById('classGrid');
+  grid.innerHTML = data.map(cls => `
+    <div class="card">
+      <div class="class-header">
+        <i class="fa-solid fa-folder-open" style="color:#cbd5e1"></i>
+        <div class="class-name">${cls.name}</div>
+      </div>
+      <div class="actions">
+        <a href="${cls.url}" target="_blank" class="btn btn-main"><i class="fa-solid fa-paper-plane"></i> ACCÉDER</a>
+        <button onclick="showQR('${cls.url}', '${cls.name}')" class="btn btn-qr"><i class="fa-solid fa-qrcode"></i></button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function filterTab(type, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  if(type === 'all') render(classes);
+  else render(classes.filter(c => c.type === type));
+}
+
+function filter() {
+  const query = document.getElementById('searchInput').value.toLowerCase();
+  render(classes.filter(c => c.name.toLowerCase().includes(query)));
+}
+
+function showQR(url, title) {
+  document.getElementById('qrModal').style.display = 'flex';
+  document.getElementById('qrTitle').innerText = title;
+  document.getElementById('qrcode').innerHTML = "";
+  new QRCode(document.getElementById("qrcode"), { text: url, width: 180, height: 180 });
+}
+
+render(classes);
+</script>
+
+<footer>
+    &copy; 2026 CESAG | Système de Management de la Qualité
+</footer>
+
+</body>
+</html>
