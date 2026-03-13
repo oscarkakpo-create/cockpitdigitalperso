@@ -1,0 +1,2290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CESAG ONLINE — COCKPIT v3</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g:#0b6b3a; --g2:#16a34a; --b:#0a4ea1; --b2:#1d6fdf;
+  --red:#c0392b; --amber:#d97706;
+  --bg:#eef2f7; --card:#fff; --border:#dde4ee;
+  --text:#1a2536; --muted:#5a6a80;
+  --sidebar-bg:#111827; --sidebar-w:230px;
+  --r:12px; --shadow:0 2px 14px rgba(10,40,80,.09);
+  --input-bg:#fff; --result-bg:#0e1726; --result-text:#c8d8f0;
+  --topbar-bg:#fff; --hint-bg:#fffbeb;
+}
+body.dark{
+  --bg:#0f172a; --card:#1e293b; --border:#334155;
+  --text:#e2e8f0; --muted:#94a3b8;
+  --topbar-bg:#1e293b; --hint-bg:#1c2a1a;
+  --input-bg:#0f172a; --result-bg:#020817; --result-text:#93c5fd;
+  --shadow:0 2px 14px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh}
+
+/* ─── SIDEBAR ─────────────────────────────────────────── */
+#sidebar{
+  width:var(--sidebar-w);min-width:var(--sidebar-w);
+  background:var(--sidebar-bg);
+  display:flex;flex-direction:column;
+  position:fixed;top:0;left:0;height:100vh;
+  overflow-y:auto;z-index:200;
+}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:#374151;border-radius:4px}
+.sb-logo{
+  padding:20px 18px 14px;
+  border-bottom:1px solid #1f2937;
+}
+.sb-logo h1{
+  font-size:13px;font-weight:800;letter-spacing:.08em;
+  color:#fff;text-transform:uppercase;line-height:1.3;
+}
+.sb-logo span{
+  font-size:10px;color:#6b7280;letter-spacing:.06em;text-transform:uppercase;display:block;margin-top:3px;
+}
+.sb-section{padding:16px 12px 6px;font-size:10px;font-weight:700;letter-spacing:.1em;color:#4b5563;text-transform:uppercase}
+.sb-item{
+  display:flex;align-items:center;gap:10px;
+  padding:9px 14px;border-radius:8px;margin:1px 8px;
+  cursor:pointer;font-size:13px;color:#9ca3af;font-weight:500;
+  transition:.15s;border:none;background:none;width:calc(100% - 16px);text-align:left;
+}
+.sb-item:hover{background:#1f2937;color:#e5e7eb}
+.sb-item.active{background:linear-gradient(90deg,#0b6b3a22,#0a4ea122);color:#fff;font-weight:700}
+.sb-item.active .sb-icon{color:var(--g2)}
+.sb-icon{font-size:15px;width:18px;text-align:center;flex-shrink:0}
+.sb-badge{margin-left:auto;background:#1f2937;color:#6b7280;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px}
+.sb-item.active .sb-badge{background:#0b6b3a33;color:#4ade80}
+.sb-bottom{margin-top:auto;padding:14px 12px;border-top:1px solid #1f2937}
+.sb-bottom a{display:flex;align-items:center;gap:8px;font-size:12px;color:#4b5563;text-decoration:none;padding:6px 8px;border-radius:6px;transition:.15s}
+.sb-bottom a:hover{color:#9ca3af;background:#1f2937}
+
+/* ─── MAIN ────────────────────────────────────────────── */
+#main{
+  margin-left:var(--sidebar-w);flex:1;
+  display:flex;flex-direction:column;min-height:100vh;
+}
+.topbar{
+  background:var(--topbar-bg);border-bottom:1px solid var(--border);
+  padding:0 28px;height:54px;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:100;
+  box-shadow:0 1px 8px rgba(10,40,80,.06);
+}
+.topbar-title{font-size:15px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:10px}
+.topbar-title .badge{background:linear-gradient(90deg,var(--g),var(--b));color:#fff;font-size:10px;font-weight:700;padding:3px 10px;border-radius:999px;letter-spacing:.04em}
+.topbar-right{display:flex;align-items:center;gap:10px}
+.tb-pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted);padding:4px 12px;font-weight:500}
+
+.content{padding:28px;flex:1}
+
+/* ─── PANELS ──────────────────────────────────────────── */
+.panel{display:none;animation:fadeIn .18s ease}
+.panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ─── CARDS ───────────────────────────────────────────── */
+.card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:22px;border:1px solid var(--border);margin-bottom:18px}
+.card-head{font-size:15px;font-weight:700;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:9px}
+.card-head .ico{width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;background:var(--bg)}
+
+/* ─── GRID TILES ──────────────────────────────────────── */
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:24px}
+.tile{
+  background:#fff;border:1.5px solid var(--border);border-radius:10px;
+  padding:16px 14px;cursor:pointer;font-size:13.5px;font-weight:600;
+  transition:.15s;display:flex;flex-direction:column;gap:6px;
+  color:var(--text);text-align:left;
+}
+.tile:hover{border-color:var(--b);box-shadow:0 4px 16px rgba(10,78,161,.13);transform:translateY(-2px)}
+.tile.active-tile{border-color:var(--g);background:#f0faf5}
+.tile-ico{font-size:20px}
+.tile-label{font-size:12px;color:var(--muted);font-weight:400}
+
+/* ─── SUB-PANELS ──────────────────────────────────────── */
+.sub-panel{display:none;background:var(--bg);border-radius:var(--r);padding:22px;border:1.5px solid var(--border);margin-bottom:18px}
+.sub-panel.active{display:block;animation:fadeIn .15s ease}
+
+/* ─── FORM CONTROLS ───────────────────────────────────── */
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.row.trio{grid-template-columns:1fr 1fr 1fr}
+.row.solo{grid-template-columns:1fr}
+.fld{display:flex;flex-direction:column;gap:5px}
+label{font-size:13px;font-weight:600;color:var(--muted)}
+label em{font-style:normal;color:var(--red);margin-left:2px}
+input[type=text],input[type=url],input[type=date],input[type=time],input[type=number],select,textarea{
+  width:100%;border:1.5px solid var(--border);border-radius:8px;
+  padding:9px 11px;font-family:inherit;font-size:13.5px;
+  background:var(--input-bg);color:var(--text);transition:border-color .2s;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--b)}
+textarea{resize:vertical;line-height:1.55;height:110px}
+
+/* ─── BUTTONS ─────────────────────────────────────────── */
+.btn{font-family:inherit;font-size:13px;font-weight:600;border:none;border-radius:8px;padding:9px 16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:.15s}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--b);color:#fff}
+.btn.primary:hover{background:#083d82}
+.btn.green{background:var(--g);color:#fff}
+.btn.green:hover{background:#095630}
+.btn.grey{background:#374151;color:#fff}
+.btn.grey:hover{background:#1f2937}
+.btn.danger{background:var(--red);color:#fff}
+.btn.outline{background:var(--card);border:1.5px solid var(--border);color:var(--text)}
+.btn.outline:hover{border-color:var(--b);color:var(--b)}
+/* theme toggle btn */
+.btn.theme{background:transparent;border:1.5px solid rgba(255,255,255,.2);color:#fff;padding:6px 12px;font-size:12px}
+.btn.theme:hover{background:rgba(255,255,255,.1)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+
+/* ─── RESULT BOX ──────────────────────────────────────── */
+.result{
+  background:var(--result-bg);color:var(--result-text);
+  font-family:'Space Mono',monospace;font-size:12.5px;
+  line-height:1.65;padding:16px;border-radius:10px;
+  white-space:pre-wrap;min-height:80px;margin-top:14px;
+}
+.result.html-result{background:var(--bg);color:var(--text);border:1.5px solid var(--border)}
+
+/* ─── MAIL HISTORY ──────────────────────────────────── */
+.mail-hist-item{display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg);border-radius:8px;padding:10px 14px;border:1px solid var(--border);margin-bottom:6px}
+.mail-hist-item h4{font-size:13px;font-weight:700;color:var(--text)}
+.mail-hist-item p{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ─── HINT ────────────────────────────────────────────── */
+.hint{background:var(--hint-bg);border-left:4px solid var(--amber);padding:10px 14px;border-radius:0 8px 8px 0;font-size:13px;color:#7c4a00;margin-bottom:16px}
+body.dark .hint{color:#fbbf24}
+
+/* ─── DASHBOARD ───────────────────────────────────────── */
+.dash-banner{
+  background:linear-gradient(120deg,var(--g) 0%,var(--b) 100%);
+
+  border-radius:var(--r);padding:24px 28px;color:#fff;
+  box-shadow:0 4px 24px rgba(10,40,80,.2);margin-bottom:20px;
+  position:relative;overflow:hidden;
+}
+.dash-banner::after{content:'';position:absolute;right:-80px;top:-80px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.05)}
+.dash-banner h2{font-size:22px;font-weight:800;margin-bottom:6px}
+.dash-banner p{opacity:.85;font-size:14px;max-width:540px}
+.dash-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.dash-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r);
+  padding:18px;cursor:pointer;transition:.15s;
+  display:flex;align-items:flex-start;gap:14px;
+}
+.dash-card:hover{box-shadow:0 6px 20px rgba(10,40,80,.13);transform:translateY(-2px)}
+.dash-card-ico{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.dash-card-body h3{font-size:14px;font-weight:700;margin-bottom:3px}
+.dash-card-body p{font-size:12px;color:var(--muted)}
+.stat-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.stat-n{font-size:24px;font-weight:800;color:var(--b);font-family:'Space Mono',monospace}
+.stat-l{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* ─── EPE ─────────────────────────────────────────────── */
+.sess{border:1.5px solid var(--border);border-radius:12px;padding:18px;margin-top:14px;background:var(--card);position:relative}
+.sess-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sess-num{background:var(--b);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:'Space Mono',monospace;flex-shrink:0}
+.sess-title{font-size:14px;font-weight:700;margin-left:8px;flex:1}
+
+/* ─── EPE sticky ───────────────────────────────────────── */
+#epe-sticky{
+  position:sticky;top:54px;z-index:90;
+  background:linear-gradient(90deg,var(--g),var(--b));
+  color:#fff;padding:0 20px;height:44px;
+  display:none;align-items:center;justify-content:space-between;
+  border-radius:0 0 10px 10px;margin:-28px -28px 20px;
+}
+#epe-sticky.vis{display:flex}
+#epe-sticky .sl{font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+#epe-sticky .sr{font-size:12px;opacity:.8}
+
+/* ─── EPE memo ─────────────────────────────────────────── */
+.memo-panel{background:#e8f5ee;border:1.5px solid #a7d9bc;border-radius:var(--r);padding:16px 18px;margin-top:14px;display:none}
+.memo-panel.active{display:block}
+.memo-panel h3{font-size:14px;font-weight:700;color:var(--g);margin-bottom:8px}
+.memo-checks{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.memo-chk{display:flex;align-items:center;gap:6px;background:#fff;border:1.5px solid #a7d9bc;border-radius:8px;padding:6px 12px;cursor:pointer;font-size:13px;font-weight:500;transition:.15s}
+.memo-chk input{accent-color:var(--g);width:14px;height:14px}
+.memo-chk:hover{background:#d1fae5}
+
+/* ─── recap ────────────────────────────────────────────── */
+#recap-panel{display:none;margin-top:16px;border:1.5px solid var(--border);border-radius:12px;overflow:hidden}
+#recap-panel .rh{background:linear-gradient(90deg,var(--g),var(--b));padding:10px 16px;color:#fff;font-size:13px;font-weight:700}
+
+/* ─── GITHUB ──────────────────────────────────────────── */
+.github-actions{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:20px}
+.gh-tile{background:#fff;border:1.5px solid var(--border);border-radius:10px;padding:18px 16px;cursor:pointer;transition:.15s}
+.gh-tile:hover{border-color:var(--g);box-shadow:0 4px 14px rgba(10,40,80,.1);transform:translateY(-2px)}
+.gh-tile h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.gh-tile p{font-size:12px;color:var(--muted)}
+.gh-tile .gh-ico{font-size:24px;margin-bottom:10px}
+
+/* ─── GIFT QUIZ ───────────────────────────────────────── */
+.gift-type-btn{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.gtype{background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:7px 14px;cursor:pointer;font-size:13px;font-weight:600;transition:.15s}
+.gtype.sel{background:var(--b);color:#fff;border-color:var(--b)}
+.gtype:hover:not(.sel){border-color:var(--b);color:var(--b)}
+
+/* ─── IFRAME PREVIEW ─────────────────────────────────── */
+#previewframe{width:100%;height:320px;border:1.5px solid var(--border);border-radius:10px;margin-top:12px}
+
+/* ─── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:#dde4ee;border-radius:5px}
+
+/* ─── FAB ─────────────────────────────────────────────── */
+#fab-add{
+  position:fixed;bottom:24px;right:24px;z-index:300;
+  background:linear-gradient(135deg,var(--g),var(--g2));color:#fff;
+  border:none;border-radius:999px;padding:12px 22px;
+  font-family:inherit;font-size:14px;font-weight:700;
+  box-shadow:0 4px 20px rgba(11,107,58,.35);cursor:pointer;
+  display:none;align-items:center;gap:8px;transition:.15s;
+}
+#fab-add:hover{transform:translateY(-2px);box-shadow:0 6px 28px rgba(11,107,58,.45)}
+#fab-add.vis{display:flex}
+#fab-add .fc{background:rgba(255,255,255,.25);border-radius:999px;font-size:11px;padding:2px 8px;font-weight:600}
+
+/* ─── COPY TOAST ──────────────────────────────────────── */
+#toast{
+  position:fixed;bottom:80px;right:24px;z-index:400;
+  background:#111827;color:#fff;font-size:13px;font-weight:600;
+  padding:10px 18px;border-radius:8px;opacity:0;transition:opacity .3s;pointer-events:none;
+  display:flex;align-items:center;gap:8px;
+}
+#toast.show{opacity:1}
+
+@media(max-width:768px){
+  #sidebar{transform:translateX(-100%)}
+  #main{margin-left:0}
+  .row,.row.trio{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── SIDEBAR ────────────────────────────────────────── -->
+<nav id="sidebar">
+  <div class="sb-logo">
+    <h1>CESAG ONLINE</h1>
+    <span>Digital Command Center</span>
+  </div>
+
+  <div class="sb-section">Navigation</div>
+  <button class="sb-item active" onclick="nav('dashboard')">
+    <span class="sb-icon">⚡</span> Tableau de bord
+  </button>
+
+  <div class="sb-section">Support & Mails</div>
+  <button class="sb-item" onclick="nav('acces')">
+    <span class="sb-icon">🔑</span> Accès numériques
+  </button>
+  <button class="sb-item" onclick="nav('reset')">
+    <span class="sb-icon">🔄</span> Reset Moodle
+  </button>
+  <button class="sb-item" onclick="nav('mailprof')">
+    <span class="sb-icon">📧</span> Mail enseignant
+  </button>
+  <button class="sb-item" onclick="nav('mailetudiant')">
+    <span class="sb-icon">💬</span> Réponse étudiant
+  </button>
+
+  <div class="sb-section">FOAD / Moodle</div>
+  <button class="sb-item" onclick="nav('examen')">
+    <span class="sb-icon">📝</span> Consignes examen
+  </button>
+  <button class="sb-item" onclick="nav('ics')">
+    <span class="sb-icon">📅</span> Générateur ICS
+  </button>
+  <button class="sb-item" onclick="nav('htmlmoodle')">
+    <span class="sb-icon">📢</span> Annonce HTML
+  </button>
+  <button class="sb-item" onclick="nav('gift')">
+    <span class="sb-icon">🎯</span> Quiz GIFT
+  </button>
+  <button class="sb-item" onclick="nav('syllabus')">
+    <span class="sb-icon">📚</span> Syllabus rapide
+  </button>
+  <button class="sb-item" onclick="nav('htmleditor')">
+    <span class="sb-icon">🖥️</span> HTML Live Editor
+  </button>
+
+  <div class="sb-section">Administration</div>
+  <button class="sb-item" onclick="nav('m365')">
+    <span class="sb-icon">☁️</span> Comptes Microsoft 365
+  </button>
+  <button class="sb-item" onclick="nav('mailhistory')">
+    <span class="sb-icon">💾</span> Mails sauvegardés
+    <span class="sb-badge" id="mailhist-badge">0</span>
+  </button>
+
+  <div class="sb-section">EPE Planning</div>
+  <button class="sb-item" onclick="nav('epe')" id="nav-epe">
+    <span class="sb-icon">🗓️</span> Planning FOAD
+    <span class="sb-badge" id="epe-badge">0</span>
+  </button>
+
+  <div class="sb-section">Dev / GitHub</div>
+  <button class="sb-item" onclick="nav('github')">
+    <span class="sb-icon">⚙️</span> GitHub Actions
+  </button>
+  <button class="sb-item" onclick="nav('hubfoad')">
+    <span class="sb-icon">📌</span> Hub FOAD Personnel
+  </button>
+  <button class="sb-item" onclick="nav('repertoire')">
+    <span class="sb-icon">🗂️</span> Répertoire évaluations
+  </button>
+  <a class="sb-item" href="hub-foad-personnel.html" target="_blank" rel="noopener" style="text-decoration:none">
+    <span class="sb-icon">📌</span> Hub FOAD Personnel
+  </a>
+
+  <div class="sb-bottom">
+    <a href="https://formations.cesagonline.com" target="_blank">
+      🎓 Moodle CESAG
+    </a>
+    <a href="https://oscarkakpo-create.github.io/hubdigitalcesag/" target="_blank">
+      🌐 Hub Digital
+    </a>
+  </div>
+</nav>
+
+<!-- ─── MAIN ───────────────────────────────────────────── -->
+<div id="main">
+  <div class="topbar">
+    <div class="topbar-title">
+      <span id="topbar-title-text">Tableau de bord</span>
+      <span class="badge">v3.0</span>
+    </div>
+    <div class="topbar-right">
+      <span class="tb-pill" id="topbar-prog">Aucun programme actif</span>
+      <span class="tb-pill" id="topbar-date" style="display:none"></span>
+      <button class="btn outline" id="theme-toggle" onclick="toggleTheme()" style="padding:6px 12px;font-size:12px" title="Basculer thème clair/sombre">🌙</button>
+    </div>
+  </div>
+
+  <!-- EPE STICKY -->
+  <div id="epe-sticky">
+    <div class="sl">🗓️ <span id="ep-prog-name">—</span></div>
+    <div class="sr" id="ep-period"></div>
+  </div>
+
+  <div class="content">
+
+    <!-- ═══════════════ DASHBOARD ═══════════════ -->
+    <div id="panel-dashboard" class="panel active">
+      <div class="dash-banner">
+        <h2>CESAG ONLINE — Cockpit Final</h2>
+        <p>Cockpit unifié : Support, Mails, FOAD, Planning EPE et GitHub. Tout au même endroit.</p>
+      </div>
+      <div class="stat-strip">
+        <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Tous programmes CESAG</div></div>
+        <div class="stat"><div class="stat-n">8</div><div class="stat-l">Outils Support</div></div>
+        <div class="stat"><div class="stat-n">5</div><div class="stat-l">Actions GitHub</div></div>
+        <div class="stat"><div class="stat-n">1</div><div class="stat-l">EPE Générateur</div></div>
+      </div>
+      <div class="dash-grid">
+        <div class="dash-card" onclick="nav('acces')">
+          <div class="dash-card-ico" style="background:#e8f0fb">🔑</div>
+          <div class="dash-card-body"><h3>Accès numériques</h3><p>Office 365 + Moodle</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('reset')">
+          <div class="dash-card-ico" style="background:#fef3c7">🔄</div>
+          <div class="dash-card-body"><h3>Reset Moodle</h3><p>Réinitialiser un compte</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('mailprof')">
+          <div class="dash-card-ico" style="background:#e8f5ee">📧</div>
+          <div class="dash-card-body"><h3>Mail enseignant</h3><p>Invitation au module</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('examen')">
+          <div class="dash-card-ico" style="background:#fee2e2">📝</div>
+          <div class="dash-card-body"><h3>Consignes examen</h3><p>Mail d'épreuve en ligne</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('ics')">
+          <div class="dash-card-ico" style="background:#ede9fe">📅</div>
+          <div class="dash-card-body"><h3>Générateur ICS</h3><p>Invitation agenda</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('gift')">
+          <div class="dash-card-ico" style="background:#fef3c7">🎯</div>
+          <div class="dash-card-body"><h3>Quiz GIFT</h3><p>Import Moodle</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('syllabus')">
+          <div class="dash-card-ico" style="background:#e0f2fe">📚</div>
+          <div class="dash-card-body"><h3>Syllabus rapide</h3><p>Prompt FOAD complet</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('epe')">
+          <div class="dash-card-ico" style="background:#dcfce7">🗓️</div>
+          <div class="dash-card-body"><h3>Planning EPE</h3><p>Bloc FOAD complet</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('m365')">
+          <div class="dash-card-ico" style="background:#ede9fe">☁️</div>
+          <div class="dash-card-body"><h3>Comptes M365</h3><p>Export CSV prêt à importer</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('mailhistory')">
+          <div class="dash-card-ico" style="background:#fce7f3">💾</div>
+          <div class="dash-card-body"><h3>Mails sauvegardés</h3><p>Historique local</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('github')">
+          <div class="dash-card-ico" style="background:#f1f5f9">⚙️</div>
+          <div class="dash-card-body"><h3>GitHub Actions</h3><p>5 actions disponibles</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('hubfoad')">
+          <div class="dash-card-ico" style="background:#ecfeff">📌</div>
+          <div class="dash-card-body"><h3>Hub FOAD Personnel</h3><p>Suivi MBA CESAG/AUF</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('repertoire')">
+          <div class="dash-card-ico" style="background:#f0fdf4">🗂️</div>
+          <div class="dash-card-body"><h3>Répertoire évaluations</h3><p>Tous les programmes 2025-2026</p></div>
+        </div>
+        <a class="dash-card" href="hub-foad-personnel.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+          <div class="dash-card-ico" style="background:#ecfeff">📌</div>
+          <div class="dash-card-body"><h3>Hub FOAD Personnel</h3><p>Suivi MBA CESAG/AUF</p></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ═══════════════ ACCÈS NUMÉRIQUES ═══════ -->
+    <div id="panel-acces" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">🔑</div>Accès numériques CESAG</div>
+        <div class="hint">Génère le mail d'activation des accès numériques (Office 365, Moodle, Hub Digital). Remplissez les champs disponibles.</div>
+        <div class="row">
+          <div class="fld"><label>Nom complet</label><input type="text" id="ac-nom" placeholder="Prénom NOM"></div>
+          <div class="fld"><label>Programme / Formation</label>
+            <select id="ac-prog">
+              <option value="">— Sélectionner (optionnel) —</option>
+              <optgroup label="MBA">
+                <option>MBA Audit et Gestion (AG) — Classique</option>
+                <option>MBA Audit et Gestion (AG) — AUF</option>
+                <option>MBA Gestion des Projets (GP) — Classique</option>
+                <option>MBA Gestion des Projets (GP) — AUF</option>
+                <option>MBA Management des Stratégies et du Capital Humain (MSCH)</option>
+              </optgroup>
+              <optgroup label="Licence Professionnelle">
+                <option>LP MIAGE</option>
+                <option>LP Banque Finance</option>
+                <option>LP Comptabilité Contrôle Audit</option>
+              </optgroup>
+              <optgroup label="Formations courtes">
+                <option>DECOFI</option>
+                <option>Formation Continue CESAG</option>
+              </optgroup>
+              <optgroup label="Autres">
+                <option>Autre programme CESAG</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Email CESAG</label><input type="text" id="ac-mail" placeholder="prenom.nom@cesag.sn"></div>
+          <div class="fld"><label>Mot de passe initial</label><input type="text" id="ac-mdp" placeholder="Cesag@2026!"></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genAcces()">⚡ Générer</button>
+          <button class="btn outline" onclick="copyResult('res-acces')">📋 Copier</button>
+          <button class="btn outline" onclick="mailtoResult('res-acces','ac-mail','Activation de vos accès numériques — CESAG')">✉️ Ouvrir dans mail</button>
+          <button class="btn outline" onclick="saveMail('res-acces','Accès numériques')">💾 Sauvegarder</button>
+          <button class="btn outline" onclick="printResult('res-acces')">🖨️ PDF / Imprimer</button>
+          <button class="btn outline" onclick="clearRes('res-acces')">✕ Effacer</button>
+        </div>
+        <div id="res-acces" class="result">[ Remplissez les champs puis cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ RESET MOODLE ════════════ -->
+    <div id="panel-reset" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">🔄</div>Réinitialisation Moodle</div>
+        <div class="row">
+          <div class="fld"><label>Nom du destinataire</label><input type="text" id="rs-nom" placeholder="Prénom NOM (optionnel)"></div>
+          <div class="fld"><label>Email / Identifiant Moodle</label><input type="text" id="rs-mail" placeholder="prenom.nom@cesag.sn"></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Mot de passe temporaire</label><input type="text" id="rs-mdp" placeholder="Online@2026 (par défaut si vide)"></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genReset()">⚡ Générer</button>
+          <button class="btn outline" onclick="copyResult('res-reset')">📋 Copier</button>
+          <button class="btn outline" onclick="mailtoResult('res-reset','rs-mail','Réinitialisation de votre compte Moodle — CESAG')">✉️ Ouvrir dans mail</button>
+          <button class="btn outline" onclick="saveMail('res-reset','Reset Moodle')">💾 Sauvegarder</button>
+          <button class="btn outline" onclick="printResult('res-reset')">🖨️ PDF</button>
+        </div>
+        <div id="res-reset" class="result">[ Remplissez les champs puis cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ MAIL ENSEIGNANT ═════════ -->
+    <div id="panel-mailprof" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">📧</div>Mail enseignant — Invitation module</div>
+        <div class="row">
+          <div class="fld"><label>Titre et nom de l'enseignant</label><input type="text" id="mp-nom" placeholder="Pr. / Dr. / M. / Mme NOM"></div>
+          <div class="fld"><label>Intitulé du module</label><input type="text" id="mp-module" placeholder="Comptabilité Analytique"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Programme / Formation</label>
+            <select id="mp-prog">
+              <option value="">— Sélectionner (optionnel) —</option>
+              <optgroup label="MBA">
+                <option>MBA Audit et Gestion (AG) — Classique</option>
+                <option>MBA Audit et Gestion (AG) — AUF</option>
+                <option>MBA Gestion des Projets (GP) — Classique</option>
+                <option>MBA Gestion des Projets (GP) — AUF</option>
+                <option>MBA Management des Stratégies et du Capital Humain (MSCH)</option>
+              </optgroup>
+              <optgroup label="Licence Professionnelle">
+                <option>LP MIAGE</option>
+                <option>LP Banque Finance</option>
+                <option>LP Comptabilité Contrôle Audit</option>
+              </optgroup>
+              <optgroup label="Formations courtes">
+                <option>DECOFI</option>
+                <option>Formation Continue CESAG</option>
+              </optgroup>
+              <optgroup label="Autres">
+                <option>Autre programme CESAG</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="fld"><label>Nombre de séances souhaitées</label><input type="number" id="mp-seances" value="5" min="1" max="30"></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Message complémentaire</label><textarea id="mp-msg" placeholder="Ex : Les séances se déroulent sur Teams, merci de prévoir un support de cours…"></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genMailProf()">⚡ Générer</button>
+          <button class="btn outline" onclick="copyResult('res-mailprof')">📋 Copier</button>
+          <button class="btn outline" onclick="mailtoResult('res-mailprof','','Sollicitation d\'intervention pédagogique')">✉️ Ouvrir dans mail</button>
+          <button class="btn outline" onclick="saveMail('res-mailprof','Mail enseignant')">💾 Sauvegarder</button>
+          <button class="btn outline" onclick="printResult('res-mailprof')">🖨️ PDF</button>
+        </div>
+        <div id="res-mailprof" class="result">[ Remplissez les champs puis cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ RÉPONSE ÉTUDIANT ════════ -->
+    <div id="panel-mailetudiant" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">💬</div>Réponse à un apprenant / participant</div>
+        <div class="row trio">
+          <div class="fld"><label>Civilité</label>
+            <select id="et-civ">
+              <option value="">—</option>
+              <option value="M.">M.</option>
+              <option value="Mme">Mme</option>
+            </select>
+          </div>
+          <div class="fld" style="grid-column:span 2"><label>Nom du destinataire</label><input type="text" id="et-nom" placeholder="Prénom NOM"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Objet du message</label><input type="text" id="et-objet" placeholder="Sujet de la demande"></div>
+          <div class="fld"><label>Programme / Formation</label>
+            <select id="et-prog">
+              <option value="">— (optionnel) —</option>
+              <optgroup label="MBA">
+                <option>MBA AG</option><option>MBA GP</option><option>MBA MSCH</option>
+              </optgroup>
+              <optgroup label="Autres">
+                <option>LP MIAGE</option><option>DECOFI</option><option>Formation Continue</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Corps de la réponse</label><textarea id="et-msg" placeholder="Saisissez votre réponse ici…"></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genEtudiant()">⚡ Générer</button>
+          <button class="btn outline" onclick="copyResult('res-etudiant')">📋 Copier</button>
+          <button class="btn outline" onclick="mailtoResult('res-etudiant','et-nom','')">✉️ Ouvrir dans mail</button>
+          <button class="btn outline" onclick="saveMail('res-etudiant','Réponse apprenant')">💾 Sauvegarder</button>
+          <button class="btn outline" onclick="printResult('res-etudiant')">🖨️ PDF</button>
+        </div>
+        <div id="res-etudiant" class="result">[ Remplissez les champs puis cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CONSIGNES EXAMEN ════════ -->
+    <div id="panel-examen" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">📝</div>Consignes examen en ligne</div>
+        <div class="row">
+          <div class="fld"><label>Intitulé du module / épreuve</label><input type="text" id="ex-module" placeholder="Comptabilité Analytique"></div>
+          <div class="fld"><label>Date de l'examen</label><input type="date" id="ex-date"></div>
+        </div>
+        <div class="row trio">
+          <div class="fld"><label>Heure début (GMT)</label><input type="time" id="ex-hdeb" value="09:00"></div>
+          <div class="fld"><label>Durée (minutes)</label><input type="number" id="ex-duree" value="120"></div>
+          <div class="fld"><label>Programme / Formation</label>
+            <select id="ex-prog">
+              <option value="">— (optionnel) —</option>
+              <optgroup label="MBA">
+                <option>MBA AG Classique</option><option>MBA AG AUF</option>
+                <option>MBA GP Classique</option><option>MBA GP AUF</option>
+                <option>MBA MSCH</option>
+              </optgroup>
+              <optgroup label="Licence Professionnelle">
+                <option>LP MIAGE</option><option>LP Banque Finance</option>
+                <option>LP Comptabilité Contrôle Audit</option>
+              </optgroup>
+              <optgroup label="Formations courtes">
+                <option>DECOFI</option><option>Formation Continue</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Lien Moodle de l'épreuve</label><input type="url" id="ex-lien" placeholder="https://formations.cesagonline.com/..."></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genExamen()">⚡ Générer</button>
+          <button class="btn outline" onclick="copyResult('res-examen')">📋 Copier</button>
+          <button class="btn outline" onclick="mailtoResult('res-examen','','Convocation examen en ligne — CESAG')">✉️ Ouvrir dans mail</button>
+          <button class="btn outline" onclick="saveMail('res-examen','Consignes examen')">💾 Sauvegarder</button>
+          <button class="btn outline" onclick="printResult('res-examen')">🖨️ PDF</button>
+        </div>
+        <div id="res-examen" class="result">[ Remplissez les champs puis cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ ICS ══════════════════════ -->
+    <div id="panel-ics" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">📅</div>Générateur ICS — Invitation agenda</div>
+        <div class="row solo">
+          <div class="fld"><label>Titre de l'événement <em>*</em></label><input type="text" id="ics-title" placeholder="MBA AG — Séance 1 : Droit des affaires"></div>
+        </div>
+        <div class="row trio">
+          <div class="fld"><label>Date <em>*</em></label><input type="date" id="ics-date"></div>
+          <div class="fld"><label>Heure début <em>*</em></label><input type="time" id="ics-start" value="18:00"></div>
+          <div class="fld"><label>Heure fin <em>*</em></label><input type="time" id="ics-end" value="20:00"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Description / Lien Teams</label><input type="text" id="ics-desc" placeholder="Lien Teams ou description…"></div>
+          <div class="fld"><label>Lieu (optionnel)</label><input type="text" id="ics-lieu" placeholder="En ligne — Teams CESAG"></div>
+        </div>
+        <div class="actions">
+          <button class="btn green" onclick="downloadICS()">💾 Télécharger .ics</button>
+          <button class="btn primary" onclick="genICSPreview()">👁 Aperçu</button>
+        </div>
+        <div id="res-ics" class="result" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ HTML MOODLE ══════════════ -->
+    <div id="panel-htmlmoodle" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">📢</div>Annonce HTML — Moodle</div>
+        <div class="row solo">
+          <div class="fld"><label>Titre de l'annonce <em>*</em></label><input type="text" id="hm-title" placeholder="📢 Séance du 15 Mars — Rappel"></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Corps du message <em>*</em></label><textarea id="hm-msg" placeholder="Bonjour à toutes et à tous,&#10;&#10;Vous êtes conviés à la séance synchrone…"></textarea></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Couleur bandeau</label>
+            <select id="hm-color">
+              <option value="linear-gradient(90deg,#0b6b3a,#0a4ea1)">Vert → Bleu (défaut CESAG)</option>
+              <option value="#0a4ea1">Bleu CESAG</option>
+              <option value="#0b6b3a">Vert CESAG</option>
+              <option value="#c0392b">Rouge (Urgent)</option>
+              <option value="#d97706">Ambre (Rappel)</option>
+            </select>
+          </div>
+          <div class="fld"><label>Emoji icône</label><input type="text" id="hm-emoji" value="📢" maxlength="4"></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genHTMLMoodle()">⚡ Générer HTML</button>
+          <button class="btn outline" onclick="copyResult('res-htmlmoodle')">📋 Copier HTML</button>
+        </div>
+        <div id="res-htmlmoodle" class="result html-result" style="min-height:60px">[ Résultat HTML ici ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ QUIZ GIFT ════════════════ -->
+    <div id="panel-gift" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">🎯</div>Quiz GIFT — Import Moodle</div>
+        <div class="hint">Format GIFT compatible Moodle. Sélectionnez le type de question, remplissez puis cliquez Générer.</div>
+        <div class="row">
+          <div class="fld">
+            <label>Catégorie Moodle</label>
+            <input type="text" id="gf-cat" placeholder="$CATEGORY: MBA AG / Droit des affaires">
+          </div>
+          <div class="fld">
+            <label>Type de question</label>
+            <div class="gift-type-btn" id="gift-types">
+              <button class="gtype sel" onclick="setGType('tf',this)">Vrai/Faux</button>
+              <button class="gtype" onclick="setGType('single',this)">QCM unique</button>
+              <button class="gtype" onclick="setGType('multi',this)">QCM multiple</button>
+              <button class="gtype" onclick="setGType('short',this)">Texte court</button>
+              <button class="gtype" onclick="setGType('essay',this)">Rédaction</button>
+            </div>
+          </div>
+        </div>
+        <div id="gift-form" style="margin-top:14px"></div>
+        <div class="actions">
+          <button class="btn primary" onclick="genGIFT()">⚡ Générer GIFT</button>
+          <button class="btn outline" onclick="copyResult('res-gift')">📋 Copier</button>
+          <button class="btn outline" onclick="appendGIFT()">➕ Accumuler</button>
+          <button class="btn danger" onclick="clearRes('res-gift-all')">🗑 Effacer tout</button>
+        </div>
+        <label style="font-size:12px;color:var(--muted);margin-top:14px;display:block">Aperçu question</label>
+        <div id="res-gift" class="result">[ Question GIFT générée ici ]</div>
+        <label style="font-size:12px;color:var(--muted);margin-top:14px;display:block">Bloc GIFT accumulé (tout le quiz)</label>
+        <div id="res-gift-all" class="result">[ Accumulez plusieurs questions ici ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ HTML EDITOR ══════════════ -->
+    <div id="panel-htmleditor" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">🖥️</div>HTML Live Editor</div>
+        <div class="row solo">
+          <div class="fld"><label>Code HTML</label><textarea id="hed-code" style="height:200px;font-family:'Space Mono',monospace;font-size:12.5px" placeholder="<div>…</div>"></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="previewHTML()">👁 Prévisualiser</button>
+          <button class="btn outline" onclick="copyResult('hed-code-val')">📋 Copier code</button>
+        </div>
+        <iframe id="previewframe"></iframe>
+      </div>
+    </div>
+
+    <!-- ═══════════════ EPE PLANNING ═════════════ -->
+    <div id="panel-epe" class="panel">
+
+      <!-- INFOS GÉNÉRALES -->
+      <div class="card">
+        <div class="hint"><strong>Rappel :</strong> Quiz, forums et devoirs sont <strong>obligatoires</strong> et font partie intégrante de l'évaluation FOAD.</div>
+        <div class="card-head"><div class="card-ico">📋</div>Informations générales</div>
+        <div class="row">
+          <div class="fld">
+            <label>Programme <em>*</em></label>
+            <select id="epe-prog" onchange="onEpeProg()">
+              <option value="">— Sélectionner —</option>
+              <optgroup label="MBA">
+                <option>MBA AG Classique</option><option>MBA AG AUF</option>
+                <option>MBA GP Classique</option><option>MBA GP AUF</option>
+                <option>MBA MSCH</option>
+              </optgroup>
+              <optgroup label="Licence Professionnelle">
+                <option>LP MIAGE</option>
+                <option>LP Banque Finance</option>
+                <option>LP Comptabilité Contrôle Audit</option>
+              </optgroup>
+              <optgroup label="Formations courtes">
+                <option>DECOFI</option>
+                <option>Formation Continue CESAG</option>
+              </optgroup>
+              <optgroup label="Autres">
+                <option>Autre programme CESAG</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="fld" style="justify-content:flex-end;padding-bottom:2px">
+            <div id="epe-prog-info" style="font-size:12px;color:var(--muted)"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Période — Lundi <em>*</em></label><input type="date" id="epe-lundi" onchange="updateEpePeriod()"></div>
+          <div class="fld"><label>Période — Dimanche <em>*</em></label><input type="date" id="epe-dim" onchange="updateEpePeriod()"></div>
+        </div>
+      </div>
+
+      <!-- MODE MÉMOIRE -->
+      <div class="card" style="padding:16px 22px">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
+          <div style="flex:1;min-width:220px">
+            <div style="font-size:14px;font-weight:700;margin-bottom:4px">🧠 Éléments déjà mémorisés par l'IA</div>
+            <p style="font-size:13px;color:var(--muted);line-height:1.5">Activez ce mode pour alléger le bloc généré en omettant les éléments que l'IA connaît déjà.</p>
+          </div>
+          <button class="btn green" id="memo-btn" onclick="toggleMemo()">
+            <span style="width:8px;height:8px;border-radius:50%;background:#a7f3d0;display:inline-block"></span>
+            <span id="memo-btn-label">Ces éléments sont mémorisés — GO</span>
+          </button>
+        </div>
+        <div class="memo-panel" id="memo-panel">
+          <h3>✓ Choisissez ce que l'IA a déjà en mémoire :</h3>
+          <p style="font-size:13px;color:#1d5236">Les éléments cochés seront <strong>omis</strong> du bloc généré.</p>
+          <div class="memo-checks">
+            <label class="memo-chk"><input type="checkbox" id="memo-prog"> Programme</label>
+            <label class="memo-chk"><input type="checkbox" id="memo-moodle"> Liens Moodle</label>
+            <label class="memo-chk"><input type="checkbox" id="memo-salle"> Salles virtuelles</label>
+            <label class="memo-chk"><input type="checkbox" id="memo-ens"> Enseignants</label>
+            <label class="memo-chk"><input type="checkbox" id="memo-mod"> Modules</label>
+            <label class="memo-chk"><input type="checkbox" id="memo-agenda"> Agenda annuel</label>
+            <label class="memo-chk"><input type="checkbox" id="memo-rec"> Enregistrement</label>
+          </div>
+        </div>
+      </div>
+
+      <!-- SÉANCES -->
+      <div class="card" id="epe-seances-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div class="card-head" style="margin-bottom:0">
+            <div class="card-ico">📆</div>Séances
+            <span id="epe-sess-badge" style="background:#e8f0fb;color:var(--b);font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;margin-left:6px">0 séance</span>
+            <span id="epe-hours-badge" style="background:#fef3c7;color:#92400e;font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;display:none;margin-left:4px"></span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn outline" id="epe-recap-btn" onclick="toggleRecap()" style="font-size:13px">📅 Vue semaine</button>
+            <button class="btn green" onclick="addSess()">+ Ajouter séance</button>
+          </div>
+        </div>
+        <div id="recap-panel">
+          <div class="rh">📅 Planning de la semaine — aperçu</div>
+          <div id="recap-grid" style="padding:14px;background:#fafcff"></div>
+        </div>
+        <div id="epe-seances"></div>
+      </div>
+
+      <!-- OPTIONNEL -->
+      <div class="card">
+        <div class="card-head"><div class="card-ico">🔗</div>Liens & Observations</div>
+        <div class="row">
+          <div class="fld"><label>Agenda annuel — Lien</label><input type="url" id="epe-agenda" placeholder="https://…"></div>
+          <div class="fld"><label>Enregistrement — Lien</label><input type="url" id="epe-record" placeholder="https://…"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Code secret enregistrement</label><input type="text" id="epe-code" placeholder="Code"></div>
+          <div class="fld"></div>
+        </div>
+        <div class="row solo" style="margin-top:12px">
+          <div class="fld"><label>Observations / Instructions IA <span style="font-weight:400;color:var(--muted)">(contraintes, rappels, cas particuliers…)</span></label>
+          <textarea id="epe-obs" placeholder="Ex : Activez le mode restriction avant la séance. Groupe B passe en présentiel…"></textarea></div>
+        </div>
+      </div>
+
+      <!-- HISTORIQUE -->
+      <div class="card" id="epe-hist-card" style="display:none">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div class="card-head" style="margin-bottom:0">
+            <div class="card-ico">🕘</div>Historique
+            <span id="epe-hist-badge" style="background:#f3e8ff;color:#6b21a8;font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;margin-left:6px">0 bloc</span>
+          </div>
+          <button class="btn danger" style="font-size:12px;padding:5px 12px" onclick="clearEpeHistory()">🗑 Vider</button>
+        </div>
+        <div id="epe-hist-list" style="margin-top:12px;display:flex;flex-direction:column;gap:8px"></div>
+      </div>
+
+      <!-- OUTPUT -->
+      <div class="card">
+        <div class="card-head"><div class="card-ico">⚡</div>Bloc à coller dans l'IA</div>
+        <div class="actions" style="margin-bottom:14px">
+          <button class="btn primary" onclick="generateEpeBlock()">⚡ Générer le bloc</button>
+          <button class="btn outline" onclick="copyEpeBlock()">📋 Copier</button>
+          <button class="btn outline" onclick="downloadEpeBlock()">💾 .txt</button>
+          <button class="btn danger" onclick="resetEpe()">↺ Réinitialiser</button>
+        </div>
+        <pre id="epe-preview">[ Cliquez sur « Générer le bloc » pour voir le résultat ici ]</pre>
+      </div>
+    </div>
+
+    <!-- ═══════════════ GITHUB ════════════════════ -->
+    <div id="panel-github" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">⚙️</div>GitHub Actions — Dev Tools</div>
+        <div class="hint">Sélectionnez l'action souhaitée, remplissez les champs et générez le prompt Codex.</div>
+        <div class="github-actions">
+          <div class="gh-tile" onclick="openGH('edit')">
+            <div class="gh-ico">✏️</div>
+            <h3>Modifier un fichier</h3>
+            <p>Éditer un fichier dans un repo existant</p>
+          </div>
+          <div class="gh-tile" onclick="openGH('page')">
+            <div class="gh-ico">📄</div>
+            <h3>Ajouter une page HTML</h3>
+            <p>Créer et déployer une nouvelle page</p>
+          </div>
+          <div class="gh-tile" onclick="openGH('hub')">
+            <div class="gh-ico">🔧</div>
+            <h3>Mettre à jour le Hub</h3>
+            <p>Hub Digital CESAG — index.html</p>
+          </div>
+          <div class="gh-tile" onclick="openGH('deploy')">
+            <div class="gh-ico">🚀</div>
+            <h3>Déployer GitHub Pages</h3>
+            <p>Activer / reconfigurer GitHub Pages</p>
+          </div>
+          <div class="gh-tile" onclick="openGH('new')">
+            <div class="gh-ico">✨</div>
+            <h3>Créer nouveau projet</h3>
+            <p>Initialiser un nouveau repository</p>
+          </div>
+        </div>
+
+        <!-- Forms GitHub -->
+        <div id="gh-edit" class="sub-panel">
+          <div class="card-head" style="font-size:14px">✏️ Modifier un fichier GitHub</div>
+          <div class="row">
+            <div class="fld"><label>Repository <em>*</em></label><input type="text" id="gh-e-repo" value="oscarkakpo-create/hubdigitalcesag" placeholder="user/repo"></div>
+            <div class="fld"><label>Fichier <em>*</em></label><input type="text" id="gh-e-file" value="index.html" placeholder="index.html"></div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Description de la modification <em>*</em></label><textarea id="gh-e-modif" placeholder="Ajouter une carte dans la section outils…"></textarea></div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Message de commit <em>*</em></label><input type="text" id="gh-e-commit" placeholder="feat: ajout section outils"></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" onclick="genGH('edit')">⚡ Générer prompt</button>
+            <button class="btn outline" onclick="copyResult('res-gh')">📋 Copier</button>
+          </div>
+        </div>
+
+        <div id="gh-page" class="sub-panel">
+          <div class="card-head" style="font-size:14px">📄 Ajouter une page HTML</div>
+          <div class="row">
+            <div class="fld"><label>Repository <em>*</em></label><input type="text" id="gh-p-repo" placeholder="oscarkakpo-create/hubdigitalcesag"></div>
+            <div class="fld"><label>Nom du fichier <em>*</em></label><input type="text" id="gh-p-file" placeholder="nouvelle-page.html"></div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Description du contenu de la page <em>*</em></label><textarea id="gh-p-content" placeholder="Page d'accueil pour les étudiants MBA AG avec liste des modules, liens Moodle et calendrier…"></textarea></div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Message de commit</label><input type="text" id="gh-p-commit" placeholder="feat: nouvelle page MBA AG"></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" onclick="genGH('page')">⚡ Générer prompt</button>
+            <button class="btn outline" onclick="copyResult('res-gh')">📋 Copier</button>
+          </div>
+        </div>
+
+        <div id="gh-hub" class="sub-panel">
+          <div class="card-head" style="font-size:14px">🔧 Mettre à jour le Hub Digital</div>
+          <div class="hint">Repository cible : <strong>oscarkakpo-create/hubdigitalcesag</strong> — index.html</div>
+          <div class="row solo">
+            <div class="fld"><label>Modification souhaitée <em>*</em></label><textarea id="gh-h-modif" placeholder="Ajouter une nouvelle carte 'Relevés de notes' dans la section Outils administratifs, avec lien vers le formulaire EPE…"></textarea></div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Message de commit</label><input type="text" id="gh-h-commit" placeholder="feat: ajout carte relevés de notes"></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" onclick="genGH('hub')">⚡ Générer prompt</button>
+            <button class="btn outline" onclick="copyResult('res-gh')">📋 Copier</button>
+          </div>
+        </div>
+
+        <div id="gh-deploy" class="sub-panel">
+          <div class="card-head" style="font-size:14px">🚀 Déployer GitHub Pages</div>
+          <div class="row">
+            <div class="fld"><label>Repository <em>*</em></label><input type="text" id="gh-d-repo" placeholder="oscarkakpo-create/mon-site"></div>
+            <div class="fld"><label>Branche source</label><input type="text" id="gh-d-branch" value="main" placeholder="main"></div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Instructions spéciales</label><textarea id="gh-d-notes" placeholder="Ex : Configurer un domaine custom, activer HTTPS…"></textarea></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" onclick="genGH('deploy')">⚡ Générer prompt</button>
+            <button class="btn outline" onclick="copyResult('res-gh')">📋 Copier</button>
+          </div>
+        </div>
+
+        <div id="gh-new" class="sub-panel">
+          <div class="card-head" style="font-size:14px">✨ Créer un nouveau projet GitHub</div>
+          <div class="row">
+            <div class="fld"><label>Nom du repository <em>*</em></label><input type="text" id="gh-n-name" placeholder="cesag-mba-ag-hub"></div>
+            <div class="fld"><label>Visibilité</label>
+              <select id="gh-n-visibility">
+                <option value="public">Public</option>
+                <option value="private">Privé</option>
+              </select>
+            </div>
+          </div>
+          <div class="row solo" style="margin-top:10px">
+            <div class="fld"><label>Description du projet <em>*</em></label><textarea id="gh-n-desc" placeholder="Hub digital pour les étudiants MBA AG CESAG. Contient l'agenda, les liens Moodle, les ressources..."></textarea></div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" onclick="genGH('new')">⚡ Générer prompt</button>
+            <button class="btn outline" onclick="copyResult('res-gh')">📋 Copier</button>
+          </div>
+        </div>
+
+        <label style="font-size:12px;color:var(--muted);display:block;margin-top:14px">Prompt Codex généré</label>
+        <div id="res-gh" class="result">[ Sélectionnez une action et cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ SYLLABUS RAPIDE ══════════ -->
+    <div id="panel-syllabus" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">📚</div>Syllabus rapide — Générateur de prompt FOAD</div>
+        <div class="hint">Remplissez les champs disponibles. Le prompt généré est prêt à coller dans une IA pour produire un syllabus FOAD complet au standard CESAG.</div>
+        <div class="row">
+          <div class="fld"><label>Intitulé du module</label><input type="text" id="sy-module" placeholder="Comptabilité Analytique"></div>
+          <div class="fld"><label>Code module</label><input type="text" id="sy-code" placeholder="MBAGRH112"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Programme / Formation</label>
+            <select id="sy-prog">
+              <option value="">— Sélectionner —</option>
+              <optgroup label="MBA"><option>MBA AG Classique</option><option>MBA AG AUF</option><option>MBA GP Classique</option><option>MBA GP AUF</option><option>MBA MSCH</option></optgroup>
+              <optgroup label="Licence Professionnelle"><option>LP MIAGE</option><option>LP Banque Finance</option><option>LP Comptabilité Contrôle Audit</option></optgroup>
+              <optgroup label="Formations courtes"><option>DECOFI</option><option>Formation Continue CESAG</option></optgroup>
+            </select>
+          </div>
+          <div class="fld"><label>Volume horaire total</label><input type="text" id="sy-vh" placeholder="Ex : 30h (6 séances × 2h)"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Enseignant responsable</label><input type="text" id="sy-ens" placeholder="Pr. / Dr. NOM"></div>
+          <div class="fld"><label>Niveau / Semestre</label><input type="text" id="sy-niveau" placeholder="Semestre 1 — Niveau Master"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>Modalité principale</label>
+            <select id="sy-mod">
+              <option>FOAD (100% en ligne)</option>
+              <option>Hybride (présentiel + distanciel)</option>
+              <option>Présentiel</option>
+            </select>
+          </div>
+          <div class="fld"><label>Langue d'enseignement</label>
+            <select id="sy-lang">
+              <option>Français</option><option>Anglais</option><option>Bilingue (français/anglais)</option>
+            </select>
+          </div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Objectifs pédagogiques principaux</label><textarea id="sy-obj" placeholder="Ex : Maîtriser les méthodes de coûts, savoir interpréter un tableau de bord de gestion, développer un outil d'aide à la décision…"></textarea></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Prérequis éventuels</label><input type="text" id="sy-prereq" placeholder="Ex : Comptabilité générale, notions de finance d'entreprise"></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Éléments d'évaluation souhaités</label><input type="text" id="sy-eval" placeholder="Ex : Quiz Moodle (30%), Devoir individuel (30%), Examen final (40%)"></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Instructions complémentaires pour l'IA</label><textarea id="sy-notes" style="height:70px" placeholder="Ex : Inclure une section sur le contexte UEMOA/OHADA, respecter le template 13 sections CESAG, langue soutenue…"></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="genSyllabus()">⚡ Générer le prompt</button>
+          <button class="btn outline" onclick="copyResult('res-syllabus')">📋 Copier le prompt</button>
+          <button class="btn outline" onclick="saveMail('res-syllabus','Prompt syllabus')">💾 Sauvegarder</button>
+        </div>
+        <label style="font-size:12px;color:var(--muted);display:block;margin-top:14px">Prompt prêt à coller dans Claude / ChatGPT</label>
+        <div id="res-syllabus" class="result">[ Remplissez les champs puis cliquez sur Générer ]</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ MICROSOFT 365 CSV ════════ -->
+    <div id="panel-m365" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">☁️</div>Création comptes Microsoft 365 — Export CSV</div>
+        <div class="hint">Saisissez les utilisateurs ligne par ligne. Le fichier CSV généré est directement importable dans le portail Microsoft 365 Admin (UTF-8 BOM).</div>
+
+        <div class="row trio">
+          <div class="fld"><label>Domaine de messagerie</label><input type="text" id="m365-domain" value="cesag.sn" placeholder="cesag.sn"></div>
+          <div class="fld"><label>Mot de passe par défaut</label><input type="text" id="m365-mdp" value="Cesag@2026!" placeholder="Cesag@2026!"></div>
+          <div class="fld"><label>Pays</label><input type="text" id="m365-pays" value="SN" placeholder="SN (Sénégal)"></div>
+        </div>
+
+        <div style="margin-top:16px">
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px">
+            <label style="margin:0">Utilisateurs à créer</label>
+            <div style="display:flex;gap:8px">
+              <button class="btn outline" style="font-size:12px;padding:5px 12px" onclick="addM365Row()">+ Ajouter une ligne</button>
+              <button class="btn outline" style="font-size:12px;padding:5px 12px" onclick="importM365Paste()">📋 Coller liste (Prénom NOM)</button>
+              <button class="btn outline" style="font-size:12px;padding:5px 12px" onclick="openM365FilePicker()">📂 Importer fichier</button>
+              <input type="file" id="m365-file" accept=".txt,.csv" onchange="importM365File(event)" style="display:none">
+            </div>
+          </div>
+          <div id="m365-rows" style="display:flex;flex-direction:column;gap:8px"></div>
+        </div>
+
+        <div class="row solo" style="margin-top:14px">
+          <div class="fld"><label>Coller une liste brute (un nom complet par ligne)</label>
+          <textarea id="m365-paste" style="height:80px" placeholder="Amadou DIALLO&#10;Fatou NDIAYE&#10;Ibrahima FALL&#10;…"></textarea></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="importM365Paste()">📥 Importer la liste</button>
+          <button class="btn green" onclick="genM365CSV()">💾 Télécharger CSV</button>
+          <button class="btn outline" onclick="copyResult('res-m365')">📋 Aperçu texte</button>
+          <button class="btn danger" onclick="clearM365()">↺ Réinitialiser</button>
+        </div>
+        <label style="font-size:12px;color:var(--muted);display:block;margin-top:14px">Aperçu CSV (premières lignes)</label>
+        <div id="res-m365" class="result">[ Remplissez les utilisateurs puis cliquez sur Télécharger CSV ]</div>
+      </div>
+    </div>
+
+
+    <!-- ═══════════════ HUB FOAD PERSONNEL ════════ -->
+    <div id="panel-hubfoad" class="panel">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+          <div class="card-head" style="margin-bottom:0"><div class="card-ico">📌</div>Hub FOAD Personnel (intégré)</div>
+          <a class="btn outline" href="hub-foad-personnel.html" target="_blank" rel="noopener">↗ Ouvrir en plein écran</a>
+        </div>
+        <div class="hint" style="margin-bottom:10px">Si vous ne voyiez pas le Hub auparavant, il est maintenant accessible directement dans le cockpit.</div>
+        <iframe src="hub-foad-personnel.html" title="Hub FOAD Personnel" style="width:100%;height:78vh;border:1.5px solid var(--border);border-radius:12px;background:#fff"></iframe>
+      </div>
+    </div>
+
+    <!-- ═══════════════ RÉPERTOIRE ÉVALUATIONS ════════ -->
+    <div id="panel-repertoire" class="panel">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+          <div class="card-head" style="margin-bottom:0"><div class="card-ico">🗂️</div>Répertoire évaluations (intégré)</div>
+          <a class="btn outline" href="repertoire-evaluations.html" target="_blank" rel="noopener">↗ Ouvrir en plein écran</a>
+        </div>
+        <iframe src="repertoire-evaluations.html" title="Répertoire évaluations" style="width:100%;height:78vh;border:1.5px solid var(--border);border-radius:12px;background:#fff"></iframe>
+      </div>
+    </div>
+
+    <!-- ═══════════════ MAILS SAUVEGARDÉS ════════ -->
+    <div id="panel-mailhistory" class="panel">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:18px">
+          <div class="card-head" style="margin-bottom:0">
+            <div class="card-ico">💾</div>Mails sauvegardés
+            <span id="mailhist-count" style="background:#e8f0fb;color:var(--b);font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;margin-left:6px">0 message</span>
+          </div>
+          <button class="btn danger" style="font-size:12px;padding:6px 14px" onclick="clearAllMails()">🗑 Tout effacer</button>
+        </div>
+        <div id="mailhist-list"><div style="text-align:center;color:var(--muted);padding:40px;font-size:14px">Aucun mail sauvegardé pour l'instant.<br>Cliquez sur <strong>💾 Sauvegarder</strong> depuis n'importe quel outil de mail.</div></div>
+      </div>
+    </div>
+
+  </div><!-- /content -->
+</div><!-- /main -->
+
+<!-- FAB EPE -->
+<button id="fab-add" onclick="addSess()" title="Ajouter une séance">
+  <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+  Séance
+  <span class="fc" id="fab-count">0</span>
+</button>
+
+<!-- TOAST -->
+<div id="toast">✓ Copié !</div>
+
+<script>
+/* ═══════════════ NAVIGATION ═══════════════════════════════════ */
+const TITLES = {
+  dashboard:'Tableau de bord',acces:'Accès numériques',reset:'Reset Moodle',
+  mailprof:'Mail enseignant',mailetudiant:'Réponse étudiant',
+  examen:'Consignes examen',ics:'Générateur ICS',htmlmoodle:'Annonce HTML Moodle',
+  gift:'Quiz GIFT',htmleditor:'HTML Live Editor',epe:'Planning FOAD (EPE)',
+  github:'GitHub Actions',syllabus:'Syllabus rapide',
+  hubfoad:'Hub FOAD Personnel',repertoire:'Répertoire évaluations',
+  m365:'Comptes Microsoft 365',mailhistory:'Mails sauvegardés'
+};
+
+function nav(id){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sb-item').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id)?.classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(b=>{
+    if(b.getAttribute('onclick')===`nav('${id}')`) b.classList.add('active');
+  });
+  document.getElementById('topbar-title-text').textContent = TITLES[id]||id;
+  // FAB only on EPE
+  document.getElementById('fab-add').classList.toggle('vis', id==='epe');
+  // EPE sticky
+  document.getElementById('epe-sticky').classList.toggle('vis', id==='epe');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════ UTILS ═════════════════════════════════════════ */
+function showToast(msg='✓ Copié !'){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2000);
+}
+function copyResult(id){
+  const el=document.getElementById(id);
+  if(!el){return;}
+  const txt = el.tagName==='TEXTAREA'?el.value:el.innerText;
+  navigator.clipboard.writeText(txt).then(()=>showToast('✓ Copié !'));
+}
+function clearRes(id){ document.getElementById(id).textContent='[ Effacé ]'; }
+function fmtDate(iso){ if(!iso)return ''; const[y,m,d]=iso.split('-'); return `${d}/${m}/${y}`; }
+function toMin(t){ const[h,m]=t.split(':').map(Number); return h*60+m; }
+
+/* ═══════════════ SUPPORT / MAILS ══════════════════════════════ */
+function genAcces(){
+  const nom=document.getElementById('ac-nom').value.trim();
+  const prog=document.getElementById('ac-prog').value;
+  const mail=document.getElementById('ac-mail').value.trim();
+  const mdp=document.getElementById('ac-mdp').value.trim();
+  const salut=nom?`Madame, Monsieur ${nom},`:`Madame, Monsieur,`;
+  let txt=`Objet : Activation de vos accès numériques — CESAG\n\n`;
+  txt+=`${salut}\n\n`;
+  txt+=`Nous avons le plaisir de vous informer que vos accès à la plateforme numérique du CESAG sont désormais activés.\n`;
+  if(prog) txt+=`Programme : ${prog}\n`;
+  txt+=`\n─── ACCÈS 1 — Office 365 ───────────────\n`;
+  if(mail) txt+=`Email    : ${mail}\n`;
+  if(mdp)  txt+=`Mot de passe : ${mdp}\n`;
+  txt+=`Portail  : https://outlook.office.com\n`;
+  txt+=`\n─── ACCÈS 2 — Moodle CESAG ─────────────\n`;
+  txt+=`URL      : https://formations.cesagonline.com\n`;
+  if(mail) txt+=`Identifiant : ${mail}\n`;
+  if(mdp)  txt+=`Mot de passe : ${mdp}\n`;
+  txt+=`\n─── ACCÈS 3 — Hub Digital ───────────────\n`;
+  txt+=`URL : https://oscarkakpo-create.github.io/hubdigitalcesag/\n`;
+  txt+=`\nNous restons disponibles pour toute question relative à vos accès.\n\nBien cordialement,\nCESAG ONLINE — Coordination FOAD`;
+  document.getElementById('res-acces').textContent=txt;
+}
+
+function genReset(){
+  const nom=document.getElementById('rs-nom').value.trim();
+  const mail=document.getElementById('rs-mail').value.trim();
+  const mdp=document.getElementById('rs-mdp').value.trim()||'Online@2026';
+  const salut=nom?`Madame, Monsieur ${nom},`:`Madame, Monsieur,`;
+  let txt=`Objet : Réinitialisation de votre compte Moodle — CESAG\n\n`;
+  txt+=`${salut}\n\n`;
+  txt+=`Suite à votre demande, votre compte Moodle a été réinitialisé.\n\n`;
+  if(mail) txt+=`Identifiant    : ${mail}\n`;
+  txt+=`Nouveau mot de passe : ${mdp}\n\n`;
+  txt+=`Connectez-vous sur :\nhttps://formations.cesagonline.com\n\n`;
+  txt+=`⚠️ Nous vous recommandons de modifier votre mot de passe dès votre première connexion.\n\n`;
+  txt+=`Nous demeurons à votre disposition pour tout renseignement complémentaire.\n\nBien cordialement,\nCESAG ONLINE — Support Formation`;
+  document.getElementById('res-reset').textContent=txt;
+}
+
+function genMailProf(){
+  const nom=document.getElementById('mp-nom').value.trim();
+  const mod=document.getElementById('mp-module').value.trim();
+  const prog=document.getElementById('mp-prog').value;
+  const nb=document.getElementById('mp-seances').value||'5';
+  const msg=document.getElementById('mp-msg').value.trim();
+  const salut=nom?`Madame, Monsieur ${nom},`:`Madame, Monsieur,`;
+  const progStr=prog?` dans le programme ${prog}`:'';
+  let txt=`Objet : Sollicitation d'intervention pédagogique${mod?' — '+mod:''}${prog?' — '+prog:''}\n\n`;
+  txt+=`${salut}\n\n`;
+  txt+=`Nous vous adressons ce message dans le cadre de l'organisation des enseignements au CESAG${progStr}.\n\n`;
+  if(mod) txt+=`Nous souhaiterions vous solliciter pour assurer l'animation du module :\n📚 « ${mod} »\n\n`;
+  else txt+=`Nous souhaiterions vous solliciter pour une intervention pédagogique au sein de notre programme.\n\n`;
+  txt+=`Nous envisageons de planifier ${nb} séance(s) synchrone(s) en ligne.\nNous vous serions reconnaissants de bien vouloir nous faire part de vos disponibilités afin de finaliser le calendrier des sessions.\n`;
+  if(msg) txt+=`\n${msg}\n`;
+  txt+=`\nDans l'attente de votre retour, nous vous prions d'agréer, Madame, Monsieur, l'expression de nos salutations distinguées.\n\nCESAG ONLINE — Coordination FOAD`;
+  document.getElementById('res-mailprof').textContent=txt;
+}
+
+function genEtudiant(){
+  const civ=document.getElementById('et-civ').value;
+  const nom=document.getElementById('et-nom').value.trim();
+  const obj=document.getElementById('et-objet').value.trim();
+  const msg=document.getElementById('et-msg').value.trim();
+  const prog=document.getElementById('et-prog').value;
+  let salut='Madame, Monsieur,';
+  if(civ&&nom) salut=`${civ} ${nom},`;
+  else if(nom) salut=`Madame, Monsieur ${nom},`;
+  let txt='';
+  if(obj) txt+=`Objet : ${obj}\n\n`;
+  txt+=`${salut}\n\n`;
+  txt+=`Nous avons bien pris connaissance de votre demande et nous vous remercions de nous avoir contactés.\n\n`;
+  if(msg) txt+=`${msg}\n\n`;
+  if(prog) txt+=`(Programme : ${prog})\n\n`;
+  txt+=`Nous restons à votre entière disposition pour tout renseignement complémentaire.\n\nBien cordialement,\nCESAG ONLINE — Support Formation`;
+  document.getElementById('res-etudiant').textContent=txt;
+}
+
+function genExamen(){
+  const mod=document.getElementById('ex-module').value.trim();
+  const date=document.getElementById('ex-date').value;
+  const hdeb=document.getElementById('ex-hdeb').value;
+  const duree=document.getElementById('ex-duree').value;
+  const prog=document.getElementById('ex-prog').value;
+  const lien=document.getElementById('ex-lien').value.trim();
+  let txt=`Objet : Convocation à l'examen en ligne${mod?' — '+mod:''}\n\n`;
+  txt+=`Madame, Monsieur,\n\n`;
+  txt+=`Nous avons l'honneur de vous convier à l'épreuve en ligne dont les modalités sont précisées ci-dessous.\n\n`;
+  txt+=`${'═'.repeat(42)}\n`;
+  if(mod)   txt+=`Module    : ${mod}\n`;
+  if(prog)  txt+=`Programme : ${prog}\n`;
+  if(date)  txt+=`Date      : ${fmtDate(date)}\n`;
+  if(hdeb)  txt+=`Heure     : ${hdeb} (GMT)\n`;
+  if(duree) txt+=`Durée     : ${duree} min\n`;
+  txt+=`${'─'.repeat(42)}\n`;
+  txt+=`CONSIGNES IMPORTANTES\n${'─'.repeat(42)}\n`;
+  txt+=`• La webcam est OBLIGATOIRE pendant toute la durée de l'épreuve.\n`;
+  txt+=`• Toute communication entre candidats est formellement interdite.\n`;
+  txt+=`• Le sujet sera mis en ligne sur Moodle à l'heure indiquée.\n`;
+  txt+=`• En cas de problème technique, contactez immédiatement le surveillant.\n`;
+  if(lien) txt+=`\n🔗 Accès Moodle : ${lien}\n`;
+  txt+=`\nNous vous souhaitons un bon déroulement de votre épreuve.\n\nBien cordialement,\nCESAG ONLINE — Service des Examens`;
+  document.getElementById('res-examen').textContent=txt;
+}
+
+/* ═══════════════ ICS ═══════════════════════════════════════════ */
+function genICSPreview(){
+  const ics=buildICS();
+  if(!ics)return;
+  document.getElementById('res-ics').style.display='block';
+  document.getElementById('res-ics').textContent=ics;
+}
+function buildICS(){
+  const title=document.getElementById('ics-title').value.trim();
+  const date=document.getElementById('ics-date').value;
+  const start=document.getElementById('ics-start').value;
+  const end=document.getElementById('ics-end').value;
+  const desc=document.getElementById('ics-desc').value.trim();
+  const lieu=document.getElementById('ics-lieu').value.trim();
+  if(!title||!date||!start||!end){alert('Titre, date et horaires obligatoires');return null;}
+  const d=date.replaceAll('-','');
+  const s=start.replace(':','');
+  const e=end.replace(':','');
+  return `BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//CESAG ONLINE//FR\nBEGIN:VEVENT\nSUMMARY:${title}\nDTSTART:${d}T${s}00\nDTEND:${d}T${e}00\n${desc?'DESCRIPTION:'+desc+'\n':''}${lieu?'LOCATION:'+lieu+'\n':''}ORGANIZER:CESAG ONLINE\nEND:VEVENT\nEND:VCALENDAR`;
+}
+function downloadICS(){
+  const ics=buildICS(); if(!ics)return;
+  const blob=new Blob([ics],{type:'text/calendar'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  const title=document.getElementById('ics-title').value.replace(/[^a-zA-Z0-9]/g,'_').slice(0,30);
+  a.download=`CESAG_${title||'seance'}.ics`;
+  a.click(); showToast('💾 Fichier ICS téléchargé');
+}
+
+/* ═══════════════ HTML MOODLE ═══════════════════════════════════ */
+function genHTMLMoodle(){
+  const title=document.getElementById('hm-title').value.trim();
+  const msg=document.getElementById('hm-msg').value.trim().replace(/\n/g,'<br>');
+  const color=document.getElementById('hm-color').value;
+  const emoji=document.getElementById('hm-emoji').value||'📢';
+  if(!title||!msg){alert('Titre et message obligatoires');return;}
+  const html=`<div style="font-family:Segoe UI,Arial,sans-serif;max-width:680px;border-radius:10px;overflow:hidden;border:1px solid #dde4ee">
+  <div style="background:${color};padding:14px 20px;color:#fff">
+    <strong style="font-size:16px">${emoji} ${title}</strong>
+  </div>
+  <div style="padding:18px 20px;background:#fff">
+    <p style="color:#1a2536;line-height:1.65;font-size:14px">${msg}</p>
+    <p style="margin-top:14px;color:#5a6a80;font-size:12px">— <strong>CESAG ONLINE</strong></p>
+  </div>
+</div>`;
+  document.getElementById('res-htmlmoodle').innerHTML=html;
+  document.getElementById('res-htmlmoodle').setAttribute('data-raw',html);
+}
+// Override copyResult for htmlmoodle
+document.addEventListener('click',e=>{
+  if(e.target.getAttribute && e.target.getAttribute('onclick')==="copyResult('res-htmlmoodle')"){
+    e.preventDefault();
+    const raw=document.getElementById('res-htmlmoodle').getAttribute('data-raw');
+    if(raw) navigator.clipboard.writeText(raw).then(()=>showToast('✓ HTML copié !'));
+  }
+},{capture:true});
+
+/* ═══════════════ QUIZ GIFT ═════════════════════════════════════ */
+let giftType='tf';
+let giftAccum='';
+function setGType(type,btn){
+  giftType=type;
+  document.querySelectorAll('.gtype').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  renderGiftForm();
+}
+function renderGiftForm(){
+  const f=document.getElementById('gift-form');
+  let html='';
+  if(giftType==='tf'){
+    html=`<div class="row"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="La BCEAO est l'organe d'émission de la zone franc."></div>
+    <div class="fld"><label>Réponse <em>*</em></label><select id="gf-tf"><option value="TRUE">Vrai (TRUE)</option><option value="FALSE">Faux (FALSE)</option></select></div></div>`;
+  } else if(giftType==='single'){
+    html=`<div class="row solo"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Qu'est-ce que la comptabilité analytique ?"></div></div>
+    <div class="row solo" style="margin-top:10px"><div class="fld"><label>Bonne réponse <em>*</em></label><input type="text" id="gf-a1" placeholder="Un outil d'aide à la décision…"></div></div>
+    <div class="row trio" style="margin-top:8px">
+      <div class="fld"><label>Mauvaise réponse 1</label><input type="text" id="gf-w1" placeholder="…"></div>
+      <div class="fld"><label>Mauvaise réponse 2</label><input type="text" id="gf-w2" placeholder="…"></div>
+      <div class="fld"><label>Mauvaise réponse 3</label><input type="text" id="gf-w3" placeholder="…"></div>
+    </div>`;
+  } else if(giftType==='multi'){
+    html=`<div class="row solo"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Lesquels des éléments suivants sont des charges directes ?"></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
+      <div class="fld"><label>Réponse correcte 1 (50%) <em>*</em></label><input type="text" id="gf-c1"></div>
+      <div class="fld"><label>Réponse correcte 2 (50%)</label><input type="text" id="gf-c2"></div>
+      <div class="fld"><label>Mauvaise réponse 1 (-25%)</label><input type="text" id="gf-m1"></div>
+      <div class="fld"><label>Mauvaise réponse 2 (-25%)</label><input type="text" id="gf-m2"></div>
+    </div>`;
+  } else if(giftType==='short'){
+    html=`<div class="row"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Quel est le sigle de la Banque Centrale des États de l'Afrique de l'Ouest ?"></div>
+    <div class="fld"><label>Réponse attendue <em>*</em></label><input type="text" id="gf-ans" placeholder="BCEAO"></div></div>`;
+  } else if(giftType==='essay'){
+    html=`<div class="row solo"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Décrivez les principales étapes de l'analyse financière d'un projet."></div></div>`;
+  }
+  f.innerHTML=html;
+}
+function genGIFT(){
+  const q=document.getElementById('gf-q')?.value.trim();
+  const cat=document.getElementById('gf-cat').value.trim();
+  if(!q){alert('Question obligatoire');return;}
+  let out='';
+  if(cat) out+=`$CATEGORY: ${cat}\n\n`;
+  if(giftType==='tf'){
+    const ans=document.getElementById('gf-tf').value;
+    out+=`${q}{\n${ans}\n}`;
+  } else if(giftType==='single'){
+    const a1=document.getElementById('gf-a1').value.trim();
+    const w1=document.getElementById('gf-w1').value.trim();
+    const w2=document.getElementById('gf-w2').value.trim();
+    const w3=document.getElementById('gf-w3').value.trim();
+    out+=`${q}{\n=${a1}`;
+    if(w1) out+=`\n~${w1}`;
+    if(w2) out+=`\n~${w2}`;
+    if(w3) out+=`\n~${w3}`;
+    out+='\n}';
+  } else if(giftType==='multi'){
+    const c1=document.getElementById('gf-c1').value.trim();
+    const c2=document.getElementById('gf-c2').value.trim();
+    const m1=document.getElementById('gf-m1').value.trim();
+    const m2=document.getElementById('gf-m2').value.trim();
+    out+=`${q}{\n~%50%${c1}`;
+    if(c2) out+=`\n~%50%${c2}`;
+    if(m1) out+=`\n~%-25%${m1}`;
+    if(m2) out+=`\n~%-25%${m2}`;
+    out+='\n}';
+  } else if(giftType==='short'){
+    const ans=document.getElementById('gf-ans').value.trim();
+    out+=`${q}{=${ans}}`;
+  } else if(giftType==='essay'){
+    out+=`${q}{}`;
+  }
+  document.getElementById('res-gift').textContent=out;
+}
+function appendGIFT(){
+  const cur=document.getElementById('res-gift').textContent;
+  if(cur.startsWith('[')||!cur) return;
+  giftAccum += (giftAccum?'\n\n':'')+cur;
+  document.getElementById('res-gift-all').textContent=giftAccum;
+  showToast('➕ Question ajoutée au bloc');
+}
+
+/* ═══════════════ HTML EDITOR ═══════════════════════════════════ */
+function previewHTML(){
+  const code=document.getElementById('hed-code').value;
+  document.getElementById('previewframe').srcdoc=code;
+}
+
+/* ═══════════════ EPE — MODULES DATA ════════════════════════════ */
+const EPE_MODULES={
+  "MBA AG Classique":["MBAAG111 – Droit des affaires","MBAAG112 – Environnement économique et International de l'entreprise","MBAAG113 – Fiscalité","MBAAG121 – Théorie et Management des organisations","MBAAG122 – Management interculturel","MBAAG123 – Management stratégique","MBAAG124 – Marketing","MBAAG125 – Création d'entreprise","MBAAG126 – Gestion des projets et suivi-évaluation","MBAAG131 – Comptabilité","MBAAG132 – Finance","MBAAG133 – Contrôle interne","MBAAG134 – Contrôle de gestion","MBAAG135 – Marchés financiers","MBAAG211 – Méthodologie de rédaction de mémoire","MBAAG212 – Anglais des affaires","MBAAG213 – Jeu d'entreprise","MBAAG214 – Développement personnel et professionnel","MBAAG221 – Stage professionnel + rédaction de mémoire","MBAAG231 – Organisation et stratégie","MBAAG232 – Administration et Gestion des ressources humaines","MBAAG233 – Gestion financière","MBAAG234 – Systèmes d'information","MBAAG241 – Droit de la fonction publique et de la décentralisation","MBAAG242 – Acteurs et systèmes de protection sociale","MBAAG243 – Science administrative et droit administratif","MBAAG244 – Finances de l'État et Finances locales","MBAAG245 – Gestion des ressources humaines dans l'administration publique","MBAAG246 – Modernisation et digitalisation du service public"],
+  "MBA AG AUF":["MBAAG111 – Droit des affaires","MBAAG112 – Environnement économique et International de l'entreprise","MBAAG113 – Fiscalité","MBAAG121 – Théorie et Management des organisations","MBAAG122 – Management interculturel","MBAAG123 – Management stratégique","MBAAG124 – Marketing","MBAAG125 – Création d'entreprise","MBAAG126 – Gestion des projets et suivi-évaluation","MBAAG131 – Comptabilité","MBAAG132 – Finance d'entreprise","MBAAG133 – Contrôle interne","MBAAG134 – Contrôle de gestion","MBAAG135 – Marchés financiers","MBAAG211 – Méthodologie de rédaction de mémoire","MBAAG212 – Anglais des affaires","MBAAG213 – Jeu d'entreprise","MBAAG214 – Développement personnel et professionnel","MBAAG221 – Stage professionnel + rédaction de mémoire","MBAAG231 – Organisation et stratégie","MBAAG232 – Administration et Gestion des ressources humaines","MBAAG233 – Gestion financière","MBAAG234 – Systèmes d'information","MBAAG241 – Droit de la fonction publique et de la décentralisation","MBAAG242 – Acteurs et systèmes de protection sociale","MBAAG243 – Science administrative et droit administratif","MBAAG244 – Finances de l'État et Finances locales","MBAAG245 – Gestion des ressources humaines dans l'administration publique","MBAAG246 – Modernisation et digitalisation du service public"],
+  "MBA GP Classique":["MBAGP – Enjeux et défis du développement","MBAGP – Principes et enjeux de l'administration publique","MBAGP – Environnement du projet en entreprise et défis des PME","MBAGP – Etudes de faisabilité de projet","MBAGP – Etude d'impact environnemental et social","MBAGP – Analyse financière de projet","MBAGP – Analyse économique des projets","MBAGP – Planification stratégique des projets, programmes et portefeuille","MBAGP – Planification opérationnelle et budgétisation des projets et programmes","MBAGP – Intégration et gestion de projets, programmes et portefeuille","MBAGP – Approches innovantes de gestion de projet et méthodologie agile","MBAGP – Partenariat public et privé","MBAGP – Gestion des parties prenantes de projet, programmes et portefeuille","MBAGP – Logistique et gestion des ressources matérielles","MBAGP – Passation des marchés publics","MBAGP – Management de la qualité","MBAGP – Aspects juridiques et fiscaux des projets, programmes et portefeuille","MBAGP – Codes éthiques et déontologie","MBAGP – Méthodologie de recherche qualitative","MBAGP – Méthodologie de recherche quantitative","MBAGP – Méthodologie de rédaction du TFE","MBAGP – Suivi et évaluation des projets, programmes et portefeuille","MBAGP – Evaluation d'impact","MBAGP – Capitalisation, gestion et dissémination des connaissances et apprentissages","MBAGP – Gestion des risques et contrôle du projet, programmes et portefeuille","MBAGP – Intégration des risques transversaux (genre, inclusion, changement climatique, sécurité)","MBAGP – Audit de projet","MBAGP – Projet/Mémoire professionnel","MBAGP – Outils informatiques appliqués à la gestion de projet","MBAGP – Anglais de spécialité","MBAGP – Transformation And Design Thinking","MBAGP – Management des programmes publics","MBAGP – Etude de cas de projets complexes","MBAGP – Marketing et communication digitale en gestion de projet","MBAGP – Gestion des parties prenantes"],
+  "MBA GP AUF":["MBAGP – Enjeux et défis du développement","MBAGP – Principes et enjeux de l'administration publique","MBAGP – Environnement du projet en entreprise et défis des PME","MBAGP – Etudes de faisabilité de projet","MBAGP – Etude d'impact environnemental et social","MBAGP – Analyse financière de projet","MBAGP – Analyse économique des projets","MBAGP – Planification stratégique des projets, programmes et portefeuille","MBAGP – Planification opérationnelle et budgétisation des projets et programmes","MBAGP – Intégration et gestion de projets, programmes et portefeuille","MBAGP – Approches innovantes de gestion de projet et méthodologie agile","MBAGP – Partenariat public et privé","MBAGP – Gestion des parties prenantes de projet, programmes et portefeuille","MBAGP – Logistique et gestion des ressources matérielles","MBAGP – Passation des marchés publics","MBAGP – Management de la qualité","MBAGP – Aspects juridiques et fiscaux des projets, programmes et portefeuille","MBAGP – Codes éthiques et déontologie","MBAGP – Méthodologie de recherche qualitative","MBAGP – Méthodologie de recherche quantitative","MBAGP – Méthodologie de rédaction du TFE","MBAGP – Suivi et évaluation des projets, programmes et portefeuille","MBAGP – Evaluation d'impact","MBAGP – Capitalisation, gestion et dissémination des connaissances et apprentissages","MBAGP – Gestion des risques et contrôle du projet, programmes et portefeuille","MBAGP – Intégration des risques transversaux (genre, inclusion, changement climatique, sécurité)","MBAGP – Audit de projet","MBAGP – Projet/Mémoire professionnel","MBAGP – Outils informatiques appliqués à la gestion de projet","MBAGP – Anglais de spécialité","MBAGP – Leadership","MBAGP – Transformation And Design Thinking","MBAGP – Management des programmes publics","MBAGP – Etude de cas de projets complexes","MBAGP – Marketing et communication digitale en gestion de projet","MBAGP – Gestion des parties prenantes (conférence)"],
+  "MBA MSCH":["MBAGRH111 – Comptabilité générale","MBAGRH112 – Comptabilité Analytique","MBAGRH113 – Finance d'entreprise","MBAGRH121 – Administration du Personnel","MBAGRH124 – Condition de Travail et Qualité de Vie","MBAGRH125 – Gestion des Compétences","MBAGRH126 – Communication Organisationnelle","MBAGRH131 – Conventions Internationales (CIT)","MBAGRH132 – Droit de la Sécurité Sociale","MBAGRH133 – Normalisation et Management de la Qualité","MBAGRH134 – Droit du Travail","MBAGRH141 – Contrôle de Gestion Sociale","MBAGRH142 – Audit Social et Audit de la RSE","MBAGRH143 – Bilan Social","MBAGRH151 – Management de la Formation","MBAGRH152 – Théorie des organisations","MBAGRH153 – Appréciation des Performances","MBAGRH153b – Recrutement & Intégration","MBAGRH154 – Management des Rémunérations","MBAGRH155 – Logiciel Spécialisé de Paie","MBAGRH211 – Stratégie & GRH","MBAGRH212 – Diagnostic Organisationnel","MBAGRH213 – GPEC","MBAGRH221 – Environnement Eco International","MBAGRH222 – Mobilité Internationale RH","MBAGRH223 – Management Interculturel","MBAGRH224 – E-GRH","MBAGRH231 – Cabinet Conseil GRH","MBAGRH232 – Mission Intervention GRH","MBAGRH233 – Conception & Conduite Projet","MBAGRH241 – Dév. Personnel & Professionnel","MBAGRH243 – Simulation d'Entreprise","MBAGRH244 – Anglais des Affaires","MBAGRH251 – Stage et Mémoire"]
+};
+
+/* ═══════════════ EPE — STATE ════════════════════════════════════ */
+let epeCount=0;
+let epeMemoActive=false;
+
+function isMemo(k){ return epeMemoActive && document.getElementById('memo-'+k)?.checked; }
+
+function onEpeProg(){
+  const v=document.getElementById('epe-prog').value;
+  document.getElementById('ep-prog-name').textContent=v||'—';
+  document.getElementById('topbar-prog').textContent=v||'Aucun programme actif';
+  refreshEpeModules();
+}
+function updateEpePeriod(){
+  const l=document.getElementById('epe-lundi').value;
+  const d=document.getElementById('epe-dim').value;
+  const el=document.getElementById('ep-period');
+  if(l&&d) el.textContent=`${fmtDate(l)} → ${fmtDate(d)}`;
+  else if(l) el.textContent=`à partir du ${fmtDate(l)}`;
+  else el.textContent='';
+  document.getElementById('topbar-date').style.display=(l||d)?'':'none';
+  if(l&&d) document.getElementById('topbar-date').textContent=`${fmtDate(l)} → ${fmtDate(d)}`;
+}
+function toggleMemo(){
+  epeMemoActive=!epeMemoActive;
+  const btn=document.getElementById('memo-btn');
+  const panel=document.getElementById('memo-panel');
+  const lbl=document.getElementById('memo-btn-label');
+  btn.style.background=epeMemoActive?'linear-gradient(135deg,#16a34a,#0b6b3a)':'';
+  panel.classList.toggle('active',epeMemoActive);
+  lbl.textContent=epeMemoActive?'✓ Mode mémorisé actif':'Ces éléments sont mémorisés — GO';
+}
+function buildModOpts(sel,selected=''){
+  const prog=document.getElementById('epe-prog').value;
+  const mods=EPE_MODULES[prog]||[];
+  sel.innerHTML='';
+  const ph=document.createElement('option'); ph.value=''; ph.textContent='— Sélectionner un module —'; sel.appendChild(ph);
+  if(!mods.length){
+    const o=document.createElement('option'); o.value='Autre'; o.textContent='(Programme non sélectionné — saisie libre)'; sel.appendChild(o);
+  } else {
+    mods.forEach(m=>{ const o=document.createElement('option'); o.value=m; o.textContent=m; sel.appendChild(o); });
+    const sep=document.createElement('option'); sep.disabled=true; sep.textContent='──────────────────'; sel.appendChild(sep);
+    const oth=document.createElement('option'); oth.value='__autre__'; oth.textContent='✏️ Autre (saisie libre)…'; sel.appendChild(oth);
+  }
+  if(selected) sel.value=selected;
+  sel.addEventListener('change',()=>{
+    if(sel.value==='__autre__'){
+      const txt=prompt('Nom du module :','');
+      if(txt){ const o=document.createElement('option');o.value=txt;o.textContent=txt;sel.insertBefore(o,sel.lastElementChild);sel.value=txt; } else { sel.value=''; }
+    }
+  });
+}
+function refreshEpeModules(){
+  document.querySelectorAll('.epe-sess').forEach(s=>{
+    const sel=s.querySelector('select[data-mod]');
+    if(sel) buildModOpts(sel,sel.value);
+  });
+}
+function dupSess(sourceId){
+  const s=document.getElementById(sourceId);
+  if(!s)return;
+  const pref={
+    date:document.getElementById(sourceId+'_date')?.value||'',
+    mod:document.getElementById(sourceId+'_mod')?.value||'',
+    hdeb:document.getElementById(sourceId+'_hdeb')?.value||'',
+    hfin:document.getElementById(sourceId+'_hfin')?.value||'',
+    ens:document.getElementById(sourceId+'_ens')?.value||'',
+    type:document.getElementById(sourceId+'_type')?.value||'',
+    moodle:document.getElementById(sourceId+'_moodle')?.value||'',
+    salle:document.getElementById(sourceId+'_salle')?.value||'',
+  };
+  addSess(pref);
+  const all=document.querySelectorAll('.epe-sess');
+  all[all.length-1].scrollIntoView({behavior:'smooth',block:'start'});
+}
+function addSess(pref={}){
+  epeCount++;
+  const id=`es_${epeCount}`;
+  const defDate=pref.date||document.getElementById('epe-lundi').value||'';
+
+  const wrap=document.createElement('div');
+  wrap.className='sess epe-sess'; wrap.id=id; wrap.dataset.num=epeCount;
+
+  // Header
+  const hdr=document.createElement('div'); hdr.className='sess-header';
+  const num=document.createElement('div'); num.className='sess-num'; num.textContent=epeCount;
+  const ttl=document.createElement('span'); ttl.className='sess-title'; ttl.textContent=`Séance ${epeCount}`;
+  const acts=document.createElement('div'); acts.style.cssText='display:flex;gap:6px;align-items:center';
+  const dupBtn=document.createElement('button'); dupBtn.className='btn outline'; dupBtn.style.cssText='padding:5px 12px;font-size:12px';
+  dupBtn.textContent='⧉ Dup'; dupBtn.onclick=()=>dupSess(id);
+  const delBtn=document.createElement('button'); delBtn.className='btn danger'; delBtn.style.cssText='padding:5px 12px;font-size:12px';
+  delBtn.textContent='✕'; delBtn.onclick=()=>{ wrap.remove(); refreshSessCounts(); };
+  acts.appendChild(dupBtn); acts.appendChild(delBtn);
+  hdr.appendChild(num); hdr.appendChild(ttl); hdr.appendChild(acts);
+
+  // Row 1: Date + Module
+  const r1=document.createElement('div'); r1.className='row';
+  // Date
+  const dateC=document.createElement('div'); dateC.className='fld';
+  const dateLbl=document.createElement('label'); dateLbl.innerHTML='Date <em>*</em>';
+  const dateInp=document.createElement('input'); dateInp.type='date'; dateInp.id=id+'_date'; dateInp.value=defDate;
+  dateInp.addEventListener('change',()=>{ refreshSessCounts(); updateHoursCounter(); detectConflicts(); });
+  dateC.appendChild(dateLbl); dateC.appendChild(dateInp);
+  // Module
+  const modC=document.createElement('div'); modC.className='fld';
+  const modLbl=document.createElement('label'); modLbl.innerHTML='Module <em>*</em>';
+  const modSel=document.createElement('select'); modSel.id=id+'_mod'; modSel.setAttribute('data-mod','1');
+  modSel.style.cssText='width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;font-family:inherit;font-size:13.5px;background:#fff;color:var(--text);transition:border-color .2s;';
+  buildModOpts(modSel,pref.mod||'');
+  modC.appendChild(modLbl); modC.appendChild(modSel);
+  r1.appendChild(dateC); r1.appendChild(modC);
+
+  // Row 2: Horaires
+  const r2=document.createElement('div'); r2.className='row';
+  function inp(lbl,type,eid,val,req=false){
+    const c=document.createElement('div'); c.className='fld';
+    const l=document.createElement('label'); l.innerHTML=lbl+(req?' <em>*</em>':'');
+    const i=document.createElement('input'); i.type=type; i.id=eid; if(val)i.value=val;
+    i.addEventListener('change',()=>{ updateHoursCounter(); detectConflicts(); });
+    c.appendChild(l); c.appendChild(i); return c;
+  }
+  r2.appendChild(inp('Heure début (GMT)','time',id+'_hdeb',pref.hdeb||'18:00',true));
+  r2.appendChild(inp('Heure fin (GMT)','time',id+'_hfin',pref.hfin||'20:00',true));
+
+  // Row 3: Enseignant + Type
+  const r3=document.createElement('div'); r3.className='row';
+  r3.appendChild(inp('Enseignant','text',id+'_ens',pref.ens||'',true));
+  // Type select
+  const typeC=document.createElement('div'); typeC.className='fld';
+  const typeLbl=document.createElement('label'); typeLbl.innerHTML='Type <em>*</em>';
+  const typeSel=document.createElement('select'); typeSel.id=id+'_type';
+  typeSel.style.cssText='width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;font-family:inherit;font-size:13.5px;background:#fff;color:var(--text);transition:border-color .2s;';
+  ['— Sélectionner —','Cours','Examen','Travail personnel de l\'étudiant'].forEach((v,i)=>{
+    const o=document.createElement('option'); o.value=i===0?'':v; o.textContent=v; typeSel.appendChild(o);
+  });
+  if(pref.type) typeSel.value=pref.type;
+  typeSel.onchange=()=>{
+    const t=typeSel.value;
+    ttl.textContent=`Séance ${wrap.dataset.num||epeCount}${t?' — '+t:''}`;
+    num.style.background=t==='Examen'?'var(--red)':t==="Travail personnel de l'étudiant"?'#7c3aed':'var(--b)';
+    const g4=wrap.querySelector('.g4'); const g5=wrap.querySelector('.g5');
+    if(g4) g4.style.opacity=t==="Travail personnel de l'étudiant"?'0.4':'1';
+    if(g5) g5.style.display=(t==='Cours'||t==='Examen')?'':'none';
+  };
+  typeC.appendChild(typeLbl); typeC.appendChild(typeSel); r3.appendChild(typeC);
+
+  // Row 4: Moodle + Salle
+  const r4=document.createElement('div'); r4.className='row g4';
+  r4.appendChild(inp('Lien Moodle','url',id+'_moodle',pref.moodle||'',true));
+  r4.appendChild(inp('Lien salle virtuelle (Cours)','url',id+'_salle',pref.salle||''));
+
+  // Row 5: Surveillance + Durée (examen)
+  const r5=document.createElement('div'); r5.className='row g5';
+  r5.appendChild(inp('Lien surveillance (Examen)','url',id+'_surv',''));
+  r5.appendChild(inp('Durée examen (min)','number',id+'_duree',''));
+
+  // Row 6: Obs
+  const r6=document.createElement('div'); r6.className='row solo'; r6.style.marginTop='10px';
+  const obsC=document.createElement('div'); obsC.className='fld';
+  const obsLbl=document.createElement('label'); obsLbl.innerHTML='Observations <span style="font-weight:400;color:var(--muted)">(optionnel)</span>';
+  const obsTA=document.createElement('textarea'); obsTA.id=id+'_obs'; obsTA.rows=2; obsTA.placeholder='Ex: accès restreint, groupe B, lien de secours…'; obsTA.style.height='60px';
+  if(pref.obs) obsTA.value=pref.obs;
+  obsC.appendChild(obsLbl); obsC.appendChild(obsTA); r6.appendChild(obsC);
+
+  wrap.appendChild(hdr);
+  wrap.appendChild(r1); wrap.appendChild(r2); wrap.appendChild(r3);
+  wrap.appendChild(r4); wrap.appendChild(r5); wrap.appendChild(r6);
+
+  document.getElementById('epe-seances').appendChild(wrap);
+  refreshSessCounts();
+}
+function refreshSessCounts(){
+  const all=document.querySelectorAll('.epe-sess');
+  all.forEach((s,i)=>{
+    const n=i+1; s.dataset.num=n;
+    s.querySelector('.sess-num').textContent=n;
+    const sel=s.querySelector('select[id$="_type"]');
+    const ttl=s.querySelector('.sess-title');
+    ttl.textContent=`Séance ${n}${sel?.value?' — '+sel.value:''}`;
+  });
+  const c=all.length;
+  document.getElementById('epe-sess-badge').textContent=c===0?'0 séance':c===1?'1 séance':`${c} séances`;
+  document.getElementById('epe-badge').textContent=c;
+  document.getElementById('fab-count').textContent=c;
+  updateHoursCounter();
+  detectConflicts();
+  if(document.getElementById('recap-panel').style.display!=='none') renderRecap();
+}
+function updateHoursCounter(){
+  let totalMin=0;
+  document.querySelectorAll('.epe-sess').forEach(s=>{
+    const sid=s.id;
+    const hdeb=document.getElementById(sid+'_hdeb')?.value;
+    const hfin=document.getElementById(sid+'_hfin')?.value;
+    const type=document.getElementById(sid+'_type')?.value;
+    if(hdeb&&hfin&&type!=="Travail personnel de l'étudiant"){
+      const diff=toMin(hfin)-toMin(hdeb);
+      if(diff>0) totalMin+=diff;
+    }
+  });
+  const badge=document.getElementById('epe-hours-badge');
+  if(totalMin>0){
+    const h=Math.floor(totalMin/60); const m=totalMin%60;
+    badge.textContent=`⏱ ${h}h${m>0?m.toString().padStart(2,'0'):''}  planifiées`;
+    badge.style.display='inline';
+  } else { badge.style.display='none'; }
+}
+function detectConflicts(){
+  const slots=[];
+  document.querySelectorAll('.epe-sess').forEach(s=>{
+    const sid=s.id;
+    const date=document.getElementById(sid+'_date')?.value;
+    const hdeb=document.getElementById(sid+'_hdeb')?.value;
+    const hfin=document.getElementById(sid+'_hfin')?.value;
+    if(date&&hdeb&&hfin) slots.push({sid,date,hdeb,hfin});
+    s.style.borderColor='var(--border)';
+  });
+  const conflicts=new Set();
+  for(let i=0;i<slots.length;i++){
+    for(let j=i+1;j<slots.length;j++){
+      const a=slots[i],b=slots[j];
+      if(a.date!==b.date)continue;
+      const aS=toMin(a.hdeb),aE=toMin(a.hfin),bS=toMin(b.hdeb),bE=toMin(b.hfin);
+      if(aS<bE&&bS<aE){ conflicts.add(a.sid); conflicts.add(b.sid); }
+    }
+  }
+  conflicts.forEach(sid=>{ const el=document.getElementById(sid); if(el)el.style.borderColor='var(--red)'; });
+  return conflicts.size>0;
+}
+function toggleRecap(){
+  const panel=document.getElementById('recap-panel');
+  const btn=document.getElementById('epe-recap-btn');
+  if(panel.style.display==='none'||!panel.style.display){ panel.style.display='block'; btn.textContent='📅 Masquer vue'; renderRecap(); }
+  else { panel.style.display='none'; btn.textContent='📅 Vue semaine'; }
+}
+function renderRecap(){
+  const DAYS=['Lun','Mar','Mer','Jeu','Ven','Sam','Dim'];
+  const byDay={};
+  document.querySelectorAll('.epe-sess').forEach(s=>{
+    const sid=s.id;
+    const date=document.getElementById(sid+'_date')?.value;
+    const hdeb=document.getElementById(sid+'_hdeb')?.value||'';
+    const hfin=document.getElementById(sid+'_hfin')?.value||'';
+    const mod=document.getElementById(sid+'_mod')?.value||'—';
+    const type=document.getElementById(sid+'_type')?.value||'';
+    const ens=document.getElementById(sid+'_ens')?.value||'';
+    if(!date)return;
+    const d=new Date(date); const dow=(d.getDay()+6)%7;
+    if(!byDay[dow]) byDay[dow]=[];
+    byDay[dow].push({hdeb,hfin,mod:mod.split('–')[0].trim(),type,ens});
+  });
+  let html='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">';
+  DAYS.forEach((day,i)=>{
+    const items=byDay[i]||[];
+    html+=`<div style="background:#fff;border:1px solid var(--border);border-radius:8px;overflow:hidden">
+      <div style="background:${items.length?'linear-gradient(90deg,var(--g),var(--b))':'#e5e7eb'};color:${items.length?'#fff':'#9ca3af'};text-align:center;padding:5px;font-size:11px;font-weight:700">${day}</div>
+      <div style="padding:4px">`;
+    items.forEach(it=>{
+      const col=it.type==='Examen'?'#fee2e2':it.type==="Travail personnel de l'étudiant"?'#ede9fe':'#e8f5ee';
+      html+=`<div style="background:${col};border-radius:5px;padding:4px 6px;margin:3px 0;font-size:10px">
+        <strong>${it.hdeb}–${it.hfin}</strong><br>${it.mod}`;
+      if(it.ens) html+=`<br><span style="color:var(--muted)">${it.ens}</span>`;
+      html+=`</div>`;
+    });
+    if(!items.length) html+=`<div style="text-align:center;font-size:10px;color:#d1d5db;padding:8px">—</div>`;
+    html+=`</div></div>`;
+  });
+  html+='</div>';
+  document.getElementById('recap-grid').innerHTML=html;
+}
+
+/* ── EPE HISTORY ── */
+function saveEpeHistory(bloc,prog,period){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    hist.unshift({bloc,prog,period,date:new Date().toLocaleDateString('fr-FR')});
+    if(hist.length>10) hist.pop();
+    localStorage.setItem('cesag_epe_hist',JSON.stringify(hist));
+    renderEpeHistory();
+  }catch(e){}
+}
+function renderEpeHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    const card=document.getElementById('epe-hist-card');
+    const list=document.getElementById('epe-hist-list');
+    const badge=document.getElementById('epe-hist-badge');
+    card.style.display=hist.length?'block':'none';
+    badge.textContent=`${hist.length} bloc${hist.length>1?'s':''}`;
+    list.innerHTML='';
+    hist.forEach((h,i)=>{
+      const item=document.createElement('div');
+      item.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg);border-radius:8px;padding:10px 14px;border:1px solid var(--border)';
+      item.innerHTML=`<div><div style="font-size:13px;font-weight:700">${h.prog||'—'}</div><div style="font-size:12px;color:var(--muted)">${h.period||''} · ${h.date}</div></div>
+        <div style="display:flex;gap:6px">
+          <button onclick="restoreEpeHist(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #b8ccef;background:#f0f7ff;color:var(--b);border-radius:7px;padding:5px 12px;cursor:pointer">📋 Voir</button>
+          <button onclick="removeEpeHist(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #fca5a5;background:#fff0f0;color:var(--red);border-radius:7px;padding:5px 12px;cursor:pointer">✕</button>
+        </div>`;
+      list.appendChild(item);
+    });
+  }catch(e){}
+}
+function restoreEpeHist(i){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    if(!hist[i])return;
+    document.getElementById('epe-preview').textContent=hist[i].bloc;
+    document.getElementById('epe-preview').scrollIntoView({behavior:'smooth'});
+  }catch(e){}
+}
+function removeEpeHist(i){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    hist.splice(i,1); localStorage.setItem('cesag_epe_hist',JSON.stringify(hist)); renderEpeHistory();
+  }catch(e){}
+}
+function clearEpeHistory(){
+  if(!confirm('Vider tout l\'historique ?'))return;
+  try{ localStorage.removeItem('cesag_epe_hist'); renderEpeHistory(); }catch(e){}
+}
+
+/* ── EPE GENERATE ── */
+function generateEpeBlock(){
+  const prog=document.getElementById('epe-prog').value.trim();
+  const lundi=document.getElementById('epe-lundi').value;
+  const dim=document.getElementById('epe-dim').value;
+  const agenda=document.getElementById('epe-agenda').value.trim();
+  const record=document.getElementById('epe-record').value.trim();
+  const code=document.getElementById('epe-code').value.trim();
+  const obs=document.getElementById('epe-obs').value.trim();
+  let errors=[];
+  if(!prog) errors.push('Programme non sélectionné');
+  if(!lundi) errors.push('Date du lundi manquante');
+  if(!dim) errors.push('Date du dimanche manquante');
+  const sessions=[];
+  document.querySelectorAll('.epe-sess').forEach((s,idx)=>{
+    const sid=s.id;
+    const obj={
+      num:idx+1,
+      date:document.getElementById(sid+'_date').value,
+      mod:(document.getElementById(sid+'_mod')||{}).value||'',
+      hdeb:document.getElementById(sid+'_hdeb').value,
+      hfin:document.getElementById(sid+'_hfin').value,
+      ens:document.getElementById(sid+'_ens').value.trim(),
+      type:document.getElementById(sid+'_type').value,
+      moodle:document.getElementById(sid+'_moodle').value.trim(),
+      salle:document.getElementById(sid+'_salle').value.trim(),
+      surv:document.getElementById(sid+'_surv').value.trim(),
+      duree:document.getElementById(sid+'_duree').value.trim(),
+      obs:document.getElementById(sid+'_obs').value.trim()
+    };
+    if(!obj.date) errors.push(`Séance ${obj.num} : date manquante`);
+    if(!obj.mod&&!isMemo('mod')) errors.push(`Séance ${obj.num} : module manquant`);
+    if(!obj.hdeb||!obj.hfin) errors.push(`Séance ${obj.num} : horaires manquants`);
+    if(!obj.ens&&!isMemo('ens')) errors.push(`Séance ${obj.num} : enseignant manquant`);
+    if(!obj.type) errors.push(`Séance ${obj.num} : type manquant`);
+    if(!obj.moodle&&!isMemo('moodle')) errors.push(`Séance ${obj.num} : lien Moodle manquant`);
+    if(obj.type==='Cours'&&!obj.salle&&!isMemo('salle')) errors.push(`Séance ${obj.num} : lien salle manquant`);
+    if(obj.type==='Examen'&&!obj.surv) errors.push(`Séance ${obj.num} : lien surveillance manquant`);
+    if(obj.type==='Examen'&&!obj.duree) errors.push(`Séance ${obj.num} : durée examen manquante`);
+    sessions.push(obj);
+  });
+  if(sessions.length===0) errors.push('Aucune séance saisie');
+  if(errors.length){ alert('Veuillez corriger :\n\n• '+errors.join('\n• ')); return; }
+  if(detectConflicts()){
+    if(!confirm('⚠️ Des séances se chevauchent. Continuer quand même ?'))return;
+  }
+  let out='';
+  if(epeMemoActive) out+=`[MODE MÉMORISÉ — Éléments connus omis]\n\n`;
+  if(!isMemo('prog')) out+=`Programme : ${prog}\n`;
+  out+=`Période : du lundi ${fmtDate(lundi)} au dimanche ${fmtDate(dim)}\n\n`;
+  sessions.forEach(s=>{
+    out+=`── Séance ${s.num} ──\n`;
+    out+=`- Date : ${fmtDate(s.date)}\n`;
+    if(!isMemo('mod')) out+=`- Module : ${s.mod}\n`;
+    out+=`- Horaire (GMT) : ${s.hdeb}–${s.hfin}\n`;
+    if(!isMemo('ens')) out+=`- Enseignant : ${s.ens}\n`;
+    out+=`- Type : ${s.type}\n`;
+    if(!isMemo('moodle')) out+=`- Lien Moodle : ${s.moodle}\n`;
+    if(s.salle&&!isMemo('salle')) out+=`- Salle virtuelle : ${s.salle}\n`;
+    if(s.surv) out+=`- Surveillance : ${s.surv}\n`;
+    if(s.duree) out+=`- Durée : ${s.duree} min\n`;
+    if(s.obs) out+=`- Notes : ${s.obs}\n`;
+    out+='\n';
+  });
+  if(agenda&&!isMemo('agenda')) out+=`Agenda annuel : ${agenda}\n`;
+  if(record&&!isMemo('rec')) out+=`Enregistrement : ${record}\n`;
+  if(code) out+=`Code secret : ${code}\n`;
+  if(obs){ out+=`\n${'─'.repeat(34)}\nOBSERVATIONS GLOBALES :\n${obs}\n${'─'.repeat(34)}\n`; }
+  document.getElementById('epe-preview').textContent=out.trim();
+  saveEpeHistory(out.trim(),prog,`${fmtDate(lundi)} → ${fmtDate(dim)}`);
+}
+function copyEpeBlock(){
+  const txt=document.getElementById('epe-preview').textContent;
+  const placeholder='[ Cliquez sur « Générer le bloc »';
+  if(!txt||txt.startsWith('[')){alert('Générez d\'abord un bloc');return;}
+  navigator.clipboard.writeText(txt).then(()=>showToast('✓ Bloc copié !'));
+}
+function downloadEpeBlock(){
+  const txt=document.getElementById('epe-preview').textContent;
+  if(!txt||txt.startsWith('[')){alert('Générez d\'abord un bloc');return;}
+  const blob=new Blob([txt],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download=`planning_foad_cesag.txt`; a.click(); showToast('💾 Téléchargé');
+}
+function resetEpe(){
+  if(!confirm('Réinitialiser tous les champs EPE ?'))return;
+  ['epe-prog','epe-lundi','epe-dim','epe-agenda','epe-record','epe-code','epe-obs'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('epe-seances').innerHTML='';
+  document.getElementById('epe-preview').textContent='[ Cliquez sur « Générer le bloc » pour voir le résultat ici ]';
+  document.getElementById('recap-panel').style.display='none';
+  document.getElementById('epe-recap-btn').textContent='📅 Vue semaine';
+  document.getElementById('epe-hours-badge').style.display='none';
+  document.getElementById('ep-prog-name').textContent='—';
+  document.getElementById('ep-period').textContent='';
+  document.getElementById('topbar-prog').textContent='Aucun programme actif';
+  document.getElementById('topbar-date').style.display='none';
+  if(epeMemoActive) toggleMemo();
+  epeCount=0; refreshSessCounts();
+}
+
+/* ═══════════════ GITHUB ════════════════════════════════════════ */
+function openGH(id){
+  document.querySelectorAll('.sub-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.gh-tile').forEach(t=>t.style.borderColor='var(--border)');
+  const el=document.getElementById('gh-'+id);
+  if(el){ el.classList.add('active'); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+function genGH(type){
+  let out='';
+  if(type==='edit'){
+    const repo=document.getElementById('gh-e-repo').value.trim();
+    const file=document.getElementById('gh-e-file').value.trim();
+    const modif=document.getElementById('gh-e-modif').value.trim();
+    const commit=document.getElementById('gh-e-commit').value.trim();
+    out=`ACTION : Modifier un fichier GitHub
+─────────────────────────────────────
+REPO    : ${repo}
+FICHIER : ${file}
+─────────────────────────────────────
+MODIFICATION :
+${modif}
+─────────────────────────────────────
+COMMIT MESSAGE : ${commit}`;
+  } else if(type==='page'){
+    const repo=document.getElementById('gh-p-repo').value.trim();
+    const file=document.getElementById('gh-p-file').value.trim();
+    const content=document.getElementById('gh-p-content').value.trim();
+    const commit=document.getElementById('gh-p-commit').value.trim();
+    out=`ACTION : Ajouter une page HTML sur GitHub
+─────────────────────────────────────────────
+REPO    : ${repo}
+FICHIER : ${file}
+─────────────────────────────────────────────
+CONTENU SOUHAITÉ :
+${content}
+─────────────────────────────────────────────
+COMMIT MESSAGE : ${commit||'feat: nouvelle page HTML'}`;
+  } else if(type==='hub'){
+    const modif=document.getElementById('gh-h-modif').value.trim();
+    const commit=document.getElementById('gh-h-commit').value.trim();
+    out=`ACTION : Mettre à jour le Hub Digital CESAG
+─────────────────────────────────────────────────────
+REPO    : oscarkakpo-create/hubdigitalcesag
+FICHIER : index.html
+─────────────────────────────────────────────────────
+MODIFICATION :
+${modif}
+─────────────────────────────────────────────────────
+COMMIT MESSAGE : ${commit||'update: mise à jour Hub Digital'}`;
+  } else if(type==='deploy'){
+    const repo=document.getElementById('gh-d-repo').value.trim();
+    const branch=document.getElementById('gh-d-branch').value.trim()||'main';
+    const notes=document.getElementById('gh-d-notes').value.trim();
+    out=`ACTION : Déployer GitHub Pages
+─────────────────────────────────
+REPO   : ${repo}
+BRANCH : ${branch}
+─────────────────────────────────
+Configurer GitHub Pages pour déployer automatiquement depuis la branche "${branch}".
+${notes?'\nInstructions spéciales :\n'+notes:''}`;
+  } else if(type==='new'){
+    const name=document.getElementById('gh-n-name').value.trim();
+    const vis=document.getElementById('gh-n-visibility').value;
+    const desc=document.getElementById('gh-n-desc').value.trim();
+    out=`ACTION : Créer un nouveau projet GitHub
+──────────────────────────────────────────────
+NOM         : ${name}
+VISIBILITÉ  : ${vis}
+ORGANISATION: oscarkakpo-create
+──────────────────────────────────────────────
+DESCRIPTION DU PROJET :
+${desc}
+──────────────────────────────────────────────
+Initialiser le repo avec README.md.
+Activer GitHub Pages sur la branche main si le projet est un site HTML.`;
+  }
+  document.getElementById('res-gh').textContent=out;
+}
+
+/* ═══════════════ THEME TOGGLE ══════════════════════════════════ */
+function toggleTheme(){
+  const dark=document.body.classList.toggle('dark');
+  document.getElementById('theme-toggle').textContent=dark?'☀️':'🌙';
+  try{ localStorage.setItem('cesag_theme',dark?'dark':'light'); }catch(e){}
+}
+function applyTheme(){
+  try{
+    const t=localStorage.getItem('cesag_theme');
+    if(t==='dark'){ document.body.classList.add('dark'); document.getElementById('theme-toggle').textContent='☀️'; }
+  }catch(e){}
+}
+
+/* ═══════════════ MAILTO ════════════════════════════════════════ */
+function mailtoResult(resId, emailFieldId, subject){
+  const txt=document.getElementById(resId)?.textContent||'';
+  if(txt.startsWith('[')){showToast('⚠️ Générez d\'abord un message');return;}
+  // Try to extract subject from first "Objet :" line
+  let subj=subject||'Message CESAG';
+  const m=txt.match(/^Objet\s*:\s*(.+)/m);
+  if(m) subj=m[1].trim();
+  const email=emailFieldId?document.getElementById(emailFieldId)?.value.trim():'';
+  const body=encodeURIComponent(txt);
+  const subjectEnc=encodeURIComponent(subj);
+  window.open(`mailto:${email}?subject=${subjectEnc}&body=${body}`);
+  showToast('✉️ Client mail ouvert');
+}
+
+/* ═══════════════ PRINT / PDF ═══════════════════════════════════ */
+function printResult(resId){
+  const txt=document.getElementById(resId)?.textContent||'';
+  if(txt.startsWith('[')){showToast('⚠️ Générez d\'abord un message');return;}
+  const w=window.open('','_blank','width=700,height=800');
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>CESAG — Export</title>
+<style>
+  body{font-family:Segoe UI,Arial,sans-serif;padding:40px;color:#1a2536;font-size:13px;line-height:1.7}
+  pre{white-space:pre-wrap;font-family:inherit;font-size:13px}
+  .header{background:linear-gradient(90deg,#0b6b3a,#0a4ea1);color:#fff;padding:14px 20px;border-radius:8px;margin-bottom:24px}
+  .header h1{margin:0;font-size:15px}
+  .footer{margin-top:30px;font-size:11px;color:#888;border-top:1px solid #ddd;padding-top:12px}
+  @media print{.no-print{display:none}}
+</style></head><body>
+<div class="header"><h1>CESAG ONLINE — Document exporté le ${new Date().toLocaleDateString('fr-FR')}</h1></div>
+<pre>${txt.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+<div class="footer">CESAG ONLINE — Centre de commande FOAD</div>
+<p class="no-print" style="margin-top:20px"><button onclick="window.print()" style="background:#0a4ea1;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:13px">🖨️ Imprimer / Enregistrer en PDF</button></p>
+</body></html>`);
+  w.document.close();
+  setTimeout(()=>w.print(),400);
+}
+
+/* ═══════════════ SAVE MAIL ═════════════════════════════════════ */
+function saveMail(resId, label){
+  const txt=document.getElementById(resId)?.textContent||'';
+  if(txt.startsWith('[')){showToast('⚠️ Générez d\'abord un message');return;}
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    hist.unshift({label, txt, date:new Date().toLocaleDateString('fr-FR'), ts:Date.now()});
+    if(hist.length>30) hist.pop();
+    localStorage.setItem('cesag_mails',JSON.stringify(hist));
+    renderMailHistory();
+    showToast('💾 Mail sauvegardé !');
+  }catch(e){ showToast('⚠️ Erreur de sauvegarde'); }
+}
+function renderMailHistory(){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    const list=document.getElementById('mailhist-list');
+    const cnt=document.getElementById('mailhist-count');
+    const badge=document.getElementById('mailhist-badge');
+    if(cnt) cnt.textContent=`${hist.length} message${hist.length>1?'s':''}`;
+    if(badge) badge.textContent=hist.length;
+    if(!list)return;
+    if(!hist.length){
+      list.innerHTML='<div style="text-align:center;color:var(--muted);padding:40px;font-size:14px">Aucun mail sauvegardé pour l\'instant.<br>Cliquez sur <strong>💾 Sauvegarder</strong> depuis n\'importe quel outil de mail.</div>';
+      return;
+    }
+    list.innerHTML='';
+    hist.forEach((h,i)=>{
+      const d=document.createElement('div');
+      d.className='mail-hist-item';
+      const preview=h.txt.slice(0,120).replace(/\n/g,' ')+'…';
+      d.innerHTML=`<div style="flex:1;min-width:0">
+        <h4>${h.label} <span style="font-weight:400;color:var(--muted);font-size:11px">· ${h.date}</span></h4>
+        <p style="font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${preview}</p>
+      </div>
+      <div style="display:flex;gap:6px;flex-shrink:0">
+        <button onclick="viewSavedMail(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:7px;padding:5px 12px;cursor:pointer">👁 Voir</button>
+        <button onclick="copyFromHist(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:7px;padding:5px 12px;cursor:pointer">📋</button>
+        <button onclick="printFromHist(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid var(--border);background:var(--bg);color:var(--text);border-radius:7px;padding:5px 12px;cursor:pointer">🖨️</button>
+        <button onclick="removeSavedMail(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #fca5a5;background:#fff0f0;color:var(--red);border-radius:7px;padding:5px 12px;cursor:pointer">✕</button>
+      </div>`;
+      list.appendChild(d);
+    });
+    // viewer
+    const viewer=document.createElement('div');
+    viewer.id='mail-viewer';
+    viewer.style.cssText='display:none;margin-top:16px';
+    viewer.innerHTML='<pre id="mail-viewer-pre" style="background:var(--result-bg);color:var(--result-text);font-family:Space Mono,monospace;font-size:12px;padding:16px;border-radius:10px;white-space:pre-wrap;max-height:400px;overflow-y:auto"></pre>';
+    list.appendChild(viewer);
+  }catch(e){}
+}
+function viewSavedMail(i){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    const viewer=document.getElementById('mail-viewer');
+    const pre=document.getElementById('mail-viewer-pre');
+    if(!hist[i]||!viewer||!pre)return;
+    pre.textContent=hist[i].txt;
+    viewer.style.display='block';
+    viewer.scrollIntoView({behavior:'smooth',block:'start'});
+  }catch(e){}
+}
+function copyFromHist(i){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    if(!hist[i])return;
+    navigator.clipboard.writeText(hist[i].txt).then(()=>showToast('✓ Copié !'));
+  }catch(e){}
+}
+function printFromHist(i){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    if(!hist[i])return;
+    const txt=hist[i].txt;
+    const w=window.open('','_blank','width=700,height=800');
+    w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>CESAG</title>
+<style>body{font-family:Segoe UI,Arial;padding:40px;font-size:13px;line-height:1.7}pre{white-space:pre-wrap;font-family:inherit}.h{background:linear-gradient(90deg,#0b6b3a,#0a4ea1);color:#fff;padding:14px 20px;border-radius:8px;margin-bottom:24px}.h h1{margin:0;font-size:15px}@media print{.np{display:none}}</style>
+</head><body><div class="h"><h1>CESAG ONLINE — ${hist[i].label} · ${hist[i].date}</h1></div>
+<pre>${txt.replace(/</g,'&lt;')}</pre>
+<p class="np"><button onclick="window.print()" style="background:#0a4ea1;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer">🖨️ Imprimer / PDF</button></p>
+</body></html>`);
+    w.document.close(); setTimeout(()=>w.print(),400);
+  }catch(e){}
+}
+function removeSavedMail(i){
+  try{
+    const hist=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    hist.splice(i,1); localStorage.setItem('cesag_mails',JSON.stringify(hist)); renderMailHistory();
+  }catch(e){}
+}
+function clearAllMails(){
+  if(!confirm('Effacer tous les mails sauvegardés ?'))return;
+  try{ localStorage.removeItem('cesag_mails'); renderMailHistory(); }catch(e){}
+}
+
+/* ═══════════════ SYLLABUS ══════════════════════════════════════ */
+function genSyllabus(){
+  const mod=document.getElementById('sy-module').value.trim();
+  const code=document.getElementById('sy-code').value.trim();
+  const prog=document.getElementById('sy-prog').value;
+  const vh=document.getElementById('sy-vh').value.trim();
+  const ens=document.getElementById('sy-ens').value.trim();
+  const niveau=document.getElementById('sy-niveau').value.trim();
+  const modalite=document.getElementById('sy-mod').value;
+  const langue=document.getElementById('sy-lang').value;
+  const obj=document.getElementById('sy-obj').value.trim();
+  const prereq=document.getElementById('sy-prereq').value.trim();
+  const eval_=document.getElementById('sy-eval').value.trim();
+  const notes=document.getElementById('sy-notes').value.trim();
+
+  let out=`Tu es un ingénieur pédagogique expert en formation ouverte et à distance (FOAD). Tu vas générer un syllabus complet et professionnel pour le CESAG (Centre Africain d'Études Supérieures en Gestion) basé à Dakar, Sénégal.\n\n`;
+  out+=`═══════════════════════════════════════\nINFORMATIONS DU MODULE\n═══════════════════════════════════════\n`;
+  if(mod)     out+=`Intitulé    : ${mod}\n`;
+  if(code)    out+=`Code        : ${code}\n`;
+  if(prog)    out+=`Programme   : ${prog}\n`;
+  if(niveau)  out+=`Niveau      : ${niveau}\n`;
+  if(vh)      out+=`Volume horaire : ${vh}\n`;
+  if(ens)     out+=`Enseignant  : ${ens}\n`;
+  out+=`Modalité    : ${modalite}\n`;
+  out+=`Langue      : ${langue}\n`;
+  if(prereq)  out+=`Prérequis   : ${prereq}\n`;
+  if(obj){
+    out+=`\n─── OBJECTIFS PÉDAGOGIQUES ─────────────\n${obj}\n`;
+  }
+  if(eval_){
+    out+=`\n─── MODALITÉS D'ÉVALUATION ─────────────\n${eval_}\n`;
+  }
+  out+=`\n═══════════════════════════════════════\nSTRUCTURE DU SYLLABUS ATTENDUE (13 sections)\n═══════════════════════════════════════\n`;
+  out+=`1. Informations générales du module\n2. Présentation du module et justification\n3. Objectifs pédagogiques (généraux et spécifiques)\n4. Compétences visées (AoL — Assurance of Learning)\n5. Contenu et plan du cours (par séance)\n6. Méthodologie pédagogique FOAD\n7. Ressources et supports pédagogiques\n8. Activités et travaux (quiz, devoirs, forums)\n9. Modalités d'évaluation et pondération\n10. Calendrier prévisionnel des séances\n11. Règles et consignes FOAD (webcam, présence, plagiat)\n12. Bibliographie et ressources complémentaires\n13. Informations sur l'enseignant et contacts\n`;
+  out+=`\n═══════════════════════════════════════\nCONTEXTE ET CONTRAINTES\n═══════════════════════════════════════\n`;
+  out+=`- Le syllabus doit respecter les standards CESAG et être conforme aux exigences AACSB/AoL.\n`;
+  out+=`- Le contexte géographique est l'Afrique de l'Ouest (UEMOA, OHADA, BCEAO si pertinent).\n`;
+  out+=`- Le ton est académique, professionnel et adapté à un public de praticiens en formation continue.\n`;
+  out+=`- Les activités FOAD doivent inclure : séances synchrones Teams, quiz Moodle, forums de discussion, devoirs individuels.\n`;
+  out+=`- La langue de rédaction est le ${langue}.\n`;
+  if(notes) out+=`\n─── INSTRUCTIONS SUPPLÉMENTAIRES ───────\n${notes}\n`;
+  out+=`\nMerci de produire un syllabus complet, structuré et directement utilisable, en respectant toutes les sections listées ci-dessus.`;
+  document.getElementById('res-syllabus').textContent=out;
+}
+
+/* ═══════════════ MICROSOFT 365 CSV ════════════════════════════ */
+let m365Users=[];
+function addM365Row(prefNom='',prefPrenom='',prefEmail=''){
+  m365Users.push({nom:prefNom,prenom:prefPrenom,email:prefEmail});
+  renderM365Rows();
+}
+function renderM365Rows(){
+  const c=document.getElementById('m365-rows');
+  if(!c)return;
+  c.innerHTML='';
+  m365Users.forEach((u,i)=>{
+    const row=document.createElement('div');
+    row.style.cssText='display:grid;grid-template-columns:1fr 1fr 1.5fr auto;gap:8px;align-items:center';
+    row.innerHTML=`
+      <input type="text" placeholder="Prénom" value="${u.prenom}" oninput="m365Users[${i}].prenom=this.value;updateM365Email(${i})" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
+      <input type="text" placeholder="NOM" value="${u.nom}" oninput="m365Users[${i}].nom=this.value;updateM365Email(${i})" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
+      <input type="text" placeholder="Email généré" value="${u.email}" oninput="m365Users[${i}].email=this.value" id="m365-email-${i}" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
+      <button onclick="m365Users.splice(${i},1);renderM365Rows()" style="background:#fee2e2;color:var(--red);border:none;border-radius:7px;padding:8px 12px;cursor:pointer;font-weight:700">✕</button>`;
+    c.appendChild(row);
+  });
+}
+function updateM365Email(i){
+  const domain=document.getElementById('m365-domain').value.trim()||'cesag.sn';
+  const p=(m365Users[i].prenom||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'.');
+  const n=(m365Users[i].nom||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'.');
+  if(p&&n) m365Users[i].email=`${p}.${n}@${domain}`;
+  renderM365Rows();
+}
+
+function openM365FilePicker(){
+  const input=document.getElementById('m365-file');
+  if(!input){showToast('⚠️ Sélecteur de fichier introuvable');return;}
+  input.click();
+}
+function importM365File(event){
+  const file=event?.target?.files?.[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const txt=String(reader.result||'').trim();
+    if(!txt){showToast('⚠️ Fichier vide');return;}
+    // support CSV (first column as full name) or plain text one full name per line
+    const lines=txt.split(/\r?\n/).map(l=>l.trim()).filter(Boolean).map(l=>l.split(',')[0].trim());
+    const ta=document.getElementById('m365-paste');
+    ta.value=[ta.value.trim(),...lines].filter(Boolean).join('\n');
+    importM365Paste();
+    event.target.value='';
+  };
+  reader.onerror=()=>showToast('⚠️ Erreur de lecture du fichier');
+  reader.readAsText(file,'utf-8');
+}
+
+function importM365Paste(){
+  const raw=document.getElementById('m365-paste').value.trim();
+  if(!raw)return;
+  const domain=document.getElementById('m365-domain').value.trim()||'cesag.sn';
+  const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean);
+  lines.forEach(line=>{
+    // Support "PRENOM NOM" or "NOM Prenom" - assume last word is nom if all caps, else first word is prenom
+    const parts=line.split(/\s+/);
+    let prenom='',nom='';
+    if(parts.length===1){ nom=parts[0]; prenom=''; }
+    else if(parts.length===2){ prenom=parts[0]; nom=parts[1]; }
+    else {
+      // Heuristic: if last token is all caps, it's the nom
+      const last=parts[parts.length-1];
+      if(last===last.toUpperCase()&&last.length>1){ nom=last; prenom=parts.slice(0,-1).join(' '); }
+      else { prenom=parts[0]; nom=parts.slice(1).join(' '); }
+    }
+    const p=prenom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'.');
+    const n=nom.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'.');
+    const email=(p&&n)?`${p}.${n}@${domain}`:'';
+    m365Users.push({prenom,nom,email});
+  });
+  document.getElementById('m365-paste').value='';
+  renderM365Rows();
+  showToast(`✓ ${lines.length} utilisateur(s) importé(s)`);
+}
+function genM365CSV(){
+  if(!m365Users.length){showToast('⚠️ Aucun utilisateur saisi');return;}
+  const mdp=document.getElementById('m365-mdp').value.trim()||'Cesag@2026!';
+  const pays=document.getElementById('m365-pays').value.trim()||'SN';
+  // CSV header (Microsoft 365 bulk user creation format)
+  const header='User name,First name,Last name,Display name,Job title,Department,Office number,Office phone,Mobile phone,Fax,Address,City,State or province,ZIP or postal code,Country or region,Password,Block sign in';
+  const rows=m365Users.filter(u=>u.email).map(u=>{
+    const display=`${u.prenom} ${u.nom}`.trim();
+    return `${u.email},${u.prenom},${u.nom},${display},,CESAG,,,,,Dakar,Dakar,,${pays},${mdp},No`;
+  });
+  const preview=header+'\n'+rows.slice(0,5).join('\n')+(rows.length>5?'\n…':'')+`\n\n[${rows.length} utilisateur(s) au total]`;
+  document.getElementById('res-m365').textContent=preview;
+  // BOM UTF-8 + CSV
+  const csv='\uFEFF'+header+'\n'+rows.join('\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download=`CESAG_M365_Users_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  showToast(`💾 CSV téléchargé — ${rows.length} compte(s)`);
+}
+function clearM365(){
+  if(m365Users.length&&!confirm('Réinitialiser la liste ?'))return;
+  m365Users=[];
+  renderM365Rows();
+  document.getElementById('res-m365').textContent='[ Remplissez les utilisateurs puis cliquez sur Télécharger CSV ]';
+  document.getElementById('m365-paste').value='';
+}
+
+/* ═══════════════ INIT ══════════════════════════════════════════ */
+window.addEventListener('DOMContentLoaded',()=>{
+  applyTheme();
+  renderGiftForm();
+  renderEpeHistory();
+  renderMailHistory();
+  addM365Row(); // start with one empty row
+  // Auto-date EPE (prochain lundi)
+  const today=new Date();
+  const dow=today.getDay();
+  const diffLun=dow===0?1:(8-dow)%7||7;
+  const lun=new Date(today); lun.setDate(today.getDate()+diffLun);
+  const dim=new Date(lun); dim.setDate(lun.getDate()+6);
+  document.getElementById('epe-lundi').value=lun.toISOString().split('T')[0];
+  document.getElementById('epe-dim').value=dim.toISOString().split('T')[0];
+  updateEpePeriod();
+  // ICS default date
+  document.getElementById('ics-date').value=lun.toISOString().split('T')[0];
+  document.getElementById('ex-date').value=lun.toISOString().split('T')[0];
+});
+</script>
+</body>
+</html>
