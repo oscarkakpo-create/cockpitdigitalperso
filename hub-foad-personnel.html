@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HUB FOAD PERSONNEL – CESAG (MBA AG, GP, MSCH & AUF) 2025–2026</title>
+  <style>
+    :root{
+      --bg:#ffffff;
+      --card:#f8fafc;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --line:#e2e8f0;
+      --brand:#00853F;
+      --brand2:#006c31;
+      --accent:#F15A29;
+      --warn:#f59e0b;
+      --danger:#dc2626;
+      --ok:#16a34a;
+      --ring:rgba(0,133,63,.20);
+      --shadow:0 10px 30px rgba(2,6,23,.08);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --auf-blue:#0055A4;
+      --auf-red:#EF4135;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family: "Segoe UI", Inter, system-ui, -apple-system, Roboto, Ubuntu, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+      line-height:1.5;
+    }
+
+    header{
+      position:sticky; top:0; z-index:50;
+      background: linear-gradient(90deg, var(--brand), #0a4ea1);
+      color:#fff;
+      padding:16px 18px;
+      box-shadow: 0 6px 18px rgba(2,6,23,.15);
+    }
+    header .wrap{
+      max-width: 1280px;
+      margin:0 auto;
+      display:flex;
+      gap:14px;
+      align-items:center;
+      justify-content:space-between;
+      flex-wrap:wrap;
+    }
+    header h1{
+      font-size:18px;
+      letter-spacing:.2px;
+      margin-bottom:2px;
+    }
+    header .sub{
+      opacity:.95;
+      font-size:12px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:6px;
+      background: rgba(255,255,255,.14);
+      border: 1px solid rgba(255,255,255,.22);
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      white-space:nowrap;
+    }
+    .badge.auf{
+      background: linear-gradient(90deg, var(--auf-blue), var(--auf-red));
+      border: 1px solid rgba(255,255,255,.3);
+    }
+
+    .container{
+      max-width:1280px;
+      margin:0 auto;
+      padding:18px;
+    }
+
+    /* ACTION BAR */
+    .actionbar{
+      position:sticky;
+      top:74px;
+      z-index:40;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(10px);
+      border:1px solid var(--line);
+      border-radius:16px;
+      box-shadow: var(--shadow);
+      padding:14px;
+      margin-bottom:16px;
+    }
+    .actionbar .row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .actionbar .left, .actionbar .right{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .btn{
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--ink);
+      border-radius:12px;
+      padding:10px 12px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:.2s;
+      text-decoration:none;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); border-color: rgba(0,133,63,.35); box-shadow: 0 10px 20px rgba(2,6,23,.07); }
+    .btn.primary{
+      background: var(--accent);
+      color:#fff;
+      border-color: transparent;
+    }
+    .btn.primary:hover{ filter: brightness(.97); }
+    .btn.brand{
+      background: var(--brand);
+      color:#fff;
+      border-color: transparent;
+    }
+    .btn.brand:hover{ background: var(--brand2); }
+    .btn.auf{
+      background: linear-gradient(135deg, var(--auf-blue), var(--auf-red));
+      color:#fff;
+      border-color: transparent;
+    }
+    .btn.auf:hover{ filter: brightness(1.1); }
+    .btn.ghost{
+      background: #f1f5f9;
+      border-color:#dbeafe;
+    }
+    .btn.small{
+      padding:8px 10px;
+      border-radius:10px;
+      font-size:12px;
+    }
+
+    .copyhint{
+      font-size:12px;
+      color:var(--muted);
+      display:flex; align-items:center; gap:10px;
+      flex-wrap:wrap;
+      margin-top:10px;
+    }
+    .toast{
+      display:none;
+      margin-top:10px;
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid #bbf7d0;
+      background:#f0fdf4;
+      color:#166534;
+      font-weight:600;
+      font-size:12px;
+    }
+
+    /* SECTIONS MBA */
+    .mba-section{
+      margin-bottom:20px;
+      padding:12px;
+      background: linear-gradient(90deg, rgba(0,133,63,.05), rgba(241,90,41,.05));
+      border-radius:12px;
+      border:1px solid var(--line);
+    }
+    .mba-section.auf{
+      background: linear-gradient(90deg, rgba(0,85,164,.08), rgba(239,65,53,.08));
+      border:1px solid rgba(0,85,164,.2);
+    }
+    .mba-section h2{
+      font-size:14px;
+      color:var(--brand);
+      margin-bottom:10px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .mba-section.auf h2{
+      color:var(--auf-blue);
+    }
+
+    /* TABS */
+    .tabs{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      border-bottom:1px solid var(--line);
+      margin-top:6px;
+    }
+    .tab{
+      border:none;
+      background:transparent;
+      padding:12px 12px;
+      cursor:pointer;
+      font-weight:800;
+      color:var(--muted);
+      border-bottom:3px solid transparent;
+      border-radius:10px 10px 0 0;
+      transition:.2s;
+    }
+    .tab:hover{ color: var(--brand); background: rgba(0,133,63,.05); }
+    .tab.active{ color: var(--brand); border-bottom-color: var(--accent); }
+    .tab.auf:hover{ color: var(--auf-blue); background: rgba(0,85,164,.08); }
+    .tab.auf.active{ color: var(--auf-blue); border-bottom-color: var(--auf-red); }
+    .panel{ display:none; padding-top:14px; }
+    .panel.active{ display:block; }
+
+    /* TOOLBAR */
+    .toolbar{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:12px;
+    }
+    .toolbar .group{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    }
+    .toolbar .group{ display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+    input[type="search"], select{
+      appearance:none;
+      border:1px solid #d1d5db;
+      background:#fff;
+      border-radius:12px;
+      padding:10px 12px;
+      min-width:240px;
+      font-size:13px;
+      outline:none;
+    }
+    input[type="search"]:focus, select:focus{
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: var(--card);
+      border-radius:16px;
+      padding:14px;
+      box-shadow: 0 10px 22px rgba(2,6,23,.06);
+      margin-bottom:14px;
+    }
+    .card h3{
+      font-size:14px;
+      color: var(--brand);
+      display:flex;
+      gap:10px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .card.auf h3{ color: var(--auf-blue); }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+      font-weight:900;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+      border-radius:999px;
+      padding:5px 10px;
+      background: rgba(0,133,63,.10);
+      border:1px solid rgba(0,133,63,.18);
+      color: var(--brand2);
+    }
+    .pill.auf{
+      background: linear-gradient(135deg, rgba(0,85,164,.15), rgba(239,65,53,.15));
+      border:1px solid rgba(0,85,164,.25);
+      color: var(--auf-blue);
+    }
+
+    /* TABLE */
+    .tablewrap{
+      overflow:auto;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    table{
+      width:100%;
+      border-collapse:collapse;
+      min-width:1100px;
+      font-size:12px;
+    }
+    thead th{
+      position:sticky;
+      top:0;
+      background:#0b1220;
+      color:#fff;
+      text-align:left;
+      padding:10px;
+      font-weight:900;
+      white-space:nowrap;
+    }
+    tbody td{
+      padding:9px 10px;
+      border-bottom:1px solid var(--line);
+      vertical-align:top;
+      white-space:nowrap;
+    }
+    tbody tr:hover td{ background:#f8fafc; }
+    .code{
+      font-family: var(--mono);
+      font-weight:900;
+      color:#0b6b3a;
+      background:#f0fdf4;
+      border:1px solid #bbf7d0;
+      padding:4px 8px;
+      border-radius:10px;
+      display:inline-block;
+    }
+    .code.auf{
+      color:var(--auf-blue);
+      background:rgba(0,85,164,.1);
+      border:1px solid rgba(0,85,164,.2);
+    }
+    .ueRow td{
+      background: #eff6ff !important;
+      color:#1e40af;
+      font-weight:900;
+      border-bottom:1px solid #bfdbfe;
+    }
+    .note{
+      min-width:240px;
+      white-space:normal;
+      color:var(--muted);
+    }
+
+    .status{
+      display:inline-flex;
+      gap:6px;
+      align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-weight:900;
+      font-size:11px;
+      border:1px solid;
+      white-space:nowrap;
+    }
+    input[type="search"]:focus, select:focus{ border-color: var(--brand); box-shadow: 0 0 0 4px var(--ring); }
+
+    .card{ border:1px solid var(--line); background: var(--card); border-radius:16px; padding:14px; box-shadow: 0 10px 22px rgba(2,6,23,.06); margin-bottom:14px; }
+    .card h3{ font-size:14px; color: var(--brand); display:flex; gap:10px; align-items:center; margin-bottom:10px; }
+    .card.auf h3{ color: var(--auf-blue); }
+    .pill{ display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:900; letter-spacing:.4px; text-transform:uppercase; border-radius:999px; padding:5px 10px; background: rgba(0,133,63,.10); border:1px solid rgba(0,133,63,.18); color: var(--brand2); }
+    .pill.auf{ background: linear-gradient(135deg, rgba(0,85,164,.15), rgba(239,65,53,.15)); border:1px solid rgba(0,85,164,.25); color: var(--auf-blue); }
+
+    .tablewrap{ overflow:auto; border-radius:14px; border:1px solid var(--line); background:#fff; }
+    table{ width:100%; border-collapse:collapse; min-width:1100px; font-size:12px; }
+    thead th{ position:sticky; top:0; background:#0b1220; color:#fff; text-align:left; padding:10px; font-weight:900; white-space:nowrap; }
+    tbody td{ padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; white-space:nowrap; }
+    tbody tr:hover td{ background:#f8fafc; }
+    .code{ font-family: var(--mono); font-weight:900; color:#0b6b3a; background:#f0fdf4; border:1px solid #bbf7d0; padding:4px 8px; border-radius:10px; display:inline-block; }
+    .code.auf{ color:var(--auf-blue); background:rgba(0,85,164,.1); border:1px solid rgba(0,85,164,.2); }
+    .ueRow td{ background: #eff6ff !important; color:#1e40af; font-weight:900; border-bottom:1px solid #bfdbfe; }
+    .note{ min-width:240px; white-space:normal; color:var(--muted); }
+
+    .status{ display:inline-flex; gap:6px; align-items:center; padding:6px 10px; border-radius:999px; font-weight:900; font-size:11px; border:1px solid; white-space:nowrap; }
+    .s-red{ background:#fef2f2; border-color:#fecaca; color:#991b1b; }
+    .s-yellow{ background:#fffbeb; border-color:#fde68a; color:#92400e; }
+    .s-green{ background:#f0fdf4; border-color:#bbf7d0; color:#166534; }
+
+    .mini{
+      font-size:11px;
+      color:var(--muted);
+    }
+    .warnTag{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-weight:900;
+      font-size:11px;
+      padding:5px 8px;
+      border-radius:999px;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#9a3412;
+      margin-left:8px;
+    }
+
+    .controls{
+      display:flex;
+      gap:8px;
+      align-items:center;
+      flex-wrap:wrap;
+    }
+    .controls select{
+      min-width: 160px;
+      padding:8px 10px;
+      border-radius:10px;
+      font-weight:800;
+    }
+    .controls input[type="text"]{
+      min-width: 220px;
+      padding:8px 10px;
+      border-radius:10px;
+      border:1px solid #d1d5db;
+      outline:none;
+      font-size:12px;
+    }
+    .controls input[type="text"]:focus{
+      border-color: var(--brand);
+      box-shadow: 0 0 0 4px var(--ring);
+    }
+
+    footer{
+      max-width:1280px;
+      margin: 18px auto 26px;
+      padding: 0 18px;
+      color: var(--muted);
+      font-size:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .mini{ font-size:11px; color:var(--muted); }
+    .warnTag{ display:inline-flex; align-items:center; gap:6px; font-weight:900; font-size:11px; padding:5px 8px; border-radius:999px; background:#fff7ed; border:1px solid #fed7aa; color:#9a3412; margin-left:8px; }
+
+    .controls{ display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .controls select{ min-width: 160px; padding:8px 10px; border-radius:10px; font-weight:800; }
+    .controls input[type="text"]{ min-width: 220px; padding:8px 10px; border-radius:10px; border:1px solid #d1d5db; outline:none; font-size:12px; }
+    .controls input[type="text"]:focus{ border-color: var(--brand); box-shadow: 0 0 0 4px var(--ring); }
+
+    footer{ max-width:1280px; margin: 18px auto 26px; padding: 0 18px; color: var(--muted); font-size:12px; display:flex; flex-wrap:wrap; gap:8px; justify-content:space-between; align-items:center; }
+    footer .right{ font-weight:900; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div>
+      <h1>📌 HUB FOAD PERSONNEL – CESAG (MBA AG, GP, MSCH & AUF)</h1>
+      <div class="sub">Pilotage interne • Année académique 2025–2026 • Version AUF intégrée</div>
+    </div>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div class="badge">✅ Usage interne • Données sauvegardées (localStorage)</div>
+      <div class="badge auf">🌍 MBA Suivis Oscar KAKPO</div>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ACTION BAR (PRIORITÉ) -->
+  <div class="actionbar">
+    <!-- SECTION CESAG STANDARD -->
+<div class="container">
+  <div class="actionbar">
+    <div class="mba-section">
+      <h2>📊 Suivi CESAG Standard (GP, AG, MSCH)</h2>
+      <div class="row">
+        <div class="left">
+          <a class="btn primary" href="https://cesagedu-my.sharepoint.com/:x:/g/personal/oscarkakpo_cesag_edu_sn/IQANRsOdWAqfQrga3m-nViDgAZ97y6t7YQMHDhceYmO93bA?e=RBcxg9" target="_blank" rel="noopener">
+            📊 SUIVI MBA GP & AG
+          </a>
+          <a class="btn primary" href="https://cesagedu-my.sharepoint.com/:x:/g/personal/yendoutie_nakorgou_cesag_edu_sn/IQBUlwM4HPSRQ61VoINMQaSPAebIUYjOT30Boo6Fqga0syM?e=Qg66Yt" target="_blank" rel="noopener">
+            📊 SUIVI MBA MSCH
+          </a>
+          <a class="btn primary" href="https://example.com" target="_blank" rel="noopener">📊 SUIVI MBA GP & AG</a>
+          <a class="btn primary" href="https://example.com" target="_blank" rel="noopener">📊 SUIVI MBA MSCH</a>
+          <button class="btn brand" id="copyAG">📧 Copier mails MBA AG</button>
+          <button class="btn brand" id="copyGP">📧 Copier mails MBA GP</button>
+          <button class="btn brand" id="copyMSCH">📧 Copier mails MBA MSCH</button>
+        </div>
+        <div class="right">
+          <button class="btn ghost" id="exportJSON">💾 Exporter le suivi (JSON)</button>
+          <button class="btn ghost" id="resetTracking">🧹 Réinitialiser le suivi local</button>
+        </div>
+      </div>
+      <div class="copyhint">
+        <span class="mini">📌 Contacts CESAG :</span>
+        <span class="mini"><strong>MBA AG</strong> : <span style="font-family:var(--mono)">entmbaagdistance2526@cesag.edu.sn</span></span>
+        <span class="mini"><strong>MBA GP</strong> : <span style="font-family:var(--mono)">entmbagpdistance2526@cesag.edu.sn</span></span>
+        <span class="mini"><strong>MBA MSCH</strong> : <span style="font-family:var(--mono)">entmbamsch2526@cesag.edu.sn</span></span>
+      </div>
+    </div>
+
+    <!-- SECTION AUF -->
+    <div class="mba-section auf">
+      <h2>🌍 Suivi Cohorte AUF (AG AUF, GP AUF)</h2>
+      <div class="row">
+        <div class="left">
+          <a class="btn auf" href="https://cesagedu-my.sharepoint.com/:x:/g/personal/yendoutie_nakorgou_cesag_edu_sn/IQBfJpmD7Kk9QaADMi8sYXHjAYB3aUuHTgBLj0Fs6xvqgl4?e=TVtYGW" target="_blank" rel="noopener">
+            📊 SUIVI AUF (AG & GP)
+          </a>
+          <button class="btn auf" id="copyAGAUF">📧 Copier mail MBA AG AUF</button>
+          <button class="btn auf" id="copyGPAUF">📧 Copier mail MBA GP AUF</button>
+        </div>
+        <div class="right">
+          <a class="btn ghost" href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZjU2OGE2NTYtZGM5MS00M2Y2LWE4OGUtZmQwMDYzYTMwYzQw%40thread.v2/0?context=%7b%22Tid%22%3a%2207bc7abe-6e9d-4683-bdc4-aab1418606f2%22%2c%22Oid%22%3a%22f4fcd75f-f144-4188-a7c3-f0496ede9edf%22%7d" target="_blank">
+            🎥 Salle virtuelle AG AUF
+          </a>
+          <a class="btn ghost" href="https://teams.microsoft.com/l/meetup-join/19%3ameeting_Y2VjZGVlYjktMmE3ZC00OThlLWJjZGQtZjA4ZGRhYzQ4ZGZj%40thread.v2/0?context=%7b%22Tid%22%3a%2207bc7abe-6e9d-4683-bdc4-aab1418606f2%22%2c%22Oid%22%3a%22f4fcd75f-f144-4188-a7c3-f0496ede9edf%22%7d" target="_blank">
+            🎥 Salle virtuelle GP AUF
+          </a>
+        </div>
+      </div>
+      <div class="copyhint">
+        <span class="mini">📌 Contacts AUF :</span>
+        <span class="mini"><strong>MBA AG AUF</strong> : <span style="font-family:var(--mono)">mbaagauf2526@cesag.edu.sn</span></span>
+        <span class="mini"><strong>MBA GP AUF</strong> : <span style="font-family:var(--mono)">enmbagpauf2526@cesag.edu.sn</span></span>
+      </div>
+    </div>
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <!-- TABS -->
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="gp">MBA GP CESAG</button>
+    <button class="tab" data-tab="ag">MBA AG CESAG</button>
+    <button class="tab" data-tab="msch">MBA MSCH CESAG</button>
+    <button class="tab auf" data-tab="gp-auf">MBA GP AUF</button>
+    <button class="tab auf" data-tab="ag-auf">MBA AG AUF</button>
+  </div>
+
+  <!-- PANEL GP CESAG -->
+  <section id="panel-gp" class="panel active">
+    <div class="toolbar">
+      <div class="group">
+        <input id="searchGP" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisGP">
+          <option value="ALL">Tous les mois</option>
+          <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
+          <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
+          <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
+          <option value="MOIS 10">MOIS 10</option><option value="MOIS 11">MOIS 11</option><option value="MOIS 12">MOIS 12</option>
+          <option value="A PLANIFIER">À planifier</option>
+        </select>
+        <select id="blocGP">
+          <option value="ALL">Tous les blocs</option>
+          <option value="S1">Semestre 1</option>
+          <option value="S2">Semestre 2</option>
+          <option value="CONF">Conférences & Panels</option>
+        </select>
+      </div>
+      <div class="group">
+        <span class="mini" id="countGP">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="pill">MBA GP CESAG</span> Modules officiels + suivi interne</h3>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:120px;">Bloc</th>
+              <th style="min-width:340px;">UE / Module</th>
+              <th style="min-width:120px;">Code</th>
+              <th>CM</th>
+              <th>TD/TP</th>
+              <th>Total</th>
+              <th>TPE</th>
+              <th>Crédits</th>
+              <th style="min-width:110px;">Début</th>
+              <th style="min-width:110px;">Fin</th>
+              <th style="min-width:90px;">Mois</th>
+              <th style="min-width:420px;">Suivi (statut + note)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyGP"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL AG CESAG -->
+  <section id="panel-ag" class="panel">
+    <div class="toolbar">
+      <div class="group">
+        <input id="searchAG" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisAG">
+          <option value="ALL">Tous les mois</option>
+          <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
+          <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
+          <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
+          <option value="A PLANIFIER">À planifier</option>
+        </select>
+        <select id="blocAG">
+          <option value="ALL">Tous les blocs</option>
+          <option value="S1-TC">Semestre 1 – Tronc commun</option>
+          <option value="S2-TC">Semestre 2 – Tronc commun</option>
+          <option value="GE">Spécialisation – Gestion des Entreprises</option>
+          <option value="AP">Spécialisation – Administration Publique</option>
+        </select>
+      </div>
+      <div class="group">
+        <span class="mini" id="countAG">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="pill">MBA AG CESAG</span> Modules officiels + suivi interne</h3>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:180px;">Bloc</th>
+              <th style="min-width:360px;">UE / Module</th>
+              <th style="min-width:120px;">Code</th>
+              <th>CM</th>
+              <th>TD/TP</th>
+              <th>Total</th>
+              <th>TPE</th>
+              <th>Crédits</th>
+              <th style="min-width:110px;">Début</th>
+              <th style="min-width:110px;">Fin</th>
+              <th style="min-width:90px;">Mois</th>
+              <th style="min-width:420px;">Suivi (statut + note)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyAG"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL MSCH -->
+  <section id="panel-msch" class="panel">
+    <div class="toolbar">
+      <div class="group">
+        <input id="searchMSCH" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisMSCH">
+          <option value="ALL">Tous les mois</option>
+          <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
+          <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
+          <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
+          <option value="MOIS 10">MOIS 10</option><option value="MOIS 11">MOIS 11</option><option value="MOIS 12">MOIS 12</option>
+          <option value="MOIS 13">MOIS 13</option>
+          <option value="A PLANIFIER">À planifier</option>
+        </select>
+        <select id="blocMSCH">
+          <option value="ALL">Tous les blocs</option>
+          <option value="S1">Semestre 1</option>
+          <option value="S2">Semestre 2</option>
+        </select>
+      </div>
+      <div class="group">
+        <span class="mini" id="countMSCH">—</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3><span class="pill">MBA MSCH</span> Modules officiels + suivi interne</h3>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:120px;">Bloc</th>
+              <th style="min-width:340px;">UE / Module</th>
+              <th style="min-width:120px;">Code</th>
+              <th>CM</th>
+              <th>TD/TP</th>
+              <th>Total</th>
+              <th>TPE</th>
+              <th>Crédits</th>
+              <th style="min-width:110px;">Début</th>
+              <th style="min-width:110px;">Fin</th>
+              <th style="min-width:90px;">Mois</th>
+              <th style="min-width:420px;">Suivi (statut + note)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyMSCH"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL GP AUF -->
+  <section id="panel-gp-auf" class="panel">
+    <div class="toolbar">
+      <div class="group">
+        <input id="searchGPAUF" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisGPAUF">
+          <option value="ALL">Tous les mois</option>
+          <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
+          <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
+          <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
+          <option value="MOIS 10">MOIS 10</option><option value="MOIS 11">MOIS 11</option><option value="MOIS 12">MOIS 12</option>
+          <option value="A PLANIFIER">À planifier</option>
+        </select>
+        <select id="blocGPAUF">
+          <option value="ALL">Tous les blocs</option>
+          <option value="S1">Semestre 1</option>
+          <option value="S2">Semestre 2</option>
+          <option value="CONF">Conférences & Panels</option>
+        </select>
+      </div>
+      <div class="group">
+        <span class="mini" id="countGPAUF">—</span>
+      </div>
+    </div>
+
+    <div class="card auf">
+      <h3><span class="pill auf">MBA GP AUF</span> Modules cohorte AUF + suivi interne</h3>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:120px;">Bloc</th>
+              <th style="min-width:340px;">UE / Module</th>
+              <th style="min-width:120px;">Code</th>
+              <th>CM</th>
+              <th>TD/TP</th>
+              <th>Total</th>
+              <th>TPE</th>
+              <th>Crédits</th>
+              <th style="min-width:110px;">Début</th>
+              <th style="min-width:110px;">Fin</th>
+              <th style="min-width:90px;">Mois</th>
+              <th style="min-width:420px;">Suivi (statut + note)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyGPAUF"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANEL AG AUF -->
+  <section id="panel-ag-auf" class="panel">
+    <div class="toolbar">
+      <div class="group">
+        <input id="searchAGAUF" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisAGAUF">
+          <option value="ALL">Tous les mois</option>
+          <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
+          <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
+          <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
+          <option value="A PLANIFIER">À planifier</option>
+        </select>
+        <select id="blocAGAUF">
+          <option value="ALL">Tous les blocs</option>
+          <option value="S1-TC">Semestre 1 – Tronc commun</option>
+          <option value="S2-TC">Semestre 2 – Tronc commun</option>
+          <option value="GE">Spécialisation – Gestion des Entreprises</option>
+          <option value="AP">Spécialisation – Administration Publique</option>
+        </select>
+      </div>
+      <div class="group">
+        <span class="mini" id="countAGAUF">—</span>
+      </div>
+    </div>
+
+    <div class="card auf">
+      <h3><span class="pill auf">MBA AG AUF</span> Modules cohorte AUF + suivi interne</h3>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:180px;">Bloc</th>
+              <th style="min-width:360px;">UE / Module</th>
+              <th style="min-width:120px;">Code</th>
+              <th>CM</th>
+              <th>TD/TP</th>
+              <th>Total</th>
+              <th>TPE</th>
+              <th>Crédits</th>
+              <th style="min-width:110px;">Début</th>
+              <th style="min-width:110px;">Fin</th>
+              <th style="min-width:90px;">Mois</th>
+              <th style="min-width:420px;">Suivi (statut + note)</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyAGAUF"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  </div>
+
+  <section id="panel-gp" class="panel active"><div class="card"><h3><span class="pill">MBA GP CESAG</span> Vue de démonstration</h3><div class="tablewrap"><table><thead><tr><th>Bloc</th><th>UE / Module</th><th>Code</th><th>Suivi</th></tr></thead><tbody id="tbodyGP"></tbody></table></div></div></section>
+  <section id="panel-ag" class="panel"><div class="card"><h3><span class="pill">MBA AG CESAG</span> Vue de démonstration</h3><div class="tablewrap"><table><thead><tr><th>Bloc</th><th>UE / Module</th><th>Code</th><th>Suivi</th></tr></thead><tbody id="tbodyAG"></tbody></table></div></div></section>
+  <section id="panel-msch" class="panel"><div class="card"><h3><span class="pill">MBA MSCH</span> Vue de démonstration</h3><div class="tablewrap"><table><thead><tr><th>Bloc</th><th>UE / Module</th><th>Code</th><th>Suivi</th></tr></thead><tbody id="tbodyMSCH"></tbody></table></div></div></section>
+</div>
+
+<footer>
+  <div>© CESAG • HUB FOAD personnel (pilotage interne) • Cohorte AUF intégrée</div>
+  <div class="right">CESAG ONLINE + AUF</div>
+</footer>
+
+<script>
+/* ============================
+   CONFIGURATION MODULAIRE – STRUCTURE POUR AJOUTER DE NOUVEAUX MBA
+   ============================ */
+
+// ============================================================================
+// SECTION 1 : DONNÉES DES MBA CESAG STANDARD
+// ============================================================================
+
+/* ============================
+   1A) DONNÉES – MBA GP CESAG (EXHAUSTIF)
+   ============================ */
+const GP = [
+  // S1
+  { type:"UE", bloc:"S1", ue:"UE 1.1.1: Contexte des projets, programmes et portefeuille", meta:"", mois:"", debut:"", fin:"", credits:"", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.1", code:"MBAGP1111", module:"Enjeux et défis du développement", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/12/2025", fin:"14/01/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.1", code:"MBAGP1112", module:"Principes et enjeux de l'administration publique", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/01/2026", fin:"14/02/2026", mois:"MOIS 2" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.1", code:"MBAGP1113", module:"Environnement du projet en entreprise et défis des PME", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/01/2026", fin:"14/02/2026", mois:"MOIS 2" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.2: Études de projet", meta:"24 / 16 / 40 / 80 • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.2", code:"MBAGP1121", module:"Études de faisabilité de projet", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 3" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.2", code:"MBAGP1122", module:"Étude d'impact environnemental et social", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 3" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.3: Analyse de projet", meta:"20 / 20 / 40 / 80 • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.3", code:"MBAGP1131", module:"Analyse financière de projet", cm:10, td:10, total:20, tpe:40, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 4" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.3", code:"MBAGP1132", module:"Analyse économique des projets", cm:10, td:10, total:20, tpe:40, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 5" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.4: Planification des projets et programmes", meta:"20 / 20 / 40 / 80 • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.4", code:"MBAGP1141", module:"Planification stratégique des projets, programmes et portefeuille", cm:10, td:10, total:20, tpe:40, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 5" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.4", code:"MBAGP1142", module:"Planification opérationnelle et budgétisation des projets et programmes", cm:10, td:10, total:20, tpe:40, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 6" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.5: Management de projet", meta:"36 / 24 / 60 / 120 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.5", code:"MBAGP1143", module:"Intégration et gestion de projets, programmes et portefeuille", cm:12, td:8, total:20, tpe:40, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.5", code:"MBAGP1144", module:"Approches innovantes de gestion de projet et méthodologie agile", cm:12, td:8, total:20, tpe:40, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.5", code:"MBAGP1145", module:"Partenariat public et privé", cm:12, td:8, total:20, tpe:40, credits:2, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 7" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.6: Gestion des ressources", meta:"40 / 20 / 60 / 120 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.6", code:"MBAGP1161", module:"Gestion des parties prenantes de projet, programmes et portefeuille", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.6", code:"MBAGP1162", module:"Logistique et gestion des ressources matérielles", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.6", code:"MBAGP1163", module:"Passation des marchés publiques", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.6", code:"MBAGP1164", module:"Management de la qualité", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.7: Enjeux juridiques et réglementaires", meta:"22 / 13 / 25 / 60 • 3 crédits", mois:"", debut:"", fin:"", credits:"3", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.7", code:"MBAGP1171", module:"Aspects juridiques et fiscaux des projets, programmes et portefeuille", cm:12, td:8, total:10, tpe:30, credits:2, debut:"21/10/2026", fin:"20/11/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.7", code:"MBAGP1172", module:"Codes éthiques et déontologie", cm:10, td:5, total:15, tpe:30, credits:1, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+
+  // S2
+  { type:"UE", bloc:"S2", ue:"UE 1.2.1: Méthodologie de recherche", meta:"35 / 25 / 60 / 120 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.1", code:"MBAGP1211", module:"Méthodologie de recherche qualitative", cm:15, td:10, total:25, tpe:50, credits:2.5, debut:"21/11/2026", fin:"21/12/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.1", code:"MBAGP1212", module:"Méthodologie de recherche quantitative", cm:15, td:10, total:25, tpe:50, credits:2.5, debut:"21/11/2026", fin:"21/12/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.1", code:"MBAGP1213", module:"Méthodologie de rédaction du TFE", cm:5, td:5, total:10, tpe:20, credits:1, debut:"18/04/2026", fin:"04/03/2025", mois:"MOIS 4" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.2: Suivi et évaluation des projets", meta:"37 / 23 / 60 / 120 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.2", code:"MBAGP1221", module:"Suivi et évaluation des projets, programmes et portefeuille", cm:15, td:10, total:25, tpe:50, credits:2.5, debut:"22/12/2026", fin:"21/01/2027", mois:"MOIS 10" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.2", code:"MBAGP1222", module:"Évaluation d'impact", cm:12, td:8, total:20, tpe:40, credits:2, debut:"22/12/2026", fin:"21/01/2027", mois:"MOIS 10" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.2", code:"MBAGP1223", module:"Capitalisation, gestion et dissémination des connaissances et apprentissages", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"22/12/2026", fin:"21/01/2027", mois:"MOIS 10" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.3: Maîtrise des risques", meta:"22 / 18 / 40 / 80 • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.3", code:"MBAGP1231", module:"Gestion des risques et contrôle du projet, programmes et portefeuille", cm:12, td:8, total:20, tpe:40, credits:2, debut:"22/01/2027", fin:"21/02/2027", mois:"MOIS 11" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.3", code:"MBAGP1232", module:"Intégration des risques transversaux (genre, inclusion, changement climatique, sécurité)", cm:5, td:5, total:10, tpe:20, credits:1, debut:"22/01/2027", fin:"21/02/2027", mois:"MOIS 11" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.3", code:"MBAGP1233", module:"Audit de projet", cm:5, td:5, total:10, tpe:20, credits:1, debut:"22/02/2027", fin:"24/03/2027", mois:"MOIS 12" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.4: Mémoire professionnel", meta:"160 / 160 • 8 crédits", mois:"A PLANIFIER", debut:"", fin:"", credits:"8", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.4", code:"MBAGP1241", module:"Projet/Mémoire professionnel", cm:"", td:"", total:"", tpe:160, credits:8, debut:"", fin:"", mois:"A PLANIFIER" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.5: Informatiques appliquées à la gestion de projet", meta:"10 / 36 / 20 / 40 • 2 crédits", mois:"", debut:"", fin:"", credits:"2", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.5", code:"MBAGP1251", module:"Outils informatiques appliqués à la gestion de projet", cm:10, td:10, total:20, tpe:40, credits:2, debut:"22/02/2027", fin:"24/03/2027", mois:"MOIS 12" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.6: Langue étrangère", meta:"12 / 8 / 20 / 40 • 2 crédits", mois:"", debut:"", fin:"", credits:"2", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.6", code:"MBAGP1261", module:"Anglais de spécialité", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/12/2025", fin:"14/01/2026", mois:"MOIS 1" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.7: Leadership", meta:"5 / 5 / 10 / 20 • 1 crédit", mois:"", debut:"", fin:"", credits:"1", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.7", code:"MBAGP1271", module:"Transformation And Design Thinking", cm:5, td:5, total:10, tpe:20, credits:1, debut:"15/12/2025", fin:"14/01/2026", mois:"MOIS 12" },
+
+  { type:"UE", bloc:"CONF", ue:"UE 1.2.8: Conférences et Panels", meta:"Hors crédits", mois:"A PLANIFIER", debut:"", fin:"", credits:"0", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"CONF", ue:"UE 1.2.8", code:"MBAGP1281", module:"Management des programmes publiques", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"CONF", ue:"UE 1.2.8", code:"MBAGP1282", module:"Étude de cas de projets complexes", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"CONF", ue:"UE 1.2.8", code:"MBAGP1283", module:"Marketing et communication digitale en gestion de projet", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"CONF", ue:"UE 1.2.8", code:"MBAGP1284", module:"Gestion des parties prenantes", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+];
+
+/* ============================
+   1B) DONNÉES – MBA AG CESAG
+   ============================ */
+const AG = [
+  // S1 – UE 1.1
+  { type:"UE", bloc:"S1-TC", ue:"UE 1.1 Environnement économique et juridique", meta:"", mois:"", debut:"", fin:"", credits:"", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.1", code:"MBAAG111", module:"Droit des affaires", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/01/2026", fin:"14/02/2026", mois:"MOIS 2" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.1", code:"MBAAG112", module:"Environnement économique et International de l'entreprise", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/12/2025", fin:"14/01/2026", mois:"MOIS 2" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.1", code:"MBAAG113", module:"Fiscalité", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/01/2026", fin:"14/02/2026", mois:"MOIS 2" },
+
+  // S1 – UE 1.2
+  { type:"UE", bloc:"S1-TC", ue:"UE 1.2 Fondamentaux du management", meta:"", mois:"", debut:"", fin:"", credits:"14", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG121", module:"Théorie et Management des organisations", cm:20, td:10, total:30, tpe:20, credits:3, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 3" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG122", module:"Management interculturel", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 3" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG123", module:"Management stratégique", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 3" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG124", module:"Marketing", cm:10, td:10, total:20, tpe:15, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 5" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG125", module:"Création d'entreprise", cm:15, td:10, total:25, tpe:20, credits:3, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 5" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG126", module:"Gestion des projets et suivi-évaluation", cm:10, td:10, total:20, tpe:15, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 5" },
+
+  // S1 – UE 1.3
+  { type:"UE", bloc:"S1-TC", ue:"UE 1.3 Comptabilité, finance et contrôle", meta:"", mois:"", debut:"", fin:"", credits:"10", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG131", module:"Comptabilité", cm:20, td:10, total:30, tpe:20, credits:2, debut:"15/12/2025", fin:"14/01/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG132", module:"Finance", cm:20, td:10, total:30, tpe:20, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 4" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG133", module:"Contrôle interne", cm:20, td:10, total:30, tpe:20, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG134", module:"Contrôle de gestion", cm:15, td:10, total:30, tpe:20, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG135", module:"Marchés financiers", cm:10, td:10, total:25, tpe:20, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 7" },
+
+  // S2 – UE 2.1
+  { type:"UE", bloc:"S2-TC", ue:"UE 2.1 Développement personnel et professionnel", meta:"", mois:"", debut:"", fin:"", credits:"10", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG211", module:"Méthodologie de rédaction de mémoire", cm:10, td:10, total:20, tpe:15, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 4" },
+  { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG212", module:"Anglais des affaires", cm:20, td:10, total:30, tpe:20, credits:3, debut:"15/12/2025", fin:"14/01/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG213", module:"Jeu d'entreprise", cm:15, td:15, total:30, tpe:20, credits:3, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 7" },
+  { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG214", module:"Développement personnel et professionnel", cm:10, td:10, total:20, tpe:15, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 7" },
+
+  // S2 – UE 2.2
+  { type:"UE", bloc:"S2-TC", ue:"UE 2.2 Stage et mémoire", meta:"160h • 8 crédits", mois:"A PLANIFIER", debut:"", fin:"", credits:"8", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2-TC", ue:"UE 2.2", code:"MBAAG221", module:"Stage professionnel + rédaction de mémoire (4 mois minimum)", cm:"", td:"", total:"", tpe:160, credits:8, debut:"", fin:"", mois:"A PLANIFIER" },
+
+  // Spécialisation GE
+  { type:"UE", bloc:"GE", ue:"UE 2.3 Outils de Gestion de l'entreprise (Spécialisation GE)", meta:"140h • 12 crédits", mois:"", debut:"", fin:"", credits:"12", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG231", module:"Organisation et stratégie", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG232", module:"Administration et Gestion des ressources humaines", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG233", module:"Gestion financière", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG234", module:"Systèmes d'information", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 8" },
+
+  // Spécialisation AP
+  { type:"UE", bloc:"AP", ue:"UE 2.4 Droit et Gestion publique (Spécialisation AP)", meta:"", mois:"", debut:"", fin:"", credits:"", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG241", module:"Droit de la fonction publique et de la décentralisation", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG242", module:"Acteurs et systèmes de protection sociale", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG243", module:"Science administrative et droit administratif", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG244", module:"Finances de l'État et Finances locales", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG245", module:"Gestion des ressources humaines dans l'administration publique", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG246", module:"Modernisation et digitalisation du service public", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 9" },
+];
+
+/* ============================
+   1C) DONNÉES – MBA MSCH
+   ============================ */
+const MSCH = [
+  { type:"UE", bloc:"S1", ue:"UE 1.1 Comptabilité finance", meta:"30 / 25 / 55 / 40 • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1 Comptabilité finance", code:"MBAGRH111", module:"Comptabilité générale", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"06/02/2026", fin:"08/03/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S1", ue:"UE 1.1 Comptabilité finance", code:"MBAGRH112", module:"Comptabilité Analytique", cm:10, td:10, total:20, tpe:15, credits:1.0, debut:"09/03/2026", fin:"08/04/2026", mois:"MOIS 2" },
+  { type:"M", bloc:"S1", ue:"UE 1.1 Comptabilité finance", code:"MBAGRH113", module:"Finance d'entreprise", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"09/04/2026", fin:"09/05/2026", mois:"MOIS 3" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.2 Enseignements Propédeutiques", meta:"35 / 30 / 65 / 45 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.2 Enseignements Propédeutiques", code:"MBAGRH121", module:"Administration du Personnel", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"09/04/2026", fin:"09/05/2026", mois:"MOIS 3" },
+  { type:"M", bloc:"S1", ue:"UE 1.2 Enseignements Propédeutiques", code:"MBAGRH124", module:"Condition de Travail et Qualité de Vie", cm:5, td:5, total:10, tpe:5, credits:1.0, debut:"10/05/2026", fin:"09/05/2026", mois:"MOIS 4" },
+  { type:"M", bloc:"S1", ue:"UE 1.2 Enseignements Propédeutiques", code:"MBAGRH125", module:"Gestion des Compétences", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"10/05/2026", fin:"09/05/2026", mois:"MOIS 4" },
+  { type:"M", bloc:"S1", ue:"UE 1.2 Enseignements Propédeutiques", code:"MBAGRH126", module:"Communication Organisationnelle", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"10/05/2026", fin:"09/06/2026", mois:"MOIS 5" },
+
+  { type:"UE", bloc:"S1", ue:"UE1.3 Droit Social et Relations Professionnelles", meta:"40 / 35 / 75 / 55 • 7 crédits", mois:"", debut:"", fin:"", credits:"7", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE1.3 Droit Social et Relations Professionnelles", code:"MBAGRH131", module:"Conventions Internationales sur le Travail", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"06/02/2026", fin:"08/03/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S1", ue:"UE1.3 Droit Social et Relations Professionnelles", code:"MBAGRH132", module:"Droit de la Sécurité Sociale", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"09/03/2026", fin:"08/04/2026", mois:"MOIS 2" },
+  { type:"M", bloc:"S1", ue:"UE1.3 Droit Social et Relations Professionnelles", code:"MBAGRH133", module:"Normalisation et Management de la Qualité", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"10/05/2026", fin:"09/06/2026", mois:"MOIS 5" },
+  { type:"M", bloc:"S1", ue:"UE1.3 Droit Social et Relations Professionnelles", code:"MBAGRH134", module:"Droit du Travail", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"10/06/2026", fin:"10/07/2026", mois:"MOIS 6" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.4  Audit Social et Contrôle de Gestion", meta:"30 / 30 / 60 / 45 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.4  Audit Social et Contrôle de Gestion", code:"MBAGRH141", module:"Contrôle de Gestion Sociale", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"10/06/2026", fin:"10/07/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1", ue:"UE 1.4  Audit Social et Contrôle de Gestion", code:"MBAGRH142", module:"Audit Social et Audit de la RSE", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"11/07/2026", fin:"09/08/2026", mois:"MOIS 7" },
+  { type:"M", bloc:"S1", ue:"UE 1.4  Audit Social et Contrôle de Gestion", code:"MBAGRH143", module:"Bilan Social", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"11/07/2026", fin:"09/08/2026", mois:"MOIS 7" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", meta:"60 / 50 / 110 / 80 • 7 crédits", mois:"", debut:"", fin:"", credits:"7", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", code:"MBAGRH151", module:"Management de la Formation", cm:10, td:10, total:20, tpe:15, credits:1.0, debut:"11/07/2026", fin:"09/08/2026", mois:"MOIS 7" },
+  { type:"M", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", code:"MBAGRH152", module:"Théorie des organisations", cm:10, td:10, total:20, tpe:15, credits:1.0, debut:"10/08/2026", fin:"09/09/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", code:"MBAGRH153", module:"Appréciation des Performances du Personnel", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"10/08/2026", fin:"09/09/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", code:"MBAGRH153", module:"Recrutement et Intégration", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"10/08/2026", fin:"09/09/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", code:"MBAGRH154", module:"Management des Rémunérations", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"10/09/2026", fin:"10/10/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"S1", ue:"UE 1.5  Management des Hommes et des Equipes", code:"MBAGRH155", module:"Logiciel Spécialisé de Paie", cm:10, td:10, total:20, tpe:15, credits:1.0, debut:"10/09/2026", fin:"10/10/2026", mois:"MOIS 9" },
+
+  { type:"UE", bloc:"S2", ue:"UE 2.1 Stratégie et Changement Organisationnel", meta:"30 / 20 / 50 / 35 • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 2.1 Stratégie et Changement Organisationnel", code:"MBAGRH211", module:"Stratégie d'Entreprise et GRH", cm:10, td:5, total:15, tpe:10, credits:2.0, debut:"10/09/2026", fin:"10/10/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"S2", ue:"UE 2.1 Stratégie et Changement Organisationnel", code:"MBAGRH212", module:"Diagnostic Organisationnel et Gestion du Changement", cm:10, td:5, total:15, tpe:10, credits:2.0, debut:"11/10/2026", fin:"10/11/2026", mois:"MOIS 10" },
+  { type:"M", bloc:"S2", ue:"UE 2.1 Stratégie et Changement Organisationnel", code:"MBAGRH213", module:"Gestion Prévisionnelle des Emplois et des Compétences", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"11/10/2026", fin:"10/11/2026", mois:"MOIS 10" },
+
+  { type:"UE", bloc:"S2", ue:"UE2.2 Gestion Internationale des RH", meta:"40 / 20 / 60 / 40 • 5 crédits", mois:"", debut:"", fin:"", credits:"5", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE2.2 Gestion Internationale des RH", code:"MBAGRH221", module:"Environnement Economique International et GRH", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"11/10/2026", fin:"10/11/2026", mois:"MOIS 10" },
+  { type:"M", bloc:"S2", ue:"UE2.2 Gestion Internationale des RH", code:"MBAGRH222", module:"Mobilité Internationale des Ressources Humaines", cm:10, td:5, total:15, tpe:10, credits:2.0, debut:"11/11/2026", fin:"11/12/2026", mois:"MOIS 11" },
+  { type:"M", bloc:"S2", ue:"UE2.2 Gestion Internationale des RH", code:"MBAGRH223", module:"Management Interculturel", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"11/11/2026", fin:"11/12/2026", mois:"MOIS 11" },
+  { type:"M", bloc:"S2", ue:"UE2.2 Gestion Internationale des RH", code:"MBAGRH224", module:"EGRH (e-recrutement, e-formation, ecommunication)", cm:10, td:5, total:15, tpe:10, credits:1.0, debut:"11/11/2026", fin:"11/12/2026", mois:"MOIS 11" },
+
+  { type:"UE", bloc:"S2", ue:"UE 2.3 Le Métier de Consultant en GRH", meta:"30 / 20 / 50 / 30 • 5 crédits", mois:"", debut:"", fin:"", credits:"5", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 2.3 Le Métier de Consultant en GRH", code:"MBAGRH231", module:"Création et Gestion d'un Cabinet de Conseil en GRH", cm:10, td:5, total:15, tpe:10, credits:2.0, debut:"12/12/2026", fin:"11/01/2027", mois:"MOIS 12" },
+  { type:"M", bloc:"S2", ue:"UE 2.3 Le Métier de Consultant en GRH", code:"MBAGRH232", module:"Conduite d'une Mission d'Intervention en GRH", cm:5, td:5, total:10, tpe:5, credits:1.0, debut:"12/12/2026", fin:"11/01/2027", mois:"MOIS 12" },
+  { type:"M", bloc:"S2", ue:"UE 2.3 Le Métier de Consultant en GRH", code:"MBAGRH233", module:"Conception et Conduite d'un Projet", cm:15, td:10, total:25, tpe:15, credits:2.0, debut:"12/12/2026", fin:"11/01/2027", mois:"MOIS 12" },
+
+  { type:"UE", bloc:"S2", ue:"UE 2.4 Développement Personnel", meta:"45 / 35 / 80 / 55 • 8 crédits", mois:"", debut:"", fin:"", credits:"8", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 2.4 Développement Personnel", code:"MBAGRH241", module:"Développement Personnel et Professionnel", cm:5, td:5, total:10, tpe:5, credits:1.0, debut:"12/01/2027", fin:"11/02/2027", mois:"MOIS 13" },
+  { type:"M", bloc:"S2", ue:"UE 2.4 Développement Personnel", code:"MBAGRH242", module:"Méthodologie de la recherche", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"S2", ue:"UE 2.4 Développement Personnel", code:"MBAGRH243", module:"Simulation d'Entreprises", cm:10, td:10, total:20, tpe:15, credits:2.0, debut:"12/01/2027", fin:"11/02/2027", mois:"MOIS 13" },
+  { type:"M", bloc:"S2", ue:"UE 2.4 Développement Personnel", code:"MBAGRH244", module:"Anglais des Affaires", cm:20, td:10, total:30, tpe:20, credits:3.0, debut:"09/04/2026", fin:"09/05/2026", mois:"MOIS 3" },
+
+  { type:"UE", bloc:"S2", ue:"UE 2.5 Stage et Mémoire", meta:"150h • 6 crédits", mois:"A PLANIFIER", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 2.5 Stage et Mémoire", code:"MBAGRH251", module:"Stage et Mémoire", cm:"", td:"", total:"", tpe:150, credits:6.0, debut:"", fin:"", mois:"A PLANIFIER" },
+];
+
+// ============================================================================
+// SECTION 2 : DONNÉES MBA AUF (Basées sur vos fichiers Agenda AUF)
+// ============================================================================
+
+/* ============================
+   2A) DONNÉES – MBA GP AUF
+   ============================ */
+const GPAUF = [
+  // S1
+  { type:"UE", bloc:"S1", ue:"UE 1.1.1: Contexte des projets, programmes et portefeuille", meta:"120h • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.1", code:"MBAGP1111", module:"Enjeux et défis du développement", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/02/2026", fin:"14/03/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.1", code:"MBAGP1112", module:"Principes et enjeux de l'administration publique", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 1" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.1", code:"MBAGP1113", module:"Environnement du projet en entreprise et défis des PME", cm:12, td:8, total:20, tpe:40, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 1" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.2: Etudes de projet", meta:"80h • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.2", code:"MBAGP1121", module:"Etudes de faisabilité de projet", cm:12, td:8, total:20, tpe:40, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 2" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.2", code:"MBAGP1122", module:"Etude d'impact environnemental et social", cm:12, td:8, total:20, tpe:40, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 2" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.3: Analyse de projet", meta:"80h • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.3", code:"MBAGP1131", module:"Analyse financière de projet", cm:10, td:10, total:20, tpe:40, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 3" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.3", code:"MBAGP1132", module:"Analyse économique des projets", cm:10, td:10, total:20, tpe:40, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 3" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.4: Planification des projets et programmes", meta:"80h • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.4", code:"MBAGP1141", module:"Planification stratégique des projets, programmes et portefeuille", cm:10, td:10, total:20, tpe:40, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 4" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.4", code:"MBAGP1142", module:"Planification opérationnelle et budgétisation des projets et programmes", cm:10, td:10, total:20, tpe:40, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 4" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.5: Management de projet", meta:"120h • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.5", code:"MBAGP1143", module:"Intégration et gestion de projets, programmes et portefeuille", cm:12, td:8, total:20, tpe:40, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 5" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.5", code:"MBAGP1144", module:"Approches innovantes de gestion de projet et méthodologie agile", cm:12, td:8, total:20, tpe:40, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 5" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.5", code:"MBAGP1145", module:"Partenariat public et privé", cm:12, td:8, total:20, tpe:40, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 5" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.2.1: Gestion des ressources", meta:"120h • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.2.1", code:"MBAGP1211", module:"Gestion des parties prenantes de projet, programmes et portefeuille", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1", ue:"UE 1.2.1", code:"MBAGP1212", module:"Logistique et gestion des ressources matérielles", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1", ue:"UE 1.2.1", code:"MBAGP1151", module:"Passation des marchés publics", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 6" },
+  { type:"M", bloc:"S1", ue:"UE 1.2.1", code:"MBAGP1213", module:"Management de la qualité", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+
+  { type:"UE", bloc:"S1", ue:"UE 1.1.7: Enjeux juridiques et réglementaires", meta:"60h • 3 crédits", mois:"", debut:"", fin:"", credits:"3", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.7", code:"MBAGP1231", module:"Aspects juridiques et fiscaux des projets, programmes et portefeuille", cm:12, td:8, total:20, tpe:40, credits:2, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+  { type:"M", bloc:"S1", ue:"UE 1.1.7", code:"MBAGP1232", module:"Codes éthiques et déontologie", cm:10, td:5, total:15, tpe:30, credits:1, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+
+  // S2
+  { type:"UE", bloc:"S2", ue:"UE 1.1.6: Méthodologie de recherche", meta:"120h • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.1.6", code:"MBAGP1161", module:"Méthodologie de recherche qualitative", cm:15, td:10, total:25, tpe:50, credits:2.5, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S2", ue:"UE 1.1.6", code:"MBAGP1162", module:"Méthodologie de recherche quantitative", cm:15, td:10, total:25, tpe:50, credits:2.5, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+  { type:"M", bloc:"S2", ue:"UE 1.1.6", code:"MBAGP1163", module:"Méthodologie de rédaction du TFE", cm:5, td:5, total:10, tpe:20, credits:1, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 3" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.2: Suivi et évaluation des projets", meta:"120h • 6 crédits", mois:"", debut:"", fin:"", credits:"6", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.2", code:"MBAGP1221", module:"Suivi et évaluation des projets, programmes et portefeuille", cm:15, td:10, total:25, tpe:50, credits:2.5, debut:"21/10/2026", fin:"20/11/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.2", code:"MBAGP1222", module:"Evaluation d'impact", cm:12, td:8, total:20, tpe:40, credits:2, debut:"21/10/2026", fin:"20/11/2026", mois:"MOIS 9" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.2", code:"MBAGP1223", module:"Capitalisation, gestion et dissémination des connaissances et apprentissages", cm:10, td:5, total:15, tpe:30, credits:1.5, debut:"21/10/2026", fin:"20/11/2026", mois:"MOIS 9" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.3: Maîtrise des risques", meta:"80h • 4 crédits", mois:"", debut:"", fin:"", credits:"4", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.3", code:"MBAGP1233", module:"Gestion des risques et contrôle du projet, programmes et portefeuille", cm:12, td:8, total:20, tpe:40, credits:2, debut:"21/11/2026", fin:"21/12/2026", mois:"MOIS 10" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.3", code:"MBAGP1234", module:"Intégration des risques transversaux (genre, inclusion, changement climatique, sécurité)", cm:5, td:5, total:10, tpe:20, credits:1, debut:"21/11/2026", fin:"21/12/2026", mois:"MOIS 10" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.3", code:"MBAGP1242", module:"Audit de projet", cm:5, td:5, total:10, tpe:20, credits:1, debut:"21/11/2026", fin:"21/12/2026", mois:"MOIS 10" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.9: Mémoire professionnel", meta:"160h • 8 crédits", mois:"A PLANIFIER", debut:"", fin:"", credits:"8", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.9", code:"MBAGP1241", module:"Projet/Mémoire professionnel", cm:"", td:"", total:"", tpe:160, credits:8, debut:"", fin:"", mois:"A PLANIFIER" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.5: Informatiques appliquées à la gestion de projet", meta:"40h • 2 crédits", mois:"", debut:"", fin:"", credits:"2", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.5", code:"MBAGP1251", module:"Outils informatiques appliqués à la gestion de projet", cm:10, td:10, total:20, tpe:40, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 2" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.7.7: Langue étrangère", meta:"40h • 2 crédits", mois:"", debut:"", fin:"", credits:"2", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.7.7", code:"MBAGP1261", module:"Anglais de spécialité", cm:12, td:8, total:20, tpe:40, credits:2, debut:"22/12/2026", fin:"21/01/2027", mois:"MOIS 12" },
+
+  { type:"UE", bloc:"S2", ue:"UE 1.2.7: Leadership & Innovation", meta:"40h • 2 crédits", mois:"", debut:"", fin:"", credits:"2", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.7", code:"MBAGP1271", module:"Leadership", cm:5, td:5, total:10, tpe:20, credits:1, debut:"22/12/2026", fin:"21/01/2027", mois:"MOIS 12" },
+  { type:"M", bloc:"S2", ue:"UE 1.2.7", code:"MBAGP1272", module:"Transformation And Design Thinking", cm:5, td:5, total:10, tpe:20, credits:1, debut:"22/12/2026", fin:"21/01/2027", mois:"MOIS 12" },
+
+  // Conférences
+  { type:"UE", bloc:"CONF", ue:"Conférences et Panels (hors crédits)", meta:"0 crédit ECTS", mois:"A PLANIFIER", debut:"", fin:"", credits:"0", cm:"", td:"", total:"", tpe:"" },
+  { type:"M", bloc:"CONF", ue:"Conférences", code:"MBAGP1262", module:"Management des programmes publics", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"CONF", ue:"Conférences", code:"MBAGP1263", module:"Etude de cas de projets complexes", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"CONF", ue:"Conférences", code:"MBAGP1264", module:"Marketing et communication digitale en gestion de projet", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+  { type:"M", bloc:"CONF", ue:"Conférences", code:"MBAGP1282", module:"Gestion des parties prenantes (conférence)", cm:"", td:"", total:"", tpe:"", credits:0, debut:"", fin:"", mois:"A PLANIFIER" },
+];
+
+/* ============================
+   2B) DONNÉES – MBA AG AUF
+   ============================ */
+const AGAUF = [
+  {
+    section: "S1-TC",
+    titre: "SEMESTRE 1 - Tronc commun",
+    ue: "UE 1.1 Environnement économique et juridique",
+    meta: "60h • 6 crédits",
+    modules: [
+      { type:"UE", bloc:"S1-TC", ue:"UE 1.1", code:"", module:"UE 1.1 Environnement économique et juridique", cm:"", td:"", total:"", tpe:"", credits:"", debut:"", fin:"", mois:"" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.1", code:"MBAAG111", module:"Droit des affaires", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 1" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.1", code:"MBAAG112", module:"Environnement économique et International de l'entreprise", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 1" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.1", code:"MBAAG113", module:"Fiscalité", cm:10, td:10, total:20, tpe:15, credits:2, debut:"15/02/2026", fin:"17/03/2026", mois:"MOIS 1" }
+    ]
+  },
+  {
+    section: "S1-TC",
+    titre: "SEMESTRE 1 - Tronc commun",
+    ue: "UE 1.2 Fondamentaux du management",
+    meta: "135h • 14 crédits",
+    modules: [
+      { type:"UE", bloc:"S1-TC", ue:"UE 1.2", code:"", module:"UE 1.2 Fondamentaux du management", cm:"", td:"", total:"", tpe:"", credits:"", debut:"", fin:"", mois:"" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG121", module:"Théorie et Management des organisations", cm:20, td:10, total:30, tpe:20, credits:3, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 2" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG122", module:"Management interculturel", cm:10, td:10, total:20, tpe:15, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 2" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG123", module:"Management stratégique", cm:10, td:10, total:20, tpe:15, credits:2, debut:"18/03/2026", fin:"17/04/2026", mois:"MOIS 2" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG124", module:"Marketing", cm:10, td:10, total:20, tpe:15, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 4" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG125", module:"Création d'entreprise", cm:15, td:10, total:25, tpe:20, credits:3, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 4" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.2", code:"MBAAG126", module:"Gestion des projets et suivi-évaluation", cm:10, td:10, total:20, tpe:15, credits:2, debut:"19/05/2026", fin:"18/06/2026", mois:"MOIS 4" }
+    ]
+  },
+  {
+    section: "S1-TC",
+    titre: "SEMESTRE 1 - Tronc commun",
+    ue: "UE 1.3 Comptabilité, finance et contrôle",
+    meta: "145h • 10 crédits",
+    modules: [
+      { type:"UE", bloc:"S1-TC", ue:"UE 1.3", code:"", module:"UE 1.3 Comptabilité, finance et contrôle", cm:"", td:"", total:"", tpe:"", credits:"", debut:"", fin:"", mois:"" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG131", module:"Comptabilité", cm:20, td:10, total:30, tpe:20, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 3" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG132", module:"Finance d'entreprise", cm:20, td:10, total:30, tpe:20, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 5" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG133", module:"Contrôle interne", cm:20, td:10, total:30, tpe:20, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 5" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG134", module:"Contrôle de gestion", cm:15, td:10, total:25, tpe:20, credits:2, debut:"19/06/2026", fin:"19/07/2026", mois:"MOIS 5" },
+      { type:"M", bloc:"S1-TC", ue:"UE 1.3", code:"MBAAG135", module:"Marchés financiers", cm:10, td:10, total:20, tpe:15, credits:2, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 6" }
+    ]
+  },
+  {
+    section: "S2-TC",
+    titre: "SEMESTRE 2 - Tronc commun",
+    ue: "UE 2.1 Développement personnel et professionnel",
+    meta: "100h • 9 crédits",
+    modules: [
+      { type:"UE", bloc:"S2-TC", ue:"UE 2.1", code:"", module:"UE 2.1 Développement personnel et professionnel", cm:"", td:"", total:"", tpe:"", credits:"", debut:"", fin:"", mois:"" },
+      { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG211", module:"Méthodologie de rédaction de mémoire", cm:10, td:10, total:20, tpe:15, credits:2, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 3" },
+      { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG212", module:"Anglais des affaires", cm:20, td:10, total:30, tpe:20, credits:3, debut:"18/04/2026", fin:"18/05/2026", mois:"MOIS 3" },
+      { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG213", module:"Jeu d'entreprise", cm:15, td:15, total:30, tpe:20, credits:2, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 6" },
+      { type:"M", bloc:"S2-TC", ue:"UE 2.1", code:"MBAAG214", module:"Développement personnel et professionnel", cm:10, td:10, total:20, tpe:15, credits:2, debut:"20/07/2026", fin:"19/08/2026", mois:"MOIS 6" }
+    ]
+  },
+  {
+    section: "S2-TC",
+    titre: "SEMESTRE 2 - Tronc commun",
+    ue: "UE 2.2 Stage et mémoire (4 mois minimum)",
+    meta: "160h TPE • 8 crédits",
+    modules: [
+      { type:"UE", bloc:"S2-TC", ue:"UE 2.2", code:"", module:"UE 2.2 Stage et mémoire", cm:"", td:"", total:"", tpe:160, credits:8, debut:"", fin:"", mois:"A PLANIFIER" },
+      { type:"M", bloc:"S2-TC", ue:"UE 2.2", code:"MBAAG221", module:"Stage professionnel + rédaction de mémoire", cm:"", td:"", total:"", tpe:160, credits:8, debut:"", fin:"", mois:"A PLANIFIER" }
+    ]
+  },
+  {
+    section: "GE",
+    titre: "Spécialisation 1 : Gestion des entreprises",
+    ue: "UE 2.3 Outils de Gestion de l'entreprise",
+    meta: "140h • 12 crédits",
+    modules: [
+      { type:"UE", bloc:"GE", ue:"UE 2.3", code:"", module:"UE 2.3 Outils de Gestion de l'entreprise (GE)", cm:"", td:"", total:"", tpe:"", credits:"", debut:"", fin:"", mois:"" },
+      { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG231", module:"Organisation et stratégie", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+      { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG232", module:"Administration et Gestion des ressources humaines", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+      { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG233", module:"Gestion financière", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+      { type:"M", bloc:"GE", ue:"UE 2.3", code:"MBAAG234", module:"Systèmes d'information", cm:25, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" }
+    ]
+  },
+  {
+    section: "AP",
+    titre: "Spécialisation 2 : Administration publique",
+    ue: "UE 2.4 Droit et Gestion publique",
+    meta: "140h • 12 crédits",
+    modules: [
+      { type:"UE", bloc:"AP", ue:"UE 2.4", code:"", module:"UE 2.4 Droit et Gestion publique (AP)", cm:"", td:"", total:"", tpe:"", credits:"", debut:"", fin:"", mois:"" },
+      { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG241", module:"Droit de la fonction publique et de la décentralisation", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+      { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG242", module:"Acteurs et systèmes de protection sociale", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+      { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG243", module:"Science administrative et droit administratif", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/08/2026", fin:"19/09/2026", mois:"MOIS 7" },
+      { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG244", module:"Finances de l'État et Finances locales", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+      { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG245", module:"Gestion des ressources humaines dans l'administration publique", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" },
+      { type:"M", bloc:"AP", ue:"UE 2.4", code:"MBAAG246", module:"Modernisation et digitalisation du service public", cm:10, td:10, total:35, tpe:25, credits:3, debut:"20/09/2026", fin:"20/10/2026", mois:"MOIS 8" }
+    ]
+  }
+];
+
+// Aplatir AGAUF pour compatibilité avec le moteur de rendu
+const AGAUF_FLAT = [];
+AGAUF.forEach(group => {
+  group.modules.forEach(m => {
+    AGAUF_FLAT.push({...m, meta: group.meta});
+  });
+});
+
+// ============================================================================
+// SECTION 3 : CONFIGURATION DES MBA
+// ============================================================================
+const MBA_CONFIG = {
+  GP: {
+    data: GP,
+    name: "MBA GP CESAG",
+    email: "entmbagpdistance2526@cesag.edu.sn",
+    tbodyId: "tbodyGP",
+    searchId: "searchGP",
+    moisId: "moisGP",
+    blocId: "blocGP",
+    countId: "countGP"
+  },
+  AG: {
+    data: AG,
+    name: "MBA AG CESAG",
+    email: "entmbaagdistance2526@cesag.edu.sn",
+    tbodyId: "tbodyAG",
+    searchId: "searchAG",
+    moisId: "moisAG",
+    blocId: "blocAG",
+    countId: "countAG"
+  },
+  MSCH: {
+    data: MSCH,
+    name: "MBA MSCH",
+    email: "entmbamsch2526@cesag.edu.sn",
+    tbodyId: "tbodyMSCH",
+    searchId: "searchMSCH",
+    moisId: "moisMSCH",
+    blocId: "blocMSCH",
+    countId: "countMSCH"
+  },
+  GPAUF: {
+    data: GPAUF,
+    name: "MBA GP AUF",
+    email: "entmbagpauf2526@cesag.edu.sn",
+    tbodyId: "tbodyGPAUF",
+    searchId: "searchGPAUF",
+    moisId: "moisGPAUF",
+    blocId: "blocGPAUF",
+    countId: "countGPAUF",
+    isAUF: true
+  },
+  AGAUF: {
+    data: AGAUF_FLAT,
+    name: "MBA AG AUF",
+    email: "entmbaagauf2526@cesag.edu.sn",
+    tbodyId: "tbodyAGAUF",
+    searchId: "searchAGAUF",
+    moisId: "moisAGAUF",
+    blocId: "blocAGAUF",
+    countId: "countAGAUF",
+    isAUF: true
+  }
+};
+
+// ============================================================================
+// SECTION 4 : SYSTÈME DE SUIVI LOCAL
+// ============================================================================
+const TRACK_KEY = "CESAG_HUB_TRACKING_V2_AUF";
+function loadTracking(){
+  try { return JSON.parse(localStorage.getItem(TRACK_KEY) || "{}"); }
+  catch(e){ return {}; }
+}
+function saveTracking(obj){
+  localStorage.setItem(TRACK_KEY, JSON.stringify(obj));
+}
+let tracking = loadTracking();
+
+function getTrack(code){
+  if(!code) return {status:"RED", note:"", teacher:""};
+  return tracking[code] || {status:"RED", note:"", teacher:""};
+}
+function setTrack(code, payload){
+  tracking[code] = { ...getTrack(code), ...payload };
+  saveTracking(tracking);
+}
+
+// ============================================================================
+// SECTION 5 : UTILITAIRES
+// ============================================================================
+function parseFRDate(ddmmyyyy){
+  if(!ddmmyyyy || typeof ddmmyyyy !== "string" || !ddmmyyyy.includes("/")) return null;
+  const [dd, mm, yyyy] = ddmmyyyy.split("/").map(x=>parseInt(x,10));
+  if(!dd || !mm || !yyyy) return null;
+  return new Date(yyyy, mm-1, dd);
+}
+function dateAnomaly(debut, fin){
+  const d1 = parseFRDate(debut);
+  const d2 = parseFRDate(fin);
+  if(!d1 || !d2) return false;
+  return d2 < d1;
+}
+function statusBadge(status){
+  if(status==="GREEN") return `<span class="status s-green">🟢 Terminé</span>`;
+  if(status==="YELLOW") return `<span class="status s-yellow">🟡 En cours</span>`;
+  return `<span class="status s-red">🔴 Non démarré</span>`;
+}
+function toast(msg, ok=true){
+  const t = document.getElementById("toast");
+  t.style.display = "block";
+  t.style.borderColor = ok ? "#bbf7d0" : "#fecaca";
+  t.style.background = ok ? "#f0fdf4" : "#fef2f2";
+  t.style.color = ok ? "#166534" : "#991b1b";
+  t.textContent = msg;
+  setTimeout(()=>{ t.style.display="none"; }, 2200);
+}
+async function copyToClipboard(text){
+  try{
+    await navigator.clipboard.writeText(text);
+    toast("✅ Copié dans le presse-papiers.");
+  }catch(e){
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    toast("✅ Copié (mode compatibilité).");
+  }
+}
+
+// ============================================================================
+// SECTION 6 : MOTEUR DE RENDU
+// ============================================================================
+function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = false){
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = "";
+  const q = (searchTerm || "").trim().toLowerCase();
+
+  let shown = 0;
+  let total = 0;
+
+  data.forEach(row=>{
+    if(row.type==="M") total++;
+  });
+
+  let ueBuffer = null;
+
+  const flushUE = () => {
+    if(ueBuffer){
+      tbody.insertAdjacentHTML("beforeend", ueBuffer);
+      ueBuffer = null;
+    }
+  };
+
+  data.forEach(row=>{
+    if(row.type==="UE"){
+      ueBuffer = `
+        <tr class="ueRow">
+          <td colspan="12">📌 ${row.ue}${row.meta ? ` <span class="warnTag"> ${row.meta} </span>` : ""}</td>
+        </tr>
+      `;
+      return;
+    }
+
+    const textBlob = `${row.bloc} ${row.ue} ${row.code||""} ${row.module||""}`.toLowerCase();
+    const mois = row.mois || "A PLANIFIER";
+
+    if(blocFilter && blocFilter !== "ALL" && row.bloc !== blocFilter) return;
+    if(moisFilter && moisFilter !== "ALL" && mois !== moisFilter) return;
+    if(q && !textBlob.includes(q)) return;
+
+    flushUE();
+    shown++;
+
+    const anomaly = dateAnomaly(row.debut, row.fin);
+    const track = getTrack(row.code);
+    const noteSafe = (track.note || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    const teacherSafe = (track.teacher || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+
+    const statusSelect = `
+      <select data-code="${row.code}" class="trackStatus">
+        <option value="RED" ${track.status==="RED"?"selected":""}>🔴 Non démarré</option>
+        <option value="YELLOW" ${track.status==="YELLOW"?"selected":""}>🟡 En cours</option>
+        <option value="GREEN" ${track.status==="GREEN"?"selected":""}>🟢 Terminé</option>
+      </select>
+    `;
+
+    const teacherInput = `
+      <input type="text" data-code="${row.code}" class="trackTeacher" placeholder="Enseignant (optionnel)" value="${teacherSafe}">
+    `;
+
+    const noteInput = `
+      <input type="text" data-code="${row.code}" class="trackNote" placeholder="Note rapide (ex: syllabus reçu, dates validées...)" value="${noteSafe}">
+    `;
+
+    const codeClass = isAUF ? 'code auf' : 'code';
+
+    tbody.insertAdjacentHTML("beforeend", `
+      <tr>
+        <td>${row.bloc}</td>
+        <td>
+          <div style="white-space:normal;">
+            <div style="font-weight:900;">${row.module}</div>
+            <div class="mini">${row.ue}</div>
+          </div>
+        </td>
+        <td>${row.code ? `<span class="${codeClass}">${row.code}</span>` : ""}</td>
+        <td>${row.cm ?? ""}</td>
+        <td>${row.td ?? ""}</td>
+        <td>${row.total ?? ""}</td>
+        <td>${row.tpe ?? ""}</td>
+        <td>${row.credits ?? ""}</td>
+        <td>${row.debut || ""}${anomaly ? `<span class="warnTag">⚠️ dates</span>` : ""}</td>
+        <td>${row.fin || ""}</td>
+        <td>${mois}</td>
+        <td class="note">
+          <div class="controls">
+            ${statusSelect}
+            ${teacherInput}
+            ${noteInput}
+            <span style="margin-left:auto;">${statusBadge(track.status)}</span>
+          </div>
+        </td>
+      </tr>
+    `);
+  });
+
+  tbody.querySelectorAll(".trackStatus").forEach(sel=>{
+    sel.addEventListener("change", (e)=>{
+      const code = e.target.getAttribute("data-code");
+      setTrack(code, {status: e.target.value});
+      renderAll();
+      toast("✅ Statut mis à jour.");
+    });
+  });
+  tbody.querySelectorAll(".trackTeacher").forEach(inp=>{
+    inp.addEventListener("input", (e)=>{
+      const code = e.target.getAttribute("data-code");
+      setTrack(code, {teacher: e.target.value});
+    });
+    inp.addEventListener("blur", ()=> toast("✅ Enseignant enregistré."));
+  });
+  tbody.querySelectorAll(".trackNote").forEach(inp=>{
+    inp.addEventListener("input", (e)=>{
+      const code = e.target.getAttribute("data-code");
+      setTrack(code, {note: e.target.value});
+    });
+    inp.addEventListener("blur", ()=> toast("✅ Note enregistrée."));
+  });
+
+  return {shown, total};
+}
+
+function renderAll(){
+  Object.keys(MBA_CONFIG).forEach(mbaKey => {
+    const config = MBA_CONFIG[mbaKey];
+    const search = document.getElementById(config.searchId).value;
+    const mois = document.getElementById(config.moisId).value;
+    const bloc = document.getElementById(config.blocId).value;
+    const stats = renderTable(config.data, config.tbodyId, search, mois, bloc, config.isAUF);
+    document.getElementById(config.countId).textContent = `${stats.shown} / ${stats.total} modules affichés (${config.name})`;
+  });
+}
+
+// ============================================================================
+// SECTION 7 : GESTION DES ONGLETS
+// ============================================================================
+document.querySelectorAll(".tab").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    document.querySelectorAll(".tab").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const tab = btn.getAttribute("data-tab");
+    document.querySelectorAll(".panel").forEach(p=>p.classList.remove("active"));
+    document.getElementById(`panel-${tab}`).classList.add("active");
+    localStorage.setItem("CESAG_HUB_LASTTAB_V2", tab);
+  });
+});
+window.addEventListener("DOMContentLoaded", ()=>{
+  const last = localStorage.getItem("CESAG_HUB_LASTTAB_V2");
+  if(last){
+    const btn = document.querySelector(`.tab[data-tab="${last}"]`);
+    if(btn) btn.click();
+  }
+});
+
+// ============================================================================
+// SECTION 8 : ACTIONS BOUTONS
+// ============================================================================
+// Copie d'emails CESAG
+document.getElementById("copyAG").addEventListener("click", ()=> {
+  copyToClipboard(MBA_CONFIG.AG.email);
+});
+document.getElementById("copyGP").addEventListener("click", ()=> {
+  copyToClipboard(MBA_CONFIG.GP.email);
+});
+document.getElementById("copyMSCH").addEventListener("click", ()=> {
+  copyToClipboard(MBA_CONFIG.MSCH.email);
+});
+
+// Copie d'emails AUF
+document.getElementById("copyAGAUF").addEventListener("click", ()=> {
+  copyToClipboard(MBA_CONFIG.AGAUF.email);
+});
+document.getElementById("copyGPAUF").addEventListener("click", ()=> {
+  copyToClipboard(MBA_CONFIG.GPAUF.email);
+});
+
+// Export JSON
+document.getElementById("exportJSON").addEventListener("click", ()=>{
+  const payload = {
+    exportedAt: new Date().toISOString(),
+    tracking: loadTracking()
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], {type:"application/json;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "CESAG_HUB_SUIVI_AUF.json";
+  a.click();
+  URL.revokeObjectURL(url);
+  toast("✅ Export JSON généré.");
+});
+
+// Réinitialisation
+document.getElementById("resetTracking").addEventListener("click", ()=>{
+  localStorage.removeItem(TRACK_KEY);
+  tracking = {};
+  renderAll();
+  toast("✅ Suivi local réinitialisé.");
+});
+
+// ============================================================================
+// SECTION 9 : FILTRES & INITIALISATION
+// ============================================================================
+Object.keys(MBA_CONFIG).forEach(mbaKey => {
+  const config = MBA_CONFIG[mbaKey];
+  [config.searchId, config.moisId, config.blocId].forEach(id=>{
+    const element = document.getElementById(id);
+    if(element) {
+      element.addEventListener(id.includes("search") ? "input" : "change", renderAll);
+    }
+  });
+});
+
+// INITIALISATION
+renderAll();
+</script>
+
+const DATA={
+ GP:[{bloc:'S1',module:'Enjeux et défis du développement',code:'MBAGP1111'},{bloc:'S1',module:'Études de faisabilité de projet',code:'MBAGP1121'}],
+ AG:[{bloc:'S1-TC',module:'Droit des affaires',code:'MBAAG111'},{bloc:'S1-TC',module:'Comptabilité',code:'MBAAG131'}],
+ MSCH:[{bloc:'S1',module:'Comptabilité générale',code:'MBAGRH111'},{bloc:'S2',module:'Stage et Mémoire',code:'MBAGRH251'}]
+};
+const KEY='CESAG_HUB_TRACKING_V2_AUF';
+let tracking=JSON.parse(localStorage.getItem(KEY)||'{}');
+function toast(msg){const t=document.getElementById('toast');t.style.display='block';t.textContent=msg;setTimeout(()=>t.style.display='none',1800)}
+function render(){
+  [['GP','tbodyGP'],['AG','tbodyAG'],['MSCH','tbodyMSCH']].forEach(([k,id])=>{
+    const el=document.getElementById(id); el.innerHTML='';
+    DATA[k].forEach(r=>{const st=(tracking[r.code]||'RED'); const lbl=st==='GREEN'?'🟢 Terminé':st==='YELLOW'?'🟡 En cours':'🔴 Non démarré';
+      el.insertAdjacentHTML('beforeend',`<tr><td>${r.bloc}</td><td>${r.module}</td><td><span class="code">${r.code}</span></td><td><select data-code="${r.code}" class="trackStatus"><option value="RED" ${st==='RED'?'selected':''}>🔴 Non démarré</option><option value="YELLOW" ${st==='YELLOW'?'selected':''}>🟡 En cours</option><option value="GREEN" ${st==='GREEN'?'selected':''}>🟢 Terminé</option></select> <span class="mini">${lbl}</span></td></tr>`)
+    })
+  });
+  document.querySelectorAll('.trackStatus').forEach(s=>s.addEventListener('change',e=>{tracking[e.target.dataset.code]=e.target.value;localStorage.setItem(KEY,JSON.stringify(tracking));render();}));
+}
+
+function copyToClipboard(text){navigator.clipboard.writeText(text).then(()=>toast('✅ Copié.'));}
+document.getElementById('copyAG').addEventListener('click',()=>copyToClipboard('entmbaagdistance2526@cesag.edu.sn'));
+document.getElementById('copyGP').addEventListener('click',()=>copyToClipboard('entmbagpdistance2526@cesag.edu.sn'));
+document.getElementById('copyMSCH').addEventListener('click',()=>copyToClipboard('entmbamsch2526@cesag.edu.sn'));
+document.getElementById('exportJSON').addEventListener('click',()=>{const b=new Blob([JSON.stringify({tracking},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='CESAG_HUB_SUIVI_AUF.json';a.click();toast('✅ Export JSON généré.');});
+document.getElementById('resetTracking').addEventListener('click',()=>{localStorage.removeItem(KEY);tracking={};render();toast('✅ Suivi réinitialisé.');});
+
+document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-'+btn.dataset.tab).classList.add('active');}));
+render();
+</script>
+</body>
+</html>
