@@ -339,9 +339,6 @@ body.dark .hint{color:#fbbf24}
   <button class="sb-item" onclick="nav('repertoire')">
     <span class="sb-icon">🗂️</span> Répertoire évaluations
   </button>
-  <a class="sb-item" href="hub-foad-personnel.html" target="_blank" rel="noopener" style="text-decoration:none">
-    <span class="sb-icon">📌</span> Hub FOAD Personnel
-  </a>
 
   <div class="sb-bottom">
     <a href="https://formations.cesagonline.com" target="_blank">
@@ -363,6 +360,8 @@ body.dark .hint{color:#fbbf24}
     <div class="topbar-right">
       <span class="tb-pill" id="topbar-prog">Aucun programme actif</span>
       <span class="tb-pill" id="topbar-date" style="display:none"></span>
+      <button class="btn outline" id="btn-prev-panel" onclick="navStep(-1)" style="padding:6px 12px;font-size:12px" title="Panel précédent">◀</button>
+      <button class="btn outline" id="btn-next-panel" onclick="navStep(1)" style="padding:6px 12px;font-size:12px" title="Panel suivant">▶</button>
       <button class="btn outline" id="theme-toggle" onclick="toggleTheme()" style="padding:6px 12px;font-size:12px" title="Basculer thème clair/sombre">🌙</button>
     </div>
   </div>
@@ -1245,6 +1244,8 @@ const TITLES = {
   hubfoad:'Hub FOAD Personnel',repertoire:'Répertoire évaluations',
   m365:'Comptes Microsoft 365',mailhistory:'Mails sauvegardés'
 };
+const PANEL_ORDER = ['dashboard','acces','reset','mailprof','mailetudiant','examen','ics','htmlmoodle','gift','syllabus','htmleditor','m365','mailhistory','epe','github','hubfoad','repertoire'];
+let currentPanelIdx = 0;
 
 function nav(id){
   document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
@@ -1259,6 +1260,16 @@ function nav(id){
   // EPE sticky
   document.getElementById('epe-sticky').classList.toggle('vis', id==='epe');
   window.scrollTo({top:0,behavior:'smooth'});
+  // Update panel index for prev/next
+  const idx = PANEL_ORDER.indexOf(id);
+  if(idx !== -1) currentPanelIdx = idx;
+  document.getElementById('btn-prev-panel').disabled = currentPanelIdx === 0;
+  document.getElementById('btn-next-panel').disabled = currentPanelIdx === PANEL_ORDER.length - 1;
+}
+
+function navStep(dir){
+  const newIdx = currentPanelIdx + dir;
+  if(newIdx >= 0 && newIdx < PANEL_ORDER.length) nav(PANEL_ORDER[newIdx]);
 }
 
 /* ═══════════════ UTILS ═════════════════════════════════════════ */

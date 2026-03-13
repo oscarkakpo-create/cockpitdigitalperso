@@ -21,7 +21,19 @@
             margin: 0;
             color: var(--dark-gray);
             -webkit-tap-highlight-color: transparent;
+            transition: background .2s, color .2s;
         }
+        body.dark {
+            background-color: #0f172a;
+            color: #e2e8f0;
+        }
+        body.dark header { background: #1e293b; }
+        body.dark .controls { background: #1e293b; }
+        body.dark .card { background: #1e293b; border-color: #334155; }
+        body.dark .card-header { background: #0f172a; }
+        body.dark #searchInput { background: #0f172a; color: #e2e8f0; border-color: #334155; }
+        body.dark #qrModal { background: rgba(0,0,0,.8); }
+        body.dark #qrModal .qr-box { background: #1e293b; color: #e2e8f0; }
 
         header {
             background: var(--white);
@@ -146,14 +158,37 @@
         }
         #qrcode img { margin: 0 auto; max-width: 100%; height: auto; }
 
-        footer { text-align: center; padding: 30px; color: #94a3b8; font-size: 0.75rem; }
+        footer { text-align: center; padding: 30px 30px 90px; color: #94a3b8; font-size: 0.75rem; }
+
+        /* PAGE NAV BAR */
+        #page-nav{
+            position:fixed; bottom:0; left:0; right:0; z-index:999;
+            display:flex; align-items:center; justify-content:center; gap:12px;
+            padding:12px 20px;
+            background:rgba(15,23,42,.92);
+            backdrop-filter:blur(10px);
+            border-top:1px solid rgba(255,255,255,.1);
+        }
+        #page-nav button, #page-nav a{
+            display:inline-flex; align-items:center; gap:6px;
+            padding:8px 18px; border-radius:999px; border:none; cursor:pointer;
+            font-size:13px; font-weight:700; text-decoration:none;
+            transition:.15s;
+        }
+        .nav-prev, .nav-next{ background:rgba(255,255,255,.1); color:#e2e8f0; }
+        .nav-prev:hover, .nav-next:hover{ background:rgba(255,255,255,.2); }
+        .nav-home{ background:linear-gradient(90deg,#008751,#0a4ea1); color:#fff; }
+        .nav-home:hover{ opacity:.88; }
+        .nav-dark{ background:rgba(255,255,255,.1); color:#e2e8f0; font-size:16px; padding:8px 12px; }
+        .nav-dark:hover{ background:rgba(255,255,255,.2); }
     </style>
 </head>
 <body>
 
-<header>
+<header style="position:relative;">
     <i class="fa-solid fa-graduation-cap main-icon"></i>
     <div style="font-weight: 900; color: var(--cesag-green); font-size: 1.5rem;">CESAG</div>
+    <button onclick="toggleDark()" id="dark-toggle" style="position:absolute;top:15px;right:15px;background:#008751;color:#fff;border:none;padding:6px 12px;border-radius:999px;cursor:pointer;font-size:13px;font-weight:700;" title="Basculer thème sombre">🌙</button>
 </header>
 
 <div class="hero">
@@ -304,11 +339,33 @@ function showQR(url, title) {
 }
 
 render(classes);
+
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  const btn=document.getElementById('dark-toggle');
+  btn.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
+  localStorage.setItem('rep-theme',document.body.classList.contains('dark')?'dark':'light');
+}
+(function(){
+  if(localStorage.getItem('rep-theme')==='dark'){
+    document.body.classList.add('dark');
+    const btn=document.getElementById('dark-toggle');
+    if(btn) btn.textContent='☀️';
+  }
+})();
 </script>
 
 <footer>
     &copy; 2026 CESAG | Système de Management de la Qualité
 </footer>
+
+<!-- BARRE NAVIGATION PAGES -->
+<div id="page-nav">
+  <button class="nav-prev" onclick="history.back()" title="Page précédente">&#9664; Précédent</button>
+  <a class="nav-home" href="index.html" title="Accueil Cockpit">🏠 Accueil</a>
+  <button class="nav-next" onclick="history.forward()" title="Page suivante">Suivant &#9654;</button>
+  <button class="nav-dark" onclick="toggleDark()" title="Basculer thème sombre">🌙</button>
+</div>
 
 </body>
 </html>
