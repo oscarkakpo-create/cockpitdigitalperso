@@ -382,10 +382,22 @@ body.dark .hint{color:#fbbf24}
         <p>Cockpit unifié : Support, Mails, FOAD, Planning EPE et GitHub. Tout au même endroit.</p>
       </div>
       <div class="stat-strip">
-        <div class="stat"><div class="stat-n">∞</div><div class="stat-l">Tous programmes CESAG</div></div>
-        <div class="stat"><div class="stat-n">8</div><div class="stat-l">Outils Support</div></div>
-        <div class="stat"><div class="stat-n">5</div><div class="stat-l">Actions GitHub</div></div>
-        <div class="stat"><div class="stat-n">1</div><div class="stat-l">EPE Générateur</div></div>
+        <div class="stat">
+          <div class="stat-n" id="stat-total">0</div>
+          <div class="stat-l">Actions totales</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n" id="stat-mails">0</div>
+          <div class="stat-l">Mails &amp; Support</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n" id="stat-epe">0</div>
+          <div class="stat-l">Séances planifiées</div>
+        </div>
+        <div class="stat">
+          <div class="stat-n" id="stat-gh">0</div>
+          <div class="stat-l">Actions GitHub</div>
+        </div>
       </div>
       <div class="dash-grid">
         <div class="dash-card" onclick="nav('acces')">
@@ -1162,6 +1174,67 @@ body.dark .hint{color:#fbbf24}
 <div id="toast">✓ Copié !</div>
 
 <script>
+/* ═══════════════ SYSTEME DE QUANTIFICATION (SECURISÉ) ═══════════════ */
+const STATS_KEY = 'CESAG_STATS_DATA_V3';
+
+// Initialisation sécurisée des données
+let userStats = { mails: 0, syllabus: 0, quiz: 0, epe: 0, gh: 0, total: 0 };
+
+function loadStats() {
+  try {
+    const saved = localStorage.getItem(STATS_KEY);
+    if (saved) userStats = JSON.parse(saved);
+    updateStatsUI();
+  } catch (e) {
+    console.error("Erreur lors du chargement des stats:", e);
+  }
+}
+
+function trackActivity(category) {
+  try {
+    if (userStats.hasOwnProperty(category)) {
+      userStats[category]++;
+      userStats.total++;
+      localStorage.setItem(STATS_KEY, JSON.stringify(userStats));
+      updateStatsUI();
+    }
+  } catch (e) {
+    console.error("Erreur de quantification:", e);
+  }
+}
+
+function updateStatsUI() {
+  try {
+    const mapping = {
+      'stat-total': userStats.total,
+      'stat-mails': userStats.mails,
+      'stat-epe': userStats.epe,
+      'stat-gh': userStats.gh
+    };
+    for (let id in mapping) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = mapping[id];
+    }
+  } catch (e) {
+    console.error("Erreur de mise à jour UI:", e);
+  }
+}
+
+function logAction(msg) {
+  try {
+    const logs = JSON.parse(localStorage.getItem('CESAG_LOGS') || '[]');
+    const newLog = `[${new Date().toLocaleTimeString()}] ${msg}`;
+    logs.unshift(newLog);
+    if(logs.length > 50) logs.pop(); // Garde les 50 dernières actions
+    localStorage.setItem('CESAG_LOGS', JSON.stringify(logs));
+  } catch (e) {
+    // Ne bloque jamais l'exécution si le log échoue
+  }
+}
+
+// Lancer le chargement au démarrage
+window.addEventListener('DOMContentLoaded', loadStats);
+
 /* ═══════════════ NAVIGATION ═══════════════════════════════════ */
 const TITLES = {
   dashboard:'Tableau de bord',acces:'Accès numériques',reset:'Reset Moodle',
@@ -1227,6 +1300,7 @@ function genAcces(){
   txt+=`URL : https://oscarkakpo-create.github.io/hubdigitalcesag/\n`;
   txt+=`\nNous restons disponibles pour toute question relative à vos accès.\n\nBien cordialement,\nCESAG ONLINE — Coordination FOAD`;
   document.getElementById('res-acces').textContent=txt;
+  trackActivity('mails');
 }
 
 function genReset(){
@@ -1243,6 +1317,7 @@ function genReset(){
   txt+=`⚠️ Nous vous recommandons de modifier votre mot de passe dès votre première connexion.\n\n`;
   txt+=`Nous demeurons à votre disposition pour tout renseignement complémentaire.\n\nBien cordialement,\nCESAG ONLINE — Support Formation`;
   document.getElementById('res-reset').textContent=txt;
+  trackActivity('mails');
 }
 
 function genMailProf(){
@@ -1262,6 +1337,7 @@ function genMailProf(){
   if(msg) txt+=`\n${msg}\n`;
   txt+=`\nDans l'attente de votre retour, nous vous prions d'agréer, Madame, Monsieur, l'expression de nos salutations distinguées.\n\nCESAG ONLINE — Coordination FOAD`;
   document.getElementById('res-mailprof').textContent=txt;
+  trackActivity('mails');
 }
 
 function genEtudiant(){
@@ -1281,6 +1357,7 @@ function genEtudiant(){
   if(prog) txt+=`(Programme : ${prog})\n\n`;
   txt+=`Nous restons à votre entière disposition pour tout renseignement complémentaire.\n\nBien cordialement,\nCESAG ONLINE — Support Formation`;
   document.getElementById('res-etudiant').textContent=txt;
+  trackActivity('mails');
 }
 
 function genExamen(){
@@ -1308,6 +1385,7 @@ function genExamen(){
   if(lien) txt+=`\n🔗 Accès Moodle : ${lien}\n`;
   txt+=`\nNous vous souhaitons un bon déroulement de votre épreuve.\n\nBien cordialement,\nCESAG ONLINE — Service des Examens`;
   document.getElementById('res-examen').textContent=txt;
+  trackActivity('mails');
 }
 
 /* ═══════════════ ICS ═══════════════════════════════════════════ */
@@ -1443,6 +1521,7 @@ function genGIFT(){
     out+=`${q}{}`;
   }
   document.getElementById('res-gift').textContent=out;
+  trackActivity('quiz');
 }
 function appendGIFT(){
   const cur=document.getElementById('res-gift').textContent;
@@ -1857,6 +1936,7 @@ function generateEpeBlock(){
   if(obs){ out+=`\n${'─'.repeat(34)}\nOBSERVATIONS GLOBALES :\n${obs}\n${'─'.repeat(34)}\n`; }
   document.getElementById('epe-preview').textContent=out.trim();
   saveEpeHistory(out.trim(),prog,`${fmtDate(lundi)} → ${fmtDate(dim)}`);
+  trackActivity('epe');
 }
 function copyEpeBlock(){
   const txt=document.getElementById('epe-preview').textContent;
@@ -1964,6 +2044,7 @@ Initialiser le repo avec README.md.
 Activer GitHub Pages sur la branche main si le projet est un site HTML.`;
   }
   document.getElementById('res-gh').textContent=out;
+  trackActivity('gh');
 }
 
 /* ═══════════════ THEME TOGGLE ══════════════════════════════════ */
@@ -2156,6 +2237,7 @@ function genSyllabus(){
   if(notes) out+=`\n─── INSTRUCTIONS SUPPLÉMENTAIRES ───────\n${notes}\n`;
   out+=`\nMerci de produire un syllabus complet, structuré et directement utilisable, en respectant toutes les sections listées ci-dessus.`;
   document.getElementById('res-syllabus').textContent=out;
+  trackActivity('syllabus');
 }
 
 /* ═══════════════ MICROSOFT 365 CSV ════════════════════════════ */
