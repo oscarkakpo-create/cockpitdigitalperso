@@ -1273,8 +1273,8 @@ function saveTracking(obj){
 let tracking = loadTracking();
 
 function getTrack(code){
-  if(!code) return {status:"RED", note:"", teacher:""};
-  return tracking[code] || {status:"RED", note:"", teacher:""};
+  if(!code) return {status:"RED", note:"", teacher:"", courseLink:"", roomLink:""};
+  return tracking[code] || {status:"RED", note:"", teacher:"", courseLink:"", roomLink:""};
 }
 function setTrack(code, payload){
   tracking[code] = { ...getTrack(code), ...payload };
@@ -1373,6 +1373,8 @@ function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = 
     const track = getTrack(row.code);
     const noteSafe = (track.note || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
     const teacherSafe = (track.teacher || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    const courseLinkSafe = (track.courseLink || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+    const roomLinkSafe = (track.roomLink || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 
     const statusSelect = `
       <select data-code="${row.code}" class="trackStatus">
@@ -1388,6 +1390,14 @@ function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = 
 
     const noteInput = `
       <input type="text" data-code="${row.code}" class="trackNote" placeholder="Note rapide (ex: syllabus reçu, dates validées...)" value="${noteSafe}">
+    `;
+
+    const courseLinkInput = `
+      <input type="url" data-code="${row.code}" class="trackCourseLink" placeholder="Lien du cours (Moodle, Drive...)" value="${courseLinkSafe}">
+    `;
+
+    const roomLinkInput = `
+      <input type="url" data-code="${row.code}" class="trackRoomLink" placeholder="Lien salle virtuelle (Zoom/Meet/Teams)" value="${roomLinkSafe}">
     `;
 
     const codeClass = isAUF ? 'code auf' : 'code';
@@ -1414,6 +1424,8 @@ function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = 
           <div class="controls">
             ${statusSelect}
             ${teacherInput}
+            ${courseLinkInput}
+            ${roomLinkInput}
             ${noteInput}
             <span style="margin-left:auto;">${statusBadge(track.status)}</span>
           </div>
@@ -1443,6 +1455,22 @@ function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = 
       setTrack(code, {note: e.target.value});
     });
     inp.addEventListener("blur", ()=> toast("✅ Note enregistrée."));
+  });
+
+  tbody.querySelectorAll(".trackCourseLink").forEach(inp=>{
+    inp.addEventListener("input", (e)=>{
+      const code = e.target.getAttribute("data-code");
+      setTrack(code, {courseLink: e.target.value.trim()});
+    });
+    inp.addEventListener("blur", ()=> toast("✅ Lien du cours enregistré."));
+  });
+
+  tbody.querySelectorAll(".trackRoomLink").forEach(inp=>{
+    inp.addEventListener("input", (e)=>{
+      const code = e.target.getAttribute("data-code");
+      setTrack(code, {roomLink: e.target.value.trim()});
+    });
+    inp.addEventListener("blur", ()=> toast("✅ Lien de salle virtuelle enregistré."));
   });
 
   return {shown, total};
