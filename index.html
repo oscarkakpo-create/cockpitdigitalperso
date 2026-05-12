@@ -339,6 +339,9 @@ body.dark .hint{color:#fbbf24}
   <button class="sb-item" onclick="nav('repertoire')">
     <span class="sb-icon">🗂️</span> Répertoire évaluations
   </button>
+  <button class="sb-item" onclick="nav('admin2026')">
+    <span class="sb-icon">🧭</span> Zone Administrative 2026
+  </button>
 
   <div class="sb-bottom">
     <a href="https://formations.cesagonline.com" target="_blank">
@@ -450,6 +453,10 @@ body.dark .hint{color:#fbbf24}
         <div class="dash-card" onclick="nav('repertoire')">
           <div class="dash-card-ico" style="background:#f0fdf4">🗂️</div>
           <div class="dash-card-body"><h3>Répertoire évaluations</h3><p>Tous les programmes 2025-2026</p></div>
+        </div>
+        <div class="dash-card" onclick="nav('admin2026')">
+          <div class="dash-card-ico" style="background:#ecfeff">🧭</div>
+          <div class="dash-card-body"><h3>CESAG ONLINE 2026</h3><p>Zone Administrative OneDrive</p></div>
         </div>
         <a class="dash-card" href="hub-foad-personnel.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
           <div class="dash-card-ico" style="background:#ecfeff">📌</div>
@@ -1145,6 +1152,19 @@ body.dark .hint{color:#fbbf24}
       </div>
     </div>
 
+
+    <!-- ═══════════════ ZONE ADMINISTRATIVE 2026 ════════ -->
+    <div id="panel-admin2026" class="panel">
+      <div class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:12px">
+          <div class="card-head" style="margin-bottom:0"><div class="card-ico">🧭</div>CESAG ONLINE 2026 — Zone Administrative</div>
+          <a class="btn outline" href="cesag-online-2026-admin.html" target="_blank" rel="noopener">↗ Ouvrir en plein écran</a>
+        </div>
+        <div class="hint" style="margin-bottom:10px">Focus liens OneDrive et titres administratifs prioritaires.</div>
+        <iframe src="cesag-online-2026-admin.html" title="CESAG ONLINE 2026 — Zone Administrative" style="width:100%;height:78vh;border:1.5px solid var(--border);border-radius:12px;background:#fff"></iframe>
+      </div>
+    </div>
+
     <!-- ═══════════════ MAILS SAUVEGARDÉS ════════ -->
     <div id="panel-mailhistory" class="panel">
       <div class="card">
@@ -1242,9 +1262,10 @@ const TITLES = {
   gift:'Quiz GIFT',htmleditor:'HTML Live Editor',epe:'Planning FOAD (EPE)',
   github:'GitHub Actions',syllabus:'Syllabus rapide',
   hubfoad:'Hub FOAD Personnel',repertoire:'Répertoire évaluations',
+  admin2026:'CESAG ONLINE 2026 — Zone Administrative',
   m365:'Comptes Microsoft 365',mailhistory:'Mails sauvegardés'
 };
-const PANEL_ORDER = ['dashboard','acces','reset','mailprof','mailetudiant','examen','ics','htmlmoodle','gift','syllabus','htmleditor','m365','mailhistory','epe','github','hubfoad','repertoire'];
+const PANEL_ORDER = ['dashboard','acces','reset','mailprof','mailetudiant','examen','ics','htmlmoodle','gift','syllabus','htmleditor','m365','mailhistory','epe','github','hubfoad','repertoire','admin2026'];
 let currentPanelIdx = 0;
 
 function nav(id){
