@@ -6,7 +6,6 @@
   <title>CESAG ONLINE 2026 — Zone Administrative</title>
   <style>
     :root{--bg:#f1f5f9;--card:#fff;--ink:#0f172a;--muted:#475569;--brand:#0b6b3a;--brand2:#0a4ea1;--line:#dbe3ef;--pill:#e2e8f0}
-    :root{--bg:#f1f5f9;--card:#ffffff;--ink:#0f172a;--muted:#475569;--brand:#0b6b3a;--brand2:#0a4ea1;--line:#dbe3ef}
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:"Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--ink);padding:24px}
     .wrap{max-width:980px;margin:0 auto}
@@ -25,11 +24,6 @@
     .btn{border:1px solid var(--line);border-radius:8px;padding:7px 10px;font-size:12px;font-weight:700;text-decoration:none;cursor:pointer}
     .btn.open{background:#0a4ea1;color:#fff;border-color:#0a4ea1}
     .btn.copy{background:#fff;color:#1e293b}
-    .links{display:grid;gap:12px}
-    .link-card{display:block;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;text-decoration:none;color:inherit;transition:.15s}
-    .link-card:hover{transform:translateY(-2px);border-color:var(--brand2);box-shadow:0 8px 22px rgba(10,78,161,.13)}
-    .link-title{font-size:17px;font-weight:800;color:var(--brand2);margin-bottom:5px}
-    .link-url{font-size:12px;color:var(--muted);word-break:break-all}
   </style>
 </head>
 <body>
@@ -49,12 +43,21 @@
       {tag:'CONTRATS', title:'CESAG ONLINE NEW — GRANDE RACINE', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?e=5%3A4bf92aa8fea746e7a265972c6680f660&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Racine des contrats 2025-2026.'},
       {tag:'CONTRATS', title:'CONTRAT À SIGNER', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20%C3%A0%20signer&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Dossier des contrats à signer.'},
       {tag:'CONTRATS', title:'CONTRAT SIGNÉ 2025-2026', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20Sign%C3%A9%202025%2D2026&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Dossier des contrats signés.'},
+      {tag:'EXAMENS', title:"PV D'EXAMEN", url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2F2025%2D2026%2FPV%20D%27EXAMEN&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9', desc:"Dossier des PV d'examen 2025-2026."},
       {tag:'SUIVI', title:'SUIVI RETRAIT PIÈCES ADMIN', url:'https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7BCF3956D6-B831-4E28-9089-2D4FD3376E75%7D&file=Les%20effectifs%202021-2025.xlsx&action=default&mobileredirect=true', desc:'Les effectifs 2021-2025.xlsx'},
       {tag:'SUIVI', title:'SYNTHÈSE EXÉCUTION TOUS LES MBA', url:'https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7B724E130E-CA32-4F8D-90B6-976D1F00224C%7D&file=Synthese%20execution%20tous%20les%20MBA.xlsx&action=default&mobileredirect=true', desc:'Synthèse globale MBA.'}
     ];
 
+    const seen = new Set();
+    const deduped = resources.filter((item) => {
+      const key = item.url.trim();
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+
     const mount = document.getElementById('links');
-    resources.forEach((r)=>{
+    deduped.forEach((r)=>{
       const card = document.createElement('article');
       card.className = 'link-card';
       card.innerHTML = `<div class="row"><div class="link-title">${r.title}</div><span class="pill">${r.tag}</span></div><div class="link-url">${r.desc}</div><div class="actions"><a class="btn open" href="${r.url}" target="_blank" rel="noopener">Ouvrir OneDrive ↗</a><button class="btn copy" data-url="${r.url}">Copier le lien</button></div>`;
@@ -69,34 +72,5 @@
       setTimeout(()=>btn.textContent='Copier le lien',1200);
     });
   </script>
-    </section>
-
-    <section class="links">
-      <a class="link-card" target="_blank" rel="noopener" href="https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW">
-        <div class="link-title">GENERAL — CESAG ONLINE NEW</div>
-        <div class="link-url">https://cesagedu-my.sharepoint.com/.../Documents/CESAG ONLINE NEW</div>
-      </a>
-      <a class="link-card" target="_blank" rel="noopener" href="https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?e=5%3A4bf92aa8fea746e7a265972c6680f660&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0">
-        <div class="link-title">CESAG ONLINE NEW — GRANDE RACINE</div>
-        <div class="link-url">Lien OneDrive vers la racine des contrats 2025-2026</div>
-      </a>
-      <a class="link-card" target="_blank" rel="noopener" href="https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20%C3%A0%20signer&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0">
-        <div class="link-title">CONTRAT À SIGNER</div>
-        <div class="link-url">Dossier OneDrive des contrats à signer</div>
-      </a>
-      <a class="link-card" target="_blank" rel="noopener" href="https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20Sign%C3%A9%202025%2D2026&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0">
-        <div class="link-title">CONTRAT SIGNÉ 2025-2026</div>
-        <div class="link-url">Dossier OneDrive des contrats signés</div>
-      </a>
-      <a class="link-card" target="_blank" rel="noopener" href="https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7BCF3956D6-B831-4E28-9089-2D4FD3376E75%7D&file=Les%20effectifs%202021-2025.xlsx&action=default&mobileredirect=true">
-        <div class="link-title">SUIVI RETRAIT PIÈCES ADMIN</div>
-        <div class="link-url">Les effectifs 2021-2025.xlsx</div>
-      </a>
-      <a class="link-card" target="_blank" rel="noopener" href="https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7B724E130E-CA32-4F8D-90B6-976D1F00224C%7D&file=Synthese%20execution%20tous%20les%20MBA.xlsx&action=default&mobileredirect=true">
-        <div class="link-title">SYNTHÈSE EXÉCUTION TOUS LES MBA</div>
-        <div class="link-url">Synthese execution tous les MBA.xlsx</div>
-      </a>
-    </section>
-  </div>
 </body>
 </html>
