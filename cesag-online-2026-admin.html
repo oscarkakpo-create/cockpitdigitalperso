@@ -57,18 +57,38 @@
     });
 
     const mount = document.getElementById('links');
+    if (!mount) {
+      console.warn('Conteneur #links introuvable.');
+    }
+
     deduped.forEach((r)=>{
       const card = document.createElement('article');
       card.className = 'link-card';
       card.innerHTML = `<div class="row"><div class="link-title">${r.title}</div><span class="pill">${r.tag}</span></div><div class="link-url">${r.desc}</div><div class="actions"><a class="btn open" href="${r.url}" target="_blank" rel="noopener">Ouvrir OneDrive ↗</a><button class="btn copy" data-url="${r.url}">Copier le lien</button></div>`;
-      mount.appendChild(card);
+      if (mount) mount.appendChild(card);
     });
 
-    mount.addEventListener('click',(e)=>{
+    if (mount) mount.addEventListener('click', async (e)=>{
       const btn = e.target.closest('button[data-url]');
       if(!btn) return;
-      navigator.clipboard.writeText(btn.dataset.url);
-      btn.textContent = 'Lien copié ✓';
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(btn.dataset.url);
+        } else {
+          const ta = document.createElement('textarea');
+          ta.value = btn.dataset.url;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.focus();
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        btn.textContent = 'Lien copié ✓';
+      } catch (_) {
+        btn.textContent = 'Copie impossible';
+      }
       setTimeout(()=>btn.textContent='Copier le lien',1200);
     });
   </script>
