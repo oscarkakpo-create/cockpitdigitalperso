@@ -123,3 +123,26 @@ Technopédagogue & Coordinateur FOAD — CESAG, Dakar
 ---
 
 *CESAG Digital Cockpit — v3.0 — 2026*
+
+---
+
+## API interne du cockpit (mode indépendant)
+
+Une couche backend interne est disponible dans `backend/` pour centraliser les données du cockpit personnel.
+
+### Principes
+- **Indépendant de la plateforme Moodle CESAG Online**.
+- **Aucun appel externe requis** pour le fonctionnement de base.
+- Les connecteurs Moodle/Graph sont conservés **désactivés** comme placeholders d'évolution.
+
+### Endpoints internes disponibles
+- `GET /api/status`
+- `GET/POST /api/resources`
+- `GET/POST /api/plannings`
+- `GET/POST /api/history`
+- `GET /api/reports`
+- `GET/PUT /api/settings`
+
+### Stockage backend local
+- Fichier JSON local : `backend/data/store.json`.
+- Permet de remplacer progressivement `localStorage` sans casser le cockpit actuel.
