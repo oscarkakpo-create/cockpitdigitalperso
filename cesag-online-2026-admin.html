@@ -13,7 +13,12 @@
     .hero h1{font-size:28px;font-weight:800;margin-bottom:6px}
     .hero p{opacity:.92}
     .meta{margin-top:10px;font-size:12px;opacity:.85}
-    .links{display:grid;gap:12px}
+    .links{display:grid;gap:18px}
+    .link-section{display:grid;gap:10px}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;border-bottom:1.5px solid var(--line);padding:4px 2px 8px}
+    .section-title{font-size:15px;font-weight:900;color:#0f172a;text-transform:uppercase;letter-spacing:.04em}
+    .section-count{font-size:12px;font-weight:800;color:var(--muted)}
+    .section-grid{display:grid;gap:12px}
     .link-card{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:16px 18px;transition:.15s}
     .link-card:hover{transform:translateY(-2px);border-color:var(--brand2);box-shadow:0 8px 22px rgba(10,78,161,.13)}
     .row{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
@@ -31,7 +36,7 @@
     <section class="hero">
       <h1>CESAG ONLINE 2026</h1>
       <p>Zone Administrative — accès rapide aux liens OneDrive prioritaires.</p>
-      <div class="meta">Mise à jour: mai 2026</div>
+      <div class="meta">Mise à jour: 26 mai 2026</div>
     </section>
 
     <section class="links" id="links"></section>
@@ -39,18 +44,23 @@
 
   <script>
     const resources = [
-      {tag:'RACINE', title:'GENERAL — CESAG ONLINE NEW', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW', desc:'Accès global au dossier principal.'},
-      {tag:'CONTRATS', title:'CESAG ONLINE NEW — GRANDE RACINE', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?e=5%3A4bf92aa8fea746e7a265972c6680f660&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Racine des contrats 2025-2026.'},
-      {tag:'CONTRATS', title:'CONTRAT À SIGNER', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20%C3%A0%20signer&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Dossier des contrats à signer.'},
-      {tag:'CONTRATS', title:'CONTRAT SIGNÉ 2025-2026', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20Sign%C3%A9%202025%2D2026&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Dossier des contrats signés.'},
-      {tag:'EXAMENS', title:"PV D'EXAMEN", url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2F2025%2D2026%2FPV%20D%27EXAMEN&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9', desc:"Dossier des PV d'examen 2025-2026."},
-      {tag:'SUIVI', title:'SUIVI RETRAIT PIÈCES ADMIN', url:'https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7BCF3956D6-B831-4E28-9089-2D4FD3376E75%7D&file=Les%20effectifs%202021-2025.xlsx&action=default&mobileredirect=true', desc:'Les effectifs 2021-2025.xlsx'},
-      {tag:'SUIVI', title:'SYNTHÈSE EXÉCUTION TOUS LES MBA', url:'https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7B724E130E-CA32-4F8D-90B6-976D1F00224C%7D&file=Synthese%20execution%20tous%20les%20MBA.xlsx&action=default&mobileredirect=true', desc:'Synthèse globale MBA.'}
+      {section:'Dépôt preuves dossiers paiements', tag:'PAIEMENTS', title:'DOSSIER PAIEMENT 25-26 — GENERAL / AG CLASSIQUE', url:'https://cesagedu-my.sharepoint.com/shared?id=%2Fpersonal%2Fdpecn%5Fcesag%5Fedu%5Fsn%2FDocuments%2FDPECN%2FCAMPUS%20NUMERIQUE%2F2025%2D2026%2FDOSSIER%20PAIEMENT%2025%2D26&listurl=%2Fpersonal%2Fdpecn%5Fcesag%5Fedu%5Fsn%2FDocuments', desc:'Dépôt central des preuves et dossiers de paiement.'},
+      {section:'Dépôt preuves dossiers paiements', tag:'PAIEMENTS', title:'DOSSIER PAIEMENT 25-26 — AG AUF', url:'https://cesagedu-my.sharepoint.com/:f:/g/personal/dpecn_cesag_edu_sn/IgDfyz6aN-dTQ4MibWYHUygGAdXda7poz6e5z1mIytjzwfM?e=ay3hkn', desc:'Dossier de dépôt des preuves de paiement MBA AG AUF.'},
+      {section:'Dépôt preuves dossiers paiements', tag:'PAIEMENTS', title:'DOSSIER PAIEMENT 25-26 — GP CLASSIQUE', url:'https://cesagedu-my.sharepoint.com/:f:/g/personal/dpecn_cesag_edu_sn/IgAJ6Bqhn8m8Tp1MQnK27K39AcW9E9_vBUOMjkTRnm1f4c0?e=exO5s1', desc:'Dossier de dépôt des preuves de paiement MBA GP Classique.'},
+      {section:'Dépôt preuves dossiers paiements', tag:'PAIEMENTS', title:'DOSSIER PAIEMENT 25-26 — GP AUF', url:'https://cesagedu-my.sharepoint.com/:f:/g/personal/dpecn_cesag_edu_sn/IgCwlFWTCtU1SIV_LCvh_EimAfUu3lCt6gIRqiJWtXIUgC0?e=WPf3by', desc:'Dossier de dépôt des preuves de paiement MBA GP AUF.'},
+      {section:'Dépôt preuves dossiers paiements', tag:'PAIEMENTS', title:'DOSSIER PAIEMENT 25-26 — MBA MSCH', url:'https://cesagedu-my.sharepoint.com/:f:/g/personal/dpecn_cesag_edu_sn/IgBYKOJht6i7SahI-OWs0e90AYu2yx0kmLILoteLRok2I3I?e=J2V1Um', desc:'Dossier de dépôt des preuves de paiement MBA MSCH.'},
+      {section:'Racines principales', tag:'RACINE', title:'GENERAL — CESAG ONLINE NEW', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW', desc:'Accès global au dossier principal.'},
+      {section:'Contrats 2025-2026', tag:'CONTRATS', title:'CESAG ONLINE NEW — GRANDE RACINE', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?e=5%3A4bf92aa8fea746e7a265972c6680f660&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Racine des contrats 2025-2026.'},
+      {section:'Contrats 2025-2026', tag:'CONTRATS', title:'CONTRAT À SIGNER', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20%C3%A0%20signer&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Dossier des contrats à signer.'},
+      {section:'Contrats 2025-2026', tag:'CONTRATS', title:'CONTRAT SIGNÉ 2025-2026', url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2FLes%20contrats%2FContrats%202025%2D2026%2FContrat%20Sign%C3%A9%202025%2D2026&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9&sharingv2=true&fromShare=true&at=9&CT=1778587210291&OR=OWA%2DNT%2DMail&CID=609fd54f%2Dab56%2Dc840%2D102a%2D8f3248d92557&FolderCTID=0x012000A86C25B264697C459F0C3BA7F0294580&view=0', desc:'Dossier des contrats signés.'},
+      {section:'Examens', tag:'EXAMENS', title:"PV D'EXAMEN", url:'https://cesagedu-my.sharepoint.com/personal/dfoad_cesag_edu_sn/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fdfoad%5Fcesag%5Fedu%5Fsn%2FDocuments%2FCESAG%20ONLINE%20NEW%2FParcours%20de%20formation%2F2025%2D2026%2FPV%20D%27EXAMEN&viewid=afdd48c0%2D02a7%2D45d8%2Da246%2Df6b7a9e844d9', desc:"Dossier des PV d'examen 2025-2026."},
+      {section:'Suivi administratif', tag:'SUIVI', title:'SUIVI RETRAIT PIÈCES ADMIN', url:'https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7BCF3956D6-B831-4E28-9089-2D4FD3376E75%7D&file=Les%20effectifs%202021-2025.xlsx&action=default&mobileredirect=true', desc:'Les effectifs 2021-2025.xlsx'},
+      {section:'Suivi administratif', tag:'SUIVI', title:'SYNTHÈSE EXÉCUTION TOUS LES MBA', url:'https://cesagedu-my.sharepoint.com/:x:/r/personal/dfoad_cesag_edu_sn/_layouts/15/Doc.aspx?sourcedoc=%7B724E130E-CA32-4F8D-90B6-976D1F00224C%7D&file=Synthese%20execution%20tous%20les%20MBA.xlsx&action=default&mobileredirect=true', desc:'Synthèse globale MBA.'}
     ];
 
     const seen = new Set();
     const deduped = resources.filter((item) => {
-      const key = item.url.trim();
+      const key = `${item.title.trim()}|${item.url.trim()}`;
       if (seen.has(key)) return false;
       seen.add(key);
       return true;
@@ -61,11 +71,25 @@
       console.warn('Conteneur #links introuvable.');
     }
 
-    deduped.forEach((r)=>{
-      const card = document.createElement('article');
-      card.className = 'link-card';
-      card.innerHTML = `<div class="row"><div class="link-title">${r.title}</div><span class="pill">${r.tag}</span></div><div class="link-url">${r.desc}</div><div class="actions"><a class="btn open" href="${r.url}" target="_blank" rel="noopener">Ouvrir OneDrive ↗</a><button class="btn copy" data-url="${r.url}">Copier le lien</button></div>`;
-      if (mount) mount.appendChild(card);
+    const grouped = deduped.reduce((acc, item) => {
+      const name = item.section || 'Autres liens';
+      if (!acc.has(name)) acc.set(name, []);
+      acc.get(name).push(item);
+      return acc;
+    }, new Map());
+
+    grouped.forEach((items, sectionName)=>{
+      const section = document.createElement('section');
+      section.className = 'link-section';
+      section.innerHTML = `<div class="section-head"><h2 class="section-title">${sectionName}</h2><span class="section-count">${items.length} lien${items.length > 1 ? 's' : ''}</span></div><div class="section-grid"></div>`;
+      const grid = section.querySelector('.section-grid');
+      items.forEach((r)=>{
+        const card = document.createElement('article');
+        card.className = 'link-card';
+        card.innerHTML = `<div class="row"><div class="link-title">${r.title}</div><span class="pill">${r.tag}</span></div><div class="link-url">${r.desc}</div><div class="actions"><a class="btn open" href="${r.url}" target="_blank" rel="noopener">Ouvrir OneDrive ↗</a><button class="btn copy" data-url="${r.url}">Copier le lien</button></div>`;
+        grid.appendChild(card);
+      });
+      if (mount) mount.appendChild(section);
     });
 
     if (mount) mount.addEventListener('click', async (e)=>{
