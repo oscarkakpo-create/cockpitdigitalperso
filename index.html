@@ -459,10 +459,6 @@ body.dark .hint{color:#fbbf24}
           <div class="dash-card-ico" style="background:#ecfeff">🧭</div>
           <div class="dash-card-body"><h3>CESAG ONLINE 2026</h3><p>Zone Administrative OneDrive</p></div>
         </div>
-        <a class="dash-card" href="hub-foad-personnel.html" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
-          <div class="dash-card-ico" style="background:#ecfeff">📌</div>
-          <div class="dash-card-body"><h3>Hub FOAD Personnel</h3><p>Suivi MBA CESAG/AUF</p></div>
-        </a>
       </div>
     </div>
 
@@ -1238,18 +1234,6 @@ function updateStatsUI() {
     }
   } catch (e) {
     console.error("Erreur de mise à jour UI:", e);
-  }
-}
-
-function logAction(msg) {
-  try {
-    const logs = JSON.parse(localStorage.getItem('CESAG_LOGS') || '[]');
-    const newLog = `[${new Date().toLocaleTimeString()}] ${msg}`;
-    logs.unshift(newLog);
-    if(logs.length > 50) logs.pop(); // Garde les 50 dernières actions
-    localStorage.setItem('CESAG_LOGS', JSON.stringify(logs));
-  } catch (e) {
-    // Ne bloque jamais l'exécution si le log échoue
   }
 }
 
@@ -2137,16 +2121,8 @@ function safeArrayFromStorage(key){
     return Array.isArray(parsed)?parsed:[];
   }catch(_e){ return []; }
 }
-function safeObjFromStorage(key,fallback={}){
-  try{
-    const raw=localStorage.getItem(key);
-    if(!raw) return fallback;
-    const parsed=JSON.parse(raw);
-    return parsed && typeof parsed==='object' && !Array.isArray(parsed)?parsed:fallback;
-  }catch(_e){ return fallback; }
-}
 function purgeCorruptedLocalStorage(){
-  const keys=['cesag_mails','cesag_epe_hist','CESAG_LOGS',STATS_KEY,'cesag_theme'];
+  const keys=['cesag_mails','cesag_epe_hist',STATS_KEY,'cesag_theme'];
   let cleaned=0;
   keys.forEach(k=>{
     try{
@@ -2434,6 +2410,5 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('ex-date').value=lun.toISOString().split('T')[0];
 });
 </script>
-<script src="api-client.js"></script>
 </body>
 </html>
