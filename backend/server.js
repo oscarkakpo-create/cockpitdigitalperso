@@ -2,6 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import routes from './api/routes.js';
 import { env } from './config/env.js';
+import { corsMiddleware, internalApiKeyMiddleware, rateLimiter } from './middleware/security.js';
 import { corsMiddleware, futureAuthMiddleware, rateLimiter } from './middleware/security.js';
 
 const app = express();
@@ -10,6 +11,7 @@ app.use(morgan('dev'));
 app.use(corsMiddleware);
 app.use(rateLimiter);
 app.use(express.json({ limit: '1mb' }));
+app.use('/api', internalApiKeyMiddleware, routes);
 app.use(futureAuthMiddleware);
 
 app.use('/api', routes);
@@ -19,5 +21,6 @@ app.use((err, _req, res, _next) => {
 });
 
 app.listen(env.port, () => {
+  console.log(`CESAG Cockpit Internal API listening on port ${env.port}`);
   console.log(`CESAG Cockpit API listening on port ${env.port}`);
 });

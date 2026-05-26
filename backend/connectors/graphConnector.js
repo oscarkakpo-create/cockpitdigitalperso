@@ -1,3 +1,8 @@
+export async function getGraphConnectorStatus() {
+  return {
+    enabled: false,
+    source: 'disabled',
+    message: 'Microsoft Graph connector is currently a placeholder and does not call external services.'
 import { hasGraphConfig } from '../config/env.js';
 
 export async function getGraphResourcesSummary() {
