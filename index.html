@@ -2159,7 +2159,6 @@ function purgeCorruptedLocalStorage(){
       cleaned++;
     }
   });
-  purgeCorruptedLocalStorage();
   renderEpeHistory();
   renderMailHistory();
   showToast(cleaned?`🧹 ${cleaned} donnée(s) corrompue(s) purgée(s)`:'✅ Aucune corruption détectée');
@@ -2418,6 +2417,7 @@ function clearM365(){
 /* ═══════════════ INIT ══════════════════════════════════════════ */
 window.addEventListener('DOMContentLoaded',()=>{
   applyTheme();
+  purgeCorruptedLocalStorage();
   renderGiftForm();
   purgeCorruptedLocalStorage();
   renderEpeHistory();

@@ -4,9 +4,6 @@
   async function safeFetch(endpoint, fallbackData, options) {
     try {
       const response = await fetch(`${API_BASE}${endpoint}`, options);
-  async function safeFetch(endpoint, fallbackData) {
-    try {
-      const response = await fetch(`${API_BASE}${endpoint}`);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return await response.json();
     } catch (_error) {
@@ -24,8 +21,6 @@
     addHistory: (payload) => safeFetch('/history', { saved: false, source: 'fallback' }, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }),
     getSettings: () => safeFetch('/settings', { theme: 'light', useApiStorage: false }),
     updateSettings: (payload) => safeFetch('/settings', payload || {}, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload || {}) }),
-    getCourses: () => safeFetch('/courses', { source: 'fallback', data: [] }),
-    getStudents: () => safeFetch('/students', { source: 'fallback', data: [] }),
     getReports: () => safeFetch('/reports', { source: 'fallback', data: [] })
   };
 })();
