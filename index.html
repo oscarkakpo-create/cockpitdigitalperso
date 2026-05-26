@@ -251,6 +251,60 @@ body.dark .hint{color:#fbbf24}
 #fab-add.vis{display:flex}
 #fab-add .fc{background:rgba(255,255,255,.25);border-radius:999px;font-size:11px;padding:2px 8px;font-weight:600}
 
+/* ─── MÉTÉO ACADÉMIQUE ───────────────────────────────────── */
+.meteo-strip{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.meteo-chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--text)}
+.meteo-chip.green{border-color:#86efac;background:#f0fdf4;color:#166534}
+.meteo-chip.blue{border-color:#bfdbfe;background:#eff6ff;color:#1d4ed8}
+.meteo-chip.amber{border-color:#fde68a;background:#fffbeb;color:#92400e}
+.meteo-chip.purple{border-color:#ddd6fe;background:#f5f3ff;color:#5b21b6}
+body.dark .meteo-chip.green{background:#052e16;color:#4ade80;border-color:#166534}
+body.dark .meteo-chip.blue{background:#1e3a5f;color:#93c5fd;border-color:#1d4ed8}
+body.dark .meteo-chip.amber{background:#451a03;color:#fbbf24;border-color:#92400e}
+body.dark .meteo-chip.purple{background:#2e1065;color:#c4b5fd;border-color:#5b21b6}
+
+/* ─── PROGRESS BAR STAT ──────────────────────────────────── */
+.stat-prog{display:flex;flex-direction:column;gap:6px}
+.prog-bar-track{background:var(--border);border-radius:999px;height:6px;overflow:hidden;margin-top:4px}
+.prog-bar-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--g),var(--b));transition:width .5s ease}
+
+/* ─── SPEED DIAL ─────────────────────────────────────────── */
+#speed-dial{position:fixed;bottom:24px;left:24px;z-index:300;display:flex;flex-direction:column-reverse;align-items:flex-start;gap:8px}
+.sd-main{background:linear-gradient(135deg,var(--b),var(--b2));color:#fff;border:none;border-radius:999px;width:46px;height:46px;font-size:22px;cursor:pointer;box-shadow:0 4px 18px rgba(10,40,80,.3);display:flex;align-items:center;justify-content:center;transition:.2s;font-family:inherit}
+.sd-main:hover{transform:scale(1.08)}
+.sd-main.open{transform:rotate(45deg)}
+.sd-items{display:flex;flex-direction:column-reverse;gap:8px;opacity:0;pointer-events:none;transform:translateY(10px);transition:.2s}
+.sd-items.open{opacity:1;pointer-events:auto;transform:translateY(0)}
+.sd-item{display:flex;align-items:center;gap:10px;background:var(--card);border:1.5px solid var(--border);border-radius:12px;padding:8px 14px;cursor:pointer;font-size:13px;font-weight:600;color:var(--text);box-shadow:var(--shadow);transition:.15s;white-space:nowrap}
+.sd-item:hover{border-color:var(--b);color:var(--b);transform:translateX(4px)}
+
+/* ─── SIDEBAR SEARCH ─────────────────────────────────────── */
+.sb-search-wrap{padding:8px 12px}
+.sb-search{width:100%;background:#1f2937;border:1px solid #374151;border-radius:8px;padding:7px 10px;font-family:inherit;font-size:12px;color:#e5e7eb;outline:none}
+.sb-search:focus{border-color:#4ade80}
+.sb-search::placeholder{color:#6b7280}
+.sb-item.sb-hidden{display:none}
+.sb-section.sb-hidden{display:none}
+
+/* ─── FOCUS MODE ─────────────────────────────────────────── */
+body.focus-mode #sidebar{transform:translateX(-100%)}
+body.focus-mode #main{margin-left:0}
+#btn-focus.active{background:var(--g)!important;color:#fff!important;border-color:var(--g)!important}
+
+/* ─── CLOCK WIDGET ──────────────────────────────────────── */
+#clock-widget{
+  display:flex;flex-direction:column;align-items:flex-end;
+  background:var(--bg);border:1px solid var(--border);border-radius:10px;
+  padding:4px 12px;line-height:1.2;
+}
+#clock-widget .clock-time{
+  font-family:'Space Mono',monospace;font-size:14px;font-weight:700;
+  color:var(--b);letter-spacing:.04em;
+}
+#clock-widget .clock-date{
+  font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.03em;
+}
+
 /* ─── COPY TOAST ──────────────────────────────────────── */
 #toast{
   position:fixed;bottom:80px;right:24px;z-index:400;
@@ -274,6 +328,9 @@ body.dark .hint{color:#fbbf24}
   <div class="sb-logo">
     <h1>CESAG ONLINE</h1>
     <span>Digital Command Center</span>
+  </div>
+  <div class="sb-search-wrap">
+    <input class="sb-search" type="text" id="sb-search-input" placeholder="🔍 Rechercher…" oninput="filterSidebar(this.value)">
   </div>
 
   <div class="sb-section">Navigation</div>
@@ -362,11 +419,16 @@ body.dark .hint{color:#fbbf24}
       <span class="badge">v3.0</span>
     </div>
     <div class="topbar-right">
+      <div id="clock-widget">
+        <span class="clock-time" id="clock-time">--:--:--</span>
+        <span class="clock-date" id="clock-date">---</span>
+      </div>
       <span class="tb-pill" id="topbar-prog">Aucun programme actif</span>
       <span class="tb-pill" id="topbar-date" style="display:none"></span>
       <button class="btn outline" id="btn-prev-panel" onclick="navStep(-1)" style="padding:6px 12px;font-size:12px" title="Panel précédent">◀</button>
       <button class="btn outline" id="btn-next-panel" onclick="navStep(1)" style="padding:6px 12px;font-size:12px" title="Panel suivant">▶</button>
       <button class="btn outline" id="theme-toggle" onclick="toggleTheme()" style="padding:6px 12px;font-size:12px" title="Basculer thème clair/sombre">🌙</button>
+      <button class="btn outline" id="btn-focus" onclick="toggleFocus()" style="padding:6px 12px;font-size:12px" title="Mode focus (masquer sidebar)">⊙</button>
     </div>
   </div>
 
@@ -384,6 +446,13 @@ body.dark .hint{color:#fbbf24}
         <h2>CESAG ONLINE — Cockpit Final</h2>
         <p>Cockpit unifié : Support, Mails, FOAD, Planning EPE et GitHub. Tout au même endroit.</p>
       </div>
+      <!-- MÉTÉO ACADÉMIQUE -->
+      <div class="meteo-strip" id="meteo-strip">
+        <span class="meteo-chip green">✅ Moodle actif</span>
+        <span class="meteo-chip blue" id="chip-mails">✉️ 0 mail sauvegardé</span>
+        <span class="meteo-chip purple" id="chip-epe">🗓️ 0 séance planifiée</span>
+        <span class="meteo-chip amber" id="chip-next-epe">⏱ Aucune séance récente</span>
+      </div>
       <div class="stat-strip">
         <div class="stat">
           <div class="stat-n" id="stat-total">0</div>
@@ -400,6 +469,16 @@ body.dark .hint{color:#fbbf24}
         <div class="stat">
           <div class="stat-n" id="stat-gh">0</div>
           <div class="stat-l">Actions GitHub</div>
+        </div>
+        <div class="stat stat-prog">
+          <div class="stat-n" id="stat-mails-saved" style="color:var(--g)">0</div>
+          <div class="stat-l">Mails archivés</div>
+          <div class="prog-bar-track"><div class="prog-bar-fill" id="prog-mails" style="width:0%"></div></div>
+        </div>
+        <div class="stat">
+          <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.3" id="stat-next-seance">—</div>
+          <div class="stat-l" style="margin-top:3px">Dernière séance EPE</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3" id="stat-next-prog">Aucune donnée</div>
         </div>
       </div>
       <div class="dash-grid">
@@ -1189,6 +1268,17 @@ body.dark .hint{color:#fbbf24}
 
 <!-- TOAST -->
 <div id="toast">✓ Copié !</div>
+
+<!-- SPEED DIAL -->
+<div id="speed-dial">
+  <button class="sd-main" id="sd-btn" onclick="toggleSpeedDial()" title="Actions rapides">＋</button>
+  <div class="sd-items" id="sd-items">
+    <div class="sd-item" onclick="closeSpeedDial();nav('ics')">📅 Générateur ICS</div>
+    <div class="sd-item" onclick="closeSpeedDial();nav('epe')">🗓️ Planning EPE</div>
+    <div class="sd-item" onclick="closeSpeedDial();nav('mailetudiant')">💬 Réponse étudiant</div>
+    <div class="sd-item" onclick="closeSpeedDial();nav('mailprof')">📧 Mail enseignant</div>
+  </div>
+</div>
 
 <script>
 /* ═══════════════ SYSTEME DE QUANTIFICATION (SECURISÉ) ═══════════════ */
@@ -2395,6 +2485,7 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderGiftForm();
   renderEpeHistory();
   renderMailHistory();
+  updateDashWidgets();
   addM365Row(); // start with one empty row
   // Auto-date EPE (prochain lundi)
   const today=new Date();
@@ -2409,6 +2500,94 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('ics-date').value=lun.toISOString().split('T')[0];
   document.getElementById('ex-date').value=lun.toISOString().split('T')[0];
 });
+
+/* ─── SPEED DIAL ────────────────────────────────────────────── */
+function toggleSpeedDial(){
+  document.getElementById('sd-btn').classList.toggle('open');
+  document.getElementById('sd-items').classList.toggle('open');
+}
+function closeSpeedDial(){
+  document.getElementById('sd-btn').classList.remove('open');
+  document.getElementById('sd-items').classList.remove('open');
+}
+document.addEventListener('click',function(e){
+  const sd=document.getElementById('speed-dial');
+  if(sd&&!sd.contains(e.target)) closeSpeedDial();
+});
+
+/* ─── SIDEBAR SEARCH ─────────────────────────────────────────── */
+function filterSidebar(q){
+  const norm=q.trim().toLowerCase();
+  document.querySelectorAll('.sb-item').forEach(btn=>{
+    btn.classList.toggle('sb-hidden',norm.length>0&&!btn.textContent.toLowerCase().includes(norm));
+  });
+  document.querySelectorAll('.sb-section').forEach(sec=>{
+    if(!norm.length){sec.classList.remove('sb-hidden');return;}
+    let el=sec.nextElementSibling,hasVis=false;
+    while(el&&!el.classList.contains('sb-section')&&!el.classList.contains('sb-bottom')){
+      if(el.classList.contains('sb-item')&&!el.classList.contains('sb-hidden')) hasVis=true;
+      el=el.nextElementSibling;
+    }
+    sec.classList.toggle('sb-hidden',!hasVis);
+  });
+}
+
+/* ─── FOCUS MODE ─────────────────────────────────────────────── */
+function toggleFocus(){
+  const active=document.body.classList.toggle('focus-mode');
+  document.getElementById('btn-focus').classList.toggle('active',active);
+}
+
+/* ─── DASHBOARD WIDGETS ──────────────────────────────────────── */
+function updateDashWidgets(){
+  try{
+    const mails=JSON.parse(localStorage.getItem('cesag_mails')||'[]');
+    const epeHist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    const mc=mails.length, ec=epeHist.length;
+
+    const s=(n,w)=>n!==1?w+'s':w;
+    const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+
+    // météo chips
+    set('chip-mails',`✉️ ${mc} ${s(mc,'mail')} sauvegardé`+(mc!==1?'s':''));
+    set('chip-epe',`🗓️ ${ec} ${s(ec,'séance')} planifiée`+(ec!==1?'s':''));
+    if(epeHist.length>0){
+      const last=epeHist[0];
+      set('chip-next-epe',`⏱ Dernier : ${last.prog||'—'} (${last.date||'—'})`);
+    }
+
+    // stat mails archived
+    set('stat-mails-saved',mc);
+    const pb=document.getElementById('prog-mails');
+    if(pb) pb.style.width=Math.min(mc*5,100)+'%';
+
+    // dernière séance EPE
+    if(epeHist.length>0){
+      const last=epeHist[0];
+      set('stat-next-seance',last.period||last.date||'—');
+      set('stat-next-prog',last.prog||'—');
+    }
+  }catch(e){}
+}
+
+/* ─── CLOCK WIDGET ─────────────────────────────────────────── */
+(function(){
+  const JOURS=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+  const MOIS=['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'];
+  function tick(){
+    const now=new Date();
+    const h=String(now.getHours()).padStart(2,'0');
+    const m=String(now.getMinutes()).padStart(2,'0');
+    const s=String(now.getSeconds()).padStart(2,'0');
+    const label=`${JOURS[now.getDay()]} ${now.getDate()} ${MOIS[now.getMonth()]} ${now.getFullYear()}`;
+    const elTime=document.getElementById('clock-time');
+    const elDate=document.getElementById('clock-date');
+    if(elTime) elTime.textContent=`${h}:${m}:${s}`;
+    if(elDate) elDate.textContent=label;
+  }
+  tick();
+  setInterval(tick,1000);
+})();
 </script>
 </body>
 </html>
