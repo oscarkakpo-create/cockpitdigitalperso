@@ -2126,6 +2126,7 @@ function printResult(resId){
 <pre>${txt.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
 <div class="footer">CESAG ONLINE — Centre de commande FOAD</div>
 <p class="no-print" style="margin-top:20px"><button onclick="window.print()" style="background:#0a4ea1;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer;font-size:13px">🖨️ Imprimer / Enregistrer en PDF</button></p>
+<script src="api-client.js"></script>
 </body></html>`);
   w.document.close();
   setTimeout(()=>w.print(),400);
@@ -2211,6 +2212,7 @@ function printFromHist(i){
 </head><body><div class="h"><h1>CESAG ONLINE — ${hist[i].label} · ${hist[i].date}</h1></div>
 <pre>${txt.replace(/</g,'&lt;')}</pre>
 <p class="np"><button onclick="window.print()" style="background:#0a4ea1;color:#fff;border:none;padding:10px 20px;border-radius:6px;cursor:pointer">🖨️ Imprimer / PDF</button></p>
+<script src="api-client.js"></script>
 </body></html>`);
     w.document.close(); setTimeout(()=>w.print(),400);
   }catch(e){}
@@ -2400,5 +2402,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('ex-date').value=lun.toISOString().split('T')[0];
 });
 </script>
+<script src="api-client.js"></script>
 </body>
 </html>
