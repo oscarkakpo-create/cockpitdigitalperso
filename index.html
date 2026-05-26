@@ -80,7 +80,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);dis
 .topbar-right{display:flex;align-items:center;gap:10px}
 .tb-pill{background:var(--bg);border:1px solid var(--border);border-radius:999px;font-size:12px;color:var(--muted);padding:4px 12px;font-weight:500}
 
-.content{padding:28px;flex:1}
+.content{padding:28px;flex:1;min-width:0;overflow-x:hidden}
 
 /* ─── PANELS ──────────────────────────────────────────── */
 .panel{display:none;animation:fadeIn .18s ease}
@@ -146,8 +146,9 @@ textarea{resize:vertical;line-height:1.55;height:110px}
   background:var(--result-bg);color:var(--result-text);
   font-family:'Space Mono',monospace;font-size:12.5px;
   line-height:1.65;padding:16px;border-radius:10px;
-  white-space:pre-wrap;min-height:80px;margin-top:14px;
+  white-space:pre-wrap;word-break:break-word;overflow-wrap:anywhere;max-width:100%;min-height:80px;margin-top:14px;
 }
+pre{max-width:100%;overflow:auto;white-space:pre-wrap;word-break:break-word}
 .result.html-result{background:var(--bg);color:var(--text);border:1.5px solid var(--border)}
 
 /* ─── MAIL HISTORY ──────────────────────────────────── */
@@ -1174,6 +1175,7 @@ body.dark .hint{color:#fbbf24}
             <span id="mailhist-count" style="background:#e8f0fb;color:var(--b);font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;margin-left:6px">0 message</span>
           </div>
           <button class="btn danger" style="font-size:12px;padding:6px 14px" onclick="clearAllMails()">🗑 Tout effacer</button>
+          <button class="btn outline" style="font-size:12px;padding:6px 14px" onclick="purgeCorruptedLocalStorage()">🧹 Purger localStorage</button>
         </div>
         <div id="mailhist-list"><div style="text-align:center;color:var(--muted);padding:40px;font-size:14px">Aucun mail sauvegardé pour l'instant.<br>Cliquez sur <strong>💾 Sauvegarder</strong> depuis n'importe quel outil de mail.</div></div>
       </div>
@@ -1851,7 +1853,7 @@ function renderRecap(){
 /* ── EPE HISTORY ── */
 function saveEpeHistory(bloc,prog,period){
   try{
-    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    const hist=safeArrayFromStorage('cesag_epe_hist');
     hist.unshift({bloc,prog,period,date:new Date().toLocaleDateString('fr-FR')});
     if(hist.length>10) hist.pop();
     localStorage.setItem('cesag_epe_hist',JSON.stringify(hist));
@@ -1860,7 +1862,7 @@ function saveEpeHistory(bloc,prog,period){
 }
 function renderEpeHistory(){
   try{
-    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    const hist=safeArrayFromStorage('cesag_epe_hist');
     const card=document.getElementById('epe-hist-card');
     const list=document.getElementById('epe-hist-list');
     const badge=document.getElementById('epe-hist-badge');
@@ -1870,18 +1872,14 @@ function renderEpeHistory(){
     hist.forEach((h,i)=>{
       const item=document.createElement('div');
       item.style.cssText='display:flex;align-items:center;justify-content:space-between;gap:8px;background:var(--bg);border-radius:8px;padding:10px 14px;border:1px solid var(--border)';
-      item.innerHTML=`<div><div style="font-size:13px;font-weight:700">${h.prog||'—'}</div><div style="font-size:12px;color:var(--muted)">${h.period||''} · ${h.date}</div></div>
-        <div style="display:flex;gap:6px">
-          <button onclick="restoreEpeHist(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #b8ccef;background:#f0f7ff;color:var(--b);border-radius:7px;padding:5px 12px;cursor:pointer">📋 Voir</button>
-          <button onclick="removeEpeHist(${i})" style="font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #fca5a5;background:#fff0f0;color:var(--red);border-radius:7px;padding:5px 12px;cursor:pointer">✕</button>
-        </div>`;
+      const left=document.createElement('div'); const t1=document.createElement('div'); t1.style.cssText='font-size:13px;font-weight:700'; t1.textContent=String(h.prog||'—'); const t2=document.createElement('div'); t2.style.cssText='font-size:12px;color:var(--muted)'; t2.textContent=`${String(h.period||'')} · ${String(h.date||'')}`; left.append(t1,t2); const actions=document.createElement('div'); actions.style.cssText='display:flex;gap:6px'; const b1=document.createElement('button'); b1.textContent='📋 Voir'; b1.onclick=()=>restoreEpeHist(i); b1.style.cssText='font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #b8ccef;background:#f0f7ff;color:var(--b);border-radius:7px;padding:5px 12px;cursor:pointer'; const b2=document.createElement('button'); b2.textContent='✕'; b2.onclick=()=>removeEpeHist(i); b2.style.cssText='font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #fca5a5;background:#fff0f0;color:var(--red);border-radius:7px;padding:5px 12px;cursor:pointer'; actions.append(b1,b2); item.append(left,actions);
       list.appendChild(item);
     });
   }catch(e){}
 }
 function restoreEpeHist(i){
   try{
-    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    const hist=safeArrayFromStorage('cesag_epe_hist');
     if(!hist[i])return;
     document.getElementById('epe-preview').textContent=hist[i].bloc;
     document.getElementById('epe-preview').scrollIntoView({behavior:'smooth'});
@@ -1889,7 +1887,7 @@ function restoreEpeHist(i){
 }
 function removeEpeHist(i){
   try{
-    const hist=JSON.parse(localStorage.getItem('cesag_epe_hist')||'[]');
+    const hist=safeArrayFromStorage('cesag_epe_hist');
     hist.splice(i,1); localStorage.setItem('cesag_epe_hist',JSON.stringify(hist)); renderEpeHistory();
   }catch(e){}
 }
@@ -2132,6 +2130,41 @@ function printResult(resId){
   setTimeout(()=>w.print(),400);
 }
 
+function safeArrayFromStorage(key){
+  try{
+    const raw=localStorage.getItem(key);
+    if(!raw) return [];
+    const parsed=JSON.parse(raw);
+    return Array.isArray(parsed)?parsed:[];
+  }catch(_e){ return []; }
+}
+function safeObjFromStorage(key,fallback={}){
+  try{
+    const raw=localStorage.getItem(key);
+    if(!raw) return fallback;
+    const parsed=JSON.parse(raw);
+    return parsed && typeof parsed==='object' && !Array.isArray(parsed)?parsed:fallback;
+  }catch(_e){ return fallback; }
+}
+function purgeCorruptedLocalStorage(){
+  const keys=['cesag_mails','cesag_epe_hist','CESAG_LOGS',STATS_KEY,'cesag_theme'];
+  let cleaned=0;
+  keys.forEach(k=>{
+    try{
+      const v=localStorage.getItem(k);
+      if(v===null) return;
+      JSON.parse(v);
+    }catch(_e){
+      localStorage.removeItem(k);
+      cleaned++;
+    }
+  });
+  purgeCorruptedLocalStorage();
+  renderEpeHistory();
+  renderMailHistory();
+  showToast(cleaned?`🧹 ${cleaned} donnée(s) corrompue(s) purgée(s)`:'✅ Aucune corruption détectée');
+}
+
 /* ═══════════════ SAVE MAIL ═════════════════════════════════════ */
 function saveMail(resId, label){
   const txt=document.getElementById(resId)?.textContent||'';
@@ -2227,6 +2260,7 @@ function clearAllMails(){
   if(!confirm('Effacer tous les mails sauvegardés ?'))return;
   try{ localStorage.removeItem('cesag_mails'); renderMailHistory(); }catch(e){}
 }
+window.purgeCorruptedLocalStorage=purgeCorruptedLocalStorage;
 
 /* ═══════════════ SYLLABUS ══════════════════════════════════════ */
 function genSyllabus(){
@@ -2385,6 +2419,7 @@ function clearM365(){
 window.addEventListener('DOMContentLoaded',()=>{
   applyTheme();
   renderGiftForm();
+  purgeCorruptedLocalStorage();
   renderEpeHistory();
   renderMailHistory();
   addM365Row(); // start with one empty row
