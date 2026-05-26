@@ -20,4 +20,8 @@ export function internalApiKeyMiddleware(req, res, next) {
     return res.status(401).json({ ok: false, error: 'Invalid API key' });
   }
   return next();
+export function futureAuthMiddleware(req, _res, next) {
+  // Placeholder for future auth (JWT / API key / SSO)
+  req.auth = { mode: 'none', note: 'Auth middleware placeholder for future implementation.' };
+  next();
 }

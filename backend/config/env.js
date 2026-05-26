@@ -13,3 +13,14 @@ export const env = {
   graphClientSecret: process.env.GRAPH_CLIENT_SECRET,
   graphTenantId: process.env.GRAPH_TENANT_ID
 };
+  graphTenantId: process.env.GRAPH_TENANT_ID,
+  internalApiSecret: process.env.INTERNAL_API_SECRET
+};
+
+export function hasMoodleConfig() {
+  return Boolean(env.moodleApiUrl && env.moodleApiToken);
+}
+
+export function hasGraphConfig() {
+  return Boolean(env.graphClientId && env.graphClientSecret && env.graphTenantId);
+}

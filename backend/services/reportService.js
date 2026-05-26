@@ -10,6 +10,13 @@ export async function buildReport() {
     getSection('settings'),
     getMoodleConnectorStatus(),
     getGraphConnectorStatus()
+import { getMoodleReportingSnapshot } from '../connectors/moodleConnector.js';
+import { getGraphResourcesSummary } from '../connectors/graphConnector.js';
+
+export async function buildReport() {
+  const [moodle, graph] = await Promise.all([
+    getMoodleReportingSnapshot(),
+    getGraphResourcesSummary()
   ]);
 
   return {
@@ -22,5 +29,8 @@ export async function buildReport() {
     },
     connectors: { moodle, graph },
     independenceNote: 'Internal API only: no active integration with CESAG Online Moodle platform.'
+    moodle,
+    graph,
+    note: 'Pilot report endpoint. Extend with KPI computations and persistence.'
   };
 }
