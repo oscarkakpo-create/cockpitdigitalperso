@@ -888,6 +888,12 @@ body.focus-mode #main{margin-left:0}
           <div class="fld"><label>Période — Lundi <em>*</em></label><input type="date" id="epe-lundi" onchange="updateEpePeriod()"></div>
           <div class="fld"><label>Période — Dimanche <em>*</em></label><input type="date" id="epe-dim" onchange="updateEpePeriod()"></div>
         </div>
+        <div class="row solo" id="epe-resume-row" style="display:none;margin-top:6px">
+          <div class="fld" style="flex-direction:row;align-items:center;gap:10px;flex-wrap:wrap">
+            <button class="btn outline" onclick="restoreLastWeek()" style="font-size:13px">📋 Reprendre la semaine précédente (+7 jours)</button>
+            <span id="epe-resume-info" style="font-size:12px;color:var(--muted)"></span>
+          </div>
+        </div>
       </div>
 
       <!-- MODE MÉMOIRE -->
@@ -915,6 +921,31 @@ body.focus-mode #main{margin-left:0}
             <label class="memo-chk"><input type="checkbox" id="memo-rec"> Enregistrement</label>
           </div>
         </div>
+      </div>
+
+      <!-- DATALISTS (autocomplete) -->
+      <datalist id="dl-ens"></datalist>
+      <datalist id="dl-moodle"></datalist>
+      <datalist id="dl-salle"></datalist>
+
+      <!-- PRESETS DE SÉANCES -->
+      <div class="card" id="epe-presets-card">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div class="card-head" style="margin-bottom:0">
+            <div class="card-ico">⚡</div>Presets de séances
+            <span id="epe-presets-badge" style="background:#fef3c7;color:#92400e;font-size:11px;padding:3px 9px;border-radius:999px;font-weight:600;margin-left:6px">0</span>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn outline" onclick="togglePresetForm()" style="font-size:13px">+ Nouveau preset</button>
+            <button class="btn green" onclick="addCheckedPresets()" style="font-size:13px">📥 Ajouter les cochés</button>
+          </div>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin:8px 0 0">
+          Définis ici les séances récurrentes du programme sélectionné (ex&nbsp;: «&nbsp;mercredi 18h–20h, module X, enseignant Y&nbsp;»).
+          Tu pourras ensuite les ajouter en un clic chaque semaine.
+        </p>
+        <div id="epe-preset-form" style="display:none;background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:14px;margin-top:12px"></div>
+        <div id="epe-presets-list" style="margin-top:12px;display:flex;flex-direction:column;gap:8px"></div>
       </div>
 
       <!-- SÉANCES -->
@@ -1665,6 +1696,7 @@ function onEpeProg(){
   document.getElementById('ep-prog-name').textContent=v||'—';
   document.getElementById('topbar-prog').textContent=v||'Aucun programme actif';
   refreshEpeModules();
+  renderPresets();
 }
 function updateEpePeriod(){
   const l=document.getElementById('epe-lundi').value;
@@ -1767,10 +1799,11 @@ function addSess(pref={}){
 
   // Row 2: Horaires
   const r2=document.createElement('div'); r2.className='row';
-  function inp(lbl,type,eid,val,req=false){
+  function inp(lbl,type,eid,val,req=false,list=''){
     const c=document.createElement('div'); c.className='fld';
     const l=document.createElement('label'); l.innerHTML=lbl+(req?' <em>*</em>':'');
     const i=document.createElement('input'); i.type=type; i.id=eid; if(val)i.value=val;
+    if(list) i.setAttribute('list', list);
     i.addEventListener('change',()=>{ updateHoursCounter(); detectConflicts(); });
     c.appendChild(l); c.appendChild(i); return c;
   }
@@ -1779,7 +1812,7 @@ function addSess(pref={}){
 
   // Row 3: Enseignant + Type
   const r3=document.createElement('div'); r3.className='row';
-  r3.appendChild(inp('Enseignant','text',id+'_ens',pref.ens||'',true));
+  r3.appendChild(inp('Enseignant','text',id+'_ens',pref.ens||'',true,'dl-ens'));
   // Type select
   const typeC=document.createElement('div'); typeC.className='fld';
   const typeLbl=document.createElement('label'); typeLbl.innerHTML='Type <em>*</em>';
@@ -1801,8 +1834,8 @@ function addSess(pref={}){
 
   // Row 4: Moodle + Salle
   const r4=document.createElement('div'); r4.className='row g4';
-  r4.appendChild(inp('Lien Moodle','url',id+'_moodle',pref.moodle||'',true));
-  r4.appendChild(inp('Lien salle virtuelle (Cours)','url',id+'_salle',pref.salle||''));
+  r4.appendChild(inp('Lien Moodle','url',id+'_moodle',pref.moodle||'',true,'dl-moodle'));
+  r4.appendChild(inp('Lien salle virtuelle (Cours)','url',id+'_salle',pref.salle||'',false,'dl-salle'));
 
   // Row 5: Surveillance + Durée (examen)
   const r5=document.createElement('div'); r5.className='row g5';
@@ -1823,6 +1856,7 @@ function addSess(pref={}){
 
   document.getElementById('epe-seances').appendChild(wrap);
   refreshSessCounts();
+  if(pref.type){ try{ typeSel.dispatchEvent(new Event('change')); }catch(e){} }
 }
 function refreshSessCounts(){
   const all=document.querySelectorAll('.epe-sess');
@@ -1925,13 +1959,15 @@ function renderRecap(){
 }
 
 /* ── EPE HISTORY ── */
-function saveEpeHistory(bloc,prog,period){
+function saveEpeHistory(bloc,prog,period,data){
   try{
     const hist=safeArrayFromStorage('cesag_epe_hist');
-    hist.unshift({bloc,prog,period,date:new Date().toLocaleDateString('fr-FR')});
+    hist.unshift({bloc,prog,period,date:new Date().toLocaleDateString('fr-FR'),data:data||null});
     if(hist.length>10) hist.pop();
     localStorage.setItem('cesag_epe_hist',JSON.stringify(hist));
     renderEpeHistory();
+    refreshResumeButton();
+    refreshAutocompleteDatalists();
   }catch(e){}
 }
 function renderEpeHistory(){
@@ -1967,7 +2003,307 @@ function removeEpeHist(i){
 }
 function clearEpeHistory(){
   if(!confirm('Vider tout l\'historique ?'))return;
-  try{ localStorage.removeItem('cesag_epe_hist'); renderEpeHistory(); }catch(e){}
+  try{ localStorage.removeItem('cesag_epe_hist'); renderEpeHistory(); refreshResumeButton(); refreshAutocompleteDatalists(); }catch(e){}
+}
+
+/* ── EPE RESUME + PRESETS + AUTOCOMPLETE ── */
+const EPE_MEMO_KEYS=['prog','moodle','salle','ens','mod','agenda','rec'];
+const EPE_DAYS=['Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi','Dimanche'];
+
+function escHtml(s){ const d=document.createElement('div'); d.textContent=s==null?'':String(s); return d.innerHTML; }
+
+function shiftIsoDate(iso, days){
+  if(!iso) return '';
+  const parts=iso.split('-').map(Number);
+  if(parts.length!==3||!parts[0]||!parts[1]||!parts[2]) return '';
+  const dt=new Date(parts[0], parts[1]-1, parts[2]);
+  dt.setDate(dt.getDate()+(days||0));
+  const yy=dt.getFullYear();
+  const mm=String(dt.getMonth()+1).padStart(2,'0');
+  const dd=String(dt.getDate()).padStart(2,'0');
+  return `${yy}-${mm}-${dd}`;
+}
+
+function getMemoSnapshot(){
+  const keys={};
+  EPE_MEMO_KEYS.forEach(k=>{ const el=document.getElementById('memo-'+k); keys[k]=!!(el&&el.checked); });
+  return { active: !!epeMemoActive, keys };
+}
+function applyMemoSnapshot(snap){
+  if(!snap) return;
+  EPE_MEMO_KEYS.forEach(k=>{ const el=document.getElementById('memo-'+k); if(el) el.checked=!!(snap.keys&&snap.keys[k]); });
+  if(typeof snap.active==='boolean' && snap.active!==epeMemoActive){ toggleMemo(); }
+}
+
+function ensureModuleOption(sel, modVal){
+  if(!sel||!modVal) return;
+  const exists=[...sel.options].some(o=>o.value===modVal);
+  if(!exists){
+    const o=document.createElement('option'); o.value=modVal; o.textContent=modVal;
+    const sep=[...sel.options].find(op=>op.disabled);
+    if(sep) sel.insertBefore(o, sep); else sel.appendChild(o);
+  }
+  sel.value=modVal;
+}
+
+/* RESUME (semaine précédente) */
+function getLastStructuredHist(){
+  const hist=safeArrayFromStorage('cesag_epe_hist');
+  return hist.find(h=>h&&h.data)||null;
+}
+function refreshResumeButton(){
+  const row=document.getElementById('epe-resume-row');
+  if(!row) return;
+  const last=getLastStructuredHist();
+  const info=document.getElementById('epe-resume-info');
+  if(last){
+    row.style.display='';
+    if(info) info.textContent=`Dernière : ${last.prog||'—'} · ${last.period||''}`;
+  } else {
+    row.style.display='none';
+    if(info) info.textContent='';
+  }
+}
+function restoreLastWeek(){
+  const last=getLastStructuredHist();
+  if(!last||!last.data){ alert("Aucune semaine précédente disponible. Génère un bloc d'abord."); return; }
+  if(document.querySelectorAll('.epe-sess').length>0){
+    if(!confirm("Cela va remplacer les séances actuelles. Continuer ?")) return;
+  }
+  applyStructured(last.data, 7);
+  showToast('✓ Semaine précédente reprise (+7 jours)');
+}
+function applyStructured(d, shiftDays){
+  if(!d) return;
+  shiftDays = shiftDays||0;
+  // Programme
+  const progSel=document.getElementById('epe-prog');
+  if(progSel){ progSel.value=d.prog||''; onEpeProg(); }
+  // Dates
+  document.getElementById('epe-lundi').value = d.lundi ? shiftIsoDate(d.lundi, shiftDays) : '';
+  document.getElementById('epe-dim').value   = d.dim   ? shiftIsoDate(d.dim,   shiftDays) : '';
+  updateEpePeriod();
+  // Liens & obs
+  document.getElementById('epe-agenda').value = d.agenda||'';
+  document.getElementById('epe-record').value = d.record||'';
+  document.getElementById('epe-code').value   = d.code||'';
+  document.getElementById('epe-obs').value    = d.obs||'';
+  // Memo
+  applyMemoSnapshot(d.memo);
+  // Sessions
+  document.getElementById('epe-seances').innerHTML='';
+  epeCount=0;
+  (d.sessions||[]).forEach(s=>{
+    addSess({
+      date: s.date ? shiftIsoDate(s.date, shiftDays) : '',
+      mod: s.mod, hdeb: s.hdeb, hfin: s.hfin, ens: s.ens,
+      type: s.type, moodle: s.moodle, salle: s.salle, obs: s.obs
+    });
+    const sid=`es_${epeCount}`;
+    const modSel=document.getElementById(sid+'_mod'); if(modSel&&s.mod) ensureModuleOption(modSel, s.mod);
+    if(s.surv){ const el=document.getElementById(sid+'_surv'); if(el) el.value=s.surv; }
+    if(s.duree){ const el=document.getElementById(sid+'_duree'); if(el) el.value=s.duree; }
+  });
+  refreshSessCounts();
+}
+
+/* AUTOCOMPLETE */
+function refreshAutocompleteDatalists(){
+  const ens=new Set(), moodle=new Set(), salle=new Set();
+  const hist=safeArrayFromStorage('cesag_epe_hist');
+  hist.forEach(h=>{
+    if(!h||!h.data) return;
+    (h.data.sessions||[]).forEach(s=>{
+      if(s.ens)    ens.add(String(s.ens).trim());
+      if(s.moodle) moodle.add(String(s.moodle).trim());
+      if(s.salle)  salle.add(String(s.salle).trim());
+    });
+  });
+  const allPresets=getEpePresets();
+  Object.values(allPresets).forEach(arr=>{
+    (arr||[]).forEach(p=>{
+      if(p.ens)    ens.add(String(p.ens).trim());
+      if(p.moodle) moodle.add(String(p.moodle).trim());
+      if(p.salle)  salle.add(String(p.salle).trim());
+    });
+  });
+  fillDatalist('dl-ens', ens);
+  fillDatalist('dl-moodle', moodle);
+  fillDatalist('dl-salle', salle);
+}
+function fillDatalist(id, set){
+  const dl=document.getElementById(id);
+  if(!dl) return;
+  dl.innerHTML='';
+  [...set].filter(Boolean).sort((a,b)=>a.localeCompare(b,'fr')).forEach(v=>{
+    const o=document.createElement('option'); o.value=v; dl.appendChild(o);
+  });
+}
+
+/* PRESETS */
+function getEpePresets(){
+  try{ return JSON.parse(localStorage.getItem('cesag_epe_presets')||'{}')||{}; }catch{ return {}; }
+}
+function saveEpePresets(p){ try{ localStorage.setItem('cesag_epe_presets', JSON.stringify(p||{})); }catch(e){} }
+function getProgPresets(prog){ const all=getEpePresets(); return Array.isArray(all[prog])?all[prog]:[]; }
+function setProgPresets(prog, arr){ const all=getEpePresets(); all[prog]=arr; saveEpePresets(all); }
+
+function renderPresets(){
+  const card=document.getElementById('epe-presets-card');
+  const list=document.getElementById('epe-presets-list');
+  const badge=document.getElementById('epe-presets-badge');
+  if(!card||!list||!badge) return;
+  card.style.display='block';
+  const prog=document.getElementById('epe-prog').value;
+  if(!prog){
+    badge.textContent='0';
+    list.innerHTML=`<p style="font-size:12px;color:var(--muted);text-align:center;padding:14px">Sélectionne un programme pour voir/créer ses presets.</p>`;
+    return;
+  }
+  const presets=getProgPresets(prog);
+  badge.textContent=String(presets.length);
+  list.innerHTML='';
+  if(!presets.length){
+    list.innerHTML=`<p style="font-size:12px;color:var(--muted);text-align:center;padding:10px">Aucun preset pour <strong>${escHtml(prog)}</strong>. Clique «&nbsp;+ Nouveau preset&nbsp;» pour en créer un.</p>`;
+    return;
+  }
+  presets.forEach((p,i)=>{
+    const row=document.createElement('label');
+    row.style.cssText='display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:8px;padding:8px 12px;border:1px solid var(--border);cursor:pointer';
+    const cb=document.createElement('input'); cb.type='checkbox'; cb.dataset.idx=String(i); cb.className='preset-cb';
+    cb.style.cssText='width:16px;height:16px;cursor:pointer';
+    const txt=document.createElement('div'); txt.style.cssText='flex:1;font-size:13px;min-width:0';
+    const title=`${EPE_DAYS[p.dow]||'?'} ${p.hdeb||''}–${p.hfin||''} · ${p.mod||'(module)'}`;
+    const sub=`${p.type||'(type)'} · ${p.ens||'(enseignant)'}`;
+    txt.innerHTML=`<div style="font-weight:600">${escHtml(title)}</div><div style="font-size:11px;color:var(--muted)">${escHtml(sub)}</div>`;
+    const editBtn=document.createElement('button');
+    editBtn.textContent='✎'; editBtn.title='Modifier';
+    editBtn.style.cssText='font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #b8ccef;background:#f0f7ff;color:var(--b);border-radius:7px;padding:5px 10px;cursor:pointer';
+    editBtn.onclick=(e)=>{ e.preventDefault(); e.stopPropagation(); togglePresetForm(i); };
+    const delBtn=document.createElement('button');
+    delBtn.textContent='✕'; delBtn.title='Supprimer';
+    delBtn.style.cssText='font-family:inherit;font-size:12px;font-weight:600;border:1.5px solid #fca5a5;background:#fff0f0;color:var(--red);border-radius:7px;padding:5px 10px;cursor:pointer';
+    delBtn.onclick=(e)=>{ e.preventDefault(); e.stopPropagation(); deletePreset(i); };
+    row.append(cb, txt, editBtn, delBtn);
+    list.appendChild(row);
+  });
+}
+
+function togglePresetForm(editIdx){
+  const f=document.getElementById('epe-preset-form');
+  const prog=document.getElementById('epe-prog').value;
+  if(!prog){ alert('Sélectionne d\'abord un programme.'); return; }
+  if(editIdx==null && f.style.display!=='none'){ f.style.display='none'; f.innerHTML=''; return; }
+  f.style.display='block';
+  renderPresetForm(editIdx==null?null:editIdx);
+}
+
+function renderPresetForm(editIdx){
+  const prog=document.getElementById('epe-prog').value;
+  const presets=getProgPresets(prog);
+  const cur = (editIdx!=null && presets[editIdx]) ? presets[editIdx] : {};
+  const form=document.getElementById('epe-preset-form');
+  let dayOpts=EPE_DAYS.map((d,i)=>`<option value="${i}"${cur.dow===i?' selected':''}>${d}</option>`).join('');
+  const types=['Cours','Examen',"Travail personnel de l'étudiant"];
+  let typeOpts=types.map(t=>`<option value="${escHtml(t)}"${cur.type===t?' selected':''}>${escHtml(t)}</option>`).join('');
+  const mods=(typeof EPE_MODULES!=='undefined' && EPE_MODULES[prog])||[];
+  let modOpts='<option value="">— Module —</option>';
+  mods.forEach(m=>{ modOpts+=`<option value="${escHtml(m)}"${cur.mod===m?' selected':''}>${escHtml(m)}</option>`; });
+  if(cur.mod && !mods.includes(cur.mod)) modOpts+=`<option value="${escHtml(cur.mod)}" selected>${escHtml(cur.mod)} (libre)</option>`;
+  const selStyle='width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;font-family:inherit;font-size:13.5px;background:#fff;color:var(--text)';
+  form.innerHTML=`
+    <div style="font-weight:700;font-size:13px;margin-bottom:10px">${editIdx==null?'➕ Nouveau preset':'✎ Modifier le preset'} — <span style="color:var(--muted);font-weight:500">${escHtml(prog)}</span></div>
+    <div class="row">
+      <div class="fld"><label>Jour de la semaine</label><select id="pf-dow" style="${selStyle}">${dayOpts}</select></div>
+      <div class="fld"><label>Type</label><select id="pf-type" style="${selStyle}"><option value="">—</option>${typeOpts}</select></div>
+    </div>
+    <div class="row">
+      <div class="fld"><label>Heure début</label><input type="time" id="pf-hdeb" value="${escHtml(cur.hdeb||'18:00')}"></div>
+      <div class="fld"><label>Heure fin</label><input type="time" id="pf-hfin" value="${escHtml(cur.hfin||'20:00')}"></div>
+    </div>
+    <div class="row solo">
+      <div class="fld"><label>Module</label><select id="pf-mod" style="${selStyle}">${modOpts}</select></div>
+    </div>
+    <div class="row">
+      <div class="fld"><label>Enseignant</label><input type="text" id="pf-ens" list="dl-ens" value="${escHtml(cur.ens||'')}" placeholder="Nom de l'enseignant"></div>
+    </div>
+    <div class="row">
+      <div class="fld"><label>Lien Moodle</label><input type="url" id="pf-moodle" list="dl-moodle" value="${escHtml(cur.moodle||'')}" placeholder="https://…"></div>
+      <div class="fld"><label>Lien salle virtuelle</label><input type="url" id="pf-salle" list="dl-salle" value="${escHtml(cur.salle||'')}" placeholder="https://…"></div>
+    </div>
+    <div class="row solo">
+      <div class="fld"><label>Observations <span style="font-weight:400;color:var(--muted)">(optionnel)</span></label><textarea id="pf-obs" rows="2" style="height:60px">${escHtml(cur.obs||'')}</textarea></div>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
+      <button class="btn outline" onclick="togglePresetForm()" style="font-size:13px">Annuler</button>
+      <button class="btn green" onclick="savePresetForm(${editIdx==null?'null':editIdx})" style="font-size:13px">💾 Enregistrer</button>
+    </div>
+  `;
+}
+
+function savePresetForm(editIdx){
+  const prog=document.getElementById('epe-prog').value;
+  if(!prog){ alert('Sélectionne d\'abord un programme.'); return; }
+  const get=id=>document.getElementById(id)?.value||'';
+  const presets=getProgPresets(prog);
+  const idVal = (editIdx!=null && presets[editIdx]?.id) || `p_${Date.now()}_${Math.floor(Math.random()*1000)}`;
+  const data={
+    id: idVal,
+    dow: parseInt(get('pf-dow'),10)||0,
+    hdeb: get('pf-hdeb'),
+    hfin: get('pf-hfin'),
+    type: get('pf-type'),
+    mod:  get('pf-mod'),
+    ens:  get('pf-ens').trim(),
+    moodle: get('pf-moodle').trim(),
+    salle:  get('pf-salle').trim(),
+    obs:    get('pf-obs').trim()
+  };
+  if(editIdx!=null) presets[editIdx]=data; else presets.push(data);
+  setProgPresets(prog, presets);
+  document.getElementById('epe-preset-form').style.display='none';
+  document.getElementById('epe-preset-form').innerHTML='';
+  renderPresets();
+  refreshAutocompleteDatalists();
+  showToast('✓ Preset enregistré');
+}
+
+function deletePreset(i){
+  const prog=document.getElementById('epe-prog').value;
+  if(!confirm('Supprimer ce preset ?')) return;
+  const presets=getProgPresets(prog);
+  presets.splice(i,1);
+  setProgPresets(prog, presets);
+  renderPresets();
+  refreshAutocompleteDatalists();
+}
+
+function addCheckedPresets(){
+  const prog=document.getElementById('epe-prog').value;
+  if(!prog){ alert('Sélectionne d\'abord un programme.'); return; }
+  const lundi=document.getElementById('epe-lundi').value;
+  const cbs=document.querySelectorAll('.preset-cb:checked');
+  if(!cbs.length){ alert('Coche au moins un preset à ajouter.'); return; }
+  if(!lundi){
+    if(!confirm("Aucune date de lundi définie — les séances seront ajoutées sans date. Continuer ?")) return;
+  }
+  const presets=getProgPresets(prog);
+  let added=0;
+  cbs.forEach(cb=>{
+    const idx=parseInt(cb.dataset.idx,10);
+    const p=presets[idx]; if(!p) return;
+    const sessDate = lundi ? shiftIsoDate(lundi, p.dow||0) : '';
+    addSess({
+      date: sessDate, mod: p.mod, hdeb: p.hdeb, hfin: p.hfin,
+      ens: p.ens, type: p.type, moodle: p.moodle, salle: p.salle, obs: p.obs
+    });
+    const sid=`es_${epeCount}`;
+    const modSel=document.getElementById(sid+'_mod'); if(modSel&&p.mod) ensureModuleOption(modSel, p.mod);
+    cb.checked=false;
+    added++;
+  });
+  refreshSessCounts();
+  showToast(`✓ ${added} séance${added>1?'s':''} ajoutée${added>1?'s':''}`);
 }
 
 /* ── EPE GENERATE ── */
@@ -2039,7 +2375,11 @@ function generateEpeBlock(){
   if(code) out+=`Code secret : ${code}\n`;
   if(obs){ out+=`\n${'─'.repeat(34)}\nOBSERVATIONS GLOBALES :\n${obs}\n${'─'.repeat(34)}\n`; }
   document.getElementById('epe-preview').textContent=out.trim();
-  saveEpeHistory(out.trim(),prog,`${fmtDate(lundi)} → ${fmtDate(dim)}`);
+  saveEpeHistory(out.trim(),prog,`${fmtDate(lundi)} → ${fmtDate(dim)}`,{
+    prog, lundi, dim, agenda, record, code, obs,
+    memo: getMemoSnapshot(),
+    sessions
+  });
   trackActivity('epe');
 }
 function copyEpeBlock(){
@@ -2484,6 +2824,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   purgeCorruptedLocalStorage();
   renderGiftForm();
   renderEpeHistory();
+  refreshResumeButton();
+  refreshAutocompleteDatalists();
+  renderPresets();
   renderMailHistory();
   updateDashWidgets();
   addM365Row(); // start with one empty row
