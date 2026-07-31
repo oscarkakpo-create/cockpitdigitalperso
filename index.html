@@ -190,7 +190,18 @@ body.dark .hint{color:#fbbf24}
 .sess{border:1.5px solid var(--border);border-radius:12px;padding:18px;margin-top:14px;background:var(--card);position:relative}
 .sess-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 .sess-num{background:var(--b);color:#fff;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;font-family:'Space Mono',monospace;flex-shrink:0}
-.sess-title{font-size:14px;font-weight:700;margin-left:8px;flex:1}
+.sess-title{font-size:14px;font-weight:700}
+.sess-head-text{margin-left:8px;flex:1;min-width:0}
+.sess-summary{font-size:11.5px;color:var(--muted);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sess-details{display:block}
+.sess.compact{padding-bottom:12px}
+.sess.compact .sess-header{margin-bottom:0}
+.sess.compact .sess-details{display:none}
+.sess[data-kind="Cours"]{border-left:4px solid var(--b)}
+.sess[data-kind="Examen"]{border-left:4px solid var(--red)}
+.sess[data-kind="Travail personnel de l'étudiant"]{border-left:4px solid #7c3aed}
+.sess-toggle{min-width:94px;justify-content:center}
+@media(max-width:700px){.sess-summary{white-space:normal}.sess-header{align-items:flex-start}.sess-toggle{min-width:auto}}
 
 /* ─── EPE sticky ───────────────────────────────────────── */
 #epe-sticky{
@@ -1804,14 +1815,28 @@ function addSess(pref={}){
   // Header
   const hdr=document.createElement('div'); hdr.className='sess-header';
   const num=document.createElement('div'); num.className='sess-num'; num.textContent=epeCount;
-  const ttl=document.createElement('span'); ttl.className='sess-title'; ttl.textContent=`Séance ${epeCount}`;
-  const acts=document.createElement('div'); acts.style.cssText='display:flex;gap:6px;align-items:center';
+  const ttl=document.createElement('div'); ttl.className='sess-title'; ttl.textContent=`Séance ${epeCount}`;
+  const summary=document.createElement('div'); summary.className='sess-summary'; summary.textContent='Module, date et horaire à compléter';
+  const headText=document.createElement('div'); headText.className='sess-head-text'; headText.append(ttl,summary);
+  const acts=document.createElement('div'); acts.style.cssText='display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end';
+  const toggleBtn=document.createElement('button'); toggleBtn.type='button'; toggleBtn.className='btn outline sess-toggle';
+  toggleBtn.style.cssText='padding:5px 10px;font-size:12px'; toggleBtn.textContent='▴ Réduire'; toggleBtn.setAttribute('aria-expanded','true');
+  toggleBtn.onclick=()=>{ const collapsed=wrap.classList.toggle('compact'); toggleBtn.textContent=collapsed?'▾ Développer':'▴ Réduire'; toggleBtn.setAttribute('aria-expanded',String(!collapsed)); };
   const dupBtn=document.createElement('button'); dupBtn.className='btn outline'; dupBtn.style.cssText='padding:5px 12px;font-size:12px';
   dupBtn.textContent='⧉ Dup'; dupBtn.onclick=()=>dupSess(id);
   const delBtn=document.createElement('button'); delBtn.className='btn danger'; delBtn.style.cssText='padding:5px 12px;font-size:12px';
   delBtn.textContent='✕'; delBtn.onclick=()=>{ wrap.remove(); refreshSessCounts(); };
-  acts.appendChild(dupBtn); acts.appendChild(delBtn);
-  hdr.appendChild(num); hdr.appendChild(ttl); hdr.appendChild(acts);
+  acts.appendChild(toggleBtn); acts.appendChild(dupBtn); acts.appendChild(delBtn);
+  hdr.appendChild(num); hdr.appendChild(headText); hdr.appendChild(acts);
+
+  function updateSessHeader(){
+    const mod=document.getElementById(id+'_mod')?.value||'Module à choisir';
+    const date=document.getElementById(id+'_date')?.value;
+    const hdeb=document.getElementById(id+'_hdeb')?.value||'--:--';
+    const hfin=document.getElementById(id+'_hfin')?.value||'--:--';
+    const ens=document.getElementById(id+'_ens')?.value||'Enseignant à confirmer';
+    summary.textContent=`${mod} · ${date?fmtDate(date):'Date à choisir'} · ${hdeb}–${hfin} · ${ens}`;
+  }
 
   // Row 1: Date + Module
   const r1=document.createElement('div'); r1.className='row';
@@ -1819,7 +1844,7 @@ function addSess(pref={}){
   const dateC=document.createElement('div'); dateC.className='fld';
   const dateLbl=document.createElement('label'); dateLbl.innerHTML='Date <em>*</em>';
   const dateInp=document.createElement('input'); dateInp.type='date'; dateInp.id=id+'_date'; dateInp.value=defDate;
-  dateInp.addEventListener('change',()=>{ refreshSessCounts(); updateHoursCounter(); detectConflicts(); });
+  dateInp.addEventListener('change',()=>{ refreshSessCounts(); updateHoursCounter(); detectConflicts(); updateSessHeader(); });
   dateC.appendChild(dateLbl); dateC.appendChild(dateInp);
   // Module
   const modC=document.createElement('div'); modC.className='fld';
@@ -1827,6 +1852,7 @@ function addSess(pref={}){
   const modSel=document.createElement('select'); modSel.id=id+'_mod'; modSel.setAttribute('data-mod','1');
   modSel.style.cssText='width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 11px;font-family:inherit;font-size:13.5px;background:#fff;color:var(--text);transition:border-color .2s;';
   buildModOpts(modSel,pref.mod||'');
+  modSel.addEventListener('change',()=>setTimeout(updateSessHeader,0));
   modC.appendChild(modLbl); modC.appendChild(modSel);
   r1.appendChild(dateC); r1.appendChild(modC);
 
@@ -1837,7 +1863,8 @@ function addSess(pref={}){
     const l=document.createElement('label'); l.innerHTML=lbl+(req?' <em>*</em>':'');
     const i=document.createElement('input'); i.type=type; i.id=eid; if(val)i.value=val;
     if(list) i.setAttribute('list', list);
-    i.addEventListener('change',()=>{ updateHoursCounter(); detectConflicts(); });
+    i.addEventListener('change',()=>{ updateHoursCounter(); detectConflicts(); updateSessHeader(); });
+    i.addEventListener('input',updateSessHeader);
     c.appendChild(l); c.appendChild(i); return c;
   }
   r2.appendChild(inp('Heure début (GMT)','time',id+'_hdeb',pref.hdeb||'18:00',true));
@@ -1857,6 +1884,7 @@ function addSess(pref={}){
   if(pref.type) typeSel.value=pref.type;
   typeSel.onchange=()=>{
     const t=typeSel.value;
+    wrap.dataset.kind=t;
     ttl.textContent=`Séance ${wrap.dataset.num||epeCount}${t?' — '+t:''}`;
     num.style.background=t==='Examen'?'var(--red)':t==="Travail personnel de l'étudiant"?'#7c3aed':'var(--b)';
     const g4=wrap.querySelector('.g4'); const g5=wrap.querySelector('.g5');
@@ -1901,13 +1929,15 @@ function addSess(pref={}){
   if(pref.obs) obsTA.value=pref.obs;
   obsC.appendChild(obsLbl); obsC.appendChild(obsTA); r6.appendChild(obsC);
 
+  const details=document.createElement('div'); details.className='sess-details';
+  details.append(r1,r2,r3,r4,linkActions,r5,r6);
   wrap.appendChild(hdr);
-  wrap.appendChild(r1); wrap.appendChild(r2); wrap.appendChild(r3);
-  wrap.appendChild(r4); wrap.appendChild(linkActions); wrap.appendChild(r5); wrap.appendChild(r6);
+  wrap.appendChild(details);
 
   document.getElementById('epe-seances').appendChild(wrap);
   refreshSessCounts();
   if(pref.type){ try{ typeSel.dispatchEvent(new Event('change')); }catch(e){} }
+  updateSessHeader();
 }
 function refreshSessCounts(){
   const all=document.querySelectorAll('.epe-sess');
