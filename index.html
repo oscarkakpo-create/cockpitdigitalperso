@@ -1870,6 +1870,24 @@ function addSess(pref={}){
   r4.appendChild(inp('Lien Moodle','url',id+'_moodle',pref.moodle||'',true,'dl-moodle'));
   r4.appendChild(inp('Lien salle virtuelle (Cours)','url',id+'_salle',pref.salle||'',false,'dl-salle'));
 
+  // Les liens automatiques restent facultatifs et modifiables, notamment pour les cours regroupés.
+  const linkActions=document.createElement('div');
+  linkActions.className='actions g4';
+  linkActions.style.cssText='margin-top:8px;gap:6px';
+  function clearLinkBtn(label,targets){
+    const b=document.createElement('button');
+    b.type='button'; b.className='btn outline';
+    b.style.cssText='padding:6px 10px;font-size:11px'; b.textContent=label;
+    b.onclick=()=>{
+      targets.forEach(suffix=>{ const field=document.getElementById(id+suffix); if(field)field.value=''; });
+      showToast('✓ Lien'+(targets.length>1?'s':'')+' retiré'+(targets.length>1?'s':'')+' — vous pouvez saisir une autre valeur');
+    };
+    return b;
+  }
+  linkActions.appendChild(clearLinkBtn('✕ Effacer Moodle',['_moodle']));
+  linkActions.appendChild(clearLinkBtn('✕ Effacer la salle',['_salle']));
+  linkActions.appendChild(clearLinkBtn('🧹 Cours regroupé : effacer les deux',['_moodle','_salle']));
+
   // Row 5: Surveillance + Durée (examen)
   const r5=document.createElement('div'); r5.className='row g5';
   r5.appendChild(inp('Lien surveillance (Examen)','url',id+'_surv',''));
@@ -1885,7 +1903,7 @@ function addSess(pref={}){
 
   wrap.appendChild(hdr);
   wrap.appendChild(r1); wrap.appendChild(r2); wrap.appendChild(r3);
-  wrap.appendChild(r4); wrap.appendChild(r5); wrap.appendChild(r6);
+  wrap.appendChild(r4); wrap.appendChild(linkActions); wrap.appendChild(r5); wrap.appendChild(r6);
 
   document.getElementById('epe-seances').appendChild(wrap);
   refreshSessCounts();
