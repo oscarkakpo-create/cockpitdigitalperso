@@ -728,6 +728,7 @@ body.focus-mode #main{margin-left:0}
             <select id="ex-prog">
               <option value="">— (optionnel) —</option>
               <optgroup label="MBA">
+                <option>MBA AG 2026 – Gestion des entreprises</option><option>MBA AG 2026 – Administration publique</option>
                 <option>MBA AG Classique</option><option>MBA AG AUF</option>
                 <option>MBA GP Classique</option><option>MBA GP AUF</option>
                 <option>MBA MSCH</option>
@@ -873,6 +874,7 @@ body.focus-mode #main{margin-left:0}
             <select id="epe-prog" onchange="onEpeProg()">
               <option value="">— Sélectionner —</option>
               <optgroup label="MBA">
+                <option>MBA AG 2026 – Gestion des entreprises</option><option>MBA AG 2026 – Administration publique</option>
                 <option>MBA AG Classique</option><option>MBA AG AUF</option>
                 <option>MBA GP Classique</option><option>MBA GP AUF</option>
                 <option>MBA MSCH</option>
@@ -1159,7 +1161,8 @@ body.focus-mode #main{margin-left:0}
           <div class="fld"><label>Programme / Formation</label>
             <select id="sy-prog">
               <option value="">— Sélectionner —</option>
-              <optgroup label="MBA"><option>MBA AG Classique</option><option>MBA AG AUF</option><option>MBA GP Classique</option><option>MBA GP AUF</option><option>MBA MSCH</option></optgroup>
+              <optgroup label="MBA"><option>MBA AG 2026 – Gestion des entreprises</option><option>MBA AG 2026 – Administration publique</option>
+                <option>MBA AG Classique</option><option>MBA AG AUF</option><option>MBA GP Classique</option><option>MBA GP AUF</option><option>MBA MSCH</option></optgroup>
               <optgroup label="Licence Professionnelle"><option>LP MIAGE</option><option>LP Banque Finance</option><option>LP Comptabilité Contrôle Audit</option></optgroup>
               <optgroup label="Formations courtes"><option>DECOFI</option><option>Formation Continue CESAG</option></optgroup>
             </select>
@@ -1689,6 +1692,8 @@ function previewHTML(){
 
 /* ═══════════════ EPE — MODULES DATA ════════════════════════════ */
 const EPE_MODULES={
+  "MBA AG 2026 – Gestion des entreprises":["MBAAG231 – Organisation et stratégie","MBAAG232 – Administration et Gestion des ressources humaines","MBAAG233 – Gestion financière","MBAAG234 – Systèmes d'information"],
+  "MBA AG 2026 – Administration publique":["MBAAG241 – Droit de la fonction publique et de la décentralisation","MBAAG242 – Acteurs et systèmes de protection sociale","MBAAG243 – Science administrative et droit administratif","MBAAG244 – Finances de l'État et Finances locales","MBAAG245 – Gestion des ressources humaines dans l'administration publique","MBAAG246 – Modernisation et digitalisation du service public"],
   "MBA AG Classique":["MBAAG111 – Droit des affaires","MBAAG112 – Environnement économique et International de l'entreprise","MBAAG113 – Fiscalité","MBAAG121 – Théorie et Management des organisations","MBAAG122 – Management interculturel","MBAAG123 – Management stratégique","MBAAG124 – Marketing","MBAAG125 – Création d'entreprise","MBAAG126 – Gestion des projets et suivi-évaluation","MBAAG131 – Comptabilité","MBAAG132 – Finance","MBAAG133 – Contrôle interne","MBAAG134 – Contrôle de gestion","MBAAG135 – Marchés financiers","MBAAG211 – Méthodologie de rédaction de mémoire","MBAAG212 – Anglais des affaires","MBAAG213 – Jeu d'entreprise","MBAAG214 – Développement personnel et professionnel","MBAAG221 – Stage professionnel + rédaction de mémoire","MBAAG231 – Organisation et stratégie","MBAAG232 – Administration et Gestion des ressources humaines","MBAAG233 – Gestion financière","MBAAG234 – Systèmes d'information","MBAAG241 – Droit de la fonction publique et de la décentralisation","MBAAG242 – Acteurs et systèmes de protection sociale","MBAAG243 – Science administrative et droit administratif","MBAAG244 – Finances de l'État et Finances locales","MBAAG245 – Gestion des ressources humaines dans l'administration publique","MBAAG246 – Modernisation et digitalisation du service public"],
   "MBA AG AUF":["MBAAG111 – Droit des affaires","MBAAG112 – Environnement économique et International de l'entreprise","MBAAG113 – Fiscalité","MBAAG121 – Théorie et Management des organisations","MBAAG122 – Management interculturel","MBAAG123 – Management stratégique","MBAAG124 – Marketing","MBAAG125 – Création d'entreprise","MBAAG126 – Gestion des projets et suivi-évaluation","MBAAG131 – Comptabilité","MBAAG132 – Finance d'entreprise","MBAAG133 – Contrôle interne","MBAAG134 – Contrôle de gestion","MBAAG135 – Marchés financiers","MBAAG211 – Méthodologie de rédaction de mémoire","MBAAG212 – Anglais des affaires","MBAAG213 – Jeu d'entreprise","MBAAG214 – Développement personnel et professionnel","MBAAG221 – Stage professionnel + rédaction de mémoire","MBAAG231 – Organisation et stratégie","MBAAG232 – Administration et Gestion des ressources humaines","MBAAG233 – Gestion financière","MBAAG234 – Systèmes d'information","MBAAG241 – Droit de la fonction publique et de la décentralisation","MBAAG242 – Acteurs et systèmes de protection sociale","MBAAG243 – Science administrative et droit administratif","MBAAG244 – Finances de l'État et Finances locales","MBAAG245 – Gestion des ressources humaines dans l'administration publique","MBAAG246 – Modernisation et digitalisation du service public"],
   "MBA GP Classique":["MBAGP – Enjeux et défis du développement","MBAGP – Principes et enjeux de l'administration publique","MBAGP – Environnement du projet en entreprise et défis des PME","MBAGP – Etudes de faisabilité de projet","MBAGP – Etude d'impact environnemental et social","MBAGP – Analyse financière de projet","MBAGP – Analyse économique des projets","MBAGP – Planification stratégique des projets, programmes et portefeuille","MBAGP – Planification opérationnelle et budgétisation des projets et programmes","MBAGP – Intégration et gestion de projets, programmes et portefeuille","MBAGP – Approches innovantes de gestion de projet et méthodologie agile","MBAGP – Partenariat public et privé","MBAGP – Gestion des parties prenantes de projet, programmes et portefeuille","MBAGP – Logistique et gestion des ressources matérielles","MBAGP – Passation des marchés publics","MBAGP – Management de la qualité","MBAGP – Aspects juridiques et fiscaux des projets, programmes et portefeuille","MBAGP – Codes éthiques et déontologie","MBAGP – Méthodologie de recherche qualitative","MBAGP – Méthodologie de recherche quantitative","MBAGP – Méthodologie de rédaction du TFE","MBAGP – Suivi et évaluation des projets, programmes et portefeuille","MBAGP – Evaluation d'impact","MBAGP – Capitalisation, gestion et dissémination des connaissances et apprentissages","MBAGP – Gestion des risques et contrôle du projet, programmes et portefeuille","MBAGP – Intégration des risques transversaux (genre, inclusion, changement climatique, sécurité)","MBAGP – Audit de projet","MBAGP – Projet/Mémoire professionnel","MBAGP – Outils informatiques appliqués à la gestion de projet","MBAGP – Anglais de spécialité","MBAGP – Transformation And Design Thinking","MBAGP – Management des programmes publics","MBAGP – Etude de cas de projets complexes","MBAGP – Marketing et communication digitale en gestion de projet","MBAGP – Gestion des parties prenantes"],
@@ -1697,7 +1702,31 @@ const EPE_MODULES={
 };
 
 /* Catalogue cours + liens importé depuis preview.html. Format: [programme, module, idCours, idSalle]. */
+const EPE_SPECIALIZATIONS={
+  "MBA AG 2026 – Gestion des entreprises":{
+    ue:"UE2.3 – Outils de gestion de l’entreprise",
+    modules:[
+      ["MBAAG231 – Organisation et stratégie","Organisation et stratégie 25-26"],
+      ["MBAAG232 – Administration et Gestion des ressources humaines","Administration et gestion des ressources humaines 25-26"],
+      ["MBAAG233 – Gestion financière","Gestion financière 25-26"],
+      ["MBAAG234 – Systèmes d'information","Systèmes d’information 25-26"]
+    ]
+  },
+  "MBA AG 2026 – Administration publique":{
+    ue:"UE2.4 – Droit et Gestion publique",
+    modules:[
+      ["MBAAG241 – Droit de la fonction publique et de la décentralisation","Droit de la fonction publique et de la décentralisation 25-26"],
+      ["MBAAG242 – Acteurs et systèmes de protection sociale","Acteurs et systèmes de protection sociale 25-26"],
+      ["MBAAG243 – Science administrative et droit administratif","Science administrative et droit administratif 25-26"],
+      ["MBAAG244 – Finances de l'État et Finances locales","Finances de l’État et finances locales 25-26"],
+      ["MBAAG245 – Gestion des ressources humaines dans l'administration publique","Gestion des ressources humaines dans l’administration publique 25-26"],
+      ["MBAAG246 – Modernisation et digitalisation du service public","Modernisation et digitalisation du service public 25-26"]
+    ]
+  }
+};
 const EPE_PROGRAM_CATALOG={
+  "MBA AG 2026 – Gestion des entreprises":"MBA AG 25-26 ONLINE",
+  "MBA AG 2026 – Administration publique":"MBA AG 25-26 ONLINE",
   "MBA AG Classique":"MBA AG 25-26 ONLINE",
   "MBA AG AUF":"MBA AG 25-26 ONLINE AUF",
   "MBA GP Classique":"MBA GP 25-26 ONLINE",
@@ -1716,7 +1745,13 @@ const EPE_COURSE_LINKS=[["MBA AG 25-26 ONLINE","Fiscalité 25-26","1024","17730"
 function getEpeCatalogForProgram(){
   const prog=document.getElementById('epe-prog')?.value||'';
   const catalogProgram=EPE_PROGRAM_CATALOG[prog];
-  return catalogProgram ? EPE_COURSE_LINKS.filter(c=>c[0]===catalogProgram) : [];
+  const catalog=catalogProgram ? EPE_COURSE_LINKS.filter(c=>c[0]===catalogProgram) : [];
+  const specialization=EPE_SPECIALIZATIONS[prog];
+  if(!specialization)return catalog;
+  return specialization.modules.map(([displayName,sourceName])=>{
+    const sourceCourse=catalog.find(c=>c[1]===sourceName);
+    return sourceCourse ? [sourceCourse[0],displayName,sourceCourse[2],sourceCourse[3]] : null;
+  }).filter(Boolean);
 }
 function fillEpeExamSurveillance(wrap){
   if(!wrap)return;
@@ -1757,8 +1792,9 @@ function onEpeProg(){
     if(type==='Examen') fillEpeExamSurveillance(s);
   });
   const count=getEpeCatalogForProgram().length;
+  const specialization=EPE_SPECIALIZATIONS[v];
   const info=document.getElementById('epe-prog-info');
-  if(info) info.textContent=count ? `✓ ${count} cours et leurs liens disponibles` : '';
+  if(info) info.textContent=count ? `✓ ${specialization ? specialization.ue+' · ' : ''}${count} modules et leurs liens disponibles` : '';
   renderPresets();
 }
 function updateEpePeriod(){
@@ -1793,7 +1829,7 @@ function buildModOpts(sel,selected=''){
     const sep=document.createElement('option'); sep.disabled=true; sep.textContent='──────────────────'; sel.appendChild(sep);
     const oth=document.createElement('option'); oth.value='__autre__'; oth.textContent='✏️ Autre (saisie libre)…'; sel.appendChild(oth);
   }
-  if(selected){ ensureModuleOption(sel,selected); sel.value=selected; }
+  if(selected && modules.includes(selected))sel.value=selected;
   sel.onchange=()=>{
     if(sel.value==='__autre__'){
       const txt=prompt('Nom du module :','');
