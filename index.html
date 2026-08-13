@@ -2458,16 +2458,14 @@ function addCheckedPresets(){
 /* ── EPE GENERATE ── */
 function generateEpeBlock(){
   const prog=document.getElementById('epe-prog').value.trim();
-  const lundi=document.getElementById('epe-lundi').value;
-  const dim=document.getElementById('epe-dim').value;
+  let lundi=document.getElementById('epe-lundi').value;
+  let dim=document.getElementById('epe-dim').value;
   const agenda=document.getElementById('epe-agenda').value.trim();
   const record=document.getElementById('epe-record').value.trim();
   const code=document.getElementById('epe-code').value.trim();
   const obs=document.getElementById('epe-obs').value.trim();
   let errors=[];
   if(!prog) errors.push('Programme non sélectionné');
-  if(!lundi) errors.push('Date du lundi manquante');
-  if(!dim) errors.push('Date du dimanche manquante');
   const sessions=[];
   document.querySelectorAll('.epe-sess').forEach((s,idx)=>{
     const sid=s.id;
@@ -2497,6 +2495,25 @@ function generateEpeBlock(){
     sessions.push(obj);
   });
   if(sessions.length===0) errors.push('Aucune séance saisie');
+
+  // Si la période globale n'a pas été saisie, la déduire des dates des séances.
+  // Le début est le lundi de la première semaine et la fin le dimanche de la dernière.
+  const sessionDates=sessions.map(s=>s.date).filter(Boolean).sort();
+  if(sessionDates.length){
+    if(!lundi){
+      const first=new Date(sessionDates[0]+'T00:00:00Z');
+      const daysSinceMonday=(first.getUTCDay()+6)%7;
+      lundi=shiftIsoDate(sessionDates[0],-daysSinceMonday);
+      document.getElementById('epe-lundi').value=lundi;
+    }
+    if(!dim){
+      const last=new Date(sessionDates[sessionDates.length-1]+'T00:00:00Z');
+      const daysUntilSunday=(7-last.getUTCDay())%7;
+      dim=shiftIsoDate(sessionDates[sessionDates.length-1],daysUntilSunday);
+      document.getElementById('epe-dim').value=dim;
+    }
+    updateEpePeriod();
+  }
   if(errors.length){ alert('Veuillez corriger :\n\n• '+errors.join('\n• ')); return; }
   if(detectConflicts()){
     if(!confirm('⚠️ Des séances se chevauchent. Continuer quand même ?'))return;
