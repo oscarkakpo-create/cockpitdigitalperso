@@ -1706,21 +1706,21 @@ const EPE_SPECIALIZATIONS={
   "MBA AG 2026 – Gestion des entreprises":{
     ue:"UE2.3 – Outils de gestion de l’entreprise",
     modules:[
-      ["MBAAG231 – Organisation et stratégie","Organisation et stratégie 25-26"],
-      ["MBAAG232 – Administration et Gestion des ressources humaines","Administration et gestion des ressources humaines 25-26"],
-      ["MBAAG233 – Gestion financière","Gestion financière 25-26"],
-      ["MBAAG234 – Systèmes d'information","Systèmes d’information 25-26"]
+      ["MBAAG231 – Organisation et stratégie","Organisation et stratégie 25-26","1041","14616"],
+      ["MBAAG232 – Administration et Gestion des ressources humaines","Administration et gestion des ressources humaines 25-26","1042","14633"],
+      ["MBAAG233 – Gestion financière","Gestion financière 25-26","1043","14650"],
+      ["MBAAG234 – Systèmes d'information","Systèmes d’information 25-26","1044","14667"]
     ]
   },
   "MBA AG 2026 – Administration publique":{
     ue:"UE2.4 – Droit et Gestion publique",
     modules:[
-      ["MBAAG241 – Droit de la fonction publique et de la décentralisation","Droit de la fonction publique et de la décentralisation 25-26"],
-      ["MBAAG242 – Acteurs et systèmes de protection sociale","Acteurs et systèmes de protection sociale 25-26"],
-      ["MBAAG243 – Science administrative et droit administratif","Science administrative et droit administratif 25-26"],
-      ["MBAAG244 – Finances de l'État et Finances locales","Finances de l’État et finances locales 25-26"],
-      ["MBAAG245 – Gestion des ressources humaines dans l'administration publique","Gestion des ressources humaines dans l’administration publique 25-26"],
-      ["MBAAG246 – Modernisation et digitalisation du service public","Modernisation et digitalisation du service public 25-26"]
+      ["MBAAG241 – Droit de la fonction publique et de la décentralisation","Droit de la fonction publique et de la décentralisation 25-26","1045","14684"],
+      ["MBAAG242 – Acteurs et systèmes de protection sociale","Acteurs et systèmes de protection sociale 25-26","1046","14701"],
+      ["MBAAG243 – Science administrative et droit administratif","Science administrative et droit administratif 25-26","1047","14718"],
+      ["MBAAG244 – Finances de l'État et Finances locales","Finances de l’État et finances locales 25-26","1048","14735"],
+      ["MBAAG245 – Gestion des ressources humaines dans l'administration publique","Gestion des ressources humaines dans l’administration publique 25-26","1049","14752"],
+      ["MBAAG246 – Modernisation et digitalisation du service public","Modernisation et digitalisation du service public 25-26","1050","14769"]
     ]
   }
 };
@@ -1748,10 +1748,11 @@ function getEpeCatalogForProgram(){
   const catalog=catalogProgram ? EPE_COURSE_LINKS.filter(c=>c[0]===catalogProgram) : [];
   const specialization=EPE_SPECIALIZATIONS[prog];
   if(!specialization)return catalog;
-  return specialization.modules.map(([displayName,sourceName])=>{
+  return specialization.modules.map(([displayName,sourceName,courseId,roomId])=>{
     const sourceCourse=catalog.find(c=>c[1]===sourceName);
-    return sourceCourse ? [sourceCourse[0],displayName,sourceCourse[2],sourceCourse[3]] : null;
-  }).filter(Boolean);
+    // IDs issus des fiches MBA AG Classique; le catalogue classique reste prioritaire.
+    return [catalogProgram,displayName,sourceCourse?.[2]||courseId,sourceCourse?.[3]||roomId];
+  });
 }
 function fillEpeExamSurveillance(wrap){
   if(!wrap)return;
@@ -1767,13 +1768,17 @@ function fillEpeExamSurveillance(wrap){
 function fillEpeCourseLinks(moduleSelect){
   const wrap=moduleSelect?.closest('.epe-sess');
   if(!wrap)return;
-  const course=getEpeCatalogForProgram().find(c=>c[1]===moduleSelect.value);
-  if(!course)return;
   const moodle=document.getElementById(wrap.id+'_moodle');
   const room=document.getElementById(wrap.id+'_salle');
+  const course=getEpeCatalogForProgram().find(c=>c[1]===moduleSelect.value);
+  if(!course){
+    if(moodle)moodle.value='';
+    if(room)room.value='';
+    return;
+  }
   if(moodle)moodle.value=course[2]?'https://formations.cesagonline.com/course/view.php?id='+course[2]:'';
   if(room)room.value=course[3]?'https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id='+course[3]:'';
-  showToast('✓ Liens Moodle et salle remplis automatiquement');
+  showToast('✓ Liens MBA AG Classique récupérés automatiquement');
 }
 
 /* ═══════════════ EPE — STATE ════════════════════════════════════ */
@@ -1997,6 +2002,7 @@ function addSess(pref={}){
   wrap.appendChild(details);
 
   document.getElementById('epe-seances').appendChild(wrap);
+  if(modSel.value)fillEpeCourseLinks(modSel);
   refreshSessCounts();
   if(pref.type){ try{ typeSel.dispatchEvent(new Event('change')); }catch(e){} }
   updateSessHeader();
