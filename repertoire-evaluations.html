@@ -181,6 +181,16 @@
         .nav-home:hover{ opacity:.88; }
         .nav-dark{ background:rgba(255,255,255,.1); color:#e2e8f0; font-size:16px; padding:8px 12px; }
         .nav-dark:hover{ background:rgba(255,255,255,.2); }
+
+/* Respect du réglage système « réduire les animations ». */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
     </style>
 </head>
 <body>
@@ -200,7 +210,7 @@
     <div class="controls">
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="searchInput" placeholder="Votre classe..." onkeyup="filter()">
+            <input type="text" id="searchInput" aria-label="Rechercher une classe" placeholder="Votre classe..." onkeyup="filter()">
         </div>
         <div class="tabs">
             <button class="tab-btn active" onclick="filterTab('all', this)">Tous</button>
@@ -214,9 +224,9 @@
     <div class="grid" id="classGrid"></div>
 </div>
 
-<div id="qrModal" onclick="this.style.display='none'">
+<div id="qrModal" role="presentation" onclick="this.style.display='none'">
     <div class="modal-content" onclick="event.stopPropagation()">
-        <h3 id="qrTitle" style="font-size:1rem; margin-bottom:15px;"></h3>
+        <h3 id="qrTitle" style="font-size:1rem; margin-bottom:15px;">QR Code</h3>
         <div id="qrcode"></div>
         <p style="margin-top:15px; font-size:0.8rem; color:#64748b;">Fermer</p>
     </div>
@@ -330,6 +340,13 @@ function filter() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   render(classes.filter(c => c.name.toLowerCase().includes(query)));
 }
+
+/* Le fond de modale se ferme au clic ; Échap est l'équivalent clavier. */
+document.addEventListener('keydown', e => {
+  if (e.key !== 'Escape') return;
+  const modal = document.getElementById('qrModal');
+  if (modal && modal.style.display === 'flex') modal.style.display = 'none';
+});
 
 function showQR(url, title) {
   document.getElementById('qrModal').style.display = 'flex';

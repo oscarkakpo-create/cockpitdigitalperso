@@ -1,0 +1,13 @@
+{
+  "name": "cockpit-a11y-check",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Contrôle d'accessibilité statique des pages monofichier du cockpit (outil de dev uniquement — n'est pas embarqué dans les pages livrées)",
+  "scripts": {
+    "check": "node check.mjs ../../index.html ../../hub-foad-personnel.html ../../repertoire-evaluations.html ../../cesag-online-2026-admin.html"
+  },
+  "dependencies": {
+    "jsdom": "^26.0.0"
+  }
+}

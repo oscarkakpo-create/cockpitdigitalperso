@@ -1,0 +1,36 @@
+name: Contrôle qualité
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  a11y:
+    name: Accessibilité & validité HTML
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Installer les dépendances de l'outil
+        working-directory: tools/a11y-check
+        run: npm ci
+
+      # Contrôle maison : lit le DOM complet, panneaux cachés inclus.
+      # axe-core et pa11y n'inspectent que les éléments visibles et ne voient
+      # donc qu'un panneau sur vingt-cinq dans une SPA monofichier.
+      - name: Contrôle d'accessibilité
+        working-directory: tools/a11y-check
+        run: npm run check
+
+      # Validité structurelle : balises mal fermées, attributs requis,
+      # identifiants dupliqués.
+      - name: Validation HTML
+        run: npx --yes html-validate@latest index.html hub-foad-personnel.html repertoire-evaluations.html cesag-online-2026-admin.html
