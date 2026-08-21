@@ -314,10 +314,38 @@ body.focus-mode #main{margin-left:0}
 }
 #toast.show{opacity:1}
 
+/* ─── FOCUS & ÉTATS ──────────────────────────────────────── */
+/* Anneau de focus visible partout, y compris sur les surfaces
+   role="button" (cartes du tableau de bord, tuiles, speed-dial).
+   WCAG 2.2 — 2.4.11 : un changement de bordure de 1px ne suffit pas. */
+:where(a,button,input,select,textarea,[role="button"],[tabindex]):focus-visible{
+  outline:2px solid var(--b);
+  outline-offset:2px;
+  border-radius:4px;
+}
+.sb-search:focus-visible{outline-color:#4ade80}
+.dash-card:active,.gh-tile:active,.sd-item:active{transform:scale(.985)}
+
+/* Chiffres qui se mettent à jour : largeur de glyphe constante,
+   sinon la mise en page tremble à chaque changement. */
+.stat-n,#epe-hours-badge,#epe-sess-badge,#epe-hist-badge,#epe-presets-badge{
+  font-variant-numeric:tabular-nums;
+}
+
 @media(max-width:768px){
   #sidebar{transform:translateX(-100%)}
   #main{margin-left:0}
   .row,.row.trio{grid-template-columns:1fr}
+}
+
+/* Respect du réglage système « réduire les animations ». */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
 }
 </style>
 </head>
@@ -330,7 +358,7 @@ body.focus-mode #main{margin-left:0}
     <span>Digital Command Center</span>
   </div>
   <div class="sb-search-wrap">
-    <input class="sb-search" type="text" id="sb-search-input" placeholder="🔍 Rechercher…" oninput="filterSidebar(this.value)">
+    <input class="sb-search" type="text" id="sb-search-input" aria-label="Rechercher un outil dans le cockpit" placeholder="🔍 Rechercher…" oninput="filterSidebar(this.value)">
   </div>
 
   <div class="sb-section">Navigation</div>
@@ -482,59 +510,59 @@ body.focus-mode #main{margin-left:0}
         </div>
       </div>
       <div class="dash-grid">
-        <div class="dash-card" onclick="nav('acces')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('acces')">
           <div class="dash-card-ico" style="background:#e8f0fb">🔑</div>
           <div class="dash-card-body"><h3>Accès numériques</h3><p>Office 365 + Moodle</p></div>
         </div>
-        <div class="dash-card" onclick="nav('reset')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('reset')">
           <div class="dash-card-ico" style="background:#fef3c7">🔄</div>
           <div class="dash-card-body"><h3>Reset Moodle</h3><p>Réinitialiser un compte</p></div>
         </div>
-        <div class="dash-card" onclick="nav('mailprof')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('mailprof')">
           <div class="dash-card-ico" style="background:#e8f5ee">📧</div>
           <div class="dash-card-body"><h3>Mail enseignant</h3><p>Invitation au module</p></div>
         </div>
-        <div class="dash-card" onclick="nav('examen')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('examen')">
           <div class="dash-card-ico" style="background:#fee2e2">📝</div>
           <div class="dash-card-body"><h3>Consignes examen</h3><p>Mail d'épreuve en ligne</p></div>
         </div>
-        <div class="dash-card" onclick="nav('ics')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('ics')">
           <div class="dash-card-ico" style="background:#ede9fe">📅</div>
           <div class="dash-card-body"><h3>Générateur ICS</h3><p>Invitation agenda</p></div>
         </div>
-        <div class="dash-card" onclick="nav('gift')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('gift')">
           <div class="dash-card-ico" style="background:#fef3c7">🎯</div>
           <div class="dash-card-body"><h3>Quiz GIFT</h3><p>Import Moodle</p></div>
         </div>
-        <div class="dash-card" onclick="nav('syllabus')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('syllabus')">
           <div class="dash-card-ico" style="background:#e0f2fe">📚</div>
           <div class="dash-card-body"><h3>Syllabus rapide</h3><p>Prompt FOAD complet</p></div>
         </div>
-        <div class="dash-card" onclick="nav('epe')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('epe')">
           <div class="dash-card-ico" style="background:#dcfce7">🗓️</div>
           <div class="dash-card-body"><h3>Planning EPE</h3><p>Bloc FOAD complet</p></div>
         </div>
-        <div class="dash-card" onclick="nav('m365')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('m365')">
           <div class="dash-card-ico" style="background:#ede9fe">☁️</div>
           <div class="dash-card-body"><h3>Comptes M365</h3><p>Export CSV prêt à importer</p></div>
         </div>
-        <div class="dash-card" onclick="nav('mailhistory')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('mailhistory')">
           <div class="dash-card-ico" style="background:#fce7f3">💾</div>
           <div class="dash-card-body"><h3>Mails sauvegardés</h3><p>Historique local</p></div>
         </div>
-        <div class="dash-card" onclick="nav('github')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('github')">
           <div class="dash-card-ico" style="background:#f1f5f9">⚙️</div>
           <div class="dash-card-body"><h3>GitHub Actions</h3><p>5 actions disponibles</p></div>
         </div>
-        <div class="dash-card" onclick="nav('hubfoad')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('hubfoad')">
           <div class="dash-card-ico" style="background:#ecfeff">📌</div>
           <div class="dash-card-body"><h3>Hub FOAD Personnel</h3><p>Suivi MBA CESAG/AUF</p></div>
         </div>
-        <div class="dash-card" onclick="nav('repertoire')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('repertoire')">
           <div class="dash-card-ico" style="background:#f0fdf4">🗂️</div>
           <div class="dash-card-body"><h3>Répertoire évaluations</h3><p>Tous les programmes 2025-2026</p></div>
         </div>
-        <div class="dash-card" onclick="nav('admin2026')">
+        <div class="dash-card" role="button" tabindex="0" onclick="nav('admin2026')">
           <div class="dash-card-ico" style="background:#ecfeff">🧭</div>
           <div class="dash-card-body"><h3>CESAG ONLINE 2026</h3><p>Zone Administrative OneDrive</p></div>
         </div>
@@ -547,8 +575,8 @@ body.focus-mode #main{margin-left:0}
         <div class="card-head"><div class="card-ico">🔑</div>Accès numériques CESAG</div>
         <div class="hint">Génère le mail d'activation des accès numériques (Office 365, Moodle, Hub Digital). Remplissez les champs disponibles.</div>
         <div class="row">
-          <div class="fld"><label>Nom complet</label><input type="text" id="ac-nom" placeholder="Prénom NOM"></div>
-          <div class="fld"><label>Programme / Formation</label>
+          <div class="fld"><label for="ac-nom">Nom complet</label><input type="text" id="ac-nom" placeholder="Prénom NOM"></div>
+          <div class="fld"><label for="ac-prog">Programme / Formation</label>
             <select id="ac-prog">
               <option value="">— Sélectionner (optionnel) —</option>
               <optgroup label="MBA">
@@ -574,8 +602,8 @@ body.focus-mode #main{margin-left:0}
           </div>
         </div>
         <div class="row">
-          <div class="fld"><label>Email CESAG</label><input type="text" id="ac-mail" placeholder="prenom.nom@cesag.sn"></div>
-          <div class="fld"><label>Mot de passe initial</label><input type="text" id="ac-mdp" placeholder="Cesag@2026!"></div>
+          <div class="fld"><label for="ac-mail">Email CESAG</label><input type="text" id="ac-mail" placeholder="prenom.nom@cesag.sn"></div>
+          <div class="fld"><label for="ac-mdp">Mot de passe initial</label><input type="text" id="ac-mdp" placeholder="Cesag@2026!"></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genAcces()">⚡ Générer</button>
@@ -594,11 +622,11 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">🔄</div>Réinitialisation Moodle</div>
         <div class="row">
-          <div class="fld"><label>Nom du destinataire</label><input type="text" id="rs-nom" placeholder="Prénom NOM (optionnel)"></div>
-          <div class="fld"><label>Email / Identifiant Moodle</label><input type="text" id="rs-mail" placeholder="prenom.nom@cesag.sn"></div>
+          <div class="fld"><label for="rs-nom">Nom du destinataire</label><input type="text" id="rs-nom" placeholder="Prénom NOM (optionnel)"></div>
+          <div class="fld"><label for="rs-mail">Email / Identifiant Moodle</label><input type="text" id="rs-mail" placeholder="prenom.nom@cesag.sn"></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Mot de passe temporaire</label><input type="text" id="rs-mdp" placeholder="Online@2026 (par défaut si vide)"></div>
+          <div class="fld"><label for="rs-mdp">Mot de passe temporaire</label><input type="text" id="rs-mdp" placeholder="Online@2026 (par défaut si vide)"></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genReset()">⚡ Générer</button>
@@ -616,11 +644,11 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">📧</div>Mail enseignant — Invitation module</div>
         <div class="row">
-          <div class="fld"><label>Titre et nom de l'enseignant</label><input type="text" id="mp-nom" placeholder="Pr. / Dr. / M. / Mme NOM"></div>
-          <div class="fld"><label>Intitulé du module</label><input type="text" id="mp-module" placeholder="Comptabilité Analytique"></div>
+          <div class="fld"><label for="mp-nom">Titre et nom de l'enseignant</label><input type="text" id="mp-nom" placeholder="Pr. / Dr. / M. / Mme NOM"></div>
+          <div class="fld"><label for="mp-module">Intitulé du module</label><input type="text" id="mp-module" placeholder="Comptabilité Analytique"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Programme / Formation</label>
+          <div class="fld"><label for="mp-prog">Programme / Formation</label>
             <select id="mp-prog">
               <option value="">— Sélectionner (optionnel) —</option>
               <optgroup label="MBA">
@@ -644,10 +672,10 @@ body.focus-mode #main{margin-left:0}
               </optgroup>
             </select>
           </div>
-          <div class="fld"><label>Nombre de séances souhaitées</label><input type="number" id="mp-seances" value="5" min="1" max="30"></div>
+          <div class="fld"><label for="mp-seances">Nombre de séances souhaitées</label><input type="number" id="mp-seances" value="5" min="1" max="30"></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Message complémentaire</label><textarea id="mp-msg" placeholder="Ex : Les séances se déroulent sur Teams, merci de prévoir un support de cours…"></textarea></div>
+          <div class="fld"><label for="mp-msg">Message complémentaire</label><textarea id="mp-msg" placeholder="Ex : Les séances se déroulent sur Teams, merci de prévoir un support de cours…"></textarea></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genMailProf()">⚡ Générer</button>
@@ -665,18 +693,18 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">💬</div>Réponse à un apprenant / participant</div>
         <div class="row trio">
-          <div class="fld"><label>Civilité</label>
+          <div class="fld"><label for="et-civ">Civilité</label>
             <select id="et-civ">
               <option value="">—</option>
               <option value="M.">M.</option>
               <option value="Mme">Mme</option>
             </select>
           </div>
-          <div class="fld" style="grid-column:span 2"><label>Nom du destinataire</label><input type="text" id="et-nom" placeholder="Prénom NOM"></div>
+          <div class="fld" style="grid-column:span 2"><label for="et-nom">Nom du destinataire</label><input type="text" id="et-nom" placeholder="Prénom NOM"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Objet du message</label><input type="text" id="et-objet" placeholder="Sujet de la demande"></div>
-          <div class="fld"><label>Programme / Formation</label>
+          <div class="fld"><label for="et-objet">Objet du message</label><input type="text" id="et-objet" placeholder="Sujet de la demande"></div>
+          <div class="fld"><label for="et-prog">Programme / Formation</label>
             <select id="et-prog">
               <option value="">— (optionnel) —</option>
               <optgroup label="MBA">
@@ -689,7 +717,7 @@ body.focus-mode #main{margin-left:0}
           </div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Corps de la réponse</label><textarea id="et-msg" placeholder="Saisissez votre réponse ici…"></textarea></div>
+          <div class="fld"><label for="et-msg">Corps de la réponse</label><textarea id="et-msg" placeholder="Saisissez votre réponse ici…"></textarea></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genEtudiant()">⚡ Générer</button>
@@ -707,13 +735,13 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">📝</div>Consignes examen en ligne</div>
         <div class="row">
-          <div class="fld"><label>Intitulé du module / épreuve</label><input type="text" id="ex-module" placeholder="Comptabilité Analytique"></div>
-          <div class="fld"><label>Date de l'examen</label><input type="date" id="ex-date"></div>
+          <div class="fld"><label for="ex-module">Intitulé du module / épreuve</label><input type="text" id="ex-module" placeholder="Comptabilité Analytique"></div>
+          <div class="fld"><label for="ex-date">Date de l'examen</label><input type="date" id="ex-date"></div>
         </div>
         <div class="row trio">
-          <div class="fld"><label>Heure début (GMT)</label><input type="time" id="ex-hdeb" value="09:00"></div>
-          <div class="fld"><label>Durée (minutes)</label><input type="number" id="ex-duree" value="120"></div>
-          <div class="fld"><label>Programme / Formation</label>
+          <div class="fld"><label for="ex-hdeb">Heure début (GMT)</label><input type="time" id="ex-hdeb" value="09:00"></div>
+          <div class="fld"><label for="ex-duree">Durée (minutes)</label><input type="number" id="ex-duree" value="120"></div>
+          <div class="fld"><label for="ex-prog">Programme / Formation</label>
             <select id="ex-prog">
               <option value="">— (optionnel) —</option>
               <optgroup label="MBA">
@@ -732,7 +760,7 @@ body.focus-mode #main{margin-left:0}
           </div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Lien Moodle de l'épreuve</label><input type="url" id="ex-lien" placeholder="https://formations.cesagonline.com/..."></div>
+          <div class="fld"><label for="ex-lien">Lien Moodle de l'épreuve</label><input type="url" id="ex-lien" placeholder="https://formations.cesagonline.com/..."></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genExamen()">⚡ Générer</button>
@@ -750,16 +778,16 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">📅</div>Générateur ICS — Invitation agenda</div>
         <div class="row solo">
-          <div class="fld"><label>Titre de l'événement <em>*</em></label><input type="text" id="ics-title" placeholder="MBA AG — Séance 1 : Droit des affaires"></div>
+          <div class="fld"><label for="ics-title">Titre de l'événement <em>*</em></label><input type="text" id="ics-title" placeholder="MBA AG — Séance 1 : Droit des affaires"></div>
         </div>
         <div class="row trio">
-          <div class="fld"><label>Date <em>*</em></label><input type="date" id="ics-date"></div>
-          <div class="fld"><label>Heure début <em>*</em></label><input type="time" id="ics-start" value="18:00"></div>
-          <div class="fld"><label>Heure fin <em>*</em></label><input type="time" id="ics-end" value="20:00"></div>
+          <div class="fld"><label for="ics-date">Date <em>*</em></label><input type="date" id="ics-date"></div>
+          <div class="fld"><label for="ics-start">Heure début <em>*</em></label><input type="time" id="ics-start" value="18:00"></div>
+          <div class="fld"><label for="ics-end">Heure fin <em>*</em></label><input type="time" id="ics-end" value="20:00"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Description / Lien Teams</label><input type="text" id="ics-desc" placeholder="Lien Teams ou description…"></div>
-          <div class="fld"><label>Lieu (optionnel)</label><input type="text" id="ics-lieu" placeholder="En ligne — Teams CESAG"></div>
+          <div class="fld"><label for="ics-desc">Description / Lien Teams</label><input type="text" id="ics-desc" placeholder="Lien Teams ou description…"></div>
+          <div class="fld"><label for="ics-lieu">Lieu (optionnel)</label><input type="text" id="ics-lieu" placeholder="En ligne — Teams CESAG"></div>
         </div>
         <div class="actions">
           <button class="btn green" onclick="downloadICS()">💾 Télécharger .ics</button>
@@ -774,13 +802,13 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">📢</div>Annonce HTML — Moodle</div>
         <div class="row solo">
-          <div class="fld"><label>Titre de l'annonce <em>*</em></label><input type="text" id="hm-title" placeholder="📢 Séance du 15 Mars — Rappel"></div>
+          <div class="fld"><label for="hm-title">Titre de l'annonce <em>*</em></label><input type="text" id="hm-title" placeholder="📢 Séance du 15 Mars — Rappel"></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Corps du message <em>*</em></label><textarea id="hm-msg" placeholder="Bonjour à toutes et à tous,&#10;&#10;Vous êtes conviés à la séance synchrone…"></textarea></div>
+          <div class="fld"><label for="hm-msg">Corps du message <em>*</em></label><textarea id="hm-msg" placeholder="Bonjour à toutes et à tous,&#10;&#10;Vous êtes conviés à la séance synchrone…"></textarea></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Couleur bandeau</label>
+          <div class="fld"><label for="hm-color">Couleur bandeau</label>
             <select id="hm-color">
               <option value="linear-gradient(90deg,#0b6b3a,#0a4ea1)">Vert → Bleu (défaut CESAG)</option>
               <option value="#0a4ea1">Bleu CESAG</option>
@@ -789,7 +817,7 @@ body.focus-mode #main{margin-left:0}
               <option value="#d97706">Ambre (Rappel)</option>
             </select>
           </div>
-          <div class="fld"><label>Emoji icône</label><input type="text" id="hm-emoji" value="📢" maxlength="4"></div>
+          <div class="fld"><label for="hm-emoji">Emoji icône</label><input type="text" id="hm-emoji" value="📢" maxlength="4"></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genHTMLMoodle()">⚡ Générer HTML</button>
@@ -806,11 +834,11 @@ body.focus-mode #main{margin-left:0}
         <div class="hint">Format GIFT compatible Moodle. Sélectionnez le type de question, remplissez puis cliquez Générer.</div>
         <div class="row">
           <div class="fld">
-            <label>Catégorie Moodle</label>
+            <label for="gf-cat">Catégorie Moodle</label>
             <input type="text" id="gf-cat" placeholder="$CATEGORY: MBA AG / Droit des affaires">
           </div>
           <div class="fld">
-            <label>Type de question</label>
+            <label for="hed-code">Type de question</label>
             <div class="gift-type-btn" id="gift-types">
               <button class="gtype sel" onclick="setGType('tf',this)">Vrai/Faux</button>
               <button class="gtype" onclick="setGType('single',this)">QCM unique</button>
@@ -845,7 +873,7 @@ body.focus-mode #main{margin-left:0}
           <button class="btn primary" onclick="previewHTML()">👁 Prévisualiser</button>
           <button class="btn outline" onclick="copyResult('hed-code-val')">📋 Copier code</button>
         </div>
-        <iframe id="previewframe"></iframe>
+        <iframe id="previewframe" title="Aperçu de l'annonce HTML"></iframe>
       </div>
     </div>
 
@@ -858,7 +886,7 @@ body.focus-mode #main{margin-left:0}
         <div class="card-head"><div class="card-ico">📋</div>Informations générales</div>
         <div class="row">
           <div class="fld">
-            <label>Programme <em>*</em></label>
+            <label for="epe-prog">Programme <em>*</em></label>
             <select id="epe-prog" onchange="onEpeProg()">
               <option value="">— Sélectionner —</option>
               <optgroup label="MBA">
@@ -885,8 +913,8 @@ body.focus-mode #main{margin-left:0}
           </div>
         </div>
         <div class="row">
-          <div class="fld"><label>Période — Lundi <em>*</em></label><input type="date" id="epe-lundi" onchange="updateEpePeriod()"></div>
-          <div class="fld"><label>Période — Dimanche <em>*</em></label><input type="date" id="epe-dim" onchange="updateEpePeriod()"></div>
+          <div class="fld"><label for="epe-lundi">Période — Lundi <em>*</em></label><input type="date" id="epe-lundi" onchange="updateEpePeriod()"></div>
+          <div class="fld"><label for="epe-dim">Période — Dimanche <em>*</em></label><input type="date" id="epe-dim" onchange="updateEpePeriod()"></div>
         </div>
         <div class="row solo" id="epe-resume-row" style="display:none;margin-top:6px">
           <div class="fld" style="flex-direction:row;align-items:center;gap:10px;flex-wrap:wrap">
@@ -972,15 +1000,15 @@ body.focus-mode #main{margin-left:0}
       <div class="card">
         <div class="card-head"><div class="card-ico">🔗</div>Liens & Observations</div>
         <div class="row">
-          <div class="fld"><label>Agenda annuel — Lien</label><input type="url" id="epe-agenda" placeholder="https://…"></div>
-          <div class="fld"><label>Enregistrement — Lien</label><input type="url" id="epe-record" placeholder="https://…"></div>
+          <div class="fld"><label for="epe-agenda">Agenda annuel — Lien</label><input type="url" id="epe-agenda" placeholder="https://…"></div>
+          <div class="fld"><label for="epe-record">Enregistrement — Lien</label><input type="url" id="epe-record" placeholder="https://…"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Code secret enregistrement</label><input type="text" id="epe-code" placeholder="Code"></div>
+          <div class="fld"><label for="epe-code">Code secret enregistrement</label><input type="text" id="epe-code" placeholder="Code"></div>
           <div class="fld"></div>
         </div>
         <div class="row solo" style="margin-top:12px">
-          <div class="fld"><label>Observations / Instructions IA <span style="font-weight:400;color:var(--muted)">(contraintes, rappels, cas particuliers…)</span></label>
+          <div class="fld"><label for="epe-obs">Observations / Instructions IA <span style="font-weight:400;color:var(--muted)">(contraintes, rappels, cas particuliers…)</span></label>
           <textarea id="epe-obs" placeholder="Ex : Activez le mode restriction avant la séance. Groupe B passe en présentiel…"></textarea></div>
         </div>
       </div>
@@ -1016,27 +1044,27 @@ body.focus-mode #main{margin-left:0}
         <div class="card-head"><div class="card-ico">⚙️</div>GitHub Actions — Dev Tools</div>
         <div class="hint">Sélectionnez l'action souhaitée, remplissez les champs et générez le prompt Codex.</div>
         <div class="github-actions">
-          <div class="gh-tile" onclick="openGH('edit')">
+          <div class="gh-tile" role="button" tabindex="0" onclick="openGH('edit')">
             <div class="gh-ico">✏️</div>
             <h3>Modifier un fichier</h3>
             <p>Éditer un fichier dans un repo existant</p>
           </div>
-          <div class="gh-tile" onclick="openGH('page')">
+          <div class="gh-tile" role="button" tabindex="0" onclick="openGH('page')">
             <div class="gh-ico">📄</div>
             <h3>Ajouter une page HTML</h3>
             <p>Créer et déployer une nouvelle page</p>
           </div>
-          <div class="gh-tile" onclick="openGH('hub')">
+          <div class="gh-tile" role="button" tabindex="0" onclick="openGH('hub')">
             <div class="gh-ico">🔧</div>
             <h3>Mettre à jour le Hub</h3>
             <p>Hub Digital CESAG — index.html</p>
           </div>
-          <div class="gh-tile" onclick="openGH('deploy')">
+          <div class="gh-tile" role="button" tabindex="0" onclick="openGH('deploy')">
             <div class="gh-ico">🚀</div>
             <h3>Déployer GitHub Pages</h3>
             <p>Activer / reconfigurer GitHub Pages</p>
           </div>
-          <div class="gh-tile" onclick="openGH('new')">
+          <div class="gh-tile" role="button" tabindex="0" onclick="openGH('new')">
             <div class="gh-ico">✨</div>
             <h3>Créer nouveau projet</h3>
             <p>Initialiser un nouveau repository</p>
@@ -1047,14 +1075,14 @@ body.focus-mode #main{margin-left:0}
         <div id="gh-edit" class="sub-panel">
           <div class="card-head" style="font-size:14px">✏️ Modifier un fichier GitHub</div>
           <div class="row">
-            <div class="fld"><label>Repository <em>*</em></label><input type="text" id="gh-e-repo" value="oscarkakpo-create/hubdigitalcesag" placeholder="user/repo"></div>
-            <div class="fld"><label>Fichier <em>*</em></label><input type="text" id="gh-e-file" value="index.html" placeholder="index.html"></div>
+            <div class="fld"><label for="gh-e-repo">Repository <em>*</em></label><input type="text" id="gh-e-repo" value="oscarkakpo-create/hubdigitalcesag" placeholder="user/repo"></div>
+            <div class="fld"><label for="gh-e-file">Fichier <em>*</em></label><input type="text" id="gh-e-file" value="index.html" placeholder="index.html"></div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Description de la modification <em>*</em></label><textarea id="gh-e-modif" placeholder="Ajouter une carte dans la section outils…"></textarea></div>
+            <div class="fld"><label for="gh-e-modif">Description de la modification <em>*</em></label><textarea id="gh-e-modif" placeholder="Ajouter une carte dans la section outils…"></textarea></div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Message de commit <em>*</em></label><input type="text" id="gh-e-commit" placeholder="feat: ajout section outils"></div>
+            <div class="fld"><label for="gh-e-commit">Message de commit <em>*</em></label><input type="text" id="gh-e-commit" placeholder="feat: ajout section outils"></div>
           </div>
           <div class="actions">
             <button class="btn primary" onclick="genGH('edit')">⚡ Générer prompt</button>
@@ -1065,14 +1093,14 @@ body.focus-mode #main{margin-left:0}
         <div id="gh-page" class="sub-panel">
           <div class="card-head" style="font-size:14px">📄 Ajouter une page HTML</div>
           <div class="row">
-            <div class="fld"><label>Repository <em>*</em></label><input type="text" id="gh-p-repo" placeholder="oscarkakpo-create/hubdigitalcesag"></div>
-            <div class="fld"><label>Nom du fichier <em>*</em></label><input type="text" id="gh-p-file" placeholder="nouvelle-page.html"></div>
+            <div class="fld"><label for="gh-p-repo">Repository <em>*</em></label><input type="text" id="gh-p-repo" placeholder="oscarkakpo-create/hubdigitalcesag"></div>
+            <div class="fld"><label for="gh-p-file">Nom du fichier <em>*</em></label><input type="text" id="gh-p-file" placeholder="nouvelle-page.html"></div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Description du contenu de la page <em>*</em></label><textarea id="gh-p-content" placeholder="Page d'accueil pour les étudiants MBA AG avec liste des modules, liens Moodle et calendrier…"></textarea></div>
+            <div class="fld"><label for="gh-p-content">Description du contenu de la page <em>*</em></label><textarea id="gh-p-content" placeholder="Page d'accueil pour les étudiants MBA AG avec liste des modules, liens Moodle et calendrier…"></textarea></div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Message de commit</label><input type="text" id="gh-p-commit" placeholder="feat: nouvelle page MBA AG"></div>
+            <div class="fld"><label for="gh-p-commit">Message de commit</label><input type="text" id="gh-p-commit" placeholder="feat: nouvelle page MBA AG"></div>
           </div>
           <div class="actions">
             <button class="btn primary" onclick="genGH('page')">⚡ Générer prompt</button>
@@ -1084,10 +1112,10 @@ body.focus-mode #main{margin-left:0}
           <div class="card-head" style="font-size:14px">🔧 Mettre à jour le Hub Digital</div>
           <div class="hint">Repository cible : <strong>oscarkakpo-create/hubdigitalcesag</strong> — index.html</div>
           <div class="row solo">
-            <div class="fld"><label>Modification souhaitée <em>*</em></label><textarea id="gh-h-modif" placeholder="Ajouter une nouvelle carte 'Relevés de notes' dans la section Outils administratifs, avec lien vers le formulaire EPE…"></textarea></div>
+            <div class="fld"><label for="gh-h-modif">Modification souhaitée <em>*</em></label><textarea id="gh-h-modif" placeholder="Ajouter une nouvelle carte 'Relevés de notes' dans la section Outils administratifs, avec lien vers le formulaire EPE…"></textarea></div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Message de commit</label><input type="text" id="gh-h-commit" placeholder="feat: ajout carte relevés de notes"></div>
+            <div class="fld"><label for="gh-h-commit">Message de commit</label><input type="text" id="gh-h-commit" placeholder="feat: ajout carte relevés de notes"></div>
           </div>
           <div class="actions">
             <button class="btn primary" onclick="genGH('hub')">⚡ Générer prompt</button>
@@ -1098,11 +1126,11 @@ body.focus-mode #main{margin-left:0}
         <div id="gh-deploy" class="sub-panel">
           <div class="card-head" style="font-size:14px">🚀 Déployer GitHub Pages</div>
           <div class="row">
-            <div class="fld"><label>Repository <em>*</em></label><input type="text" id="gh-d-repo" placeholder="oscarkakpo-create/mon-site"></div>
-            <div class="fld"><label>Branche source</label><input type="text" id="gh-d-branch" value="main" placeholder="main"></div>
+            <div class="fld"><label for="gh-d-repo">Repository <em>*</em></label><input type="text" id="gh-d-repo" placeholder="oscarkakpo-create/mon-site"></div>
+            <div class="fld"><label for="gh-d-branch">Branche source</label><input type="text" id="gh-d-branch" value="main" placeholder="main"></div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Instructions spéciales</label><textarea id="gh-d-notes" placeholder="Ex : Configurer un domaine custom, activer HTTPS…"></textarea></div>
+            <div class="fld"><label for="gh-d-notes">Instructions spéciales</label><textarea id="gh-d-notes" placeholder="Ex : Configurer un domaine custom, activer HTTPS…"></textarea></div>
           </div>
           <div class="actions">
             <button class="btn primary" onclick="genGH('deploy')">⚡ Générer prompt</button>
@@ -1113,8 +1141,8 @@ body.focus-mode #main{margin-left:0}
         <div id="gh-new" class="sub-panel">
           <div class="card-head" style="font-size:14px">✨ Créer un nouveau projet GitHub</div>
           <div class="row">
-            <div class="fld"><label>Nom du repository <em>*</em></label><input type="text" id="gh-n-name" placeholder="cesag-mba-ag-hub"></div>
-            <div class="fld"><label>Visibilité</label>
+            <div class="fld"><label for="gh-n-name">Nom du repository <em>*</em></label><input type="text" id="gh-n-name" placeholder="cesag-mba-ag-hub"></div>
+            <div class="fld"><label for="gh-n-visibility">Visibilité</label>
               <select id="gh-n-visibility">
                 <option value="public">Public</option>
                 <option value="private">Privé</option>
@@ -1122,7 +1150,7 @@ body.focus-mode #main{margin-left:0}
             </div>
           </div>
           <div class="row solo" style="margin-top:10px">
-            <div class="fld"><label>Description du projet <em>*</em></label><textarea id="gh-n-desc" placeholder="Hub digital pour les étudiants MBA AG CESAG. Contient l'agenda, les liens Moodle, les ressources..."></textarea></div>
+            <div class="fld"><label for="gh-n-desc">Description du projet <em>*</em></label><textarea id="gh-n-desc" placeholder="Hub digital pour les étudiants MBA AG CESAG. Contient l'agenda, les liens Moodle, les ressources..."></textarea></div>
           </div>
           <div class="actions">
             <button class="btn primary" onclick="genGH('new')">⚡ Générer prompt</button>
@@ -1141,11 +1169,11 @@ body.focus-mode #main{margin-left:0}
         <div class="card-head"><div class="card-ico">📚</div>Syllabus rapide — Générateur de prompt FOAD</div>
         <div class="hint">Remplissez les champs disponibles. Le prompt généré est prêt à coller dans une IA pour produire un syllabus FOAD complet au standard CESAG.</div>
         <div class="row">
-          <div class="fld"><label>Intitulé du module</label><input type="text" id="sy-module" placeholder="Comptabilité Analytique"></div>
-          <div class="fld"><label>Code module</label><input type="text" id="sy-code" placeholder="MBAGRH112"></div>
+          <div class="fld"><label for="sy-module">Intitulé du module</label><input type="text" id="sy-module" placeholder="Comptabilité Analytique"></div>
+          <div class="fld"><label for="sy-code">Code module</label><input type="text" id="sy-code" placeholder="MBAGRH112"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Programme / Formation</label>
+          <div class="fld"><label for="sy-prog">Programme / Formation</label>
             <select id="sy-prog">
               <option value="">— Sélectionner —</option>
               <optgroup label="MBA"><option>MBA AG Classique</option><option>MBA AG AUF</option><option>MBA GP Classique</option><option>MBA GP AUF</option><option>MBA MSCH</option></optgroup>
@@ -1153,37 +1181,37 @@ body.focus-mode #main{margin-left:0}
               <optgroup label="Formations courtes"><option>DECOFI</option><option>Formation Continue CESAG</option></optgroup>
             </select>
           </div>
-          <div class="fld"><label>Volume horaire total</label><input type="text" id="sy-vh" placeholder="Ex : 30h (6 séances × 2h)"></div>
+          <div class="fld"><label for="sy-vh">Volume horaire total</label><input type="text" id="sy-vh" placeholder="Ex : 30h (6 séances × 2h)"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Enseignant responsable</label><input type="text" id="sy-ens" placeholder="Pr. / Dr. NOM"></div>
-          <div class="fld"><label>Niveau / Semestre</label><input type="text" id="sy-niveau" placeholder="Semestre 1 — Niveau Master"></div>
+          <div class="fld"><label for="sy-ens">Enseignant responsable</label><input type="text" id="sy-ens" placeholder="Pr. / Dr. NOM"></div>
+          <div class="fld"><label for="sy-niveau">Niveau / Semestre</label><input type="text" id="sy-niveau" placeholder="Semestre 1 — Niveau Master"></div>
         </div>
         <div class="row">
-          <div class="fld"><label>Modalité principale</label>
+          <div class="fld"><label for="sy-mod">Modalité principale</label>
             <select id="sy-mod">
               <option>FOAD (100% en ligne)</option>
               <option>Hybride (présentiel + distanciel)</option>
               <option>Présentiel</option>
             </select>
           </div>
-          <div class="fld"><label>Langue d'enseignement</label>
+          <div class="fld"><label for="sy-lang">Langue d'enseignement</label>
             <select id="sy-lang">
               <option>Français</option><option>Anglais</option><option>Bilingue (français/anglais)</option>
             </select>
           </div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Objectifs pédagogiques principaux</label><textarea id="sy-obj" placeholder="Ex : Maîtriser les méthodes de coûts, savoir interpréter un tableau de bord de gestion, développer un outil d'aide à la décision…"></textarea></div>
+          <div class="fld"><label for="sy-obj">Objectifs pédagogiques principaux</label><textarea id="sy-obj" placeholder="Ex : Maîtriser les méthodes de coûts, savoir interpréter un tableau de bord de gestion, développer un outil d'aide à la décision…"></textarea></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Prérequis éventuels</label><input type="text" id="sy-prereq" placeholder="Ex : Comptabilité générale, notions de finance d'entreprise"></div>
+          <div class="fld"><label for="sy-prereq">Prérequis éventuels</label><input type="text" id="sy-prereq" placeholder="Ex : Comptabilité générale, notions de finance d'entreprise"></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Éléments d'évaluation souhaités</label><input type="text" id="sy-eval" placeholder="Ex : Quiz Moodle (30%), Devoir individuel (30%), Examen final (40%)"></div>
+          <div class="fld"><label for="sy-eval">Éléments d'évaluation souhaités</label><input type="text" id="sy-eval" placeholder="Ex : Quiz Moodle (30%), Devoir individuel (30%), Examen final (40%)"></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Instructions complémentaires pour l'IA</label><textarea id="sy-notes" style="height:70px" placeholder="Ex : Inclure une section sur le contexte UEMOA/OHADA, respecter le template 13 sections CESAG, langue soutenue…"></textarea></div>
+          <div class="fld"><label for="sy-notes">Instructions complémentaires pour l'IA</label><textarea id="sy-notes" style="height:70px" placeholder="Ex : Inclure une section sur le contexte UEMOA/OHADA, respecter le template 13 sections CESAG, langue soutenue…"></textarea></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="genSyllabus()">⚡ Générer le prompt</button>
@@ -1202,9 +1230,9 @@ body.focus-mode #main{margin-left:0}
         <div class="hint">Saisissez les utilisateurs ligne par ligne. Le fichier CSV généré est directement importable dans le portail Microsoft 365 Admin (UTF-8 BOM).</div>
 
         <div class="row trio">
-          <div class="fld"><label>Domaine de messagerie</label><input type="text" id="m365-domain" value="cesag.sn" placeholder="cesag.sn"></div>
-          <div class="fld"><label>Mot de passe par défaut</label><input type="text" id="m365-mdp" value="Cesag@2026!" placeholder="Cesag@2026!"></div>
-          <div class="fld"><label>Pays</label><input type="text" id="m365-pays" value="SN" placeholder="SN (Sénégal)"></div>
+          <div class="fld"><label for="m365-domain">Domaine de messagerie</label><input type="text" id="m365-domain" value="cesag.sn" placeholder="cesag.sn"></div>
+          <div class="fld"><label for="m365-mdp">Mot de passe par défaut</label><input type="text" id="m365-mdp" value="Cesag@2026!" placeholder="Cesag@2026!"></div>
+          <div class="fld"><label for="m365-pays">Pays</label><input type="text" id="m365-pays" value="SN" placeholder="SN (Sénégal)"></div>
         </div>
 
         <div style="margin-top:16px">
@@ -1214,14 +1242,14 @@ body.focus-mode #main{margin-left:0}
               <button class="btn outline" style="font-size:12px;padding:5px 12px" onclick="addM365Row()">+ Ajouter une ligne</button>
               <button class="btn outline" style="font-size:12px;padding:5px 12px" onclick="importM365Paste()">📋 Coller liste (Prénom NOM)</button>
               <button class="btn outline" style="font-size:12px;padding:5px 12px" onclick="openM365FilePicker()">📂 Importer fichier</button>
-              <input type="file" id="m365-file" accept=".txt,.csv" onchange="importM365File(event)" style="display:none">
+              <input type="file" id="m365-file" aria-label="Importer un fichier d'utilisateurs" accept=".txt,.csv" onchange="importM365File(event)" style="display:none">
             </div>
           </div>
           <div id="m365-rows" style="display:flex;flex-direction:column;gap:8px"></div>
         </div>
 
         <div class="row solo" style="margin-top:14px">
-          <div class="fld"><label>Coller une liste brute (un nom complet par ligne)</label>
+          <div class="fld"><label for="m365-paste">Coller une liste brute (un nom complet par ligne)</label>
           <textarea id="m365-paste" style="height:80px" placeholder="Amadou DIALLO&#10;Fatou NDIAYE&#10;Ibrahima FALL&#10;…"></textarea></div>
         </div>
         <div class="actions">
@@ -1304,10 +1332,10 @@ body.focus-mode #main{margin-left:0}
 <div id="speed-dial">
   <button class="sd-main" id="sd-btn" onclick="toggleSpeedDial()" title="Actions rapides">＋</button>
   <div class="sd-items" id="sd-items">
-    <div class="sd-item" onclick="closeSpeedDial();nav('ics')">📅 Générateur ICS</div>
-    <div class="sd-item" onclick="closeSpeedDial();nav('epe')">🗓️ Planning EPE</div>
-    <div class="sd-item" onclick="closeSpeedDial();nav('mailetudiant')">💬 Réponse étudiant</div>
-    <div class="sd-item" onclick="closeSpeedDial();nav('mailprof')">📧 Mail enseignant</div>
+    <div class="sd-item" role="button" tabindex="0" onclick="closeSpeedDial();nav('ics')">📅 Générateur ICS</div>
+    <div class="sd-item" role="button" tabindex="0" onclick="closeSpeedDial();nav('epe')">🗓️ Planning EPE</div>
+    <div class="sd-item" role="button" tabindex="0" onclick="closeSpeedDial();nav('mailetudiant')">💬 Réponse étudiant</div>
+    <div class="sd-item" role="button" tabindex="0" onclick="closeSpeedDial();nav('mailprof')">📧 Mail enseignant</div>
   </div>
 </div>
 
@@ -1598,29 +1626,29 @@ function renderGiftForm(){
   const f=document.getElementById('gift-form');
   let html='';
   if(giftType==='tf'){
-    html=`<div class="row"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="La BCEAO est l'organe d'émission de la zone franc."></div>
-    <div class="fld"><label>Réponse <em>*</em></label><select id="gf-tf"><option value="TRUE">Vrai (TRUE)</option><option value="FALSE">Faux (FALSE)</option></select></div></div>`;
+    html=`<div class="row"><div class="fld"><label for="gf-q">Question <em>*</em></label><input type="text" id="gf-q" placeholder="La BCEAO est l'organe d'émission de la zone franc."></div>
+    <div class="fld"><label for="gf-tf">Réponse <em>*</em></label><select id="gf-tf"><option value="TRUE">Vrai (TRUE)</option><option value="FALSE">Faux (FALSE)</option></select></div></div>`;
   } else if(giftType==='single'){
-    html=`<div class="row solo"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Qu'est-ce que la comptabilité analytique ?"></div></div>
-    <div class="row solo" style="margin-top:10px"><div class="fld"><label>Bonne réponse <em>*</em></label><input type="text" id="gf-a1" placeholder="Un outil d'aide à la décision…"></div></div>
+    html=`<div class="row solo"><div class="fld"><label for="gf-q">Question <em>*</em></label><input type="text" id="gf-q" placeholder="Qu'est-ce que la comptabilité analytique ?"></div></div>
+    <div class="row solo" style="margin-top:10px"><div class="fld"><label for="gf-a1">Bonne réponse <em>*</em></label><input type="text" id="gf-a1" placeholder="Un outil d'aide à la décision…"></div></div>
     <div class="row trio" style="margin-top:8px">
-      <div class="fld"><label>Mauvaise réponse 1</label><input type="text" id="gf-w1" placeholder="…"></div>
-      <div class="fld"><label>Mauvaise réponse 2</label><input type="text" id="gf-w2" placeholder="…"></div>
-      <div class="fld"><label>Mauvaise réponse 3</label><input type="text" id="gf-w3" placeholder="…"></div>
+      <div class="fld"><label for="gf-w1">Mauvaise réponse 1</label><input type="text" id="gf-w1" placeholder="…"></div>
+      <div class="fld"><label for="gf-w2">Mauvaise réponse 2</label><input type="text" id="gf-w2" placeholder="…"></div>
+      <div class="fld"><label for="gf-w3">Mauvaise réponse 3</label><input type="text" id="gf-w3" placeholder="…"></div>
     </div>`;
   } else if(giftType==='multi'){
-    html=`<div class="row solo"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Lesquels des éléments suivants sont des charges directes ?"></div></div>
+    html=`<div class="row solo"><div class="fld"><label for="gf-q">Question <em>*</em></label><input type="text" id="gf-q" placeholder="Lesquels des éléments suivants sont des charges directes ?"></div></div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-      <div class="fld"><label>Réponse correcte 1 (50%) <em>*</em></label><input type="text" id="gf-c1"></div>
-      <div class="fld"><label>Réponse correcte 2 (50%)</label><input type="text" id="gf-c2"></div>
-      <div class="fld"><label>Mauvaise réponse 1 (-25%)</label><input type="text" id="gf-m1"></div>
-      <div class="fld"><label>Mauvaise réponse 2 (-25%)</label><input type="text" id="gf-m2"></div>
+      <div class="fld"><label for="gf-c1">Réponse correcte 1 (50%) <em>*</em></label><input type="text" id="gf-c1"></div>
+      <div class="fld"><label for="gf-c2">Réponse correcte 2 (50%)</label><input type="text" id="gf-c2"></div>
+      <div class="fld"><label for="gf-m1">Mauvaise réponse 1 (-25%)</label><input type="text" id="gf-m1"></div>
+      <div class="fld"><label for="gf-m2">Mauvaise réponse 2 (-25%)</label><input type="text" id="gf-m2"></div>
     </div>`;
   } else if(giftType==='short'){
-    html=`<div class="row"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Quel est le sigle de la Banque Centrale des États de l'Afrique de l'Ouest ?"></div>
-    <div class="fld"><label>Réponse attendue <em>*</em></label><input type="text" id="gf-ans" placeholder="BCEAO"></div></div>`;
+    html=`<div class="row"><div class="fld"><label for="gf-q">Question <em>*</em></label><input type="text" id="gf-q" placeholder="Quel est le sigle de la Banque Centrale des États de l'Afrique de l'Ouest ?"></div>
+    <div class="fld"><label for="gf-ans">Réponse attendue <em>*</em></label><input type="text" id="gf-ans" placeholder="BCEAO"></div></div>`;
   } else if(giftType==='essay'){
-    html=`<div class="row solo"><div class="fld"><label>Question <em>*</em></label><input type="text" id="gf-q" placeholder="Décrivez les principales étapes de l'analyse financière d'un projet."></div></div>`;
+    html=`<div class="row solo"><div class="fld"><label for="gf-q">Question <em>*</em></label><input type="text" id="gf-q" placeholder="Décrivez les principales étapes de l'analyse financière d'un projet."></div></div>`;
   }
   f.innerHTML=html;
 }
@@ -2214,25 +2242,25 @@ function renderPresetForm(editIdx){
   form.innerHTML=`
     <div style="font-weight:700;font-size:13px;margin-bottom:10px">${editIdx==null?'➕ Nouveau preset':'✎ Modifier le preset'} — <span style="color:var(--muted);font-weight:500">${escHtml(prog)}</span></div>
     <div class="row">
-      <div class="fld"><label>Jour de la semaine</label><select id="pf-dow" style="${selStyle}">${dayOpts}</select></div>
-      <div class="fld"><label>Type</label><select id="pf-type" style="${selStyle}"><option value="">—</option>${typeOpts}</select></div>
+      <div class="fld"><label for="pf-dow">Jour de la semaine</label><select id="pf-dow" style="${selStyle}">${dayOpts}</select></div>
+      <div class="fld"><label for="pf-type">Type</label><select id="pf-type" style="${selStyle}"><option value="">—</option>${typeOpts}</select></div>
     </div>
     <div class="row">
-      <div class="fld"><label>Heure début</label><input type="time" id="pf-hdeb" value="${escHtml(cur.hdeb||'18:00')}"></div>
-      <div class="fld"><label>Heure fin</label><input type="time" id="pf-hfin" value="${escHtml(cur.hfin||'20:00')}"></div>
+      <div class="fld"><label for="pf-hdeb">Heure début</label><input type="time" id="pf-hdeb" value="${escHtml(cur.hdeb||'18:00')}"></div>
+      <div class="fld"><label for="pf-hfin">Heure fin</label><input type="time" id="pf-hfin" value="${escHtml(cur.hfin||'20:00')}"></div>
     </div>
     <div class="row solo">
-      <div class="fld"><label>Module</label><select id="pf-mod" style="${selStyle}">${modOpts}</select></div>
+      <div class="fld"><label for="pf-mod">Module</label><select id="pf-mod" style="${selStyle}">${modOpts}</select></div>
     </div>
     <div class="row">
-      <div class="fld"><label>Enseignant</label><input type="text" id="pf-ens" list="dl-ens" value="${escHtml(cur.ens||'')}" placeholder="Nom de l'enseignant"></div>
+      <div class="fld"><label for="pf-ens">Enseignant</label><input type="text" id="pf-ens" list="dl-ens" value="${escHtml(cur.ens||'')}" placeholder="Nom de l'enseignant"></div>
     </div>
     <div class="row">
-      <div class="fld"><label>Lien Moodle</label><input type="url" id="pf-moodle" list="dl-moodle" value="${escHtml(cur.moodle||'')}" placeholder="https://…"></div>
-      <div class="fld"><label>Lien salle virtuelle</label><input type="url" id="pf-salle" list="dl-salle" value="${escHtml(cur.salle||'')}" placeholder="https://…"></div>
+      <div class="fld"><label for="pf-moodle">Lien Moodle</label><input type="url" id="pf-moodle" list="dl-moodle" value="${escHtml(cur.moodle||'')}" placeholder="https://…"></div>
+      <div class="fld"><label for="pf-salle">Lien salle virtuelle</label><input type="url" id="pf-salle" list="dl-salle" value="${escHtml(cur.salle||'')}" placeholder="https://…"></div>
     </div>
     <div class="row solo">
-      <div class="fld"><label>Observations <span style="font-weight:400;color:var(--muted)">(optionnel)</span></label><textarea id="pf-obs" rows="2" style="height:60px">${escHtml(cur.obs||'')}</textarea></div>
+      <div class="fld"><label for="pf-obs">Observations <span style="font-weight:400;color:var(--muted)">(optionnel)</span></label><textarea id="pf-obs" rows="2" style="height:60px">${escHtml(cur.obs||'')}</textarea></div>
     </div>
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
       <button class="btn outline" onclick="togglePresetForm()" style="font-size:13px">Annuler</button>
@@ -2725,9 +2753,9 @@ function renderM365Rows(){
     const row=document.createElement('div');
     row.style.cssText='display:grid;grid-template-columns:1fr 1fr 1.5fr auto;gap:8px;align-items:center';
     row.innerHTML=`
-      <input type="text" placeholder="Prénom" value="${u.prenom}" oninput="m365Users[${i}].prenom=this.value;updateM365Email(${i})" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
-      <input type="text" placeholder="NOM" value="${u.nom}" oninput="m365Users[${i}].nom=this.value;updateM365Email(${i})" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
-      <input type="text" placeholder="Email généré" value="${u.email}" oninput="m365Users[${i}].email=this.value" id="m365-email-${i}" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
+      <input type="text" placeholder="Prénom" value="${u.prenom}" aria-label="Prénom — utilisateur ${i+1}" oninput="m365Users[${i}].prenom=this.value;updateM365Email(${i})" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
+      <input type="text" placeholder="NOM" value="${u.nom}" aria-label="Nom — utilisateur ${i+1}" oninput="m365Users[${i}].nom=this.value;updateM365Email(${i})" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
+      <input type="text" placeholder="Email généré" value="${u.email}" aria-label="Email — utilisateur ${i+1}" oninput="m365Users[${i}].email=this.value" id="m365-email-${i}" style="padding:8px 10px;border:1.5px solid var(--border);border-radius:7px;font-family:inherit;font-size:13px;background:var(--input-bg);color:var(--text)">
       <button onclick="m365Users.splice(${i},1);renderM365Rows()" style="background:#fee2e2;color:var(--red);border:none;border-radius:7px;padding:8px 12px;cursor:pointer;font-weight:700">✕</button>`;
     c.appendChild(row);
   });
@@ -2931,6 +2959,18 @@ function updateDashWidgets(){
   tick();
   setInterval(tick,1000);
 })();
+
+/* Accessibilité clavier des surfaces cliquables (cartes du tableau de bord,
+   tuiles GitHub, items du speed-dial). Elles portent role="button" tabindex="0" ;
+   ce relais leur donne le comportement natif Entrée / Espace. */
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Enter'&&e.key!==' ') return;
+  const el=e.target;
+  if(el.getAttribute&&el.getAttribute('role')==='button'&&el.hasAttribute('onclick')){
+    e.preventDefault();
+    el.click();
+  }
+});
 </script>
 </body>
 </html>
