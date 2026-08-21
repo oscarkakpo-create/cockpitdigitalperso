@@ -107,7 +107,12 @@ function auditFile(file) {
 
   // 6. Indicateur de focus supprimé. Heuristique sur la source CSS :
   //    on signale outline:none sans remplacement visible dans la même règle.
-  const cssRules = source.match(/[^{}]*:focus[^{}]*\{[^}]*\}/g) || [];
+  //    On découpe d'abord en règles, puis on filtre : chercher directement
+  //    /[^{}]*:focus[^{}]*\{/ fait exploser le moteur en retour sur trace
+  //    (deux quantificateurs gourmands de même classe autour d'un littéral) —
+  //    3,5 s sur index.html contre 0 ms ici.
+  const styleBlocks = (source.match(/<style\b[^>]*>[\s\S]*?<\/style>/g) || []).join('\n');
+  const cssRules = (styleBlocks.match(/[^{}]+\{[^{}]*\}/g) || []).filter((r) => r.includes(':focus'));
   for (const rule of cssRules) {
     if (/outline:\s*(none|0)/.test(rule) && !/(box-shadow|border-color|outline-offset|background)/.test(rule)) {
       findings.push({

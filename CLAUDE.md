@@ -92,6 +92,17 @@ champs de saisie. Le contrôle maison lit le DOM complet.
 C'est un outil de développement : il vit dans `tools/`, avec ses propres
 dépendances, et n'est jamais embarqué dans les pages livrées.
 
+Il tourne à trois moments :
+
+| Quand | Quoi |
+|---|---|
+| À la demande | `npm run check` dans `tools/a11y-check` |
+| Fin de tour Claude | Hook `Stop` — uniquement si un `.html` suivi a changé (~250 ms sinon, ~1,5 s avec vérification). Sortie 2 : la régression doit être corrigée avant de conclure. |
+| Chaque push | CI — bloque le build |
+
+Le hook est déclaré dans `.claude/settings.json`. Pour le désactiver
+ponctuellement, commente l'entrée `Stop`.
+
 ## Revue avant de dire « c'est fait »
 
 - [ ] Testé dans le navigateur (pas seulement lu) — thème clair **et** sombre
