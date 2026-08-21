@@ -460,6 +460,16 @@
       background:rgba(255,255,255,.1); color:#e2e8f0; font-size:16px; padding:8px 12px;
     }
     #page-nav .nav-dark:hover{ background:rgba(255,255,255,.2); }
+
+/* Respect du réglage système « réduire les animations ». */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
+    scroll-behavior:auto !important;
+  }
+}
   </style>
 </head>
 <body>
@@ -543,7 +553,6 @@
   </div>
 
   <!-- TABS -->
-    <div class="toast" id="toast"></div>
   </div>
 
   <div class="tabs">
@@ -558,8 +567,8 @@
   <section id="panel-gp" class="panel active">
     <div class="toolbar">
       <div class="group">
-        <input id="searchGP" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
-        <select id="moisGP">
+        <input id="searchGP" aria-label="Rechercher dans MBA Gestion de projets" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisGP" aria-label="Filtrer par mois — MBA Gestion de projets">
           <option value="ALL">Tous les mois</option>
           <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
           <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
@@ -567,7 +576,7 @@
           <option value="MOIS 10">MOIS 10</option><option value="MOIS 11">MOIS 11</option><option value="MOIS 12">MOIS 12</option>
           <option value="A PLANIFIER">À planifier</option>
         </select>
-        <select id="blocGP">
+        <select id="blocGP" aria-label="Filtrer par bloc — MBA Gestion de projets">
           <option value="ALL">Tous les blocs</option>
           <option value="S1">Semestre 1</option>
           <option value="S2">Semestre 2</option>
@@ -609,15 +618,15 @@
   <section id="panel-ag" class="panel">
     <div class="toolbar">
       <div class="group">
-        <input id="searchAG" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
-        <select id="moisAG">
+        <input id="searchAG" aria-label="Rechercher dans MBA Audit et gestion" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisAG" aria-label="Filtrer par mois — MBA Audit et gestion">
           <option value="ALL">Tous les mois</option>
           <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
           <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
           <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
           <option value="A PLANIFIER">À planifier</option>
         </select>
-        <select id="blocAG">
+        <select id="blocAG" aria-label="Filtrer par bloc — MBA Audit et gestion">
           <option value="ALL">Tous les blocs</option>
           <option value="S1-TC">Semestre 1 – Tronc commun</option>
           <option value="S2-TC">Semestre 2 – Tronc commun</option>
@@ -660,8 +669,8 @@
   <section id="panel-msch" class="panel">
     <div class="toolbar">
       <div class="group">
-        <input id="searchMSCH" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
-        <select id="moisMSCH">
+        <input id="searchMSCH" aria-label="Rechercher dans MBA MSCH" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisMSCH" aria-label="Filtrer par mois — MBA MSCH">
           <option value="ALL">Tous les mois</option>
           <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
           <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
@@ -670,7 +679,7 @@
           <option value="MOIS 13">MOIS 13</option>
           <option value="A PLANIFIER">À planifier</option>
         </select>
-        <select id="blocMSCH">
+        <select id="blocMSCH" aria-label="Filtrer par bloc — MBA MSCH">
           <option value="ALL">Tous les blocs</option>
           <option value="S1">Semestre 1</option>
           <option value="S2">Semestre 2</option>
@@ -711,8 +720,8 @@
   <section id="panel-gp-auf" class="panel">
     <div class="toolbar">
       <div class="group">
-        <input id="searchGPAUF" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
-        <select id="moisGPAUF">
+        <input id="searchGPAUF" aria-label="Rechercher dans MBA GP — AUF" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisGPAUF" aria-label="Filtrer par mois — MBA GP — AUF">
           <option value="ALL">Tous les mois</option>
           <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
           <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
@@ -720,7 +729,7 @@
           <option value="MOIS 10">MOIS 10</option><option value="MOIS 11">MOIS 11</option><option value="MOIS 12">MOIS 12</option>
           <option value="A PLANIFIER">À planifier</option>
         </select>
-        <select id="blocGPAUF">
+        <select id="blocGPAUF" aria-label="Filtrer par bloc — MBA GP — AUF">
           <option value="ALL">Tous les blocs</option>
           <option value="S1">Semestre 1</option>
           <option value="S2">Semestre 2</option>
@@ -762,15 +771,15 @@
   <section id="panel-ag-auf" class="panel">
     <div class="toolbar">
       <div class="group">
-        <input id="searchAGAUF" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
-        <select id="moisAGAUF">
+        <input id="searchAGAUF" aria-label="Rechercher dans MBA AG — AUF" type="search" placeholder="🔎 Rechercher (UE, module, mots-clés)..." />
+        <select id="moisAGAUF" aria-label="Filtrer par mois — MBA AG — AUF">
           <option value="ALL">Tous les mois</option>
           <option value="MOIS 1">MOIS 1</option><option value="MOIS 2">MOIS 2</option><option value="MOIS 3">MOIS 3</option>
           <option value="MOIS 4">MOIS 4</option><option value="MOIS 5">MOIS 5</option><option value="MOIS 6">MOIS 6</option>
           <option value="MOIS 7">MOIS 7</option><option value="MOIS 8">MOIS 8</option><option value="MOIS 9">MOIS 9</option>
           <option value="A PLANIFIER">À planifier</option>
         </select>
-        <select id="blocAGAUF">
+        <select id="blocAGAUF" aria-label="Filtrer par bloc — MBA AG — AUF">
           <option value="ALL">Tous les blocs</option>
           <option value="S1-TC">Semestre 1 – Tronc commun</option>
           <option value="S2-TC">Semestre 2 – Tronc commun</option>
@@ -811,9 +820,6 @@
 
   </div>
 
-  <section id="panel-gp" class="panel active"><div class="card"><h3><span class="pill">MBA GP CESAG</span> Vue de démonstration</h3><div class="tablewrap"><table><thead><tr><th>Bloc</th><th>UE / Module</th><th>Code</th><th>Suivi</th></tr></thead><tbody id="tbodyGP"></tbody></table></div></div></section>
-  <section id="panel-ag" class="panel"><div class="card"><h3><span class="pill">MBA AG CESAG</span> Vue de démonstration</h3><div class="tablewrap"><table><thead><tr><th>Bloc</th><th>UE / Module</th><th>Code</th><th>Suivi</th></tr></thead><tbody id="tbodyAG"></tbody></table></div></div></section>
-  <section id="panel-msch" class="panel"><div class="card"><h3><span class="pill">MBA MSCH</span> Vue de démonstration</h3><div class="tablewrap"><table><thead><tr><th>Bloc</th><th>UE / Module</th><th>Code</th><th>Suivi</th></tr></thead><tbody id="tbodyMSCH"></tbody></table></div></div></section>
 </div>
 
 <footer>
@@ -1377,7 +1383,7 @@ function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = 
     const roomLinkSafe = (track.roomLink || "").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 
     const statusSelect = `
-      <select data-code="${row.code}" class="trackStatus">
+      <select data-code="${row.code}" class="trackStatus" aria-label="Statut du module ${row.code}">
         <option value="RED" ${track.status==="RED"?"selected":""}>🔴 Non démarré</option>
         <option value="YELLOW" ${track.status==="YELLOW"?"selected":""}>🟡 En cours</option>
         <option value="GREEN" ${track.status==="GREEN"?"selected":""}>🟢 Terminé</option>
@@ -1385,19 +1391,19 @@ function renderTable(data, tbodyId, searchTerm, moisFilter, blocFilter, isAUF = 
     `;
 
     const teacherInput = `
-      <input type="text" data-code="${row.code}" class="trackTeacher" placeholder="Enseignant (optionnel)" value="${teacherSafe}">
+      <input type="text" data-code="${row.code}" class="trackTeacher" aria-label="Enseignant du module ${row.code}" placeholder="Enseignant (optionnel)" value="${teacherSafe}">
     `;
 
     const noteInput = `
-      <input type="text" data-code="${row.code}" class="trackNote" placeholder="Note rapide (ex: syllabus reçu, dates validées...)" value="${noteSafe}">
+      <input type="text" data-code="${row.code}" class="trackNote" aria-label="Note pour le module ${row.code}" placeholder="Note rapide (ex: syllabus reçu, dates validées...)" value="${noteSafe}">
     `;
 
     const courseLinkInput = `
-      <input type="url" data-code="${row.code}" class="trackCourseLink" placeholder="Lien du cours (Moodle, Drive...)" value="${courseLinkSafe}">
+      <input type="url" data-code="${row.code}" class="trackCourseLink" aria-label="Lien du cours ${row.code}" placeholder="Lien du cours (Moodle, Drive...)" value="${courseLinkSafe}">
     `;
 
     const roomLinkInput = `
-      <input type="url" data-code="${row.code}" class="trackRoomLink" placeholder="Lien salle virtuelle (Zoom/Meet/Teams)" value="${roomLinkSafe}">
+      <input type="url" data-code="${row.code}" class="trackRoomLink" aria-label="Lien salle virtuelle ${row.code}" placeholder="Lien salle virtuelle (Zoom/Meet/Teams)" value="${roomLinkSafe}">
     `;
 
     const codeClass = isAUF ? 'code auf' : 'code';
@@ -1569,36 +1575,9 @@ Object.keys(MBA_CONFIG).forEach(mbaKey => {
 
 // INITIALISATION
 renderAll();
-</script>
 
-const DATA={
- GP:[{bloc:'S1',module:'Enjeux et défis du développement',code:'MBAGP1111'},{bloc:'S1',module:'Études de faisabilité de projet',code:'MBAGP1121'}],
- AG:[{bloc:'S1-TC',module:'Droit des affaires',code:'MBAAG111'},{bloc:'S1-TC',module:'Comptabilité',code:'MBAAG131'}],
- MSCH:[{bloc:'S1',module:'Comptabilité générale',code:'MBAGRH111'},{bloc:'S2',module:'Stage et Mémoire',code:'MBAGRH251'}]
-};
-const KEY='CESAG_HUB_TRACKING_V2_AUF';
-let tracking=JSON.parse(localStorage.getItem(KEY)||'{}');
-function toast(msg){const t=document.getElementById('toast');t.style.display='block';t.textContent=msg;setTimeout(()=>t.style.display='none',1800)}
-function render(){
-  [['GP','tbodyGP'],['AG','tbodyAG'],['MSCH','tbodyMSCH']].forEach(([k,id])=>{
-    const el=document.getElementById(id); el.innerHTML='';
-    DATA[k].forEach(r=>{const st=(tracking[r.code]||'RED'); const lbl=st==='GREEN'?'🟢 Terminé':st==='YELLOW'?'🟡 En cours':'🔴 Non démarré';
-      el.insertAdjacentHTML('beforeend',`<tr><td>${r.bloc}</td><td>${r.module}</td><td><span class="code">${r.code}</span></td><td><select data-code="${r.code}" class="trackStatus"><option value="RED" ${st==='RED'?'selected':''}>🔴 Non démarré</option><option value="YELLOW" ${st==='YELLOW'?'selected':''}>🟡 En cours</option><option value="GREEN" ${st==='GREEN'?'selected':''}>🟢 Terminé</option></select> <span class="mini">${lbl}</span></td></tr>`)
-    })
-  });
-  document.querySelectorAll('.trackStatus').forEach(s=>s.addEventListener('change',e=>{tracking[e.target.dataset.code]=e.target.value;localStorage.setItem(KEY,JSON.stringify(tracking));render();}));
-}
-
-function copyToClipboard(text){navigator.clipboard.writeText(text).then(()=>toast('✅ Copié.'));}
-document.getElementById('copyAG').addEventListener('click',()=>copyToClipboard('entmbaagdistance2526@cesag.edu.sn'));
-document.getElementById('copyGP').addEventListener('click',()=>copyToClipboard('entmbagpdistance2526@cesag.edu.sn'));
-document.getElementById('copyMSCH').addEventListener('click',()=>copyToClipboard('entmbamsch2526@cesag.edu.sn'));
-document.getElementById('exportJSON').addEventListener('click',()=>{const b=new Blob([JSON.stringify({tracking},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='CESAG_HUB_SUIVI_AUF.json';a.click();toast('✅ Export JSON généré.');});
-document.getElementById('resetTracking').addEventListener('click',()=>{localStorage.removeItem(KEY);tracking={};render();toast('✅ Suivi réinitialisé.');});
-
-document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));document.getElementById('panel-'+btn.dataset.tab).classList.add('active');}));
-render();
-
+/* Thème sombre — ce bloc était tombé hors de la balise de script : les deux boutons
+   de bascule appelaient une fonction inexistante. */
 function toggleDark(){
   document.body.classList.toggle('dark');
   const btn=document.getElementById('dark-toggle');
