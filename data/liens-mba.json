@@ -1,0 +1,1823 @@
+﻿{
+    "generated":  "2026-10-15",
+    "source":  "https://formations.cesagonline.com",
+    "espaces":  [
+                    {
+                        "espace":  "MBA GP",
+                        "cours":  [
+                                      {
+                                          "cours":  "Enjeux et défis du développement 25-26",
+                                          "chemin":  "SEMESTRE 9\u003eContexte des projets, programmes et portefeuille",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=985",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14880"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Principes et enjeux de l’administration publique",
+                                          "chemin":  "SEMESTRE 9\u003eContexte des projets, programmes et portefeuille",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=986",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=17696"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Environnement du projet en entreprise et défis des PME",
+                                          "chemin":  "SEMESTRE 9\u003eContexte des projets, programmes et portefeuille",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=987",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=17656"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Études de faisabilité de projet",
+                                          "chemin":  "SEMESTRE 9\u003eEtudes de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=988",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-ETUDE DE FAISABILITE DE PROJETS",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=19024"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Étude d’impact environnemental et social",
+                                          "chemin":  "SEMESTRE 9\u003eEtudes de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=989",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-Etude d\u0027Impact environnemental",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=19056"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Analyse financière de projet",
+                                          "chemin":  "SEMESTRE 9\u003eAnalyse de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=990",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE ANALYSE FINANCIERE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21805"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Analyse économique des projets",
+                                          "chemin":  "SEMESTRE 9\u003eAnalyse de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=991",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE ANALAYSE ECONOMIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=24964"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Planification stratégique des projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003ePlanification des projets et programmes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=992",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26627"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Planification opérationnelle et budgétisation des projets et programmes",
+                                          "chemin":  "SEMESTRE 9\u003ePlanification des projets et programmes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=993",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27341"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Intégration et gestion de projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eManagement de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=994",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE GP CLASSIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27390"
+                                                         },
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE GP AUF",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29777"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Approches innovantes de gestion de projet et méthodologie agile",
+                                          "chemin":  "SEMESTRE 9\u003eManagement de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=995",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE MBA GP GROUPE 1 BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28821"
+                                                         },
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE MBA GP GROUPE 2 BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29927"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Partenariat public-privé (PPP)",
+                                          "chemin":  "SEMESTRE 9\u003eManagement de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=996",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13788"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Gestion des parties prenantes de projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eGestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=997",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13805"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Logistique et gestion des ressources matérielles",
+                                          "chemin":  "SEMESTRE 9\u003eGestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=998",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29115"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Passation des marchés publics",
+                                          "chemin":  "SEMESTRE 9\u003eGestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=999",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE PASSATION DES MARCHES",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26906"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Management de la qualité",
+                                          "chemin":  "SEMESTRE 9\u003eGestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1000",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29538"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Aspects juridiques et fiscaux des projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eEnjeux juridiques et réglementaires",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1001",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29895"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Codes éthiques et déontologie",
+                                          "chemin":  "SEMESTRE 9\u003eEnjeux juridiques et réglementaires",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1002",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29620"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Méthodologie de recherche qualitative",
+                                          "chemin":  "SEMESTRE 10\u003eMéthodologie de recherche",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1003",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13907"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Méthodologie de recherche Qualitative 25-26 GP",
+                                          "chemin":  "SEMESTRE 10\u003eMéthodologie de recherche",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1004",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=30550"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Méthodologie de rédaction du TFE",
+                                          "chemin":  "SEMESTRE 10\u003eMéthodologie de recherche",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1005",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13941"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Suivi et évaluation des projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 10\u003eSuivi et évaluation des projets",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1006",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13958"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Évaluation d’impact",
+                                          "chemin":  "SEMESTRE 10\u003eSuivi et évaluation des projets",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1007",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13975"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Capitalisation, gestion et dissémination des connaissances",
+                                          "chemin":  "SEMESTRE 10\u003eSuivi et évaluation des projets",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1008",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=13992"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Gestion des risques et contrôle des projets",
+                                          "chemin":  "SEMESTRE 10\u003eMaitrise des risques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1009",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14009"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Intégration des risques transversaux",
+                                          "chemin":  "SEMESTRE 10\u003eMaitrise des risques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1010",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=30526"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Audit de projet",
+                                          "chemin":  "SEMESTRE 10\u003eMaitrise des risques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1011",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14043"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Projet / Mémoire professionnel",
+                                          "chemin":  "SEMESTRE 10\u003eMémoire professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1012",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14060"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Outils informatiques appliqués à la gestion de projet",
+                                          "chemin":  "SEMESTRE 10\u003eInformatiques appliquées à la gestion de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1013",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14077"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Anglais de spécialité",
+                                          "chemin":  "SEMESTRE 10\u003eLangue étrangère",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1014",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE ANGLAIS DES SPECIALITES",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14904"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Transformation and Design Thinking",
+                                          "chemin":  "SEMESTRE 10\u003eLangue étrangère",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1015",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14111"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Management des programmes publics",
+                                          "chemin":  "SEMESTRE 10\u003eMBA GP Conférences et Panels",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1016",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14128"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Étude de cas de projets complexes",
+                                          "chemin":  "SEMESTRE 10\u003eMBA GP Conférences et Panels",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1017",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14145"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Marketing et communication digitale en gestion de projet",
+                                          "chemin":  "SEMESTRE 10\u003eMBA GP Conférences et Panels",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1018",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14162"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Gestion des parties prenantes",
+                                          "chemin":  "SEMESTRE 10\u003eMBA GP Conférences et Panels",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1019",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14179"
+                                                         }
+                                                     ]
+                                      }
+                                  ]
+                    },
+                    {
+                        "espace":  "MBA AG",
+                        "cours":  [
+                                      {
+                                          "cours":  "Droit des affaires 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.1 – Environnement économique et juridique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1022",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=17559"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Environnement économique et international de l’entreprise 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.1 – Environnement économique et juridique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1023",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=17613"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Fiscalité 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.1 – Environnement économique et juridique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1024",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=17730"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Théorie et management des organisations 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 – Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1025",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-THEORIE DES ORGANISATIONS",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=19550"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Management interculturel 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 – Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1026",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE MANAGEMENT INTERCULTUREL",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=19085"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Management stratégique 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 – Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1027",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-MANAGEMENT STRATEGIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=17990"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Marketing 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 – Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1028",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14395"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Création d’entreprise 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 – Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1029",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14412"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Gestion des projets et suivi-évaluation 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 – Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1030",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27089"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Comptabilité 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.3 – Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1031",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE COMPTABILITE GENERALE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14785"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Finance 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.3 – Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1032",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=25064"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Contrôle interne 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.3 – Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1033",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26986"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Contrôle de gestion 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.3 – Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1034",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE AG CLASSIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27760"
+                                                         },
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE AG AUF",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29131"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Marchés financiers 25-26",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.3 – Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1035",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27793"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Méthodologie de rédaction de mémoire 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.1 – Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1036",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14531"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Anglais des affaires 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.1 – Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1037",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE ANGLAIS DES AFFAIRES",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14806"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Jeu d’entreprise 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.1 – Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1038",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14565"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Développement personnel et professionnel 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.1 – Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1039",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14582"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Stage professionnel + rédaction de mémoire 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.1 – Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1040",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14599"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Organisation et stratégie 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 1 : GESTION DES ENTREPRISES",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1041",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14616"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Administration et gestion des ressources humaines 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 1 : GESTION DES ENTREPRISES",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1042",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=30210"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Gestion financière 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 1 : GESTION DES ENTREPRISES",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1043",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14650"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Systèmes d’information 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 1 : GESTION DES ENTREPRISES",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1044",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29452"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Droit de la fonction publique et de la décentralisation 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1045",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14684"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Acteurs et systèmes de protection sociale 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1046",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14701"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Science administrative et droit administratif 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1047",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=30603"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Finances de l’État et finances locales 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1048",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=14735"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Gestion des ressources humaines dans l’administration publique 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1049",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29469"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Modernisation et digitalisation du service public 25-26",
+                                          "chemin":  "SEMESTRE 2\u003eSPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1050",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29997"
+                                                         }
+                                                     ]
+                                      }
+                                  ]
+                    },
+                    {
+                        "espace":  "MBA MSCH",
+                        "cours":  [
+                                      {
+                                          "cours":  "MBA MSCH – Comptabilité générale (MBAGRH111)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.1 Comptabilité finance",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1247",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE COMPTABILITE GENERALE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18780"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Comptabilité analytique (MBAGRH112)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.1 Comptabilité finance",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1248",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18203"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Finance d\u0027entreprise (MBAGRH113)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.1 Comptabilité finance",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1249",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18220"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Administration du personnel (MBAGRH121)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 Enseignements Propédeutiques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1250",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=25164"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Condition de travail et qualité de vie (MBAGRH124)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 Enseignements Propédeutiques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1251",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18254"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Gestion des compétences (MBAGRH125)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 Enseignements Propédeutiques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1252",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18271"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Communication organisationnelle (MBAGRH126)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 Enseignements Propédeutiques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1253",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18288"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Conventions internationales sur le travail (MBAGRH131)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.2 Enseignements Propédeutiques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1254",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18305"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Droit de la sécurité sociale (MBAGRH132)",
+                                          "chemin":  "SEMESTRE 1\u003eUE1.3 Droit Social et Relations Professionnelles",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1255",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18322"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Normalisation et management de la qualité (MBAGRH133)",
+                                          "chemin":  "SEMESTRE 1\u003eUE1.3 Droit Social et Relations Professionnelles",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1256",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18339"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Droit du travail (MBAGRH134)",
+                                          "chemin":  "SEMESTRE 1\u003eUE1.3 Droit Social et Relations Professionnelles",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1257",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "Salle virtuelle – séances synchrones BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27669"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Contrôle de gestion sociale (MBAGRH141)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.4  Audit Social et Contrôle de Gestion",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1258",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18373"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Audit social et audit de la RSE (MBAGRH142)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.4  Audit Social et Contrôle de Gestion",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1259",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18390"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Bilan social (MBAGRH143)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.4  Audit Social et Contrôle de Gestion",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1260",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18407"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Management de la formation (MBAGRH151)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.5  Management des Hommes et des Equipes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1261",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18424"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Théorie des organisations (MBAGRH152)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.5  Management des Hommes et des Equipes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1262",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-THEORIE DES ORGANISATIONS",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29063"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Appréciation des performances du personnel (MBAGRH153)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.5  Management des Hommes et des Equipes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1263",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "Salle virtuelle – MBAGRH153 BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27729"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Recrutement et intégration (MBAGRH153)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.5  Management des Hommes et des Equipes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1264",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18475"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Management des rémunérations (MBAGRH154)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.5  Management des Hommes et des Equipes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1265",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18492"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Logiciel spécialisé de paie (MBAGRH155)",
+                                          "chemin":  "SEMESTRE 1\u003eUE 1.5  Management des Hommes et des Equipes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1266",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18509"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Stratégie d\u0027entreprise et GRH (MBAGRH211)",
+                                          "chemin":  "SEMESTRE 2\u003eUE2.2 Gestion Internationale des RH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1267",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18526"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Diagnostic organisationnel et gestion du changement (MBAGRH212)",
+                                          "chemin":  "SEMESTRE 2\u003eUE2.2 Gestion Internationale des RH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1268",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18543"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Gestion prévisionnelle des emplois et des compétences (MBAGRH213)",
+                                          "chemin":  "SEMESTRE 2\u003eUE2.2 Gestion Internationale des RH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1269",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18560"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Environnement économique international et GRH (MBAGRH221)",
+                                          "chemin":  "SEMESTRE 2\u003eUE2.2 Gestion Internationale des RH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1270",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18577"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Mobilité internationale des ressources humaines (MBAGRH222)",
+                                          "chemin":  "SEMESTRE 2\u003eUE2.2 Gestion Internationale des RH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1271",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18594"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Management interculturel (MBAGRH223)",
+                                          "chemin":  "SEMESTRE 2\u003eUE2.2 Gestion Internationale des RH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1272",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18611"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – E-GRH : e-recrutement, e-formation, e-communication (MBAGRH224)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.3 Le Métier de Consultant en  GRH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1273",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18628"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Création et gestion d\u0027un cabinet de conseil en GRH (MBAGRH231)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.3 Le Métier de Consultant en  GRH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1274",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18645"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Conduite d\u0027une mission d\u0027intervention en GRH (MBAGRH232)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.3 Le Métier de Consultant en  GRH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1275",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18662"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Conception et conduite d\u0027un projet (MBAGRH233)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.3 Le Métier de Consultant en  GRH",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1276",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18679"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Développement personnel et professionnel (MBAGRH241)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.4 Développement Personnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1277",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18696"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Méthodologie de la recherche (MBAGRH242)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.4 Développement Personnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1278",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18713"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Simulation d\u0027entreprises (MBAGRH243)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.4 Développement Personnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1279",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29849"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Anglais des affaires (MBAGRH244)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.4 Développement Personnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1280",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18747"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA MSCH – Stage et mémoire (MBAGRH251)",
+                                          "chemin":  "SEMESTRE 2\u003eUE 2.5 Stage et Mémoire",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1281",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=18764"
+                                                         }
+                                                     ]
+                                      }
+                                  ]
+                    },
+                    {
+                        "espace":  "MBA AG AUF",
+                        "cours":  [
+                                      {
+                                          "cours":  "MBA AG AUF COMPTABILITE",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.3 Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1299",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE COMPTABILITE GENERALE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26179"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Anglais des Affaires",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.1 Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1304",
+                                          "salles":  [
+
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Stage professionnel + rédaction de mémoire (4 mois minimum)",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.2 Stage et mémoire (4 mois minimum)",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1306",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20057"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "Système d\u0027information",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.3 Outils de Gestion de l\u0027entreprise",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1310",
+                                          "salles":  [
+
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Droit des affaires",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1 Environnement économique et juridique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1317",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21620"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Environnement économique et International de l\u0027entreprise",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1 Environnement économique et juridique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1318",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21601"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Fiscalité",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1 Environnement économique et juridique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1319",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21583"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Théorie et Management des Organisations",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1320",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20295"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Management interculturel",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1321",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20312"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Management stratégique",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1322",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20329"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Marketing",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1323",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26411"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Création d\u0027entreprise",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1324",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26739"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Gestion des projets et suivi évaluation",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1325",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28869"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Finance",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.3 Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1327",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28250"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Contrôle Interne",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.3 Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1328",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29909"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Contrôle de gestion",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.3 Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1329",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28952"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Marchés financiers",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.3 Comptabilité, finance et contrôle",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1330",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29343"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA (AG, ACG, GP, MCID, IGF) UE 4 ECUE 1 METHODOLOGIE DE REDACTION DE MEMOIRE",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.1 Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1331",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE - Méthodologie de rédaction de mémoire BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20482"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Anglais des Affaires",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.1 Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1332",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20499"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Jeu d\u0027entreprise",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.1 Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1333",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20516"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Développement personnel",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.1 Développement personnel et professionnel",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1334",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26670"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Stage professionnel + rédaction de mémoire (4 mois minimum)",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.2 Stage et mémoire (4 mois minimum)",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1335",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20550"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Organisation et stratégie",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.3 Outils de Gestion de l\u0027entreprise",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1336",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20567"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Administration et Gestion des Ressources Humaines",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.3 Outils de Gestion de l\u0027entreprise",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1337",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20584"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Gestion financière",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.3 Outils de Gestion de l\u0027entreprise",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1338",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20601"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Système d\u0027information",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.3 Outils de Gestion de l\u0027entreprise",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1339",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20618"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Droit de la fonction publique et de la décentralisation",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.4 Droit et Gestion publique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1340",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20635"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Acteurs et systèmes de protection sociale",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.4 Droit et Gestion publique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1341",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20652"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Science administrative et droit administratif",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.4 Droit et Gestion publique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1342",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20669"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Finances de l\u0027état et finances locales",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.4 Droit et Gestion publique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1343",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20686"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Gestion des rh dans l\u0027administration publique",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.4 Droit et Gestion publique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1344",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20703"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Modernisation et digitalisation du service public",
+                                          "chemin":  "SEMESTRE 10\u003eUE 2.4 Droit et Gestion publique",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1345",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20720"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA AG AUF Management stratégique",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.2 Fondamentaux du management",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1646",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-MANAGEMENT STRATEGIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28390"
+                                                         }
+                                                     ]
+                                      }
+                                  ]
+                    },
+                    {
+                        "espace":  "MBA GP AUF",
+                        "cours":  [
+                                      {
+                                          "cours":  "MBA GP AUF Enjeux et défis du développement",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.1: Contexte des projets, programmes et portefeuille",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1346",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21901"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Principes et enjeux de l\u0027administration publique",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.1: Contexte des projets, programmes et portefeuille",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1347",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21278"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Environnement du projet en entreprise et défis des PME",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.1: Contexte des projets, programmes et portefeuille",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1348",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21264"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Études de faisabilité de projet",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.2: Etudes de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1349",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-ETUDE DE FAISABILITE DE PROJETS",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=25120"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Étude d\u0027impact environnemental et social",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.2: Etudes de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1350",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE-Etude d\u0027Impact environnemental",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=25101"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Analyse financière de projet",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.3: Analyse de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1351",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE ANALYSE FINANCIERE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26454"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Analyse économique des projets",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.3: Analyse de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1352",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE ANALAYSE ECONOMIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26434"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Planification stratégique des projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.4: Planification des projets et programmes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1353",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=27694"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Planification opérationnelle et budgétisation des projets et programmes",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.4: Planification des projets et programmes",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1354",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29489"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Intégration et gestion de projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.5: Management de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1355",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20890"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Approches innovantes de gestion de projet et méthodologie agile",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.5: Management de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1356",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20907"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Partenariat public-privé (PPP)",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.5: Management de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1357",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=26934"
+                                                         },
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE GP CLASSIQUE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28861"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Gestion des parties prenantes de projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.5: Management de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1358",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20941"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Logistique et gestion des ressources matérielles",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.6: Gestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1359",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=20958"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Passation des marchés publics",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.6: Gestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1360",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE PASSATION DES MARCHES",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=28971"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Management de la qualité",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.6: Gestion des ressources",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1361",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=30511"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Aspects juridiques et fiscaux des projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.7: Enjeux juridiques et réglementaires",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1362",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=29860"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Codes éthiques et déontologie",
+                                          "chemin":  "SEMESTRE 9\u003eUE 1.1.7: Enjeux juridiques et réglementaires",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1363",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE BigBlueButton",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=30050"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Méthodologie de recherche qualitative",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.1: Méthodologie de recherche",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1364",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21043"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Méthodologie de recherche quantitative",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.1: Méthodologie de recherche",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1365",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21060"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Méthodologie de rédaction du TFE",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.1: Méthodologie de recherche",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1366",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21077"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Suivi et évaluation des projets, programmes et portefeuille",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.2: Suivi et évaluation des projets",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1367",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21094"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Évaluation d\u0027impact",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.2: Suivi et évaluation des projets",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1368",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21111"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Capitalisation, gestion et dissémination des connaissances",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.2: Suivi et évaluation des projets",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1369",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21128"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Gestion des risques et contrôle des projets",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.3: Maîtrise des risques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1370",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21145"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Intégration des risques transversaux",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.3: Maîtrise des risques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1371",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21162"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Audit de projet",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.3: Maîtrise des risques",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1372",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21179"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Outils informatiques appliqués à la gestion de projet",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.5: Informatiques appliquées à la gestion de projet",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1373",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21196"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Anglais de spécialité",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.6: Langue étrangère",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1374",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21213"
+                                                         }
+                                                     ]
+                                      },
+                                      {
+                                          "cours":  "MBA GP AUF Transformation and Design Thinking",
+                                          "chemin":  "SEMESTRE 10\u003eUE 1.2.7: Leadership",
+                                          "lienCours":  "https://formations.cesagonline.com/course/view.php?id=1375",
+                                          "salles":  [
+                                                         {
+                                                             "nom":  "SALLE VIRTUELLE",
+                                                             "lien":  "https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=21230"
+                                                         }
+                                                     ]
+                                      }
+                                  ]
+                    }
+                ]
+}
