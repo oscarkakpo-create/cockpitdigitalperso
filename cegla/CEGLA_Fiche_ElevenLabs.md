@@ -1,6 +1,6 @@
 # CEGLA · Module 21 : fiche de production ElevenLabs
 
-**Programme :** Master Décentralisation et Développement Local · Module 21
+**Programme :** Master en Décentralisation et Gouvernance Locale · Module 21
 **Émetteur :** Centre d'Excellence de Gouvernance Locale en Afrique (CEGLA)
 **Partenaires :** CESAG · Hochschule Kehl · DAAD (African Excellence) · DIGI-FACE
 
@@ -38,7 +38,7 @@ Bienvenue à toutes et à tous au Centre d'Excellence de Gouvernance Locale en A
 
 <break time="1.5s" />
 
-Au nom du CESAG, de l'Université des Sciences Appliquées de Kehl et du réseau des Centres d'Excellence du DAAD, je suis ravi de vous accueillir dans ce module 21 du Master Décentralisation et Développement Local, consacré au foncier et à la gestion du patrimoine des collectivités territoriales.
+Au nom du CESAG, de l'Université des Sciences Appliquées de Kehl et du réseau des Centres d'Excellence du DAAD, je suis ravi de vous accueillir dans ce module 21 du Master en Décentralisation et Gouvernance Locale, consacré au foncier et à la gestion du patrimoine des collectivités territoriales.
 
 <break time="1.2s" />
 
@@ -101,10 +101,10 @@ Réglages : les mêmes que pour la capsule audio (Multilingual v2, voix Tony, St
 
 **Voix-off à copier :**
 ```
-Bienvenue au Centre d'Excellence de Gouvernance Locale en Afrique, le Cègla, au sein du Master Décentralisation et Développement Local. Ce module 21 est dédié au foncier et à la gestion du patrimoine des collectivités territoriales. En Afrique de l'Ouest, sécuriser ses terres et son patrimoine est le premier acte de souveraineté et de développement pour une commune.
+Bienvenue au Centre d'Excellence de Gouvernance Locale en Afrique, le Cègla, au sein du Master en Décentralisation et Gouvernance Locale. Ce module 21 est dédié au foncier et à la gestion du patrimoine des collectivités territoriales. En Afrique de l'Ouest, sécuriser ses terres et son patrimoine est le premier acte de souveraineté et de développement pour une commune.
 ```
 
-**Visuels :** fond en dégradé radial vert CEGLA profond (`#186030` vers `#082814`) ; logo CEGLA au centre puis en haut à gauche ; badge doré « CEGLA · CENTRE D'EXCELLENCE DE GOUVERNANCE LOCALE EN AFRIQUE » ; titre blanc gras « Le Foncier et la Gestion du Patrimoine des CT » ; sous-titre « Master Décentralisation & Développement Local · Module 21 » ; les 4 piliers en fondu avec bordure supérieure or ; cartouche de partenariat en bas.
+**Visuels :** fond en dégradé radial vert CEGLA profond (`#186030` vers `#082814`) ; logo CEGLA au centre puis en haut à gauche ; badge doré « CEGLA · CENTRE D'EXCELLENCE DE GOUVERNANCE LOCALE EN AFRIQUE » ; titre blanc gras « Le Foncier et la Gestion du Patrimoine des CT » ; sous-titre « Master en Décentralisation et Gouvernance Locale · Module 21 » ; les 4 piliers en fondu avec bordure supérieure or ; cartouche de partenariat en bas.
 
 ### SCÈNE 2 · Fondement : le faisceau complexe de droits (0:35 – 1:10)
 *Ton : explicatif, analytique, pédagogique.*
