@@ -20,10 +20,12 @@ Ce fichier regroupe tout ce qu'il faut pour produire les deux contenus dans Elev
 
 ### Réglages ElevenLabs
 
+> **Charte retenue pour la vidéo : CEGLA uniquement** (vert `#186030` / `#248842`, ocre `#C2842D`, titres en Montserrat, corps en Roboto).
+
 | Réglage | Valeur |
 |---|---|
 | Modèle | **Eleven Multilingual v2** |
-| Voix | **Tony - Podcast Narrator** (français, léger accent africain, chaleureuse, un peu grave). Alternatives : *Antoine* (formelle, institutionnelle), *Nicolas* (grave, stable) |
+| Voix | **Offreh** (voix francophone africaine, naturelle, chaleureuse et dynamique), choisie après essai pour une lecture moins endormie. Alternatives testées : *Julien - Professional and Energetic*, *Tony - Podcast Narrator* |
 | Stability | **0.65** : rythme posé, diction claire |
 | Similarity | **0.80** : reproduction fidèle de la voix |
 | Style Exaggeration | **0.15** : ton sobre, non publicitaire |
@@ -92,7 +94,7 @@ Excellent apprentissage à toutes et à tous, et plein succès au sein du Centre
 **Titre :** *Les 4 Piliers de la Décision Foncière et de la Gestion Domaniale des CT*
 **Format :** motion design Full HD 16:9 (1920×1080), environ 3 min 30.
 
-Réglages : les mêmes que pour la capsule audio (Multilingual v2, voix Tony, Stability 0.65, Similarity 0.80, Style 0.15, Speaker Boost activé). Générez **une scène par génération** pour caler facilement l'image sur la voix.
+Réglages : les mêmes que pour la capsule audio (Multilingual v2, voix Offreh, Stability 0.65, Similarity 0.80, Style 0.15, Speaker Boost activé). Générez **une scène par génération** pour caler facilement l'image sur la voix.
 
 ### SCÈNE 1 · Ouverture institutionnelle (0:00 – 0:35)
 *Ton : posé, prestigieux, solennel et accueillant.*
