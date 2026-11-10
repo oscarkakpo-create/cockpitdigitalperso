@@ -13,6 +13,8 @@ Ce fichier regroupe tout ce qu'il faut pour produire les deux contenus dans Elev
 
 ## PARTIE 1 · CAPSULE AUDIO (PODCAST)
 
+> **Prononciation :** CEGLA se lit « Cègla ». Dans les textes à copier ci-dessous, le mot est donc écrit **Cègla** pour que la voix le prononce correctement. Le nom reste « CEGLA » partout ailleurs (écran, documents).
+
 **Titre :** *Le Foncier et la Domanialité au Cœur de la Gouvernance Locale en Afrique*
 **Cible :** maires, secrétaires généraux, préfets, directeurs des services techniques municipaux, auditeurs du Master CEGLA.
 
@@ -32,7 +34,7 @@ Ce fichier regroupe tout ce qu'il faut pour produire les deux contenus dans Elev
 ### TEXTE À COPIER DANS ELEVENLABS
 
 ```
-Bienvenue à toutes et à tous au Centre d'Excellence de Gouvernance Locale en Afrique, le CEGLA.
+Bienvenue à toutes et à tous au Centre d'Excellence de Gouvernance Locale en Afrique, le Cègla.
 
 <break time="1.5s" />
 
@@ -52,7 +54,7 @@ De l'autre, les légitimités coutumières séculaires, les droits de culture, l
 
 <break time="1.5s" />
 
-Dans ce parcours de formation, le CEGLA vous transmet une méthode d'action rigoureuse en quatre questions indispensables avant toute décision :
+Dans ce parcours de formation, le Cègla vous transmet une méthode d'action rigoureuse en quatre questions indispensables avant toute décision :
 Un : Quel est le bien exact, sa localisation précise et ses limites physiques ?
 Deux : Qui en est le véritable propriétaire au regard des titres et des actes authentiques ?
 Trois : Qui en assure la gestion et l'entretien au quotidien ?
@@ -66,7 +68,7 @@ Vous apprendrez également à dresser un inventaire physique complet de votre pa
 
 Ce module est conçu pour transformer concrètement votre pratique sur le terrain. Consultez vos cinq livres interactifs sur la plateforme Moodle DIGI-FACE, débattez avec vos pairs sur les forums, et construisez votre expertise pas à pas.
 
-Excellent apprentissage à toutes et à tous, et plein succès au sein du Centre d'Excellence CEGLA !
+Excellent apprentissage à toutes et à tous, et plein succès au sein du Centre d'Excellence Cègla !
 ```
 
 ### Notes de lecture (pour la voix, à ne pas coller)
@@ -99,7 +101,7 @@ Réglages : les mêmes que pour la capsule audio (Multilingual v2, voix Tony, St
 
 **Voix-off à copier :**
 ```
-Bienvenue au Centre d'Excellence de Gouvernance Locale en Afrique, le CEGLA, au sein du Master Décentralisation et Développement Local. Ce module 21 est dédié au foncier et à la gestion du patrimoine des collectivités territoriales. En Afrique de l'Ouest, sécuriser ses terres et son patrimoine est le premier acte de souveraineté et de développement pour une commune.
+Bienvenue au Centre d'Excellence de Gouvernance Locale en Afrique, le Cègla, au sein du Master Décentralisation et Développement Local. Ce module 21 est dédié au foncier et à la gestion du patrimoine des collectivités territoriales. En Afrique de l'Ouest, sécuriser ses terres et son patrimoine est le premier acte de souveraineté et de développement pour une commune.
 ```
 
 **Visuels :** fond en dégradé radial vert CEGLA profond (`#186030` vers `#082814`) ; logo CEGLA au centre puis en haut à gauche ; badge doré « CEGLA · CENTRE D'EXCELLENCE DE GOUVERNANCE LOCALE EN AFRIQUE » ; titre blanc gras « Le Foncier et la Gestion du Patrimoine des CT » ; sous-titre « Master Décentralisation & Développement Local · Module 21 » ; les 4 piliers en fondu avec bordure supérieure or ; cartouche de partenariat en bas.
@@ -111,7 +113,7 @@ Bienvenue au Centre d'Excellence de Gouvernance Locale en Afrique, le CEGLA, au 
 
 **Voix-off à copier :**
 ```
-Pour le CEGLA, le foncier ne se réduit jamais à une simple borne géomètre. C'est un système vivant constitué de ressources vitales, de règles formelles et coutumières, et d'équilibres sociaux. Une même terre peut porter des cultures, servir de piste à l'élevage et abriter un point d'eau partagé. L'aménageur local doit composer avec ce faisceau d'usages.
+Pour le Cègla, le foncier ne se réduit jamais à une simple borne géomètre. C'est un système vivant constitué de ressources vitales, de règles formelles et coutumières, et d'équilibres sociaux. Une même terre peut porter des cultures, servir de piste à l'élevage et abriter un point d'eau partagé. L'aménageur local doit composer avec ce faisceau d'usages.
 ```
 
 **Visuels :** zoom sur la carte de l'Afrique de l'Ouest (ocre `#C2842D`) ; territoire communal en 4 cadrans : 1) ressources partagées (terres agricoles, forêts communautaires, pâturages, mares), 2) pluralité des normes (lois étatiques et codes domaniaux face aux coutumes), 3) pratiques sociales (usages saisonniers, couloirs de transhumance, héritage), 4) rapports de pouvoir (mairies, chefs coutumiers de terre, préfets, pasteurs).
@@ -123,7 +125,7 @@ Pour le CEGLA, le foncier ne se réduit jamais à une simple borne géomètre. C
 
 **Voix-off à copier :**
 ```
-Le deuxième principe clé enseigné au CEGLA est la qualification domaniale. Les biens communaux relèvent soit du domaine public, soit du domaine privé. Le domaine public, inaliénable et imprescriptible, protège les places, les marchés et les routes. Le domaine privé permet de valoriser, louer ou céder des terrains. Les confondre expose la commune à de lourdes sanctions judiciaires.
+Le deuxième principe clé enseigné au Cègla est la qualification domaniale. Les biens communaux relèvent soit du domaine public, soit du domaine privé. Le domaine public, inaliénable et imprescriptible, protège les places, les marchés et les routes. Le domaine privé permet de valoriser, louer ou céder des terrains. Les confondre expose la commune à de lourdes sanctions judiciaires.
 ```
 
 **Visuels :** tableau à deux colonnes. À gauche (vert `#248842`), *Domaine public communal* : inaliénable, imprescriptible, insaisissable ; exemples : places publiques, voiries, marchés communaux, écoles, dispensaires. À droite (or `#C2842D`), *Domaine privé communal* : aliénable, valorisable, support de conventions ; exemples : terrains lotis cessibles, baux commerciaux, réserves foncières. Bandeau transversal : droits coutumiers protégés (constatation préalable, purge légale, juste indemnisation).
@@ -135,7 +137,7 @@ Le deuxième principe clé enseigné au CEGLA est la qualification domaniale. Le
 
 **Voix-off à copier :**
 ```
-Face à toute décision foncière, le gestionnaire territorial formé au CEGLA applique une chaîne de qualification en quatre questions : Quel est le bien exact et ses limites ? Qui en est le propriétaire selon les actes officiels ? Qui en est le gestionnaire réel ? Et quel est son régime juridique ? La seule présence d'un terrain sur la commune ne prouve pas qu'il appartient à la mairie.
+Face à toute décision foncière, le gestionnaire territorial formé au Cègla applique une chaîne de qualification en quatre questions : Quel est le bien exact et ses limites ? Qui en est le propriétaire selon les actes officiels ? Qui en est le gestionnaire réel ? Et quel est son régime juridique ? La seule présence d'un terrain sur la commune ne prouve pas qu'il appartient à la mairie.
 ```
 
 **Visuels :** entonnoir animé en 4 cercles : 1) quel bien exact (localisation GPS, désignation physique, bornage contradictoire) ; 2) quel propriétaire (titres fonciers réels, délibérations, arrêtés de transfert) ; 3) quel gestionnaire (affectation, régie directe ou délégation de service public) ; 4) quel régime juridique (domaine public naturel ou artificiel, ou domaine privé).
@@ -159,7 +161,7 @@ Gérer le patrimoine communal implique aussi de veiller sur le bâti par un inve
 
 **Voix-off à copier :**
 ```
-Ce parcours certifiant du CEGLA vous offre des compétences concrètes grâce à l'étude de cas fil rouge de la commune de Koulouba. Explorez vos cours interactifs sur Moodle, complétez vos travaux pratiques et construisez votre dossier final. Bon travail et plein succès dans votre formation au Centre d'Excellence CEGLA !
+Ce parcours certifiant du Cègla vous offre des compétences concrètes grâce à l'étude de cas fil rouge de la commune de Koulouba. Explorez vos cours interactifs sur Moodle, complétez vos travaux pratiques et construisez votre dossier final. Bon travail et plein succès dans votre formation au Centre d'Excellence Cègla !
 ```
 
 **Visuels :** frise chronologique des 4 semaines : semaine 1 droits coutumiers et devoir A01 (10 %) ; semaine 2 domanialité des CT et devoir A02 (10 %) ; semaine 3 gestion patrimoniale, maintenance et devoir A03 (10 %) ; semaine 4 conflits, devoir A04, dossier final (40 %) et test final (20 %). Écran final : logo CEGLA avec les logos CESAG · DAAD · Kehl · DIGI-FACE.
