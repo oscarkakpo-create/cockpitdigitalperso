@@ -1,0 +1,659 @@
+{
+ "generated": "2026-11-12",
+ "note": "Sans identifiant de cours : ajouter 'lienCours' (ou 'id') par cours pour un lien direct.",
+ "cohortes": [
+  {
+   "nom": "MBA AG 26-27",
+   "cours": [
+    {
+     "cours": "Fiscalité 26-27",
+     "shortname": "Fiscalité 26-27"
+    },
+    {
+     "cours": "Environnement économique et international de l’entreprise 26-27",
+     "shortname": "Environnement économique et international de l’entreprise 26-27"
+    },
+    {
+     "cours": "Droit des affaires 26-27",
+     "shortname": "Droit des affaires 26-27"
+    },
+    {
+     "cours": "Gestion des projets et suivi-évaluation 26-27",
+     "shortname": "Gestion des projets et suivi-évaluation 26-27"
+    },
+    {
+     "cours": "Création d’entreprise 26-27",
+     "shortname": "Création d’entreprise 26-27"
+    },
+    {
+     "cours": "Marketing 26-27",
+     "shortname": "Marketing 26-27"
+    },
+    {
+     "cours": "Management stratégique 26-27",
+     "shortname": "Management stratégique 26-27"
+    },
+    {
+     "cours": "Management interculturel 26-27",
+     "shortname": "Management interculturel 26-27"
+    },
+    {
+     "cours": "Théorie et management des organisations 26-27",
+     "shortname": "Théorie et management des organisations 26-27"
+    },
+    {
+     "cours": "Marchés financiers 26-27",
+     "shortname": "Marchés financiers 26-27"
+    },
+    {
+     "cours": "Contrôle de gestion 26-27",
+     "shortname": "Contrôle de gestion 26-27"
+    },
+    {
+     "cours": "Contrôle interne 26-27",
+     "shortname": "Contrôle interne 26-27"
+    },
+    {
+     "cours": "Finance 26-27",
+     "shortname": "Finance 26-27"
+    },
+    {
+     "cours": "Comptabilité 26-27",
+     "shortname": "Comptabilité 26-27"
+    },
+    {
+     "cours": "Stage professionnel + rédaction de mémoire 26-27",
+     "shortname": "Stage professionnel + rédaction de mémoire 26-27"
+    },
+    {
+     "cours": "Développement personnel et professionnel 26-27",
+     "shortname": "Développement personnel et professionnel 26-27"
+    },
+    {
+     "cours": "Jeu d’entreprise 26-27",
+     "shortname": "Jeu d’entreprise 26-27"
+    },
+    {
+     "cours": "Anglais des affaires 26-27",
+     "shortname": "Anglais des affaires 26-27"
+    },
+    {
+     "cours": "Méthodologie de rédaction de mémoire 26-27",
+     "shortname": "Méthodologie de rédaction de mémoire 26-27"
+    },
+    {
+     "cours": "Systèmes d’information 26-27",
+     "shortname": "Systèmes d’information 26-27"
+    },
+    {
+     "cours": "Gestion financière 26-27",
+     "shortname": "Gestion financière 26-27"
+    },
+    {
+     "cours": "Administration et gestion des ressources humaines 26-27",
+     "shortname": "Administration et gestion des ressources humaines 26-27"
+    },
+    {
+     "cours": "Organisation et stratégie 26-27",
+     "shortname": "Organisation et stratégie 26-27"
+    },
+    {
+     "cours": "Modernisation et digitalisation du service public 26-27",
+     "shortname": "Modernisation et digitalisation du service public 26-27"
+    },
+    {
+     "cours": "Gestion des ressources humaines dans l’administration publique 26-27",
+     "shortname": "Gestion des ressources humaines dans l’administration publique 26-27"
+    },
+    {
+     "cours": "Finances de l’État et finances locales 26-27",
+     "shortname": "Finances de l’État et finances locales 26-27"
+    },
+    {
+     "cours": "Science administrative et droit administratif 26-27",
+     "shortname": "Science administrative et droit administratif 26-27"
+    },
+    {
+     "cours": "Acteurs et systèmes de protection sociale 26-27",
+     "shortname": "Acteurs et systèmes de protection sociale 26-27"
+    },
+    {
+     "cours": "Droit de la fonction publique et de la décentralisation 26-27",
+     "shortname": "Droit de la fonction publique et de la décentralisation 26-27"
+    }
+   ]
+  },
+  {
+   "nom": "MBA AG AUF 26-27",
+   "cours": [
+    {
+     "cours": "MBA AG AUF Fiscalité 26-27",
+     "shortname": "MBA AG AUF Fiscalité 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Environnement économique et International de l'entreprise 26-27",
+     "shortname": "MBA AG AUF Environnement économique et International de l'entreprise 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Droit des affaires 26-27",
+     "shortname": "MBA AG AUF Droit des affaires 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Management stratégique 26-27",
+     "shortname": "MBA AG AUF Management stratégique 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Gestion des projets et suivi évaluation 26-27",
+     "shortname": "MBA AG AUF Gestion des projets et suivi évaluation 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Création d'entreprise 26-27",
+     "shortname": "MBA AG AUF Création d'entreprise 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Marketing 26-27",
+     "shortname": "MBA AG AUF Marketing 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Management interculturel 26-27",
+     "shortname": "MBA AG AUF Management interculturel 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Théorie et Management des Organisations 26-27",
+     "shortname": "MBA AG AUF Théorie et Management des Organisations 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Marchés financiers 26-27",
+     "shortname": "MBA AG AUF Marchés financiers 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Contrôle de gestion 26-27",
+     "shortname": "MBA AG AUF Contrôle de gestion 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Contrôle Interne 26-27",
+     "shortname": "MBA AG AUF Contrôle Interne 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Finance 26-27",
+     "shortname": "MBA AG AUF Finance 26-27"
+    },
+    {
+     "cours": "MBA AG AUF COMPTABILITE 26-27",
+     "shortname": "MBA AG AUF COMPTABILITE 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Développement personnel 26-27",
+     "shortname": "MBA AG AUF Développement personnel 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Jeu d'entreprise 26-27",
+     "shortname": "MBA AG AUF Jeu d'entreprise 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Anglais des Affaires 26-27",
+     "shortname": "MBA AG AUF Anglais des Affaires 26-27"
+    },
+    {
+     "cours": "MBA (AG, ACG, GP, MCID, IGF) UE 4 ECUE 1 METHODOLOGIE DE REDACTION DE MEMOIRE 26-27",
+     "shortname": "MBA (AG, ACG, GP, MCID, IGF) UE 4 ECUE 1 METHODOLOGIE DE REDACTION DE MEMOIRE 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Stage professionnel + rédaction de mémoire (4 mois minimum) 26-27",
+     "shortname": "MBA AG AUF Stage professionnel + rédaction de mémoire (4 mois minimum) 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Système d'information 26-27",
+     "shortname": "MBA AG AUF Système d'information 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Gestion financière 26-27",
+     "shortname": "MBA AG AUF Gestion financière 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Administration et Gestion des Ressources Humaines 26-27",
+     "shortname": "MBA AG AUF Administration et Gestion des Ressources Humaines 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Organisation et stratégie 26-27",
+     "shortname": "MBA AG AUF Organisation et stratégie 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Modernisation et digitalisation du service public 26-27",
+     "shortname": "MBA AG AUF Modernisation et digitalisation du service public 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Gestion des rh dans l'administration publique 26-27",
+     "shortname": "MBA AG AUF Gestion des rh dans l'administration publique 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Finances de l'état et finances locales 26-27",
+     "shortname": "MBA AG AUF Finances de l'état et finances locales 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Science administrative et droit administratif 26-27",
+     "shortname": "MBA AG AUF Science administrative et droit administratif 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Acteurs et systèmes de protection sociale 26-27",
+     "shortname": "MBA AG AUF Acteurs et systèmes de protection sociale 26-27"
+    },
+    {
+     "cours": "MBA AG AUF Droit de la fonction publique et de la décentralisation 26-27",
+     "shortname": "MBA AG AUF Droit de la fonction publique et de la décentralisation 26-27"
+    }
+   ]
+  },
+  {
+   "nom": "MBA GP 26-27",
+   "cours": [
+    {
+     "cours": "Codes éthiques et déontologie 26-27",
+     "shortname": "Codes éthiques et déontologie 26-27"
+    },
+    {
+     "cours": "Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27",
+     "shortname": "Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "Environnement du projet en entreprise et défis des PME 26-27",
+     "shortname": "Environnement du projet en entreprise et défis des PME 26-27"
+    },
+    {
+     "cours": "Principes et enjeux de l’administration publique 26-27",
+     "shortname": "Principes et enjeux de l’administration publique 26-27"
+    },
+    {
+     "cours": "Enjeux et défis du développement 26-27",
+     "shortname": "Enjeux et défis du développement 26-27"
+    },
+    {
+     "cours": "Étude d’impact environnemental et social 26-27",
+     "shortname": "Étude d’impact environnemental et social 26-27"
+    },
+    {
+     "cours": "Études de faisabilité de projet 26-27",
+     "shortname": "Études de faisabilité de projet 26-27"
+    },
+    {
+     "cours": "Analyse économique des projets 26-27",
+     "shortname": "Analyse économique des projets 26-27"
+    },
+    {
+     "cours": "Analyse financière de projet 26-27",
+     "shortname": "Analyse financière de projet 26-27"
+    },
+    {
+     "cours": "Planification opérationnelle et budgétisation des projets et programmes 26-27",
+     "shortname": "Planification opérationnelle et budgétisation des projets et programmes 26-27"
+    },
+    {
+     "cours": "Planification stratégique des projets, programmes et portefeuille 26-27",
+     "shortname": "Planification stratégique des projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "Partenariat public-privé (PPP) 26-27",
+     "shortname": "Partenariat public-privé (PPP) 26-27"
+    },
+    {
+     "cours": "Approches innovantes de gestion de projet et méthodologie agile 26-27",
+     "shortname": "Approches innovantes de gestion de projet et méthodologie agile 26-27"
+    },
+    {
+     "cours": "Intégration et gestion de projets, programmes et portefeuille 26-27",
+     "shortname": "Intégration et gestion de projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "Gestion des parties prenantes de projets, programmes et portefeuille 26-27",
+     "shortname": "Gestion des parties prenantes de projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "Management de la qualité 26-27",
+     "shortname": "Management de la qualité 26-27"
+    },
+    {
+     "cours": "Passation des marchés publics 26-27",
+     "shortname": "Passation des marchés publics 26-27"
+    },
+    {
+     "cours": "Logistique et gestion des ressources matérielles 26-27",
+     "shortname": "Logistique et gestion des ressources matérielles 26-27"
+    },
+    {
+     "cours": "Méthodologie de rédaction du TFE 26-27",
+     "shortname": "Méthodologie de rédaction du TFE 26-27"
+    },
+    {
+     "cours": "Méthodologie de recherche Qualitative 26-27 GP",
+     "shortname": "Méthodologie de recherche Qualitative 26-27 GP"
+    },
+    {
+     "cours": "Capitalisation, gestion et dissémination des connaissances 26-27",
+     "shortname": "Capitalisation, gestion et dissémination des connaissances 26-27"
+    },
+    {
+     "cours": "Évaluation d’impact 26-27",
+     "shortname": "Évaluation d’impact 26-27"
+    },
+    {
+     "cours": "Suivi et évaluation des projets, programmes et portefeuille 26-27",
+     "shortname": "Suivi et évaluation des projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "Audit de projet 26-27",
+     "shortname": "Audit de projet 26-27"
+    },
+    {
+     "cours": "Intégration des risques transversaux 26-27",
+     "shortname": "Intégration des risques transversaux 26-27"
+    },
+    {
+     "cours": "Gestion des risques et contrôle des projets 26-27",
+     "shortname": "Gestion des risques et contrôle des projets 26-27"
+    },
+    {
+     "cours": "Projet / Mémoire professionnel 26-27",
+     "shortname": "Projet / Mémoire professionnel 26-27"
+    },
+    {
+     "cours": "Outils informatiques appliqués à la gestion de projet 26-27",
+     "shortname": "Outils informatiques appliqués à la gestion de projet 26-27"
+    },
+    {
+     "cours": "Transformation and Design Thinking 26-27",
+     "shortname": "Transformation and Design Thinking 26-27"
+    },
+    {
+     "cours": "Gestion des parties prenantes 26-27",
+     "shortname": "Gestion des parties prenantes 26-27"
+    },
+    {
+     "cours": "Marketing et communication digitale en gestion de projet 26-27",
+     "shortname": "Marketing et communication digitale en gestion de projet 26-27"
+    },
+    {
+     "cours": "Étude de cas de projets complexes 26-27",
+     "shortname": "Étude de cas de projets complexes 26-27"
+    },
+    {
+     "cours": "Management des programmes publics 26-27",
+     "shortname": "Management des programmes publics 26-27"
+    },
+    {
+     "cours": "Anglais de spécialité 26-27",
+     "shortname": "MBA GP - Anglais de spécialité 26-27"
+    }
+   ]
+  },
+  {
+   "nom": "MBA GP AUF 26-27",
+   "cours": [
+    {
+     "cours": "MBA GP AUF Environnement du projet en entreprise et défis des PME 26-27",
+     "shortname": "MBA GP AUF Environnement du projet en entreprise et défis des PME 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Principes et enjeux de l'administration publique 26-27",
+     "shortname": "MBA GP AUF Principes et enjeux de l'administration publique 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Enjeux et défis du développement 26-27",
+     "shortname": "MBA GP AUF Enjeux et défis du développement 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Étude d'impact environnemental et social 26-27",
+     "shortname": "MBA GP AUF Étude d'impact environnemental et social 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Études de faisabilité de projet 26-27",
+     "shortname": "MBA GP AUF Études de faisabilité de projet 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Analyse économique des projets 26-27",
+     "shortname": "MBA GP AUF Analyse économique des projets 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Analyse financière de projet 26-27",
+     "shortname": "MBA GP AUF Analyse financière de projet 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Planification opérationnelle et budgétisation des projets et programmes 26-27",
+     "shortname": "MBA GP AUF Planification opérationnelle et budgétisation des projets et programmes 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Planification stratégique des projets, programmes et portefeuille 26-27",
+     "shortname": "MBA GP AUF Planification stratégique des projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Gestion des parties prenantes de projets, programmes et portefeuille 26-27",
+     "shortname": "MBA GP AUF Gestion des parties prenantes de projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Partenariat public-privé (PPP) 26-27",
+     "shortname": "MBA GP AUF Partenariat public-privé (PPP) 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Approches innovantes de gestion de projet et méthodologie agile 26-27",
+     "shortname": "MBA GP AUF Approches innovantes de gestion de projet et méthodologie agile 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Intégration et gestion de projets, programmes et portefeuille 26-27",
+     "shortname": "MBA GP AUF Intégration et gestion de projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Management de la qualité 26-27",
+     "shortname": "MBA GP AUF Management de la qualité 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Passation des marchés publics 26-27",
+     "shortname": "MBA GP AUF Passation des marchés publics 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Logistique et gestion des ressources matérielles 26-27",
+     "shortname": "MBA GP AUF Logistique et gestion des ressources matérielles 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Codes éthiques et déontologie 26-27",
+     "shortname": "MBA GP AUF Codes éthiques et déontologie 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27",
+     "shortname": "MBA GP AUF Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Méthodologie de rédaction du TFE 26-27",
+     "shortname": "MBA GP AUF Méthodologie de rédaction du TFE 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Méthodologie de recherche quantitative 26-27",
+     "shortname": "MBA GP AUF Méthodologie de recherche quantitative 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Méthodologie de recherche qualitative 26-27",
+     "shortname": "MBA GP AUF Méthodologie de recherche qualitative 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Capitalisation, gestion et dissémination des connaissances 26-27",
+     "shortname": "MBA GP AUF Capitalisation, gestion et dissémination des connaissances 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Évaluation d'impact 26-27",
+     "shortname": "MBA GP AUF Évaluation d'impact 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Suivi et évaluation des projets, programmes et portefeuille 26-27",
+     "shortname": "MBA GP AUF Suivi et évaluation des projets, programmes et portefeuille 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Audit de projet 26-27",
+     "shortname": "MBA GP AUF Audit de projet 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Intégration des risques transversaux 26-27",
+     "shortname": "MBA GP AUF Intégration des risques transversaux 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Gestion des risques et contrôle des projets 26-27",
+     "shortname": "MBA GP AUF Gestion des risques et contrôle des projets 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Outils informatiques appliqués à la gestion de projet 26-27",
+     "shortname": "MBA GP AUF Outils informatiques appliqués à la gestion de projet 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Anglais de spécialité 26-27",
+     "shortname": "MBA GP AUF Anglais de spécialité 26-27"
+    },
+    {
+     "cours": "MBA GP AUF Transformation and Design Thinking 26-27",
+     "shortname": "MBA GP AUF Transformation and Design Thinking 26-27"
+    }
+   ]
+  },
+  {
+   "nom": "MBA MSCH 26-27",
+   "cours": [
+    {
+     "cours": "MBA MSCH – Finance d'entreprise (MBAGRH113) 26-27",
+     "shortname": "MBA MSCH – Finance d'entreprise (MBAGRH113) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Comptabilité analytique (MBAGRH112) 26-27",
+     "shortname": "MBA MSCH – Comptabilité analytique (MBAGRH112) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Comptabilité générale (MBAGRH111) 26-27",
+     "shortname": "MBA MSCH – Comptabilité générale (MBAGRH111) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Conventions internationales sur le travail (MBAGRH131) 26-27",
+     "shortname": "MBA MSCH – Conventions internationales sur le travail (MBAGRH131) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Communication organisationnelle (MBAGRH126) 26-27",
+     "shortname": "MBA MSCH – Communication organisationnelle (MBAGRH126) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Gestion des compétences (MBAGRH125) 26-27",
+     "shortname": "MBA MSCH – Gestion des compétences (MBAGRH125) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Condition de travail et qualité de vie (MBAGRH124) 26-27",
+     "shortname": "MBA MSCH – Condition de travail et qualité de vie (MBAGRH124) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Administration du personnel (MBAGRH121) 26-27",
+     "shortname": "MBA MSCH – Administration du personnel (MBAGRH121) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Droit du travail (MBAGRH134) 26-27",
+     "shortname": "MBA MSCH – Droit du travail (MBAGRH134) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Normalisation et management de la qualité (MBAGRH133) 26-27",
+     "shortname": "MBA MSCH – Normalisation et management de la qualité (MBAGRH133) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Droit de la sécurité sociale (MBAGRH132) 26-27",
+     "shortname": "MBA MSCH – Droit de la sécurité sociale (MBAGRH132) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Bilan social (MBAGRH143) 26-27",
+     "shortname": "MBA MSCH – Bilan social (MBAGRH143) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Audit social et audit de la RSE (MBAGRH142) 26-27",
+     "shortname": "MBA MSCH – Audit social et audit de la RSE (MBAGRH142) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Contrôle de gestion sociale (MBAGRH141) 26-27",
+     "shortname": "MBA MSCH – Contrôle de gestion sociale (MBAGRH141) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Logiciel spécialisé de paie (MBAGRH155) 26-27",
+     "shortname": "MBA MSCH – Logiciel spécialisé de paie (MBAGRH155) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Management des rémunérations (MBAGRH154) 26-27",
+     "shortname": "MBA MSCH – Management des rémunérations (MBAGRH154) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Recrutement et intégration (MBAGRH153) 26-27",
+     "shortname": "MBA MSCH – Recrutement et intégration (MBAGRH153) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Appréciation des performances du personnel (MBAGRH153) 26-27",
+     "shortname": "MBA MSCH – Appréciation des performances du personnel (MBAGRH153) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Théorie des organisations (MBAGRH152) 26-27",
+     "shortname": "MBA MSCH – Théorie des organisations (MBAGRH152) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Management de la formation (MBAGRH151) 26-27",
+     "shortname": "MBA MSCH – Management de la formation (MBAGRH151) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Management interculturel (MBAGRH223) 26-27",
+     "shortname": "MBA MSCH – Management interculturel (MBAGRH223) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Mobilité internationale des ressources humaines (MBAGRH222) 26-27",
+     "shortname": "MBA MSCH – Mobilité internationale des ressources humaines (MBAGRH222) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Environnement économique international et GRH (MBAGRH221) 26-27",
+     "shortname": "MBA MSCH – Environnement économique international et GRH (MBAGRH221) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Gestion prévisionnelle des emplois et des compétences (MBAGRH213) 26-27",
+     "shortname": "MBA MSCH – Gestion prévisionnelle des emplois et des compétences (MBAGRH213) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Diagnostic organisationnel et gestion du changement (MBAGRH212) 26-27",
+     "shortname": "MBA MSCH – Diagnostic organisationnel et gestion du changement (MBAGRH212) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Stratégie d'entreprise et GRH (MBAGRH211) 26-27",
+     "shortname": "MBA MSCH – Stratégie d'entreprise et GRH (MBAGRH211) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Conception et conduite d'un projet (MBAGRH233) 26-27",
+     "shortname": "MBA MSCH – Conception et conduite d'un projet (MBAGRH233) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Conduite d'une mission d'intervention en GRH (MBAGRH232) 26-27",
+     "shortname": "MBA MSCH – Conduite d'une mission d'intervention en GRH (MBAGRH232) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Création et gestion d'un cabinet de conseil en GRH (MBAGRH231) 26-27",
+     "shortname": "MBA MSCH – Création et gestion d'un cabinet de conseil en GRH (MBAGRH231) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – E-GRH : e-recrutement, e-formation, e-communication (MBAGRH224) 26-27",
+     "shortname": "MBA MSCH – E-GRH : e-recrutement, e-formation, e-communication (MBAGRH224) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Anglais des affaires (MBAGRH244) 26-27",
+     "shortname": "MBA MSCH – Anglais des affaires (MBAGRH244) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Simulation d'entreprises (MBAGRH243) 26-27",
+     "shortname": "MBA MSCH – Simulation d'entreprises (MBAGRH243) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Méthodologie de la recherche (MBAGRH242) 26-27",
+     "shortname": "MBA MSCH – Méthodologie de la recherche (MBAGRH242) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Développement personnel et professionnel (MBAGRH241) 26-27",
+     "shortname": "MBA MSCH – Développement personnel et professionnel (MBAGRH241) 26-27"
+    },
+    {
+     "cours": "MBA MSCH – Stage et mémoire (MBAGRH251) 26-27",
+     "shortname": "MBA MSCH – Stage et mémoire (MBAGRH251) 26-27"
+    }
+   ]
+  }
+ ]
+}

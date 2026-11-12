@@ -834,6 +834,7 @@ body.focus-mode #main{margin-left:0}
         </div>
         <div class="actions">
           <button class="btn primary" onclick="cohAdd()">➕ Ajouter la cohorte</button>
+          <button class="btn green" onclick="cohPreload()">📥 Charger AG · GP · MSCH 26-27</button>
           <span id="coh-msg" style="font-size:12px;color:var(--muted);align-self:center"></span>
         </div>
       </div>
@@ -1768,7 +1769,7 @@ const EPE_COURSE_LINKS=[["MBA AG 25-26 ONLINE","Fiscalité 25-26","1024","17730"
 function getEpeCatalogForProgram(){
   const prog=document.getElementById('epe-prog')?.value||'';
   const coh=cohByProg(prog);
-  if(coh) return coh.modules.map(m=>[coh.name,m[0],m[1],'']);
+  if(coh) return coh.modules.map(m=>[coh.name,m[0],m[1]||('https://formations.cesagonline.com/course/search.php?search='+encodeURIComponent(m[2]||m[0])),'']);
   const catalogProgram=EPE_PROGRAM_CATALOG[prog];
   const catalog=catalogProgram ? EPE_COURSE_LINKS.filter(c=>c[0]===catalogProgram) : [];
   const specialization=EPE_SPECIALIZATIONS[prog];
@@ -1801,7 +1802,7 @@ function fillEpeCourseLinks(moduleSelect){
     if(room)room.value='';
     return;
   }
-  if(moodle)moodle.value=course[2]?'https://formations.cesagonline.com/course/view.php?id='+course[2]:'';
+  if(moodle)moodle.value=course[2]?(/^http/.test(course[2])?course[2]:'https://formations.cesagonline.com/course/view.php?id='+course[2]):'';
   if(room)room.value=course[3]?'https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id='+course[3]:'';
   showToast('✓ Liens Moodle et salle récupérés automatiquement');
 }
@@ -1824,6 +1825,7 @@ function cohIds(url){
 function cohParse(data){
   let list=[];
   if(Array.isArray(data)) list=data;
+  else if(Array.isArray(data?.cohortes)) data.cohortes.forEach(e=>list.push(...(e.cours||[])));
   else if(Array.isArray(data?.espaces)) data.espaces.forEach(e=>list.push(...(e.cours||[])));
   else if(Array.isArray(data?.cours)) list=data.cours;
   const seen=new Set(), out=[];
@@ -1833,7 +1835,7 @@ function cohParse(data){
     const cl=x.lienCours||x.lien||x.url||x.link||'';
     if(!name||seen.has(name)) return;
     seen.add(name);
-    out.push([name, cohIds(cl).c||(/^\d+$/.test(cl)?cl:'')]);
+    out.push([name, cohIds(cl).c||(/^\d+$/.test(String(x.id||cl))?String(x.id||cl):''), x.shortname||name]);
   });
   return out;
 }
@@ -1861,6 +1863,19 @@ async function cohAdd(){
   cohSave(); cohRender();
   ['coh-name','coh-start','coh-url','coh-text','coh-surv','coh-file'].forEach(i=>document.getElementById(i).value='');
   msg.textContent=modules.length?`✓ Cohorte ajoutée avec ${modules.length} cours.`:'✓ Cohorte ajoutée (sans cours — importe un JSON plus tard).';
+}
+async function cohPreload(){
+  const msg=document.getElementById('coh-msg');
+  try{
+    const r=await fetch('data/cohortes-26-27.json'); if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json(); let n=0;
+    d.cohortes.forEach(c=>{ if(!cohorts.some(x=>x.name===c.nom)){ cohorts.push({name:c.nom,start:'',url:'',surv:'',modules:cohParse(c.cours)}); n++; } });
+    cohSave(); cohRender(); msg.textContent=n?`✓ ${n} cohorte(s) 26-27 ajoutée(s).`:'Les cohortes 26-27 sont déjà là.';
+  }catch(e){ msg.textContent='⚠ Chargement impossible ('+e.message+'). Ouvre le cockpit depuis GitHub Pages ou importe data/cohortes-26-27.json via le champ fichier.'; }
+}
+function cohSurv(i){
+  const u=prompt('Lien BigBlueButton de surveillance des examens :',cohorts[i].surv||''); if(u===null) return;
+  cohorts[i].surv=u.trim(); cohSave(); cohRender();
 }
 async function cohReimport(i){
   const c=cohorts[i]; const u=prompt('URL du JSON (ou laisse vide pour coller le JSON) :',c.url||'');
@@ -1890,6 +1905,7 @@ function cohRender(){
       <div style="flex:1;min-width:200px"><strong>${cohEsc(c.name)}</strong>
         <div style="font-size:12px;color:var(--muted)">${c.start?'Démarre le '+cohEsc(c.start)+' · ':''}${c.modules.length} cours</div></div>
       <button class="btn primary" style="font-size:12px" onclick="cohPlan(${i})">🗓️ Planifier EPE</button>
+      <button class="btn outline" style="font-size:12px" onclick="cohSurv(${i})" title="${cohEsc(c.surv||'Aucun lien de surveillance')}">${c.surv?'🎥 Surveillance ✓':'🎥 Surveillance'}</button>
       <button class="btn outline" style="font-size:12px" onclick="cohReimport(${i})">⟳ Importer JSON</button>
       <button class="btn outline" style="font-size:12px" onclick="cohDel(${i})">🗑</button>
     </div>`).join('') : '<p style="font-size:13px;color:var(--muted);padding:8px 0">Aucune cohorte pour l\'instant.</p>';
