@@ -106,7 +106,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V8';
+const KEY='CESAG_EPE_2627_V9';
 let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -288,7 +288,31 @@ function addSess(silent){
 function dupSess(i){ const s=JSON.parse(JSON.stringify(S.sessions[i])); s.id=uid(); S.sessions.splice(i+1,0,s); save(); renderSessions(); }
 function delSess(i){ S.sessions.splice(i,1); if(!S.sessions.length) addSess(true); save(); renderSessions(); }
 function clearSess(){ if(!confirm('Vider toutes les séances ?')) return; S.sessions=[]; addSess(true); save(); renderSessions(); }
-function upd(i,k,v){ S.sessions[i][k]=v; save(); }
+function upd(i,k,v){ S.sessions[i][k]=v; save(); checkClash(); }
+/* alerte en direct : même cohorte, même date, horaires qui se chevauchent */
+function clashes(){
+  const out={};
+  const ss=S.sessions;
+  for(let a=0;a<ss.length;a++) for(let b=a+1;b<ss.length;b++){
+    const x=ss[a],y=ss[b];
+    if(!x.date||x.date!==y.date||!x.hdeb||!x.hfin||!y.hdeb||!y.hfin) continue;
+    const common=x.cohorts.filter(c=>y.cohorts.includes(c)); if(!common.length) continue;
+    if(x.hdeb<y.hfin&&y.hdeb<x.hfin){
+      const lab=common.map(c=>c.replace(' 26-27','')).join(' + ');
+      (out[a]=out[a]||[]).push(`⚠ Clash avec la séance ${b+1} (${lab}, ${x.date.split('-').reverse().join('/')} ${y.hdeb}–${y.hfin})`);
+      (out[b]=out[b]||[]).push(`⚠ Clash avec la séance ${a+1} (${lab}, ${y.date.split('-').reverse().join('/')} ${x.hdeb}–${x.hfin})`);
+    }
+  }
+  return out;
+}
+function checkClash(){
+  const c=clashes();
+  S.sessions.forEach((s,i)=>{
+    const box=$('sess-'+i), msg=$('clash-'+i); if(!box) return;
+    box.style.borderColor=c[i]?'#dc2626':''; box.style.background=c[i]?'#fef2f2':'';
+    msg.innerHTML=c[i]?c[i].map(esc).join('<br>'):'';
+  });
+}
 function togSC(i,c){
   const s=S.sessions[i]; s.cohorts=s.cohorts.includes(c)?s.cohorts.filter(x=>x!==c):[...s.cohorts,c];
   save(); renderSessions();
@@ -314,7 +338,7 @@ function pickCourse(i,id){
 function renderSessions(){
   $('sessions').innerHTML=S.sessions.map((s,i)=>{
     const groups=courseGroups(s);
-    return `<div class="sess">
+    return `<div class="sess" id="sess-${i}">
       <div class="sess-h"><span>Séance ${i+1}</span><span><button class="btn s" onclick="dupSess(${i})">⧉ Dupliquer</button> <button class="btn s" onclick="delSess(${i})">🗑</button></span></div>
       <div class="row"><div class="fld" style="flex:2"><label>Cohorte(s) — plusieurs = cours commun</label>
         <div class="chips">${S.cohorts.map(c=>`<span class="chip ${s.cohorts.includes(c.name)?'on':''}" onclick="togSC(${i},'${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name.replace(' 26-27',''))}</span>`).join('')}</div></div></div>
@@ -331,13 +355,14 @@ function renderSessions(){
         <div class="fld"><label>Enseignant</label><input value="${esc(s.ens)}" onchange="upd(${i},'ens',this.value)"></div>
         ${s.type==='Examen'?`<div class="fld" style="max-width:130px"><label>Durée (min)</label><input type="number" value="${esc(s.duree)}" onchange="upd(${i},'duree',this.value)"></div>`:''}
       </div>
+      <div class="warn" id="clash-${i}" style="margin:0 0 8px;font-weight:600;color:#dc2626"></div>
       <div class="row" style="margin-bottom:0">
         <div class="fld" style="flex:3"><label>Lien du cours</label><input value="${esc(s.link)}" placeholder="rempli automatiquement" onchange="upd(${i},'link',this.value.trim())">
           ${s.course&&!s.link?'<span class="warn">Ce cours n\'a pas encore de lien — colle-le ici ou dans « Cours &amp; liens ».</span>':''}</div>
         <div class="fld"><label>Notes</label><input value="${esc(s.obs)}" onchange="upd(${i},'obs',this.value)"></div>
       </div>
     </div>`;}).join('');
-  paintHolidays();
+  paintHolidays(); checkClash();
 }
 
 /* ── génération ── */
