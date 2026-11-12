@@ -117,7 +117,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V11';
+const KEY='CESAG_EPE_2627_V12';
 let S={cohorts:[],courses:[],sessions:[],seq:1,teachers:[],meta:{agenda:'',rec:'',code:''},history:[]};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -233,13 +233,7 @@ function renderCourses(){
 function grpMembers(k){ return k.grp?S.courses.filter(o=>o.grp===k.grp):[k]; }
 function grpInfo(k){
   const others=grpMembers(k).filter(o=>o!==k);
-  const opts=S.cohorts.map(c=>{
-    const l=S.courses.filter(o=>o!==k&&!(k.grp&&o.grp===k.grp)&&o.cohorts.includes(c.name));
-    return l.length?`<optgroup label="${esc(c.name.replace(' 26-27',''))}">${l.map(o=>`<option value="${o.id}">${esc(o.name)}${o.link?'':' ⚠'}</option>`).join('')}</optgroup>`:'';
-  }).join('');
-  return `<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-    <select style="max-width:330px;padding:5px 8px;font-size:12px" onchange="linkWith('${k.id}',this.value);this.value=''"><option value="">🔗 Fait en commun avec… (reprendre son lien)</option>${opts}</select>
-    ${others.length?`<span class="ok">🔗 Lien commun avec ${others.map(o=>esc(o.name.replace(/ 26-27$/,''))).join(' · ')}</span> <button class="btn s" onclick="unlinkGrp('${k.id}')">Dissocier</button>`:''}</div>`;
+  return others.length?`<div style="margin-top:6px"><span class="ok">🔗 Lien commun avec ${others.map(o=>esc(o.name.replace(/ 26-27$/,''))).join(' · ')}</span> <button class="btn s" onclick="unlinkGrp('${k.id}')">Dissocier</button></div>`:'';
 }
 function linkWith(id,otherId){
   if(!otherId) return;
