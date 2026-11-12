@@ -116,7 +116,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V5';
+const KEY='CESAG_EPE_2627_V6';
 let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -205,14 +205,42 @@ function renderCourses(){
       <div><div class="nm">${esc(k.name)}</div>
         <div class="chips" style="margin-top:5px">${S.cohorts.map(c=>`<span class="chip ${k.cohorts.includes(c.name)?'on':''}" onclick="togCoh('${k.id}','${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name.replace(' 26-27',''))}</span>`).join('')}</div></div>
       <div><input value="${esc(k.link)}" placeholder="https://formations.cesagonline.com/course/view.php?id=…" onchange="setLink('${k.id}',this.value)">
-        <div class="small">${k.link?'':'<span class="warn">Lien manquant</span>'}</div></div>
+        <div class="small">${k.link?'':'<span class="warn">Lien manquant</span>'}</div>
+        ${grpInfo(k)}</div>
       <button class="btn s" onclick="delCourse('${k.id}')">🗑</button>
     </div>`).join('')||'<div class="small">Aucun cours.</div>';
   const m=S.courses.filter(k=>!k.link).length;
   $('n-missing').textContent=m?`(${m} sans lien)`:'';
 }
+/* ── modules faits en commun : un lien partagé par tout le groupe ── */
+function grpMembers(k){ return k.grp?S.courses.filter(o=>o.grp===k.grp):[k]; }
+function grpInfo(k){
+  const others=grpMembers(k).filter(o=>o!==k);
+  const opts=S.cohorts.map(c=>{
+    const l=S.courses.filter(o=>o!==k&&!(k.grp&&o.grp===k.grp)&&o.cohorts.includes(c.name));
+    return l.length?`<optgroup label="${esc(c.name.replace(' 26-27',''))}">${l.map(o=>`<option value="${o.id}">${esc(o.name)}${o.link?'':' ⚠'}</option>`).join('')}</optgroup>`:'';
+  }).join('');
+  return `<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
+    <select style="max-width:330px;padding:5px 8px;font-size:12px" onchange="linkWith('${k.id}',this.value);this.value=''"><option value="">🔗 Fait en commun avec… (reprendre son lien)</option>${opts}</select>
+    ${others.length?`<span class="ok">🔗 Lien commun avec ${others.map(o=>esc(o.name.replace(/ 26-27$/,''))).join(' · ')}</span> <button class="btn s" onclick="unlinkGrp('${k.id}')">Dissocier</button>`:''}</div>`;
+}
+function linkWith(id,otherId){
+  if(!otherId) return;
+  const k=S.courses.find(x=>x.id===id), o=S.courses.find(x=>x.id===otherId); if(!k||!o) return;
+  const g=o.grp||('g'+uid());
+  grpMembers(o).concat(grpMembers(k)).forEach(m=>{ m.grp=g; });
+  const src=o.link?o:(k.link?k:null);
+  if(src) S.courses.filter(m=>m.grp===g).forEach(m=>m.link=src.link);
+  save(); renderCourses(); renderSessions();
+}
+function unlinkGrp(id){
+  const k=S.courses.find(x=>x.id===id); const g=k.grp; delete k.grp;
+  const rest=S.courses.filter(m=>m.grp===g); if(rest.length===1) delete rest[0].grp;
+  save(); renderCourses();
+}
 function setLink(id,v){
   const k=S.courses.find(x=>x.id===id); k.link=v.trim();
+  grpMembers(k).forEach(m=>m.link=k.link);
   // même cours dans d'autres cohortes sans lien → on propose le même lien
   S.courses.forEach(o=>{ if(o!==k&&!o.link&&norm(o.name)===norm(k.name)) o.link=k.link; });
   save(); renderCourses(); renderSessions();
