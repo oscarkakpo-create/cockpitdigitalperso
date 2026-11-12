@@ -817,7 +817,7 @@ body.focus-mode #main{margin-left:0}
     <div id="panel-cohortes" class="panel">
       <div class="card">
         <div class="card-head"><div class="card-ico">🎓</div>Nouvelle cohorte</div>
-        <div class="hint">Renseigne la cohorte puis importe le JSON de ses cours (lien, fichier ou texte collé). Elle apparaît ensuite dans le Planning EPE avec tous ses modules, liens Moodle et salles.</div>
+        <div class="hint">Renseigne la cohorte puis importe le JSON de ses cours (lien, fichier ou texte collé). Elle apparaît ensuite dans le Planning EPE avec tous ses modules et leurs liens de cours Moodle.</div>
         <div class="row">
           <div class="fld"><label>Nom de la cohorte <em>*</em></label><input type="text" id="coh-name" placeholder="ex : MBA GP – Promo 2026-27"></div>
           <div class="fld"><label>Date de démarrage</label><input type="date" id="coh-start"></div>
@@ -830,7 +830,7 @@ body.focus-mode #main{margin-left:0}
           <div class="fld"><label>…ou JSON collé</label><textarea id="coh-text" rows="4" placeholder='{"espaces":[{"espace":"…","cours":[{"cours":"…","lienCours":"…","salles":[{"nom":"…","lien":"…"}]}]}]}'></textarea></div>
         </div>
         <div class="row solo">
-          <div class="fld"><label>Lien de surveillance des examens (Teams, optionnel)</label><input type="url" id="coh-surv" placeholder="https://teams.microsoft.com/meet/…"></div>
+          <div class="fld"><label>Lien de surveillance des examens (BigBlueButton, optionnel)</label><input type="url" id="coh-surv" placeholder="https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=…"></div>
         </div>
         <div class="actions">
           <button class="btn primary" onclick="cohAdd()">➕ Ajouter la cohorte</button>
@@ -1768,7 +1768,7 @@ const EPE_COURSE_LINKS=[["MBA AG 25-26 ONLINE","Fiscalité 25-26","1024","17730"
 function getEpeCatalogForProgram(){
   const prog=document.getElementById('epe-prog')?.value||'';
   const coh=cohByProg(prog);
-  if(coh) return coh.modules.map(m=>[coh.name,m[0],m[1],m[2]]);
+  if(coh) return coh.modules.map(m=>[coh.name,m[0],m[1],'']);
   const catalogProgram=EPE_PROGRAM_CATALOG[prog];
   const catalog=catalogProgram ? EPE_COURSE_LINKS.filter(c=>c[0]===catalogProgram) : [];
   const specialization=EPE_SPECIALIZATIONS[prog];
@@ -1831,12 +1831,9 @@ function cohParse(data){
     if(!x||typeof x!=='object') return;
     const name=x.cours||x.nom||x.name||x.titre||x.module||'';
     const cl=x.lienCours||x.lien||x.url||x.link||'';
-    let room=x.lienSalle||x.salle||'';
-    if(Array.isArray(x.salles)&&x.salles.length) room=(x.salles.find(r=>/bigbluebutton|salle/i.test((r.lien||'')+(r.nom||'')))||x.salles[0]).lien||'';
-    if(typeof room==='object') room=room.lien||'';
     if(!name||seen.has(name)) return;
     seen.add(name);
-    out.push([name, cohIds(cl).c||(/^\d+$/.test(cl)?cl:''), cohIds(room).r||(/^\d+$/.test(room)?room:'')]);
+    out.push([name, cohIds(cl).c||(/^\d+$/.test(cl)?cl:'')]);
   });
   return out;
 }
