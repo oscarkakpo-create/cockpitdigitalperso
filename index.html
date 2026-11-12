@@ -369,6 +369,9 @@ body.focus-mode #main{margin-left:0}
   </button>
 
   <div class="sb-section">EPE Planning</div>
+  <button class="sb-item" onclick="nav('epe27')">
+    <span class="sb-icon">✨</span> EPE 26-27
+  </button>
   <button class="sb-item" onclick="nav('cohortes')">
     <span class="sb-icon">🎓</span> Cohortes
     <span class="sb-badge" id="coh-badge">0</span>
@@ -473,6 +476,10 @@ body.focus-mode #main{margin-left:0}
         </div>
       </div>
       <div class="dash-grid">
+        <div class="dash-card" onclick="nav('epe27')">
+          <div class="dash-card-ico" style="background:#dcfce7">✨</div>
+          <div class="dash-card-body"><h3>EPE 26-27</h3><p>Cours partagés entre cohortes</p></div>
+        </div>
         <div class="dash-card" onclick="nav('cohortes')">
           <div class="dash-card-ico" style="background:#e0f2fe">🎓</div>
           <div class="dash-card-body"><h3>Cohortes</h3><p id="coh-tile-sub">Ajouter + importer les cours (JSON)</p></div>
@@ -811,6 +818,11 @@ body.focus-mode #main{margin-left:0}
         </div>
         <iframe id="previewframe"></iframe>
       </div>
+    </div>
+
+    <!-- ═══════════════ EPE 26-27 ═════════════ -->
+    <div id="panel-epe27" class="panel">
+      <iframe src="epe-26-27.html" title="EPE 26-27" style="width:100%;height:84vh;border:1.5px solid var(--border);border-radius:12px;background:#fff"></iframe>
     </div>
 
     <!-- ═══════════════ COHORTES ═════════════ -->
@@ -1400,7 +1412,7 @@ window.addEventListener('DOMContentLoaded', loadStats);
 
 /* ═══════════════ NAVIGATION ═══════════════════════════════════ */
 const TITLES = {
-  dashboard:'Tableau de bord',cohortes:'Cohortes',acces:'Accès numériques',reset:'Reset Moodle',
+  dashboard:'Tableau de bord',cohortes:'Cohortes',epe27:'EPE 26-27',acces:'Accès numériques',reset:'Reset Moodle',
   mailprof:'Mail enseignant',mailetudiant:'Réponse étudiant',
   examen:'Consignes examen',ics:'Générateur ICS',htmlmoodle:'Annonce HTML Moodle',
   gift:'Quiz GIFT',htmleditor:'HTML Live Editor',epe:'Planning FOAD (EPE)',
@@ -1410,7 +1422,7 @@ const TITLES = {
   notes:'Fiches de notes',
   m365:'Comptes Microsoft 365',mailhistory:'Mails sauvegardés'
 };
-const PANEL_ORDER = ['dashboard','mailetudiant','htmlmoodle','htmleditor','mailhistory','cohortes','epe','github','hubfoad','admin2026','notes'];
+const PANEL_ORDER = ['dashboard','mailetudiant','htmlmoodle','htmleditor','mailhistory','epe27','cohortes','epe','github','hubfoad','admin2026','notes'];
 let currentPanelIdx = 0;
 
 function nav(id){

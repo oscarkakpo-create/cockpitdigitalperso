@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EPE 26-27</title>
+<style>
+:root{--g:#0b6b3a;--b:#0a4ea1;--bg:#f5f7fa;--card:#fff;--text:#16212e;--muted:#64748b;--border:#dbe3ec;--warn:#b45309}
+*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 "Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--text);padding:16px}
+h2{margin:0 0 4px;font-size:18px}
+.sub{color:var(--muted);font-size:12.5px;margin-bottom:14px}
+.tabs{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tab{border:1.5px solid var(--border);background:var(--card);border-radius:999px;padding:7px 16px;font-weight:600;cursor:pointer;font-size:13px}
+.tab.on{background:linear-gradient(90deg,var(--g),var(--b));color:#fff;border-color:transparent}
+.card{background:var(--card);border:1.5px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px}
+.card h3{margin:0 0 10px;font-size:14px}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.fld{flex:1;min-width:150px;display:flex;flex-direction:column;gap:3px}
+label{font-size:11.5px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+input,select,textarea{font:inherit;padding:8px 10px;border:1.5px solid var(--border);border-radius:9px;background:#fff;color:var(--text);width:100%}
+textarea{min-height:90px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--b)}
+.btn{border:1.5px solid var(--border);background:#fff;border-radius:9px;padding:8px 14px;font-weight:600;cursor:pointer;font-size:13px}
+.btn.p{background:linear-gradient(90deg,var(--g),var(--b));color:#fff;border-color:transparent}
+.btn.s{padding:4px 9px;font-size:12px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--border);border-radius:999px;padding:4px 11px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;user-select:none}
+.chip.on{background:#e0f2fe;border-color:var(--b);color:var(--b)}
+.sess{border:1.5px solid var(--border);border-radius:12px;padding:12px;margin-bottom:10px;background:#fcfdff}
+.sess-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:700}
+.warn{color:var(--warn);font-size:12px}
+.ok{color:var(--g);font-size:12px}
+pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space:pre-wrap;word-break:break-word;font-size:12.5px;max-height:420px;overflow:auto}
+.crs{display:grid;grid-template-columns:minmax(180px,1.2fr) minmax(200px,2fr) auto;gap:8px;align-items:start;padding:8px 0;border-bottom:1px solid var(--border)}
+.crs .nm{font-weight:600;font-size:13px}
+.small{font-size:12px;color:var(--muted)}
+.hide{display:none}
+@media(max-width:700px){.crs{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<h2>🗓️ EPE 26-27</h2>
+<div class="sub">Un cours = un lien, partageable entre plusieurs cohortes. Pas de salle virtuelle : seulement le lien du cours et, pour les examens, la surveillance BigBlueButton.</div>
+
+<div class="tabs">
+  <div class="tab on" data-t="plan" onclick="tab('plan')">📅 Planning</div>
+  <div class="tab" data-t="cours" onclick="tab('cours')">🔗 Cours &amp; liens <span id="n-missing" class="small"></span></div>
+  <div class="tab" data-t="coh" onclick="tab('coh')">🎓 Cohortes</div>
+</div>
+
+<!-- ───── PLANNING ───── -->
+<section id="t-plan">
+  <div class="card">
+    <h3>Séances</h3>
+    <div id="sessions"></div>
+    <div class="row" style="margin:0">
+      <button class="btn p" onclick="addSess()">＋ Ajouter une séance</button>
+      <button class="btn" onclick="clearSess()">🗑 Tout vider</button>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Bloc à copier</h3>
+    <div class="row">
+      <div class="fld"><label>Notes globales (optionnel)</label><input id="g-obs" placeholder="Observations pour toute la semaine"></div>
+    </div>
+    <div class="row" style="margin-bottom:0">
+      <button class="btn p" onclick="gen()">⚡ Générer le bloc</button>
+      <button class="btn" onclick="copyOut()">📋 Copier</button>
+      <button class="btn" onclick="dlOut()">💾 Télécharger .txt</button>
+    </div>
+    <div id="msgs" style="margin:10px 0"></div>
+    <pre id="out">[ Clique sur « Générer le bloc » ]</pre>
+  </div>
+</section>
+
+<!-- ───── COURS & LIENS ───── -->
+<section id="t-cours" class="hide">
+  <div class="card">
+    <h3>Coller plusieurs liens d'un coup</h3>
+    <div class="small" style="margin-bottom:8px">Une ligne par cours : <code>nom du cours ; lien</code> (séparateur ; | ou tabulation). Le nom est comparé sans accents, sans « MBA AG… » ni « 26-27 ». Un même nom présent dans plusieurs cohortes reçoit le même lien.</div>
+    <div class="row">
+      <div class="fld" style="max-width:260px"><label>Limiter à la cohorte</label><select id="bulk-coh"></select></div>
+    </div>
+    <textarea id="bulk" placeholder="Fiscalité ; https://formations.cesagonline.com/course/view.php?id=1234&#10;Droit des affaires | https://…"></textarea>
+    <div class="row" style="margin:10px 0 0"><button class="btn p" onclick="bulkApply()">Appliquer les liens</button><span id="bulk-msg" class="small" style="align-self:center"></span></div>
+  </div>
+  <div class="card">
+    <h3>Cours</h3>
+    <div class="row">
+      <div class="fld"><label>Filtrer par cohorte</label><select id="f-coh" onchange="renderCourses()"></select></div>
+      <div class="fld"><label>Recherche</label><input id="f-q" oninput="renderCourses()" placeholder="nom du cours"></div>
+      <div class="fld" style="justify-content:flex-end;max-width:210px"><label><input type="checkbox" id="f-miss" style="width:auto" onchange="renderCourses()"> Sans lien seulement</label></div>
+    </div>
+    <div id="courses"></div>
+    <div class="row" style="margin:12px 0 0"><button class="btn" onclick="newCourse()">＋ Nouveau cours</button></div>
+  </div>
+</section>
+
+<!-- ───── COHORTES ───── -->
+<section id="t-coh" class="hide">
+  <div class="card">
+    <h3>Cohortes</h3>
+    <div id="cohs"></div>
+    <div class="row" style="margin:12px 0 0">
+      <div class="fld"><label>Nouvelle cohorte</label><input id="nc-name" placeholder="ex : MBA GRH 26-27"></div>
+      <div class="fld" style="justify-content:flex-end;max-width:150px"><button class="btn p" onclick="addCoh()">＋ Ajouter</button></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Données</h3>
+    <div class="small" style="margin-bottom:8px">La liste des cours 26-27 (AG, AG AUF, GP, GP AUF, MSCH) se charge depuis <code>data/cohortes-26-27.json</code>. Sinon, choisis ce fichier ici.</div>
+    <div class="row" style="margin-bottom:0"><input type="file" id="jf" accept=".json" onchange="loadFile(this)" style="max-width:320px">
+      <button class="btn" onclick="exportData()">⬇ Sauvegarder mes données (.json)</button></div>
+  </div>
+</section>
+
+<script>
+const KEY='CESAG_EPE_2627_V1';
+let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
+const $=id=>document.getElementById(id);
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const uid=()=>'c'+(S.seq++)+Math.random().toString(36).slice(2,6);
+
+function save(){ try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
+function load(){ try{const d=JSON.parse(localStorage.getItem(KEY)||'null'); if(d&&d.cohorts) S=Object.assign(S,d);}catch(e){} }
+function norm(t){
+  return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
+    .replace(/^mba\s*(ag\s*auf|gp\s*auf|ag|gp|msch)\s*[–\-:]?\s*/,'')
+    .replace(/\b26-27\b/g,'').replace(/[’']/g,"'").replace(/[^a-z0-9()' ]+/g,' ').replace(/\s+/g,' ').trim();
+}
+
+/* ── chargement des données 26-27 ── */
+function ingest(d){
+  let added=0;
+  (d.cohortes||[]).forEach(c=>{
+    if(!S.cohorts.some(x=>x.name===c.nom)) S.cohorts.push({name:c.nom,surv:''});
+    (c.cours||[]).forEach(x=>{
+      const name=x.cours||x.nom||''; if(!name) return;
+      let cr=S.courses.find(k=>k.name===name&&k.cohorts.includes(c.nom));
+      if(!cr){
+        const link=x.lienCours||x.lien||'';
+        const sameBase=S.courses.find(k=>norm(k.name)===norm(name)&&k.link);
+        S.courses.push({id:uid(),name,link:link||sameBase?.link||'',cohorts:[c.nom]}); added++;
+      }
+    });
+  });
+  save(); renderAll(); return added;
+}
+async function boot(){
+  load();
+  if(!S.courses.length){
+    try{ const r=await fetch('data/cohortes-26-27.json'); if(r.ok) ingest(await r.json()); }catch(e){}
+  }
+  if(!S.sessions.length) addSess(true);
+  renderAll();
+}
+function loadFile(inp){
+  const f=inp.files[0]; if(!f) return;
+  f.text().then(t=>{ const d=JSON.parse(t.replace(/^﻿/,'')); if(d.cohorts&&d.courses){S=Object.assign(S,d);save();renderAll();} else alert(ingest(d)+' cours ajoutés'); }).catch(e=>alert('JSON illisible : '+e.message));
+}
+function exportData(){
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:'application/json'})); a.download='epe-26-27-donnees.json'; a.click();
+}
+
+/* ── onglets ── */
+function tab(t){
+  ['plan','cours','coh'].forEach(x=>{ $('t-'+x).classList.toggle('hide',x!==t); document.querySelector(`.tab[data-t=${x}]`).classList.toggle('on',x===t); });
+}
+
+/* ── cohortes ── */
+function cohOpts(sel,withAll,label){
+  const cur=sel.value;
+  sel.innerHTML=(withAll?`<option value="">${label||'Toutes'}</option>`:'')+S.cohorts.map(c=>`<option>${esc(c.name)}</option>`).join('');
+  if(cur) sel.value=cur;
+}
+function renderCohs(){
+  $('cohs').innerHTML=S.cohorts.length?S.cohorts.map((c,i)=>{
+    const n=S.courses.filter(k=>k.cohorts.includes(c.name)).length;
+    return `<div class="crs" style="grid-template-columns:minmax(160px,1fr) minmax(200px,2fr) auto">
+      <div><div class="nm">${esc(c.name)}</div><div class="small">${n} cours</div></div>
+      <div><input value="${esc(c.surv)}" placeholder="Lien BigBlueButton de surveillance des examens" onchange="S.cohorts[${i}].surv=this.value.trim();save()"></div>
+      <button class="btn s" onclick="delCoh(${i})">🗑</button></div>`;}).join(''):'<div class="small">Aucune cohorte.</div>';
+}
+function addCoh(){
+  const n=$('nc-name').value.trim(); if(!n) return;
+  if(S.cohorts.some(c=>c.name.toLowerCase()===n.toLowerCase())){ alert('Cette cohorte existe déjà.'); return; }
+  S.cohorts.push({name:n,surv:''}); $('nc-name').value=''; save(); renderAll();
+}
+function delCoh(i){
+  const n=S.cohorts[i].name;
+  if(!confirm(`Supprimer la cohorte « ${n} » ? Ses cours restent s'ils sont partagés avec une autre cohorte.`)) return;
+  S.cohorts.splice(i,1);
+  S.courses.forEach(k=>k.cohorts=k.cohorts.filter(x=>x!==n));
+  S.courses=S.courses.filter(k=>k.cohorts.length||k.link);
+  save(); renderAll();
+}
+
+/* ── cours & liens ── */
+function renderCourses(){
+  const fc=$('f-coh').value, q=norm($('f-q').value||''), miss=$('f-miss').checked;
+  const list=S.courses.filter(k=>(!fc||k.cohorts.includes(fc))&&(!q||norm(k.name).includes(q))&&(!miss||!k.link));
+  $('courses').innerHTML=list.slice(0,250).map(k=>`
+    <div class="crs">
+      <div><div class="nm">${esc(k.name)}</div>
+        <div class="chips" style="margin-top:5px">${S.cohorts.map(c=>`<span class="chip ${k.cohorts.includes(c.name)?'on':''}" onclick="togCoh('${k.id}','${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name.replace(' 26-27',''))}</span>`).join('')}</div></div>
+      <div><input value="${esc(k.link)}" placeholder="https://formations.cesagonline.com/course/view.php?id=…" onchange="setLink('${k.id}',this.value)">
+        <div class="small">${k.link?'':'<span class="warn">Lien manquant</span>'}</div></div>
+      <button class="btn s" onclick="delCourse('${k.id}')">🗑</button>
+    </div>`).join('')||'<div class="small">Aucun cours.</div>';
+  const m=S.courses.filter(k=>!k.link).length;
+  $('n-missing').textContent=m?`(${m} sans lien)`:'';
+}
+function setLink(id,v){
+  const k=S.courses.find(x=>x.id===id); k.link=v.trim();
+  // même cours dans d'autres cohortes sans lien → on propose le même lien
+  S.courses.forEach(o=>{ if(o!==k&&!o.link&&norm(o.name)===norm(k.name)) o.link=k.link; });
+  save(); renderCourses(); renderSessions();
+}
+function togCoh(id,c){
+  const k=S.courses.find(x=>x.id===id);
+  k.cohorts=k.cohorts.includes(c)?k.cohorts.filter(x=>x!==c):[...k.cohorts,c];
+  save(); renderCourses(); renderSessions();
+}
+function delCourse(id){ if(!confirm('Supprimer ce cours ?')) return; S.courses=S.courses.filter(k=>k.id!==id); save(); renderCourses(); renderSessions(); }
+function newCourse(){
+  const n=prompt('Nom du cours :'); if(!n) return;
+  const fc=$('f-coh').value;
+  S.courses.unshift({id:uid(),name:n.trim(),link:'',cohorts:fc?[fc]:[]}); save(); renderCourses();
+}
+function bulkApply(){
+  const lim=$('bulk-coh').value; let n=0, miss=[];
+  $('bulk').value.split('\n').forEach(line=>{
+    line=line.trim(); if(!line) return;
+    const m=line.match(/https?:\/\/\S+/); if(!m) return;
+    const name=line.replace(m[0],'').replace(/[;|\t,]+\s*$/,'').replace(/^[;|\t, ]+|[;|\t, ]+$/g,'').trim();
+    const hits=S.courses.filter(k=>norm(k.name)===norm(name)&&(!lim||k.cohorts.includes(lim)));
+    if(!hits.length){ miss.push(name); return; }
+    hits.forEach(k=>k.link=m[0]); n+=hits.length;
+  });
+  save(); renderAll();
+  $('bulk-msg').innerHTML=`✓ ${n} cours mis à jour`+(miss.length?` · <span class="warn">non trouvés : ${esc(miss.join(', '))}</span>`:'');
+}
+
+/* ── séances ── */
+function addSess(silent){
+  const last=S.sessions[S.sessions.length-1];
+  S.sessions.push({id:uid(),date:last?.date||'',hdeb:last?.hdeb||'',hfin:last?.hfin||'',type:'Cours',cohorts:last?[...last.cohorts]:[],course:'',ens:'',duree:'',obs:'',link:'',all:false});
+  save(); if(!silent) renderSessions();
+}
+function dupSess(i){ const s=JSON.parse(JSON.stringify(S.sessions[i])); s.id=uid(); S.sessions.splice(i+1,0,s); save(); renderSessions(); }
+function delSess(i){ S.sessions.splice(i,1); if(!S.sessions.length) addSess(true); save(); renderSessions(); }
+function clearSess(){ if(!confirm('Vider toutes les séances ?')) return; S.sessions=[]; addSess(true); save(); renderSessions(); }
+function upd(i,k,v){ S.sessions[i][k]=v; save(); }
+function togSC(i,c){
+  const s=S.sessions[i]; s.cohorts=s.cohorts.includes(c)?s.cohorts.filter(x=>x!==c):[...s.cohorts,c];
+  save(); renderSessions();
+}
+function courseChoices(s){
+  const base=s.all||!s.cohorts.length ? S.courses : S.courses.filter(k=>k.cohorts.some(c=>s.cohorts.includes(c)));
+  const seen=new Set(), out=[];
+  base.forEach(k=>{ const key=norm(k.name)+'|'+k.link; if(!seen.has(key)){seen.add(key);out.push(k);} });
+  return out.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+}
+function pickCourse(i,id){
+  const s=S.sessions[i], k=S.courses.find(x=>x.id===id);
+  if(!k){ s.course=''; s.link=''; save(); renderSessions(); return; }
+  s.course=k.name; s.link=k.link;
+  // le cours devient disponible pour les cohortes de la séance (partage automatique)
+  s.cohorts.forEach(c=>{ if(!k.cohorts.includes(c)) k.cohorts.push(c); });
+  s.cid=k.id; save(); renderSessions(); renderCourses();
+}
+function renderSessions(){
+  $('sessions').innerHTML=S.sessions.map((s,i)=>{
+    const ch=courseChoices(s);
+    const sel=ch.find(k=>k.id===s.cid)||ch.find(k=>k.name===s.course);
+    return `<div class="sess">
+      <div class="sess-h"><span>Séance ${i+1}</span><span><button class="btn s" onclick="dupSess(${i})">⧉ Dupliquer</button> <button class="btn s" onclick="delSess(${i})">🗑</button></span></div>
+      <div class="row"><div class="fld" style="flex:2"><label>Cohorte(s) — plusieurs = cours commun</label>
+        <div class="chips">${S.cohorts.map(c=>`<span class="chip ${s.cohorts.includes(c.name)?'on':''}" onclick="togSC(${i},'${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name.replace(' 26-27',''))}</span>`).join('')}</div></div></div>
+      <div class="row">
+        <div class="fld" style="flex:3;min-width:240px"><label>Cours</label>
+          <select onchange="pickCourse(${i},this.value)"><option value="">— choisir —</option>${ch.map(k=>`<option value="${k.id}" ${sel&&sel.id===k.id?'selected':''}>${esc(k.name)}${k.link?'':' ⚠'}</option>`).join('')}</select>
+          <label style="text-transform:none;font-weight:500"><input type="checkbox" style="width:auto" ${s.all?'checked':''} onchange="upd(${i},'all',this.checked);renderSessions()"> Voir les cours de toutes les cohortes (pour réutiliser un lien)</label></div>
+        <div class="fld"><label>Type</label><select onchange="upd(${i},'type',this.value);renderSessions()">${['Cours','Examen','TPE'].map(t=>`<option ${s.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
+      </div>
+      <div class="row">
+        <div class="fld"><label>Date</label><input type="date" value="${s.date}" onchange="upd(${i},'date',this.value)"></div>
+        <div class="fld"><label>Début (GMT)</label><input type="time" value="${s.hdeb}" onchange="upd(${i},'hdeb',this.value)"></div>
+        <div class="fld"><label>Fin (GMT)</label><input type="time" value="${s.hfin}" onchange="upd(${i},'hfin',this.value)"></div>
+        <div class="fld"><label>Enseignant</label><input value="${esc(s.ens)}" onchange="upd(${i},'ens',this.value)"></div>
+        ${s.type==='Examen'?`<div class="fld" style="max-width:130px"><label>Durée (min)</label><input type="number" value="${esc(s.duree)}" onchange="upd(${i},'duree',this.value)"></div>`:''}
+      </div>
+      <div class="row" style="margin-bottom:0">
+        <div class="fld" style="flex:3"><label>Lien du cours</label><input value="${esc(s.link)}" placeholder="rempli automatiquement" onchange="upd(${i},'link',this.value.trim())">
+          ${s.course&&!s.link?'<span class="warn">Ce cours n\'a pas encore de lien — colle-le ici ou dans « Cours &amp; liens ».</span>':''}</div>
+        <div class="fld"><label>Notes</label><input value="${esc(s.obs)}" onchange="upd(${i},'obs',this.value)"></div>
+      </div>
+    </div>`;}).join('');
+}
+
+/* ── génération ── */
+function fmt(d){ if(!d) return ''; const [y,m,j]=d.split('-'); const dt=new Date(Date.UTC(+y,+m-1,+j)); return ['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'][dt.getUTCDay()]+' '+j+'/'+m+'/'+y; }
+function shift(d,n){ const t=new Date(d+'T00:00:00Z'); t.setUTCDate(t.getUTCDate()+n); return t.toISOString().slice(0,10); }
+function gen(){
+  const err=[], warn=[];
+  const ss=S.sessions.map((s,i)=>({...s,n:i+1})).sort((a,b)=>(a.date+a.hdeb).localeCompare(b.date+b.hdeb));
+  ss.forEach(s=>{
+    if(!s.cohorts.length) err.push(`Séance ${s.n} : cohorte manquante`);
+    if(!s.date) err.push(`Séance ${s.n} : date manquante`);
+    if(!s.course) err.push(`Séance ${s.n} : cours manquant`);
+    if(!s.hdeb||!s.hfin) err.push(`Séance ${s.n} : horaires manquants`);
+    if(!s.ens) err.push(`Séance ${s.n} : enseignant manquant`);
+    if(!s.link) err.push(`Séance ${s.n} : lien du cours manquant`);
+    if(s.type==='Examen'){
+      if(!s.duree) err.push(`Séance ${s.n} : durée de l'examen manquante`);
+      if(!survOf(s)) err.push(`Séance ${s.n} : lien de surveillance BigBlueButton manquant (onglet Cohortes)`);
+    }
+  });
+  for(let a=0;a<ss.length;a++) for(let b=a+1;b<ss.length;b++){
+    const x=ss[a],y=ss[b];
+    if(x.date&&x.date===y.date&&x.hdeb&&y.hdeb&&x.hdeb<y.hfin&&y.hdeb<x.hfin&&x.cohorts.some(c=>y.cohorts.includes(c)))
+      warn.push(`Chevauchement : séances ${x.n} et ${y.n} (${fmt(x.date)})`);
+  }
+  $('msgs').innerHTML=err.map(e=>`<div class="warn">• ${esc(e)}</div>`).join('')+warn.map(e=>`<div class="warn">⚠ ${esc(e)}</div>`).join('');
+  if(err.length){ $('out').textContent='[ Corrige les points ci-dessus puis régénère ]'; return; }
+  const dates=ss.map(s=>s.date).sort(); const f=new Date(dates[0]+'T00:00:00Z');
+  const lundi=shift(dates[0],-((f.getUTCDay()+6)%7)); const l=new Date(dates[dates.length-1]+'T00:00:00Z');
+  const dim=shift(dates[dates.length-1],(7-l.getUTCDay())%7);
+  const progs=[...new Set(ss.flatMap(s=>s.cohorts))];
+  let o=`Programme(s) : ${progs.join(' + ')}\nPériode : du lundi ${fmt(lundi).split(' ')[1]} au dimanche ${fmt(dim).split(' ')[1]}\n\n`;
+  ss.forEach((s,i)=>{
+    o+=`── Séance ${i+1} ──\n- Date : ${fmt(s.date)}\n`;
+    if(s.cohorts.length>1) o+=`- Cohortes (cours commun) : ${s.cohorts.join(' + ')}\n`;
+    else o+=`- Cohorte : ${s.cohorts[0]}\n`;
+    o+=`- Module : ${s.course}\n- Horaire (GMT) : ${s.hdeb}–${s.hfin}\n- Enseignant : ${s.ens}\n- Type : ${s.type}\n- Lien Moodle : ${s.link}\n`;
+    if(s.type==='Examen'){ o+=`- Surveillance : ${survOf(s)}\n- Durée : ${s.duree} min\n`; }
+    if(s.obs) o+=`- Notes : ${s.obs}\n`;
+    o+='\n';
+  });
+  const g=$('g-obs').value.trim(); if(g) o+=`${'─'.repeat(34)}\nOBSERVATIONS GLOBALES :\n${g}\n${'─'.repeat(34)}\n`;
+  $('out').textContent=o.trim();
+}
+function survOf(s){ for(const c of s.cohorts){ const x=S.cohorts.find(k=>k.name===c); if(x&&x.surv) return x.surv; } return ''; }
+function copyOut(){ const t=$('out').textContent; if(t.startsWith('[')){alert('Génère d\'abord un bloc');return;} navigator.clipboard.writeText(t).then(()=>alert('Bloc copié')); }
+function dlOut(){ const t=$('out').textContent; if(t.startsWith('[')){alert('Génère d\'abord un bloc');return;} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'})); a.download='planning_epe_26-27.txt'; a.click(); }
+
+function renderAll(){ cohOpts($('bulk-coh'),true,'Toutes les cohortes'); cohOpts($('f-coh'),true,'Toutes'); renderCohs(); renderCourses(); renderSessions(); }
+boot();
+</script>
+</body>
+</html>
