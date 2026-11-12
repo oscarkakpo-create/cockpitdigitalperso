@@ -116,7 +116,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V1';
+const KEY='CESAG_EPE_2627_V2';
 let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -126,7 +126,7 @@ function save(){ try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){} }
 function load(){ try{const d=JSON.parse(localStorage.getItem(KEY)||'null'); if(d&&d.cohorts) S=Object.assign(S,d);}catch(e){} }
 function norm(t){
   return String(t).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'')
-    .replace(/^mba\s*(ag\s*auf|gp\s*auf|ag|gp|msch)\s*[–\-:]?\s*/,'')
+    .replace(/^mba\w*(-\w+)*\s+[\d.]+\s*[-–]\s*/,'').replace(/^mba\s*(ag\s*auf|gp\s*auf|ag|gp|msch)\s*[–\-:]?\s*/,'')
     .replace(/\b26-27\b/g,'').replace(/[’']/g,"'").replace(/[^a-z0-9()' ]+/g,' ').replace(/\s+/g,' ').trim();
 }
 

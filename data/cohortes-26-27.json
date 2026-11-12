@@ -1,125 +1,154 @@
 {
  "generated": "2026-11-12",
- "note": "Sans identifiant de cours : ajouter 'lienCours' (ou 'id') par cours pour un lien direct.",
+ "source": "REPERTOIRE_COURS_ET_SALLES_VIRTUELLES_26_27",
  "cohortes": [
   {
    "nom": "MBA AG 26-27",
    "cours": [
     {
-     "cours": "Fiscalité 26-27",
-     "shortname": "Fiscalité 26-27"
+     "cours": "MBAAG 10.1.1 - Méthodologie de rédaction de mémoire 26-27",
+     "id": "1735",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1735"
     },
     {
-     "cours": "Environnement économique et international de l’entreprise 26-27",
-     "shortname": "Environnement économique et international de l’entreprise 26-27"
+     "cours": "MBAAG 10.1.2 - Anglais des affaires 26-27",
+     "id": "1734",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1734"
     },
     {
-     "cours": "Droit des affaires 26-27",
-     "shortname": "Droit des affaires 26-27"
+     "cours": "MBAAG 10.1.3 - Jeu d'entreprise 26-27",
+     "id": "1733",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1733"
     },
     {
-     "cours": "Gestion des projets et suivi-évaluation 26-27",
-     "shortname": "Gestion des projets et suivi-évaluation 26-27"
+     "cours": "MBAAG 10.1.4 - Développement personnel et professionnel 26-27",
+     "id": "1732",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1732"
     },
     {
-     "cours": "Création d’entreprise 26-27",
-     "shortname": "Création d’entreprise 26-27"
+     "cours": "MBAAG 10.2.1 - Stage professionnel et rédaction de mémoire (4 mois minimum) 26-27",
+     "id": "1731",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1731"
     },
     {
-     "cours": "Marketing 26-27",
-     "shortname": "Marketing 26-27"
+     "cours": "MBAAG 9.1.1 - Droit des affaires 26-27",
+     "id": "1719",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1719"
     },
     {
-     "cours": "Management stratégique 26-27",
-     "shortname": "Management stratégique 26-27"
+     "cours": "MBAAG 9.1.2 - Environnement économique et international de l'entreprise 26-27",
+     "id": "1718",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1718"
     },
     {
-     "cours": "Management interculturel 26-27",
-     "shortname": "Management interculturel 26-27"
+     "cours": "MBAAG 9.1.3 - Fiscalité 26-27",
+     "id": "1717",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1717"
     },
     {
-     "cours": "Théorie et management des organisations 26-27",
-     "shortname": "Théorie et management des organisations 26-27"
+     "cours": "MBAAG 9.2.1 - Théorie et management des organisations 26-27",
+     "id": "1725",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1725"
     },
     {
-     "cours": "Marchés financiers 26-27",
-     "shortname": "Marchés financiers 26-27"
+     "cours": "MBAAG 9.2.2 - Management interculturel 26-27",
+     "id": "1724",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1724"
     },
     {
-     "cours": "Contrôle de gestion 26-27",
-     "shortname": "Contrôle de gestion 26-27"
+     "cours": "MBAAG 9.2.3 - Management stratégique 26-27",
+     "id": "1723",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1723"
     },
     {
-     "cours": "Contrôle interne 26-27",
-     "shortname": "Contrôle interne 26-27"
+     "cours": "MBAAG 9.2.4 - Marketing 26-27",
+     "id": "1722",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1722"
     },
     {
-     "cours": "Finance 26-27",
-     "shortname": "Finance 26-27"
+     "cours": "MBAAG 9.2.5 - Création d'entreprise 26-27",
+     "id": "1721",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1721"
     },
     {
-     "cours": "Comptabilité 26-27",
-     "shortname": "Comptabilité 26-27"
+     "cours": "MBAAG 9.2.6 - Gestion des projets et suivi-évaluation 26-27",
+     "id": "1720",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1720"
     },
     {
-     "cours": "Stage professionnel + rédaction de mémoire 26-27",
-     "shortname": "Stage professionnel + rédaction de mémoire 26-27"
+     "cours": "MBAAG 9.3.1 - Comptabilité générale 26-27",
+     "id": "1730",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1730"
     },
     {
-     "cours": "Développement personnel et professionnel 26-27",
-     "shortname": "Développement personnel et professionnel 26-27"
+     "cours": "MBAAG 9.3.2 - Finance d'entreprise 26-27",
+     "id": "1729",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1729"
     },
     {
-     "cours": "Jeu d’entreprise 26-27",
-     "shortname": "Jeu d’entreprise 26-27"
+     "cours": "MBAAG 9.3.3 - Contrôle interne 26-27",
+     "id": "1728",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1728"
     },
     {
-     "cours": "Anglais des affaires 26-27",
-     "shortname": "Anglais des affaires 26-27"
+     "cours": "MBAAG 9.3.4 - Contrôle de gestion 26-27",
+     "id": "1727",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1727"
     },
     {
-     "cours": "Méthodologie de rédaction de mémoire 26-27",
-     "shortname": "Méthodologie de rédaction de mémoire 26-27"
+     "cours": "MBAAG 9.3.5 - Marchés financiers 26-27",
+     "id": "1726",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1726"
     },
     {
-     "cours": "Systèmes d’information 26-27",
-     "shortname": "Systèmes d’information 26-27"
+     "cours": "MBAAG-AP 10.3.1 - Droit de la fonction publique et de la décentralisation 26-27",
+     "id": "1745",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1745"
     },
     {
-     "cours": "Gestion financière 26-27",
-     "shortname": "Gestion financière 26-27"
+     "cours": "MBAAG-AP 10.3.2 - Acteurs et systèmes de protection sociale 26-27",
+     "id": "1744",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1744"
     },
     {
-     "cours": "Administration et gestion des ressources humaines 26-27",
-     "shortname": "Administration et gestion des ressources humaines 26-27"
+     "cours": "MBAAG-AP 10.3.3 - Science administrative et droit administratif 26-27",
+     "id": "1743",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1743"
     },
     {
-     "cours": "Organisation et stratégie 26-27",
-     "shortname": "Organisation et stratégie 26-27"
+     "cours": "MBAAG-AP 10.3.4 - Finances de l'État et finances locales 26-27",
+     "id": "1742",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1742"
     },
     {
-     "cours": "Modernisation et digitalisation du service public 26-27",
-     "shortname": "Modernisation et digitalisation du service public 26-27"
+     "cours": "MBAAG-AP 10.3.5 - Gestion des ressources humaines dans l'administration publique 26-27",
+     "id": "1741",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1741"
     },
     {
-     "cours": "Gestion des ressources humaines dans l’administration publique 26-27",
-     "shortname": "Gestion des ressources humaines dans l’administration publique 26-27"
+     "cours": "MBAAG-AP 10.3.6 - Modernisation et digitalisation du service public 26-27",
+     "id": "1740",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1740"
     },
     {
-     "cours": "Finances de l’État et finances locales 26-27",
-     "shortname": "Finances de l’État et finances locales 26-27"
+     "cours": "MBAAG-GE 10.3.1 - Organisation et stratégie 26-27",
+     "id": "1739",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1739"
     },
     {
-     "cours": "Science administrative et droit administratif 26-27",
-     "shortname": "Science administrative et droit administratif 26-27"
+     "cours": "MBAAG-GE 10.3.2 - Administration et gestion des ressources humaines 26-27",
+     "id": "1738",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1738"
     },
     {
-     "cours": "Acteurs et systèmes de protection sociale 26-27",
-     "shortname": "Acteurs et systèmes de protection sociale 26-27"
+     "cours": "MBAAG-GE 10.3.3 - Gestion financière 26-27",
+     "id": "1737",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1737"
     },
     {
-     "cours": "Droit de la fonction publique et de la décentralisation 26-27",
-     "shortname": "Droit de la fonction publique et de la décentralisation 26-27"
+     "cours": "MBAAG-GE 10.3.4 - Systèmes d'information 26-27",
+     "id": "1736",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1736"
     }
    ]
   },
@@ -127,120 +156,149 @@
    "nom": "MBA AG AUF 26-27",
    "cours": [
     {
-     "cours": "MBA AG AUF Fiscalité 26-27",
-     "shortname": "MBA AG AUF Fiscalité 26-27"
+     "cours": "MBAAG-AP-AUF 10.3.1 - Droit de la fonction publique et de la décentralisation 26-27",
+     "id": "1774",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1774"
     },
     {
-     "cours": "MBA AG AUF Environnement économique et International de l'entreprise 26-27",
-     "shortname": "MBA AG AUF Environnement économique et International de l'entreprise 26-27"
+     "cours": "MBAAG-AP-AUF 10.3.2 - Acteurs et systèmes de protection sociale 26-27",
+     "id": "1773",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1773"
     },
     {
-     "cours": "MBA AG AUF Droit des affaires 26-27",
-     "shortname": "MBA AG AUF Droit des affaires 26-27"
+     "cours": "MBAAG-AP-AUF 10.3.3 - Science administrative et droit administratif 26-27",
+     "id": "1772",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1772"
     },
     {
-     "cours": "MBA AG AUF Management stratégique 26-27",
-     "shortname": "MBA AG AUF Management stratégique 26-27"
+     "cours": "MBAAG-AP-AUF 10.3.4 - Finances de l'État et finances locales 26-27",
+     "id": "1771",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1771"
     },
     {
-     "cours": "MBA AG AUF Gestion des projets et suivi évaluation 26-27",
-     "shortname": "MBA AG AUF Gestion des projets et suivi évaluation 26-27"
+     "cours": "MBAAG-AP-AUF 10.3.5 - Gestion des ressources humaines dans l'administration publique 26-27",
+     "id": "1770",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1770"
     },
     {
-     "cours": "MBA AG AUF Création d'entreprise 26-27",
-     "shortname": "MBA AG AUF Création d'entreprise 26-27"
+     "cours": "MBAAG-AP-AUF 10.3.6 - Modernisation et digitalisation du service public 26-27",
+     "id": "1769",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1769"
     },
     {
-     "cours": "MBA AG AUF Marketing 26-27",
-     "shortname": "MBA AG AUF Marketing 26-27"
+     "cours": "MBAAG-AUF 10.1.1 - Méthodologie de rédaction de mémoire 26-27",
+     "id": "1763",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1763"
     },
     {
-     "cours": "MBA AG AUF Management interculturel 26-27",
-     "shortname": "MBA AG AUF Management interculturel 26-27"
+     "cours": "MBAAG-AUF 10.1.2 - Anglais des affaires 26-27",
+     "id": "1762",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1762"
     },
     {
-     "cours": "MBA AG AUF Théorie et Management des Organisations 26-27",
-     "shortname": "MBA AG AUF Théorie et Management des Organisations 26-27"
+     "cours": "MBAAG-AUF 10.1.3 - Jeu d'entreprise 26-27",
+     "id": "1761",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1761"
     },
     {
-     "cours": "MBA AG AUF Marchés financiers 26-27",
-     "shortname": "MBA AG AUF Marchés financiers 26-27"
+     "cours": "MBAAG-AUF 10.1.4 - Développement personnel et professionnel 26-27",
+     "id": "1760",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1760"
     },
     {
-     "cours": "MBA AG AUF Contrôle de gestion 26-27",
-     "shortname": "MBA AG AUF Contrôle de gestion 26-27"
+     "cours": "MBAAG-AUF 10.2.1 - Stage professionnel et rédaction de mémoire (4 mois minimum) 26-27",
+     "id": "1764",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1764"
     },
     {
-     "cours": "MBA AG AUF Contrôle Interne 26-27",
-     "shortname": "MBA AG AUF Contrôle Interne 26-27"
+     "cours": "MBAAG-AUF 9.1.1 - Droit des affaires 26-27",
+     "id": "1748",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1748"
     },
     {
-     "cours": "MBA AG AUF Finance 26-27",
-     "shortname": "MBA AG AUF Finance 26-27"
+     "cours": "MBAAG-AUF 9.1.2 - Environnement économique et international de l'entreprise 26-27",
+     "id": "1747",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1747"
     },
     {
-     "cours": "MBA AG AUF COMPTABILITE 26-27",
-     "shortname": "MBA AG AUF COMPTABILITE 26-27"
+     "cours": "MBAAG-AUF 9.1.3 - Fiscalité 26-27",
+     "id": "1746",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1746"
     },
     {
-     "cours": "MBA AG AUF Développement personnel 26-27",
-     "shortname": "MBA AG AUF Développement personnel 26-27"
+     "cours": "MBAAG-AUF 9.2.1 - Théorie et management des organisations 26-27",
+     "id": "1754",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1754"
     },
     {
-     "cours": "MBA AG AUF Jeu d'entreprise 26-27",
-     "shortname": "MBA AG AUF Jeu d'entreprise 26-27"
+     "cours": "MBAAG-AUF 9.2.2 - Management interculturel 26-27",
+     "id": "1753",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1753"
     },
     {
-     "cours": "MBA AG AUF Anglais des Affaires 26-27",
-     "shortname": "MBA AG AUF Anglais des Affaires 26-27"
+     "cours": "MBAAG-AUF 9.2.3 - Management stratégique 26-27",
+     "id": "1749",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1749"
     },
     {
-     "cours": "MBA (AG, ACG, GP, MCID, IGF) UE 4 ECUE 1 METHODOLOGIE DE REDACTION DE MEMOIRE 26-27",
-     "shortname": "MBA (AG, ACG, GP, MCID, IGF) UE 4 ECUE 1 METHODOLOGIE DE REDACTION DE MEMOIRE 26-27"
+     "cours": "MBAAG-AUF 9.2.4 - Marketing 26-27",
+     "id": "1752",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1752"
     },
     {
-     "cours": "MBA AG AUF Stage professionnel + rédaction de mémoire (4 mois minimum) 26-27",
-     "shortname": "MBA AG AUF Stage professionnel + rédaction de mémoire (4 mois minimum) 26-27"
+     "cours": "MBAAG-AUF 9.2.5 - Création d'entreprise 26-27",
+     "id": "1751",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1751"
     },
     {
-     "cours": "MBA AG AUF Système d'information 26-27",
-     "shortname": "MBA AG AUF Système d'information 26-27"
+     "cours": "MBAAG-AUF 9.2.6 - Gestion des projets et suivi-évaluation 26-27",
+     "id": "1750",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1750"
     },
     {
-     "cours": "MBA AG AUF Gestion financière 26-27",
-     "shortname": "MBA AG AUF Gestion financière 26-27"
+     "cours": "MBAAG-AUF 9.3.1 - Comptabilité générale 26-27",
+     "id": "1759",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1759"
     },
     {
-     "cours": "MBA AG AUF Administration et Gestion des Ressources Humaines 26-27",
-     "shortname": "MBA AG AUF Administration et Gestion des Ressources Humaines 26-27"
+     "cours": "MBAAG-AUF 9.3.2 - Finance d'entreprise 26-27",
+     "id": "1758",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1758"
     },
     {
-     "cours": "MBA AG AUF Organisation et stratégie 26-27",
-     "shortname": "MBA AG AUF Organisation et stratégie 26-27"
+     "cours": "MBAAG-AUF 9.3.3 - Contrôle interne 26-27",
+     "id": "1757",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1757"
     },
     {
-     "cours": "MBA AG AUF Modernisation et digitalisation du service public 26-27",
-     "shortname": "MBA AG AUF Modernisation et digitalisation du service public 26-27"
+     "cours": "MBAAG-AUF 9.3.4 - Contrôle de gestion 26-27",
+     "id": "1756",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1756"
     },
     {
-     "cours": "MBA AG AUF Gestion des rh dans l'administration publique 26-27",
-     "shortname": "MBA AG AUF Gestion des rh dans l'administration publique 26-27"
+     "cours": "MBAAG-AUF 9.3.5 - Marchés financiers 26-27",
+     "id": "1755",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1755"
     },
     {
-     "cours": "MBA AG AUF Finances de l'état et finances locales 26-27",
-     "shortname": "MBA AG AUF Finances de l'état et finances locales 26-27"
+     "cours": "MBAAG-GE-AUF 10.3.1 - Organisation et stratégie 26-27",
+     "id": "1768",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1768"
     },
     {
-     "cours": "MBA AG AUF Science administrative et droit administratif 26-27",
-     "shortname": "MBA AG AUF Science administrative et droit administratif 26-27"
+     "cours": "MBAAG-GE-AUF 10.3.2 - Administration et gestion des ressources humaines 26-27",
+     "id": "1767",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1767"
     },
     {
-     "cours": "MBA AG AUF Acteurs et systèmes de protection sociale 26-27",
-     "shortname": "MBA AG AUF Acteurs et systèmes de protection sociale 26-27"
+     "cours": "MBAAG-GE-AUF 10.3.3 - Gestion financière 26-27",
+     "id": "1766",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1766"
     },
     {
-     "cours": "MBA AG AUF Droit de la fonction publique et de la décentralisation 26-27",
-     "shortname": "MBA AG AUF Droit de la fonction publique et de la décentralisation 26-27"
+     "cours": "MBAAG-GE-AUF 10.3.4 - Systèmes d'information 26-27",
+     "id": "1765",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1765"
     }
    ]
   },
@@ -248,140 +306,174 @@
    "nom": "MBA GP 26-27",
    "cours": [
     {
-     "cours": "Codes éthiques et déontologie 26-27",
-     "shortname": "Codes éthiques et déontologie 26-27"
+     "cours": "MBAGP 10.1.1 - Méthodologie de recherche qualitative 26-27",
+     "id": "1794",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1794"
     },
     {
-     "cours": "Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27",
-     "shortname": "Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP 10.1.3 - Méthodologie de rédaction du TFE 26-27",
+     "id": "1793",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1793"
     },
     {
-     "cours": "Environnement du projet en entreprise et défis des PME 26-27",
-     "shortname": "Environnement du projet en entreprise et défis des PME 26-27"
+     "cours": "MBAGP 10.2.1 - Suivi et évaluation des projets, programmes et portefeuille 26-27",
+     "id": "1797",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1797"
     },
     {
-     "cours": "Principes et enjeux de l’administration publique 26-27",
-     "shortname": "Principes et enjeux de l’administration publique 26-27"
+     "cours": "MBAGP 10.2.2 - Évaluation d'impact 26-27",
+     "id": "1796",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1796"
     },
     {
-     "cours": "Enjeux et défis du développement 26-27",
-     "shortname": "Enjeux et défis du développement 26-27"
+     "cours": "MBAGP 10.2.3 - Capitalisation, gestion et dissémination des connaissances 26-27",
+     "id": "1795",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1795"
     },
     {
-     "cours": "Étude d’impact environnemental et social 26-27",
-     "shortname": "Étude d’impact environnemental et social 26-27"
+     "cours": "MBAGP 10.3.1 - Gestion des risques et contrôle des projets 26-27",
+     "id": "1800",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1800"
     },
     {
-     "cours": "Études de faisabilité de projet 26-27",
-     "shortname": "Études de faisabilité de projet 26-27"
+     "cours": "MBAGP 10.3.2 - Intégration des risques transversaux 26-27",
+     "id": "1799",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1799"
     },
     {
-     "cours": "Analyse économique des projets 26-27",
-     "shortname": "Analyse économique des projets 26-27"
+     "cours": "MBAGP 10.3.3 - Audit de projet 26-27",
+     "id": "1798",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1798"
     },
     {
-     "cours": "Analyse financière de projet 26-27",
-     "shortname": "Analyse financière de projet 26-27"
+     "cours": "MBAGP 10.4.1 - Projet / Mémoire professionnel 26-27",
+     "id": "1801",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1801"
     },
     {
-     "cours": "Planification opérationnelle et budgétisation des projets et programmes 26-27",
-     "shortname": "Planification opérationnelle et budgétisation des projets et programmes 26-27"
+     "cours": "MBAGP 10.5.1 - Outils informatiques appliqués à la gestion de projet 26-27",
+     "id": "1802",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1802"
     },
     {
-     "cours": "Planification stratégique des projets, programmes et portefeuille 26-27",
-     "shortname": "Planification stratégique des projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP 10.6.1 - Anglais de spécialité 26-27",
+     "id": "1804",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1804"
     },
     {
-     "cours": "Partenariat public-privé (PPP) 26-27",
-     "shortname": "Partenariat public-privé (PPP) 26-27"
+     "cours": "MBAGP 10.7.1 - Transformation and Design Thinking 26-27",
+     "id": "1803",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1803"
     },
     {
-     "cours": "Approches innovantes de gestion de projet et méthodologie agile 26-27",
-     "shortname": "Approches innovantes de gestion de projet et méthodologie agile 26-27"
+     "cours": "MBAGP 10.8.1 - Management des programmes publics 26-27",
+     "id": "1808",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1808"
     },
     {
-     "cours": "Intégration et gestion de projets, programmes et portefeuille 26-27",
-     "shortname": "Intégration et gestion de projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP 10.8.2 - Étude de cas de projets complexes 26-27",
+     "id": "1807",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1807"
     },
     {
-     "cours": "Gestion des parties prenantes de projets, programmes et portefeuille 26-27",
-     "shortname": "Gestion des parties prenantes de projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP 10.8.3 - Marketing et communication digitale en gestion de projet 26-27",
+     "id": "1806",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1806"
     },
     {
-     "cours": "Management de la qualité 26-27",
-     "shortname": "Management de la qualité 26-27"
+     "cours": "MBAGP 10.8.4 - Gestion des parties prenantes 26-27",
+     "id": "1805",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1805"
     },
     {
-     "cours": "Passation des marchés publics 26-27",
-     "shortname": "Passation des marchés publics 26-27"
+     "cours": "MBAGP 9.1.1 - Enjeux et défis du développement 26-27",
+     "id": "1779",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1779"
     },
     {
-     "cours": "Logistique et gestion des ressources matérielles 26-27",
-     "shortname": "Logistique et gestion des ressources matérielles 26-27"
+     "cours": "MBAGP 9.1.2 - Principes et enjeux de l'administration publique 26-27",
+     "id": "1778",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1778"
     },
     {
-     "cours": "Méthodologie de rédaction du TFE 26-27",
-     "shortname": "Méthodologie de rédaction du TFE 26-27"
+     "cours": "MBAGP 9.1.3 - Environnement du projet en entreprise et défis des PME 26-27",
+     "id": "1777",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1777"
     },
     {
-     "cours": "Méthodologie de recherche Qualitative 26-27 GP",
-     "shortname": "Méthodologie de recherche Qualitative 26-27 GP"
+     "cours": "MBAGP 9.2.1 - Études de faisabilité de projet 26-27",
+     "id": "1781",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1781"
     },
     {
-     "cours": "Capitalisation, gestion et dissémination des connaissances 26-27",
-     "shortname": "Capitalisation, gestion et dissémination des connaissances 26-27"
+     "cours": "MBAGP 9.2.2 - Étude d'impact environnemental et social 26-27",
+     "id": "1780",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1780"
     },
     {
-     "cours": "Évaluation d’impact 26-27",
-     "shortname": "Évaluation d’impact 26-27"
+     "cours": "MBAGP 9.3.1 - Analyse financière de projet 26-27",
+     "id": "1783",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1783"
     },
     {
-     "cours": "Suivi et évaluation des projets, programmes et portefeuille 26-27",
-     "shortname": "Suivi et évaluation des projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP 9.3.2 - Analyse économique des projets 26-27",
+     "id": "1782",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1782"
     },
     {
-     "cours": "Audit de projet 26-27",
-     "shortname": "Audit de projet 26-27"
+     "cours": "MBAGP 9.4.1 - Planification stratégique des projets, programmes et portefeuille 26-27",
+     "id": "1785",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1785"
     },
     {
-     "cours": "Intégration des risques transversaux 26-27",
-     "shortname": "Intégration des risques transversaux 26-27"
+     "cours": "MBAGP 9.4.2 - Planification opérationnelle et budgétisation des projets et programmes 26-27",
+     "id": "1784",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1784"
     },
     {
-     "cours": "Gestion des risques et contrôle des projets 26-27",
-     "shortname": "Gestion des risques et contrôle des projets 26-27"
+     "cours": "MBAGP 9.5.1 - Intégration et gestion de projets, programmes et portefeuille 26-27",
+     "id": "1788",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1788"
     },
     {
-     "cours": "Projet / Mémoire professionnel 26-27",
-     "shortname": "Projet / Mémoire professionnel 26-27"
+     "cours": "MBAGP 9.5.2 - Approches innovantes de gestion de projet et méthodologie agile 26-27",
+     "id": "1787",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1787"
     },
     {
-     "cours": "Outils informatiques appliqués à la gestion de projet 26-27",
-     "shortname": "Outils informatiques appliqués à la gestion de projet 26-27"
+     "cours": "MBAGP 9.5.3 - Partenariat public-privé (PPP) 26-27",
+     "id": "1786",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1786"
     },
     {
-     "cours": "Transformation and Design Thinking 26-27",
-     "shortname": "Transformation and Design Thinking 26-27"
+     "cours": "MBAGP 9.6.1 - Gestion des parties prenantes de projets, programmes et portefeuille 26-27",
+     "id": "1789",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1789"
     },
     {
-     "cours": "Gestion des parties prenantes 26-27",
-     "shortname": "Gestion des parties prenantes 26-27"
+     "cours": "MBAGP 9.6.2 - Logistique et gestion des ressources matérielles 26-27",
+     "id": "1792",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1792"
     },
     {
-     "cours": "Marketing et communication digitale en gestion de projet 26-27",
-     "shortname": "Marketing et communication digitale en gestion de projet 26-27"
+     "cours": "MBAGP 9.6.3 - Passation des marchés publics 26-27",
+     "id": "1791",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1791"
     },
     {
-     "cours": "Étude de cas de projets complexes 26-27",
-     "shortname": "Étude de cas de projets complexes 26-27"
+     "cours": "MBAGP 9.6.4 - Management de la qualité 26-27",
+     "id": "1790",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1790"
     },
     {
-     "cours": "Management des programmes publics 26-27",
-     "shortname": "Management des programmes publics 26-27"
+     "cours": "MBAGP 9.7.1 - Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27",
+     "id": "1776",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1776"
     },
     {
-     "cours": "Anglais de spécialité 26-27",
-     "shortname": "MBA GP - Anglais de spécialité 26-27"
+     "cours": "MBAGP 9.7.2 - Codes éthiques et déontologie 26-27",
+     "id": "1775",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1775"
     }
    ]
   },
@@ -389,124 +481,154 @@
    "nom": "MBA GP AUF 26-27",
    "cours": [
     {
-     "cours": "MBA GP AUF Environnement du projet en entreprise et défis des PME 26-27",
-     "shortname": "MBA GP AUF Environnement du projet en entreprise et défis des PME 26-27"
+     "cours": "MBAGP-AUF 10.1.1 - Méthodologie de recherche qualitative 26-27",
+     "id": "1829",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1829"
     },
     {
-     "cours": "MBA GP AUF Principes et enjeux de l'administration publique 26-27",
-     "shortname": "MBA GP AUF Principes et enjeux de l'administration publique 26-27"
+     "cours": "MBAGP-AUF 10.1.2 - Méthodologie de recherche quantitative 26-27",
+     "id": "1828",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1828"
     },
     {
-     "cours": "MBA GP AUF Enjeux et défis du développement 26-27",
-     "shortname": "MBA GP AUF Enjeux et défis du développement 26-27"
+     "cours": "MBAGP-AUF 10.1.3 - Méthodologie de rédaction du TFE 26-27",
+     "id": "1827",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1827"
     },
     {
-     "cours": "MBA GP AUF Étude d'impact environnemental et social 26-27",
-     "shortname": "MBA GP AUF Étude d'impact environnemental et social 26-27"
+     "cours": "MBAGP-AUF 10.2.1 - Suivi et évaluation des projets, programmes et portefeuille 26-27",
+     "id": "1832",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1832"
     },
     {
-     "cours": "MBA GP AUF Études de faisabilité de projet 26-27",
-     "shortname": "MBA GP AUF Études de faisabilité de projet 26-27"
+     "cours": "MBAGP-AUF 10.2.2 - Évaluation d'impact 26-27",
+     "id": "1831",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1831"
     },
     {
-     "cours": "MBA GP AUF Analyse économique des projets 26-27",
-     "shortname": "MBA GP AUF Analyse économique des projets 26-27"
+     "cours": "MBAGP-AUF 10.2.3 - Capitalisation, gestion et dissémination des connaissances 26-27",
+     "id": "1830",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1830"
     },
     {
-     "cours": "MBA GP AUF Analyse financière de projet 26-27",
-     "shortname": "MBA GP AUF Analyse financière de projet 26-27"
+     "cours": "MBAGP-AUF 10.3.1 - Gestion des risques et contrôle des projets 26-27",
+     "id": "1835",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1835"
     },
     {
-     "cours": "MBA GP AUF Planification opérationnelle et budgétisation des projets et programmes 26-27",
-     "shortname": "MBA GP AUF Planification opérationnelle et budgétisation des projets et programmes 26-27"
+     "cours": "MBAGP-AUF 10.3.2 - Intégration des risques transversaux 26-27",
+     "id": "1834",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1834"
     },
     {
-     "cours": "MBA GP AUF Planification stratégique des projets, programmes et portefeuille 26-27",
-     "shortname": "MBA GP AUF Planification stratégique des projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP-AUF 10.3.3 - Audit de projet 26-27",
+     "id": "1833",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1833"
     },
     {
-     "cours": "MBA GP AUF Gestion des parties prenantes de projets, programmes et portefeuille 26-27",
-     "shortname": "MBA GP AUF Gestion des parties prenantes de projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP-AUF 10.5.1 - Outils informatiques appliqués à la gestion de projet 26-27",
+     "id": "1836",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1836"
     },
     {
-     "cours": "MBA GP AUF Partenariat public-privé (PPP) 26-27",
-     "shortname": "MBA GP AUF Partenariat public-privé (PPP) 26-27"
+     "cours": "MBAGP-AUF 10.6.1 - Anglais de spécialité 26-27",
+     "id": "1837",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1837"
     },
     {
-     "cours": "MBA GP AUF Approches innovantes de gestion de projet et méthodologie agile 26-27",
-     "shortname": "MBA GP AUF Approches innovantes de gestion de projet et méthodologie agile 26-27"
+     "cours": "MBAGP-AUF 10.7.1 - Transformation and Design Thinking 26-27",
+     "id": "1838",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1838"
     },
     {
-     "cours": "MBA GP AUF Intégration et gestion de projets, programmes et portefeuille 26-27",
-     "shortname": "MBA GP AUF Intégration et gestion de projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP-AUF 9.1.1 - Enjeux et défis du développement 26-27",
+     "id": "1811",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1811"
     },
     {
-     "cours": "MBA GP AUF Management de la qualité 26-27",
-     "shortname": "MBA GP AUF Management de la qualité 26-27"
+     "cours": "MBAGP-AUF 9.1.2 - Principes et enjeux de l'administration publique 26-27",
+     "id": "1810",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1810"
     },
     {
-     "cours": "MBA GP AUF Passation des marchés publics 26-27",
-     "shortname": "MBA GP AUF Passation des marchés publics 26-27"
+     "cours": "MBAGP-AUF 9.1.3 - Environnement du projet en entreprise et défis des PME 26-27",
+     "id": "1809",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1809"
     },
     {
-     "cours": "MBA GP AUF Logistique et gestion des ressources matérielles 26-27",
-     "shortname": "MBA GP AUF Logistique et gestion des ressources matérielles 26-27"
+     "cours": "MBAGP-AUF 9.2.1 - Études de faisabilité de projet 26-27",
+     "id": "1813",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1813"
     },
     {
-     "cours": "MBA GP AUF Codes éthiques et déontologie 26-27",
-     "shortname": "MBA GP AUF Codes éthiques et déontologie 26-27"
+     "cours": "MBAGP-AUF 9.2.2 - Étude d'impact environnemental et social 26-27",
+     "id": "1812",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1812"
     },
     {
-     "cours": "MBA GP AUF Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27",
-     "shortname": "MBA GP AUF Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP-AUF 9.3.1 - Analyse financière de projet 26-27",
+     "id": "1815",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1815"
     },
     {
-     "cours": "MBA GP AUF Méthodologie de rédaction du TFE 26-27",
-     "shortname": "MBA GP AUF Méthodologie de rédaction du TFE 26-27"
+     "cours": "MBAGP-AUF 9.3.2 - Analyse économique des projets 26-27",
+     "id": "1814",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1814"
     },
     {
-     "cours": "MBA GP AUF Méthodologie de recherche quantitative 26-27",
-     "shortname": "MBA GP AUF Méthodologie de recherche quantitative 26-27"
+     "cours": "MBAGP-AUF 9.4.1 - Planification stratégique des projets, programmes et portefeuille 26-27",
+     "id": "1817",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1817"
     },
     {
-     "cours": "MBA GP AUF Méthodologie de recherche qualitative 26-27",
-     "shortname": "MBA GP AUF Méthodologie de recherche qualitative 26-27"
+     "cours": "MBAGP-AUF 9.4.2 - Planification opérationnelle et budgétisation des projets et programmes 26-27",
+     "id": "1816",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1816"
     },
     {
-     "cours": "MBA GP AUF Capitalisation, gestion et dissémination des connaissances 26-27",
-     "shortname": "MBA GP AUF Capitalisation, gestion et dissémination des connaissances 26-27"
+     "cours": "MBAGP-AUF 9.5.1 - Intégration et gestion de projets, programmes et portefeuille 26-27",
+     "id": "1821",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1821"
     },
     {
-     "cours": "MBA GP AUF Évaluation d'impact 26-27",
-     "shortname": "MBA GP AUF Évaluation d'impact 26-27"
+     "cours": "MBAGP-AUF 9.5.2 - Approches innovantes de gestion de projet et méthodologie agile 26-27",
+     "id": "1820",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1820"
     },
     {
-     "cours": "MBA GP AUF Suivi et évaluation des projets, programmes et portefeuille 26-27",
-     "shortname": "MBA GP AUF Suivi et évaluation des projets, programmes et portefeuille 26-27"
+     "cours": "MBAGP-AUF 9.5.3 - Partenariat public-privé (PPP) 26-27",
+     "id": "1819",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1819"
     },
     {
-     "cours": "MBA GP AUF Audit de projet 26-27",
-     "shortname": "MBA GP AUF Audit de projet 26-27"
+     "cours": "MBAGP-AUF 9.6.1 - Gestion des parties prenantes de projets, programmes et portefeuille 26-27",
+     "id": "1818",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1818"
     },
     {
-     "cours": "MBA GP AUF Intégration des risques transversaux 26-27",
-     "shortname": "MBA GP AUF Intégration des risques transversaux 26-27"
+     "cours": "MBAGP-AUF 9.6.2 - Logistique et gestion des ressources matérielles 26-27",
+     "id": "1824",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1824"
     },
     {
-     "cours": "MBA GP AUF Gestion des risques et contrôle des projets 26-27",
-     "shortname": "MBA GP AUF Gestion des risques et contrôle des projets 26-27"
+     "cours": "MBAGP-AUF 9.6.3 - Passation des marchés publics 26-27",
+     "id": "1823",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1823"
     },
     {
-     "cours": "MBA GP AUF Outils informatiques appliqués à la gestion de projet 26-27",
-     "shortname": "MBA GP AUF Outils informatiques appliqués à la gestion de projet 26-27"
+     "cours": "MBAGP-AUF 9.6.4 - Management de la qualité 26-27",
+     "id": "1822",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1822"
     },
     {
-     "cours": "MBA GP AUF Anglais de spécialité 26-27",
-     "shortname": "MBA GP AUF Anglais de spécialité 26-27"
+     "cours": "MBAGP-AUF 9.7.1 - Aspects juridiques et fiscaux des projets, programmes et portefeuille 26-27",
+     "id": "1826",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1826"
     },
     {
-     "cours": "MBA GP AUF Transformation and Design Thinking 26-27",
-     "shortname": "MBA GP AUF Transformation and Design Thinking 26-27"
+     "cours": "MBAGP-AUF 9.7.2 - Codes éthiques et déontologie 26-27",
+     "id": "1825",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1825"
     }
    ]
   },
@@ -514,144 +636,179 @@
    "nom": "MBA MSCH 26-27",
    "cours": [
     {
-     "cours": "MBA MSCH – Finance d'entreprise (MBAGRH113) 26-27",
-     "shortname": "MBA MSCH – Finance d'entreprise (MBAGRH113) 26-27"
+     "cours": "MBAMSCH 10.1.1 - Stratégie d'entreprise et GRH 26-27",
+     "id": "1864",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1864"
     },
     {
-     "cours": "MBA MSCH – Comptabilité analytique (MBAGRH112) 26-27",
-     "shortname": "MBA MSCH – Comptabilité analytique (MBAGRH112) 26-27"
+     "cours": "MBAMSCH 10.1.2 - Diagnostic organisationnel et gestion du changement 26-27",
+     "id": "1863",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1863"
     },
     {
-     "cours": "MBA MSCH – Comptabilité générale (MBAGRH111) 26-27",
-     "shortname": "MBA MSCH – Comptabilité générale (MBAGRH111) 26-27"
+     "cours": "MBAMSCH 10.1.3 - Gestion prévisionnelle des emplois et des compétences 26-27",
+     "id": "1862",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1862"
     },
     {
-     "cours": "MBA MSCH – Conventions internationales sur le travail (MBAGRH131) 26-27",
-     "shortname": "MBA MSCH – Conventions internationales sur le travail (MBAGRH131) 26-27"
+     "cours": "MBAMSCH 10.2.1 - Environnement économique international et GRH 26-27",
+     "id": "1861",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1861"
     },
     {
-     "cours": "MBA MSCH – Communication organisationnelle (MBAGRH126) 26-27",
-     "shortname": "MBA MSCH – Communication organisationnelle (MBAGRH126) 26-27"
+     "cours": "MBAMSCH 10.2.2 - Mobilité internationale des ressources humaines 26-27",
+     "id": "1860",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1860"
     },
     {
-     "cours": "MBA MSCH – Gestion des compétences (MBAGRH125) 26-27",
-     "shortname": "MBA MSCH – Gestion des compétences (MBAGRH125) 26-27"
+     "cours": "MBAMSCH 10.2.3 - Management interculturel 26-27",
+     "id": "1859",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1859"
     },
     {
-     "cours": "MBA MSCH – Condition de travail et qualité de vie (MBAGRH124) 26-27",
-     "shortname": "MBA MSCH – Condition de travail et qualité de vie (MBAGRH124) 26-27"
+     "cours": "MBAMSCH 10.2.4 - E-GRH : e-recrutement, e-formation, e-communication 26-27",
+     "id": "1868",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1868"
     },
     {
-     "cours": "MBA MSCH – Administration du personnel (MBAGRH121) 26-27",
-     "shortname": "MBA MSCH – Administration du personnel (MBAGRH121) 26-27"
+     "cours": "MBAMSCH 10.3.1 - Création et gestion d'un cabinet de conseil en GRH 26-27",
+     "id": "1867",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1867"
     },
     {
-     "cours": "MBA MSCH – Droit du travail (MBAGRH134) 26-27",
-     "shortname": "MBA MSCH – Droit du travail (MBAGRH134) 26-27"
+     "cours": "MBAMSCH 10.3.2 - Conduite d'une mission d'intervention en GRH 26-27",
+     "id": "1866",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1866"
     },
     {
-     "cours": "MBA MSCH – Normalisation et management de la qualité (MBAGRH133) 26-27",
-     "shortname": "MBA MSCH – Normalisation et management de la qualité (MBAGRH133) 26-27"
+     "cours": "MBAMSCH 10.3.3 - Conception et conduite d'un projet 26-27",
+     "id": "1865",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1865"
     },
     {
-     "cours": "MBA MSCH – Droit de la sécurité sociale (MBAGRH132) 26-27",
-     "shortname": "MBA MSCH – Droit de la sécurité sociale (MBAGRH132) 26-27"
+     "cours": "MBAMSCH 10.4.1 - Développement personnel et professionnel 26-27",
+     "id": "1872",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1872"
     },
     {
-     "cours": "MBA MSCH – Bilan social (MBAGRH143) 26-27",
-     "shortname": "MBA MSCH – Bilan social (MBAGRH143) 26-27"
+     "cours": "MBAMSCH 10.4.2 - Méthodologie de la recherche 26-27",
+     "id": "1871",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1871"
     },
     {
-     "cours": "MBA MSCH – Audit social et audit de la RSE (MBAGRH142) 26-27",
-     "shortname": "MBA MSCH – Audit social et audit de la RSE (MBAGRH142) 26-27"
+     "cours": "MBAMSCH 10.4.3 - Simulation d'entreprises 26-27",
+     "id": "1870",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1870"
     },
     {
-     "cours": "MBA MSCH – Contrôle de gestion sociale (MBAGRH141) 26-27",
-     "shortname": "MBA MSCH – Contrôle de gestion sociale (MBAGRH141) 26-27"
+     "cours": "MBAMSCH 10.4.4 - Anglais des affaires 26-27",
+     "id": "1869",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1869"
     },
     {
-     "cours": "MBA MSCH – Logiciel spécialisé de paie (MBAGRH155) 26-27",
-     "shortname": "MBA MSCH – Logiciel spécialisé de paie (MBAGRH155) 26-27"
+     "cours": "MBAMSCH 10.5.1 - Stage et mémoire 26-27",
+     "id": "1873",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1873"
     },
     {
-     "cours": "MBA MSCH – Management des rémunérations (MBAGRH154) 26-27",
-     "shortname": "MBA MSCH – Management des rémunérations (MBAGRH154) 26-27"
+     "cours": "MBAMSCH 9.1.1 - Comptabilité générale 26-27",
+     "id": "1841",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1841"
     },
     {
-     "cours": "MBA MSCH – Recrutement et intégration (MBAGRH153) 26-27",
-     "shortname": "MBA MSCH – Recrutement et intégration (MBAGRH153) 26-27"
+     "cours": "MBAMSCH 9.1.2 - Comptabilité analytique 26-27",
+     "id": "1840",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1840"
     },
     {
-     "cours": "MBA MSCH – Appréciation des performances du personnel (MBAGRH153) 26-27",
-     "shortname": "MBA MSCH – Appréciation des performances du personnel (MBAGRH153) 26-27"
+     "cours": "MBAMSCH 9.1.3 - Finance d'entreprise 26-27",
+     "id": "1839",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1839"
     },
     {
-     "cours": "MBA MSCH – Théorie des organisations (MBAGRH152) 26-27",
-     "shortname": "MBA MSCH – Théorie des organisations (MBAGRH152) 26-27"
+     "cours": "MBAMSCH 9.2.1 - Administration du personnel 26-27",
+     "id": "1846",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1846"
     },
     {
-     "cours": "MBA MSCH – Management de la formation (MBAGRH151) 26-27",
-     "shortname": "MBA MSCH – Management de la formation (MBAGRH151) 26-27"
+     "cours": "MBAMSCH 9.2.2 - Condition de travail et qualité de vie 26-27",
+     "id": "1845",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1845"
     },
     {
-     "cours": "MBA MSCH – Management interculturel (MBAGRH223) 26-27",
-     "shortname": "MBA MSCH – Management interculturel (MBAGRH223) 26-27"
+     "cours": "MBAMSCH 9.2.3 - Gestion des compétences 26-27",
+     "id": "1844",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1844"
     },
     {
-     "cours": "MBA MSCH – Mobilité internationale des ressources humaines (MBAGRH222) 26-27",
-     "shortname": "MBA MSCH – Mobilité internationale des ressources humaines (MBAGRH222) 26-27"
+     "cours": "MBAMSCH 9.2.4 - Communication organisationnelle 26-27",
+     "id": "1843",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1843"
     },
     {
-     "cours": "MBA MSCH – Environnement économique international et GRH (MBAGRH221) 26-27",
-     "shortname": "MBA MSCH – Environnement économique international et GRH (MBAGRH221) 26-27"
+     "cours": "MBAMSCH 9.3.1 - Conventions internationales sur le travail 26-27",
+     "id": "1842",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1842"
     },
     {
-     "cours": "MBA MSCH – Gestion prévisionnelle des emplois et des compétences (MBAGRH213) 26-27",
-     "shortname": "MBA MSCH – Gestion prévisionnelle des emplois et des compétences (MBAGRH213) 26-27"
+     "cours": "MBAMSCH 9.3.2 - Droit de la sécurité sociale 26-27",
+     "id": "1849",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1849"
     },
     {
-     "cours": "MBA MSCH – Diagnostic organisationnel et gestion du changement (MBAGRH212) 26-27",
-     "shortname": "MBA MSCH – Diagnostic organisationnel et gestion du changement (MBAGRH212) 26-27"
+     "cours": "MBAMSCH 9.3.3 - Normalisation et management de la qualité 26-27",
+     "id": "1848",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1848"
     },
     {
-     "cours": "MBA MSCH – Stratégie d'entreprise et GRH (MBAGRH211) 26-27",
-     "shortname": "MBA MSCH – Stratégie d'entreprise et GRH (MBAGRH211) 26-27"
+     "cours": "MBAMSCH 9.3.4 - Droit du travail 26-27",
+     "id": "1847",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1847"
     },
     {
-     "cours": "MBA MSCH – Conception et conduite d'un projet (MBAGRH233) 26-27",
-     "shortname": "MBA MSCH – Conception et conduite d'un projet (MBAGRH233) 26-27"
+     "cours": "MBAMSCH 9.4.1 - Contrôle de gestion sociale 26-27",
+     "id": "1852",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1852"
     },
     {
-     "cours": "MBA MSCH – Conduite d'une mission d'intervention en GRH (MBAGRH232) 26-27",
-     "shortname": "MBA MSCH – Conduite d'une mission d'intervention en GRH (MBAGRH232) 26-27"
+     "cours": "MBAMSCH 9.4.2 - Audit social et audit de la RSE 26-27",
+     "id": "1851",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1851"
     },
     {
-     "cours": "MBA MSCH – Création et gestion d'un cabinet de conseil en GRH (MBAGRH231) 26-27",
-     "shortname": "MBA MSCH – Création et gestion d'un cabinet de conseil en GRH (MBAGRH231) 26-27"
+     "cours": "MBAMSCH 9.4.3 - Bilan social 26-27",
+     "id": "1850",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1850"
     },
     {
-     "cours": "MBA MSCH – E-GRH : e-recrutement, e-formation, e-communication (MBAGRH224) 26-27",
-     "shortname": "MBA MSCH – E-GRH : e-recrutement, e-formation, e-communication (MBAGRH224) 26-27"
+     "cours": "MBAMSCH 9.5.1 - Management de la formation 26-27",
+     "id": "1858",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1858"
     },
     {
-     "cours": "MBA MSCH – Anglais des affaires (MBAGRH244) 26-27",
-     "shortname": "MBA MSCH – Anglais des affaires (MBAGRH244) 26-27"
+     "cours": "MBAMSCH 9.5.2 - Théorie des organisations 26-27",
+     "id": "1857",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1857"
     },
     {
-     "cours": "MBA MSCH – Simulation d'entreprises (MBAGRH243) 26-27",
-     "shortname": "MBA MSCH – Simulation d'entreprises (MBAGRH243) 26-27"
+     "cours": "MBAMSCH 9.5.3 - Appréciation des performances du personnel 26-27",
+     "id": "1856",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1856"
     },
     {
-     "cours": "MBA MSCH – Méthodologie de la recherche (MBAGRH242) 26-27",
-     "shortname": "MBA MSCH – Méthodologie de la recherche (MBAGRH242) 26-27"
+     "cours": "MBAMSCH 9.5.4 - Recrutement et intégration 26-27",
+     "id": "1855",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1855"
     },
     {
-     "cours": "MBA MSCH – Développement personnel et professionnel (MBAGRH241) 26-27",
-     "shortname": "MBA MSCH – Développement personnel et professionnel (MBAGRH241) 26-27"
+     "cours": "MBAMSCH 9.5.5 - Management des rémunérations 26-27",
+     "id": "1854",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1854"
     },
     {
-     "cours": "MBA MSCH – Stage et mémoire (MBAGRH251) 26-27",
-     "shortname": "MBA MSCH – Stage et mémoire (MBAGRH251) 26-27"
+     "cours": "MBAMSCH 9.5.6 - Logiciel spécialisé de paie 26-27",
+     "id": "1853",
+     "lienCours": "https://formations.cesagonline.com/course/view.php?id=1853"
     }
    ]
   }
