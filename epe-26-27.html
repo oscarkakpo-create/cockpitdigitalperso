@@ -40,6 +40,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </style>
 </head>
 <body>
+<datalist id="dl-ens"></datalist>
 <h2>🗓️ EPE 26-27</h2>
 <div class="sub">Un cours = un lien, partageable entre plusieurs cohortes. Pas de salle virtuelle : seulement le lien du cours et, pour les examens, la surveillance BigBlueButton.</div>
 
@@ -62,6 +63,11 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
   <div class="card">
     <h3>Bloc à copier</h3>
     <div class="row">
+      <div class="fld"><label>Agenda annuel — lien</label><input id="m-agenda" type="url" placeholder="https://…" onchange="saveMeta()"></div>
+      <div class="fld"><label>Enregistrement — lien</label><input id="m-rec" type="url" placeholder="https://…" onchange="saveMeta()"></div>
+      <div class="fld" style="max-width:200px"><label>Code secret enregistrement</label><input id="m-code" placeholder="Code" onchange="saveMeta()"></div>
+    </div>
+    <div class="row">
       <div class="fld"><label>Notes globales (optionnel)</label><input id="g-obs" placeholder="Observations pour toute la semaine"></div>
     </div>
     <div class="row" style="margin-bottom:0">
@@ -71,6 +77,10 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
     </div>
     <div id="msgs" style="margin:10px 0"></div>
     <pre id="out">[ Clique sur « Générer le bloc » ]</pre>
+  </div>
+  <div class="card">
+    <h3>🕘 Historique des blocs <span id="h-n" class="small"></span></h3>
+    <div id="hist"></div>
   </div>
 </section>
 
@@ -106,8 +116,8 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V9';
-let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
+const KEY='CESAG_EPE_2627_V10';
+let S={cohorts:[],courses:[],sessions:[],seq:1,teachers:[],meta:{agenda:'',rec:'',code:''},history:[]};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const uid=()=>'c'+(S.seq++)+Math.random().toString(36).slice(2,6);
@@ -152,6 +162,24 @@ function loadFile(inp){
 function exportData(){
   const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,1)],{type:'application/json'})); a.download='epe-26-27-donnees.json'; a.click();
 }
+
+/* ── enseignants (autocomplétion), méta globale, historique ── */
+function rememberTeacher(t){
+  t=(t||'').trim(); if(!t) return;
+  if(!S.teachers.includes(t)){ S.teachers.push(t); S.teachers.sort((a,b)=>a.localeCompare(b,'fr')); save(); renderTeachers(); }
+}
+function renderTeachers(){ $('dl-ens').innerHTML=S.teachers.map(t=>`<option value="${esc(t)}">`).join(''); }
+function saveMeta(){ S.meta={agenda:$('m-agenda').value.trim(),rec:$('m-rec').value.trim(),code:$('m-code').value.trim()}; save(); }
+function renderMeta(){ $('m-agenda').value=S.meta.agenda||''; $('m-rec').value=S.meta.rec||''; $('m-code').value=S.meta.code||''; }
+function renderHist(){
+  $('h-n').textContent=S.history.length?`(${S.history.length})`:'';
+  $('hist').innerHTML=S.history.length?S.history.map((h,i)=>`<div class="crs" style="grid-template-columns:1fr auto">
+    <div><div class="nm">${esc(h.label)}</div><div class="small">${esc(h.period)} · généré le ${esc(h.at)}</div></div>
+    <div><button class="btn s" onclick="histShow(${i})">Afficher</button> <button class="btn s" onclick="histCopy(${i})">📋</button> <button class="btn s" onclick="histDel(${i})">🗑</button></div></div>`).join(''):'<div class="small">Aucun bloc pour l\'instant.</div>';
+}
+function histShow(i){ $('out').textContent=S.history[i].text; $('out').scrollIntoView({behavior:'smooth',block:'center'}); }
+function histCopy(i){ navigator.clipboard.writeText(S.history[i].text).then(()=>alert('Bloc copié')); }
+function histDel(i){ S.history.splice(i,1); save(); renderHist(); }
 
 /* ── onglets ── */
 function tab(t){
@@ -352,7 +380,7 @@ function renderSessions(){
         <div class="fld"><label>Date</label><input type="date" value="${s.date}" onchange="setDate(${i},this.value)"><span class="warn" id="hol-${i}"></span></div>
         <div class="fld"><label>Début (GMT)</label><input type="time" value="${s.hdeb}" onchange="upd(${i},'hdeb',this.value)"></div>
         <div class="fld"><label>Fin (GMT)</label><input type="time" value="${s.hfin}" onchange="upd(${i},'hfin',this.value)"></div>
-        <div class="fld"><label>Enseignant</label><input value="${esc(s.ens)}" onchange="upd(${i},'ens',this.value)"></div>
+        <div class="fld"><label>Enseignant</label><input list="dl-ens" value="${esc(s.ens)}" onchange="upd(${i},'ens',this.value.trim());rememberTeacher(this.value)"></div>
         ${s.type==='Examen'?`<div class="fld" style="max-width:130px"><label>Durée (min)</label><input type="number" value="${esc(s.duree)}" onchange="upd(${i},'duree',this.value)"></div>`:''}
       </div>
       <div class="warn" id="clash-${i}" style="margin:0 0 8px;font-weight:600;color:#dc2626"></div>
@@ -406,15 +434,23 @@ function gen(){
     if(s.obs) o+=`- Notes : ${s.obs}\n`;
     o+='\n';
   });
+  const mt=S.meta;
+  if(mt.agenda) o+=`Agenda annuel : ${mt.agenda}\n`;
+  if(mt.rec) o+=`Enregistrement : ${mt.rec}\n`;
+  if(mt.code) o+=`Code secret : ${mt.code}\n`;
   const g=$('g-obs').value.trim(); if(g) o+=`${'─'.repeat(34)}\nOBSERVATIONS GLOBALES :\n${g}\n${'─'.repeat(34)}\n`;
   $('out').textContent=o.trim();
+  ss.forEach(x=>rememberTeacher(x.ens));
+  const per=`${fmt(lundi).split(' ')[1]} → ${fmt(dim).split(' ')[1]}`;
+  S.history.unshift({label:progs.join(' + ')+' · '+ss.length+' séance'+(ss.length>1?'s':''),period:per,at:new Date().toLocaleString('fr-FR'),text:o.trim()});
+  S.history=S.history.slice(0,30); save(); renderHist();
 }
 function survOf(s){ for(const c of s.cohorts){ const x=S.cohorts.find(k=>k.name===c); if(x&&x.surv) return x.surv; } return ''; }
 function copyOut(){ const t=$('out').textContent; if(t.startsWith('[')){alert('Génère d\'abord un bloc');return;} navigator.clipboard.writeText(t).then(()=>alert('Bloc copié')); }
 function dlOut(){ const t=$('out').textContent; if(t.startsWith('[')){alert('Génère d\'abord un bloc');return;} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'})); a.download='planning_epe_26-27.txt'; a.click(); }
 
 function renderAllSessionsHook(){ paintHolidays(); }
-function renderAll(){ cohOpts($('f-coh'),true,'Toutes'); renderCohs(); renderCourses(); renderSessions(); }
+function renderAll(){ renderTeachers(); renderMeta(); renderHist();  cohOpts($('f-coh'),true,'Toutes'); renderCohs(); renderCourses(); renderSessions(); }
 boot();
 </script>
 </body>
