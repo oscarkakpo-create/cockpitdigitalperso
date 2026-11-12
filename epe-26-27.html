@@ -35,12 +35,13 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 .crs{display:grid;grid-template-columns:minmax(180px,1.2fr) minmax(200px,2fr) auto;gap:8px;align-items:start;padding:8px 0;border-bottom:1px solid var(--border)}
 .crs .nm{font-weight:600;font-size:13px}
 .small{font-size:12px;color:var(--muted)}
-.hide{display:none}
+.hide{display:none!important}
 @media(max-width:700px){.crs{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <datalist id="dl-ens"></datalist>
+<div id="reg" class="hide" style="position:fixed;inset:0;background:rgba(15,23,42,.55);z-index:50;display:flex;align-items:center;justify-content:center;padding:16px" onclick="if(event.target===this)closeReg()"><div id="reg-box" style="background:#fff;border-radius:14px;padding:18px;max-width:560px;width:100%;max-height:90vh;overflow:auto"></div></div>
 <h2>🗓️ EPE 26-27</h2>
 <div class="sub">Un cours = un lien, partageable entre plusieurs cohortes. Pas de salle virtuelle : seulement le lien du cours et, pour les examens, la surveillance BigBlueButton.</div>
 
@@ -116,7 +117,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V10';
+const KEY='CESAG_EPE_2627_V12';
 let S={cohorts:[],courses:[],sessions:[],seq:1,teachers:[],meta:{agenda:'',rec:'',code:''},history:[]};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -232,13 +233,7 @@ function renderCourses(){
 function grpMembers(k){ return k.grp?S.courses.filter(o=>o.grp===k.grp):[k]; }
 function grpInfo(k){
   const others=grpMembers(k).filter(o=>o!==k);
-  const opts=S.cohorts.map(c=>{
-    const l=S.courses.filter(o=>o!==k&&!(k.grp&&o.grp===k.grp)&&o.cohorts.includes(c.name));
-    return l.length?`<optgroup label="${esc(c.name.replace(' 26-27',''))}">${l.map(o=>`<option value="${o.id}">${esc(o.name)}${o.link?'':' ⚠'}</option>`).join('')}</optgroup>`:'';
-  }).join('');
-  return `<div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;align-items:center">
-    <select style="max-width:330px;padding:5px 8px;font-size:12px" onchange="linkWith('${k.id}',this.value);this.value=''"><option value="">🔗 Fait en commun avec… (reprendre son lien)</option>${opts}</select>
-    ${others.length?`<span class="ok">🔗 Lien commun avec ${others.map(o=>esc(o.name.replace(/ 26-27$/,''))).join(' · ')}</span> <button class="btn s" onclick="unlinkGrp('${k.id}')">Dissocier</button>`:''}</div>`;
+  return others.length?`<div style="margin-top:6px"><span class="ok">🔗 Lien commun avec ${others.map(o=>esc(o.name.replace(/ 26-27$/,''))).join(' · ')}</span> <button class="btn s" onclick="unlinkGrp('${k.id}')">Dissocier</button></div>`:'';
 }
 function linkWith(id,otherId){
   if(!otherId) return;
@@ -352,16 +347,49 @@ function courseGroups(s){
     if(out.length) groups.push({label,list:out.sort((x,y)=>x.name.localeCompare(y.name,'fr'))});
   };
   if(own.size) add('Cours de '+[...own].map(c=>c.replace(' 26-27','')).join(' + '),S.courses.filter(k=>k.cohorts.some(c=>own.has(c))));
-  S.cohorts.filter(c=>!own.has(c.name)).forEach(c=>add('↪ Reprendre un cours de '+c.name.replace(' 26-27',''),S.courses.filter(k=>k.cohorts.includes(c.name))));
+  if(!own.size) S.cohorts.forEach(c=>add(c.name.replace(' 26-27',''),S.courses.filter(k=>k.cohorts.includes(c.name))));
   return groups;
 }
 function pickCourse(i,id){
   const s=S.sessions[i], k=S.courses.find(x=>x.id===id);
   if(!k){ s.course=''; s.link=''; s.cid=''; s.from=''; save(); renderSessions(); return; }
-  s.course=k.name; s.link=k.link; s.cid=k.id;
-  // cours repris d'une autre cohorte ? (aucune des cohortes de la séance ne l'a)
-  s.from=k.cohorts.some(c=>s.cohorts.includes(c))?'':k.cohorts.map(c=>c.replace(' 26-27','')).join(' + ');
+  s.course=k.name; s.link=k.link; s.cid=k.id; s.from='';
   save(); renderSessions();
+}
+/* ── Cours regroupé : l'outil pose les questions, puis récupère le lien ── */
+let REG={i:0,coh:'',q:''};
+function openRegroup(i){ REG={i,coh:'',q:''}; $('reg').classList.remove('hide'); renderReg(); }
+function closeReg(){ $('reg').classList.add('hide'); }
+function regCoh(c){ REG.coh=c; REG.q=''; renderReg(); }
+function renderReg(){
+  const s=S.sessions[REG.i], mine=new Set(s.cohorts);
+  const cur=s.course?`<b>${esc(s.course)}</b>`:'ce cours';
+  let h=`<h3 style="margin:0 0 4px">🔗 Cours regroupé</h3>
+    <div class="small" style="margin-bottom:12px">Séance ${REG.i+1}${s.cohorts.length?' · '+esc(s.cohorts.map(c=>c.replace(' 26-27','')).join(' + ')):''}. Je récupère le lien d'un autre cours pour ${cur}.</div>
+    <label>1. Avec quelle cohorte ce cours est-il regroupé ?</label>
+    <div class="chips" style="margin:6px 0 14px">${S.cohorts.filter(c=>!mine.has(c.name)||S.cohorts.length===1).map(c=>`<span class="chip ${REG.coh===c.name?'on':''}" onclick="regCoh('${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name.replace(' 26-27',''))}</span>`).join('')}</div>`;
+  if(REG.coh){
+    const sug=norm(s.course||'');
+    let list=S.courses.filter(k=>k.cohorts.includes(REG.coh)&&(!REG.q||norm(k.name).includes(norm(REG.q))));
+    list=list.sort((a,b)=>(norm(b.name)===sug)-(norm(a.name)===sug)||a.name.localeCompare(b.name,'fr'));
+    h+=`<label>2. Quel cours de ${esc(REG.coh.replace(' 26-27',''))} ?</label>
+      <input id="reg-q" placeholder="Rechercher un cours" value="${esc(REG.q)}" oninput="REG.q=this.value;renderReg();document.getElementById('reg-q').focus()" style="margin:6px 0">
+      <div style="max-height:260px;overflow:auto;border:1.5px solid var(--border);border-radius:10px">${list.map(k=>`<div class="crs" style="grid-template-columns:1fr auto;padding:8px 10px;cursor:pointer" onclick="regPick('${k.id}')"><div class="nm">${esc(k.name)}${sug&&norm(k.name)===sug?' <span class="ok">★ même intitulé</span>':''}</div><span class="btn s">Prendre ce lien</span></div>`).join('')||'<div class="small" style="padding:10px">Aucun cours.</div>'}</div>
+      <label style="text-transform:none;font-weight:500;margin-top:10px;display:block"><input type="checkbox" id="reg-mem" style="width:auto"> Mémoriser le regroupement (les deux cours partageront ce lien)</label>`;
+  }
+  h+=`<div style="text-align:right;margin-top:14px"><button class="btn" onclick="closeReg()">Annuler</button></div>`;
+  $('reg-box').innerHTML=h;
+}
+function regPick(id){
+  const s=S.sessions[REG.i], k=S.courses.find(x=>x.id===id); if(!k) return;
+  if(!s.course){ s.course=k.name; s.cid=k.id; }
+  s.link=k.link; s.from=REG.coh.replace(' 26-27','')+' — '+k.name;
+  if($('reg-mem').checked&&s.cid&&s.cid!==k.id) linkWith(s.cid,k.id);
+  save(); closeReg(); renderSessions();
+}
+function unRegroup(i){
+  const s=S.sessions[i], k=S.courses.find(x=>x.id===s.cid);
+  s.from=''; if(k) s.link=k.link; save(); renderSessions();
 }
 function renderSessions(){
   $('sessions').innerHTML=S.sessions.map((s,i)=>{
@@ -373,7 +401,8 @@ function renderSessions(){
       <div class="row">
         <div class="fld" style="flex:3;min-width:240px"><label>Cours</label>
           <select onchange="pickCourse(${i},this.value)"><option value="">— choisir —</option>${groups.map(g=>`<optgroup label="${esc(g.label)}">${g.list.map(k=>`<option value="${k.id}" ${(s.cid===k.id||(s.course===k.name&&s.link===k.link))?'selected':''}>${esc(k.name)}${k.link?'':' ⚠'}</option>`).join('')}</optgroup>`).join('')}</select>
-          ${s.from?`<span class="ok">↪ Cours repris de ${esc(s.from)} — le lien a été récupéré.</span>`:''}</div>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px"><button class="btn s" onclick="openRegroup(${i})">🔗 Cours regroupé</button>
+          ${s.from?`<span class="ok">Lien récupéré : ${esc(s.from)}</span> <button class="btn s" onclick="unRegroup(${i})">Annuler</button>`:''}</div></div>
         <div class="fld"><label>Type</label><select onchange="upd(${i},'type',this.value);renderSessions()">${['Cours','Examen','TPE'].map(t=>`<option ${s.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
       </div>
       <div class="row">
@@ -428,7 +457,7 @@ function gen(){
     o+=`── Séance ${i+1} ──\n- Date : ${fmt(s.date)}\n`;
     if(s.cohorts.length>1) o+=`- Cohortes (cours commun) : ${s.cohorts.join(' + ')}\n`;
     else o+=`- Cohorte : ${s.cohorts[0]}\n`;
-    if(s.from) o+=`- Cours repris de : ${s.from}\n`;
+    if(s.from) o+=`- Cours regroupé avec : ${s.from}\n`;
     o+=`- Module : ${s.course}\n- Horaire (GMT) : ${s.hdeb}–${s.hfin}\n- Enseignant : ${s.ens}\n- Type : ${s.type}\n- Lien Moodle : ${s.link}\n`;
     if(s.type==='Examen'){ o+=`- Surveillance : ${survOf(s)}\n- Durée : ${s.duree} min\n`; }
     if(s.obs) o+=`- Notes : ${s.obs}\n`;
