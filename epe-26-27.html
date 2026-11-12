@@ -116,7 +116,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V4';
+const KEY='CESAG_EPE_2627_V5';
 let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -245,7 +245,7 @@ function bulkApply(){
 /* ── séances ── */
 function addSess(silent){
   const last=S.sessions[S.sessions.length-1];
-  S.sessions.push({id:uid(),date:last?.date||'',hdeb:last?.hdeb||'',hfin:last?.hfin||'',type:'Cours',cohorts:last?[...last.cohorts]:[],course:'',ens:'',duree:'',obs:'',link:'',all:false});
+  S.sessions.push({id:uid(),date:last?.date||'',hdeb:last?.hdeb||'',hfin:last?.hfin||'',type:'Cours',cohorts:last?[...last.cohorts]:[],course:'',ens:'',duree:'',obs:'',link:'',cid:'',from:''});
   save(); if(!silent) renderSessions();
 }
 function dupSess(i){ const s=JSON.parse(JSON.stringify(S.sessions[i])); s.id=uid(); S.sessions.splice(i+1,0,s); save(); renderSessions(); }
@@ -256,32 +256,35 @@ function togSC(i,c){
   const s=S.sessions[i]; s.cohorts=s.cohorts.includes(c)?s.cohorts.filter(x=>x!==c):[...s.cohorts,c];
   save(); renderSessions();
 }
-function courseChoices(s){
-  const base=s.all||!s.cohorts.length ? S.courses : S.courses.filter(k=>k.cohorts.some(c=>s.cohorts.includes(c)));
-  const seen=new Set(), out=[];
-  base.forEach(k=>{ const key=norm(k.name)+'|'+k.link; if(!seen.has(key)){seen.add(key);out.push(k);} });
-  return out.sort((a,b)=>a.name.localeCompare(b.name,'fr'));
+function courseGroups(s){
+  const own=new Set(s.cohorts), seen=new Set(), groups=[];
+  const add=(label,list)=>{
+    const out=[]; list.forEach(k=>{ const key=norm(k.name)+'|'+k.link; if(!seen.has(key)){seen.add(key);out.push(k);} });
+    if(out.length) groups.push({label,list:out.sort((x,y)=>x.name.localeCompare(y.name,'fr'))});
+  };
+  if(own.size) add('Cours de '+[...own].map(c=>c.replace(' 26-27','')).join(' + '),S.courses.filter(k=>k.cohorts.some(c=>own.has(c))));
+  S.cohorts.filter(c=>!own.has(c.name)).forEach(c=>add('↪ Reprendre un cours de '+c.name.replace(' 26-27',''),S.courses.filter(k=>k.cohorts.includes(c.name))));
+  return groups;
 }
 function pickCourse(i,id){
   const s=S.sessions[i], k=S.courses.find(x=>x.id===id);
-  if(!k){ s.course=''; s.link=''; save(); renderSessions(); return; }
-  s.course=k.name; s.link=k.link;
-  // le cours devient disponible pour les cohortes de la séance (partage automatique)
-  s.cohorts.forEach(c=>{ if(!k.cohorts.includes(c)) k.cohorts.push(c); });
-  s.cid=k.id; save(); renderSessions(); renderCourses();
+  if(!k){ s.course=''; s.link=''; s.cid=''; s.from=''; save(); renderSessions(); return; }
+  s.course=k.name; s.link=k.link; s.cid=k.id;
+  // cours repris d'une autre cohorte ? (aucune des cohortes de la séance ne l'a)
+  s.from=k.cohorts.some(c=>s.cohorts.includes(c))?'':k.cohorts.map(c=>c.replace(' 26-27','')).join(' + ');
+  save(); renderSessions();
 }
 function renderSessions(){
   $('sessions').innerHTML=S.sessions.map((s,i)=>{
-    const ch=courseChoices(s);
-    const sel=ch.find(k=>k.id===s.cid)||ch.find(k=>k.name===s.course);
+    const groups=courseGroups(s);
     return `<div class="sess">
       <div class="sess-h"><span>Séance ${i+1}</span><span><button class="btn s" onclick="dupSess(${i})">⧉ Dupliquer</button> <button class="btn s" onclick="delSess(${i})">🗑</button></span></div>
       <div class="row"><div class="fld" style="flex:2"><label>Cohorte(s) — plusieurs = cours commun</label>
         <div class="chips">${S.cohorts.map(c=>`<span class="chip ${s.cohorts.includes(c.name)?'on':''}" onclick="togSC(${i},'${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name.replace(' 26-27',''))}</span>`).join('')}</div></div></div>
       <div class="row">
         <div class="fld" style="flex:3;min-width:240px"><label>Cours</label>
-          <select onchange="pickCourse(${i},this.value)"><option value="">— choisir —</option>${ch.map(k=>`<option value="${k.id}" ${sel&&sel.id===k.id?'selected':''}>${esc(k.name)}${k.link?'':' ⚠'}</option>`).join('')}</select>
-          <label style="text-transform:none;font-weight:500"><input type="checkbox" style="width:auto" ${s.all?'checked':''} onchange="upd(${i},'all',this.checked);renderSessions()"> Voir les cours de toutes les cohortes (pour réutiliser un lien)</label></div>
+          <select onchange="pickCourse(${i},this.value)"><option value="">— choisir —</option>${groups.map(g=>`<optgroup label="${esc(g.label)}">${g.list.map(k=>`<option value="${k.id}" ${(s.cid===k.id||(s.course===k.name&&s.link===k.link))?'selected':''}>${esc(k.name)}${k.link?'':' ⚠'}</option>`).join('')}</optgroup>`).join('')}</select>
+          ${s.from?`<span class="ok">↪ Cours repris de ${esc(s.from)} — le lien a été récupéré.</span>`:''}</div>
         <div class="fld"><label>Type</label><select onchange="upd(${i},'type',this.value);renderSessions()">${['Cours','Examen','TPE'].map(t=>`<option ${s.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
       </div>
       <div class="row">
@@ -333,6 +336,7 @@ function gen(){
     o+=`── Séance ${i+1} ──\n- Date : ${fmt(s.date)}\n`;
     if(s.cohorts.length>1) o+=`- Cohortes (cours commun) : ${s.cohorts.join(' + ')}\n`;
     else o+=`- Cohorte : ${s.cohorts[0]}\n`;
+    if(s.from) o+=`- Cours repris de : ${s.from}\n`;
     o+=`- Module : ${s.course}\n- Horaire (GMT) : ${s.hdeb}–${s.hfin}\n- Enseignant : ${s.ens}\n- Type : ${s.type}\n- Lien Moodle : ${s.link}\n`;
     if(s.type==='Examen'){ o+=`- Surveillance : ${survOf(s)}\n- Durée : ${s.duree} min\n`; }
     if(s.obs) o+=`- Notes : ${s.obs}\n`;
