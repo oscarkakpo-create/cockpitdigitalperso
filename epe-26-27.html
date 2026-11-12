@@ -106,7 +106,7 @@ pre{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px;white-space
 </section>
 
 <script>
-const KEY='CESAG_EPE_2627_V7';
+const KEY='CESAG_EPE_2627_V8';
 let S={cohorts:[],courses:[],sessions:[],seq:1};   // cohorts:[{name,surv}] courses:[{id,name,link,cohorts:[]}]
 const $=id=>document.getElementById(id);
 const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -267,9 +267,22 @@ async function paintHolidays(){
 }
 
 /* ── séances ── */
+/* horaires par défaut : semaine 18:00–20:30, week-end 10:00–12:30 (modifiables) */
+function defTimes(d){
+  if(!d) return ['18:00','20:30'];
+  const w=new Date(d+'T00:00:00Z').getUTCDay();
+  return (w===0||w===6)?['10:00','12:30']:['18:00','20:30'];
+}
+function setDate(i,v){
+  const s=S.sessions[i], old=defTimes(s.date);
+  const untouched=(!s.hdeb&&!s.hfin)||(s.hdeb===old[0]&&s.hfin===old[1]);
+  s.date=v;
+  if(untouched){ const n=defTimes(v); s.hdeb=n[0]; s.hfin=n[1]; }
+  save(); renderSessions();
+}
 function addSess(silent){
   const last=S.sessions[S.sessions.length-1];
-  S.sessions.push({id:uid(),date:last?.date||'',hdeb:last?.hdeb||'',hfin:last?.hfin||'',type:'Cours',cohorts:last?[...last.cohorts]:[],course:'',ens:'',duree:'',obs:'',link:'',cid:'',from:''});
+  S.sessions.push({id:uid(),date:last?.date||'',hdeb:defTimes(last?.date)[0],hfin:defTimes(last?.date)[1],type:'Cours',cohorts:last?[...last.cohorts]:[],course:'',ens:'',duree:'',obs:'',link:'',cid:'',from:''});
   save(); if(!silent) renderSessions();
 }
 function dupSess(i){ const s=JSON.parse(JSON.stringify(S.sessions[i])); s.id=uid(); S.sessions.splice(i+1,0,s); save(); renderSessions(); }
@@ -312,7 +325,7 @@ function renderSessions(){
         <div class="fld"><label>Type</label><select onchange="upd(${i},'type',this.value);renderSessions()">${['Cours','Examen','TPE'].map(t=>`<option ${s.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
       </div>
       <div class="row">
-        <div class="fld"><label>Date</label><input type="date" value="${s.date}" onchange="upd(${i},'date',this.value);paintHolidays()"><span class="warn" id="hol-${i}"></span></div>
+        <div class="fld"><label>Date</label><input type="date" value="${s.date}" onchange="setDate(${i},this.value)"><span class="warn" id="hol-${i}"></span></div>
         <div class="fld"><label>Début (GMT)</label><input type="time" value="${s.hdeb}" onchange="upd(${i},'hdeb',this.value)"></div>
         <div class="fld"><label>Fin (GMT)</label><input type="time" value="${s.hfin}" onchange="upd(${i},'hfin',this.value)"></div>
         <div class="fld"><label>Enseignant</label><input value="${esc(s.ens)}" onchange="upd(${i},'ens',this.value)"></div>
