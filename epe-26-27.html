@@ -245,6 +245,27 @@ function newCourse(){
   const l=prompt('Lien du cours (https://formations.cesagonline.com/course/view.php?id=…) :','')||'';
   S.courses.unshift({id:uid(),name:n.trim(),link:l.trim(),cohorts:fc?[fc]:[]}); save(); renderCourses();
 }
+/* ── jours fériés (Sénégal) : avertissement seulement, API gratuite Nager.Date ── */
+const HOL={};
+async function holidays(y){
+  if(HOL[y]) return HOL[y];
+  const k='CESAG_HOL_SN_'+y;
+  try{ const c=localStorage.getItem(k); if(c) return HOL[y]=JSON.parse(c); }catch(e){}
+  try{
+    const r=await fetch('https://date.nager.at/api/v3/PublicHolidays/'+y+'/SN'); if(!r.ok) throw 0;
+    const m={}; (await r.json()).forEach(h=>m[h.date]=h.localName||h.name);
+    HOL[y]=m; try{localStorage.setItem(k,JSON.stringify(m));}catch(e){} return m;
+  }catch(e){ return HOL[y]={}; }
+}
+async function paintHolidays(){
+  for(let i=0;i<S.sessions.length;i++){
+    const d=S.sessions[i].date, el=$('hol-'+i); if(!el) continue;
+    if(!d){ el.textContent=''; continue; }
+    const h=(await holidays(d.slice(0,4)))[d];
+    el.textContent=h?`⚠ Jour férié au Sénégal : ${h}`:'';
+  }
+}
+
 /* ── séances ── */
 function addSess(silent){
   const last=S.sessions[S.sessions.length-1];
@@ -291,7 +312,7 @@ function renderSessions(){
         <div class="fld"><label>Type</label><select onchange="upd(${i},'type',this.value);renderSessions()">${['Cours','Examen','TPE'].map(t=>`<option ${s.type===t?'selected':''}>${t}</option>`).join('')}</select></div>
       </div>
       <div class="row">
-        <div class="fld"><label>Date</label><input type="date" value="${s.date}" onchange="upd(${i},'date',this.value)"></div>
+        <div class="fld"><label>Date</label><input type="date" value="${s.date}" onchange="upd(${i},'date',this.value);paintHolidays()"><span class="warn" id="hol-${i}"></span></div>
         <div class="fld"><label>Début (GMT)</label><input type="time" value="${s.hdeb}" onchange="upd(${i},'hdeb',this.value)"></div>
         <div class="fld"><label>Fin (GMT)</label><input type="time" value="${s.hfin}" onchange="upd(${i},'hfin',this.value)"></div>
         <div class="fld"><label>Enseignant</label><input value="${esc(s.ens)}" onchange="upd(${i},'ens',this.value)"></div>
@@ -303,6 +324,7 @@ function renderSessions(){
         <div class="fld"><label>Notes</label><input value="${esc(s.obs)}" onchange="upd(${i},'obs',this.value)"></div>
       </div>
     </div>`;}).join('');
+  paintHolidays();
 }
 
 /* ── génération ── */
@@ -328,6 +350,7 @@ function gen(){
     if(x.date&&x.date===y.date&&x.hdeb&&y.hdeb&&x.hdeb<y.hfin&&y.hdeb<x.hfin&&x.cohorts.some(c=>y.cohorts.includes(c)))
       warn.push(`Chevauchement : séances ${x.n} et ${y.n} (${fmt(x.date)})`);
   }
+  ss.forEach(s=>{ const h=(HOL[(s.date||'').slice(0,4)]||{})[s.date]; if(h) warn.push(`Séance ${s.n} : ${fmt(s.date)} est un jour férié au Sénégal (${h})`); });
   $('msgs').innerHTML=err.map(e=>`<div class="warn">• ${esc(e)}</div>`).join('')+warn.map(e=>`<div class="warn">⚠ ${esc(e)}</div>`).join('');
   if(err.length){ $('out').textContent='[ Corrige les points ci-dessus puis régénère ]'; return; }
   const dates=ss.map(s=>s.date).sort(); const f=new Date(dates[0]+'T00:00:00Z');
@@ -352,6 +375,7 @@ function survOf(s){ for(const c of s.cohorts){ const x=S.cohorts.find(k=>k.name=
 function copyOut(){ const t=$('out').textContent; if(t.startsWith('[')){alert('Génère d\'abord un bloc');return;} navigator.clipboard.writeText(t).then(()=>alert('Bloc copié')); }
 function dlOut(){ const t=$('out').textContent; if(t.startsWith('[')){alert('Génère d\'abord un bloc');return;} const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'})); a.download='planning_epe_26-27.txt'; a.click(); }
 
+function renderAllSessionsHook(){ paintHolidays(); }
 function renderAll(){ cohOpts($('f-coh'),true,'Toutes'); renderCohs(); renderCourses(); renderSessions(); }
 boot();
 </script>
