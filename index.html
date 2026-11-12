@@ -350,49 +350,32 @@ body.focus-mode #main{margin-left:0}
   </button>
 
   <div class="sb-section">Support & Mails</div>
-  <button class="sb-item" onclick="nav('acces')">
-    <span class="sb-icon">🔑</span> Accès numériques
-  </button>
-  <button class="sb-item" onclick="nav('reset')">
-    <span class="sb-icon">🔄</span> Reset Moodle
-  </button>
-  <button class="sb-item" onclick="nav('mailprof')">
-    <span class="sb-icon">📧</span> Mail enseignant
-  </button>
   <button class="sb-item" onclick="nav('mailetudiant')">
     <span class="sb-icon">💬</span> Réponse étudiant
   </button>
 
   <div class="sb-section">FOAD / Moodle</div>
-  <button class="sb-item" onclick="nav('examen')">
-    <span class="sb-icon">📝</span> Consignes examen
-  </button>
-  <button class="sb-item" onclick="nav('ics')">
-    <span class="sb-icon">📅</span> Générateur ICS
-  </button>
   <button class="sb-item" onclick="nav('htmlmoodle')">
     <span class="sb-icon">📢</span> Annonce HTML
-  </button>
-  <button class="sb-item" onclick="nav('gift')">
-    <span class="sb-icon">🎯</span> Quiz GIFT
-  </button>
-  <button class="sb-item" onclick="nav('syllabus')">
-    <span class="sb-icon">📚</span> Syllabus rapide
   </button>
   <button class="sb-item" onclick="nav('htmleditor')">
     <span class="sb-icon">🖥️</span> HTML Live Editor
   </button>
 
   <div class="sb-section">Administration</div>
-  <button class="sb-item" onclick="nav('m365')">
-    <span class="sb-icon">☁️</span> Comptes Microsoft 365
-  </button>
   <button class="sb-item" onclick="nav('mailhistory')">
     <span class="sb-icon">💾</span> Mails sauvegardés
     <span class="sb-badge" id="mailhist-badge">0</span>
   </button>
 
   <div class="sb-section">EPE Planning</div>
+  <button class="sb-item" onclick="nav('epe27')">
+    <span class="sb-icon">✨</span> EPE 26-27
+  </button>
+  <button class="sb-item" onclick="nav('cohortes')">
+    <span class="sb-icon">🎓</span> Cohortes
+    <span class="sb-badge" id="coh-badge">0</span>
+  </button>
   <button class="sb-item" onclick="nav('epe')" id="nav-epe">
     <span class="sb-icon">🗓️</span> Planning FOAD
     <span class="sb-badge" id="epe-badge">0</span>
@@ -404,9 +387,6 @@ body.focus-mode #main{margin-left:0}
   </button>
   <button class="sb-item" onclick="nav('hubfoad')">
     <span class="sb-icon">📌</span> Hub FOAD Personnel
-  </button>
-  <button class="sb-item" onclick="nav('repertoire')">
-    <span class="sb-icon">🗂️</span> Répertoire évaluations
   </button>
   <button class="sb-item" onclick="nav('admin2026')">
     <span class="sb-icon">🧭</span> Zone Administrative 2026
@@ -496,41 +476,17 @@ body.focus-mode #main{margin-left:0}
         </div>
       </div>
       <div class="dash-grid">
-        <div class="dash-card" onclick="nav('acces')">
-          <div class="dash-card-ico" style="background:#e8f0fb">🔑</div>
-          <div class="dash-card-body"><h3>Accès numériques</h3><p>Office 365 + Moodle</p></div>
+        <div class="dash-card" onclick="nav('epe27')">
+          <div class="dash-card-ico" style="background:#dcfce7">✨</div>
+          <div class="dash-card-body"><h3>EPE 26-27</h3><p>Cours partagés entre cohortes</p></div>
         </div>
-        <div class="dash-card" onclick="nav('reset')">
-          <div class="dash-card-ico" style="background:#fef3c7">🔄</div>
-          <div class="dash-card-body"><h3>Reset Moodle</h3><p>Réinitialiser un compte</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('mailprof')">
-          <div class="dash-card-ico" style="background:#e8f5ee">📧</div>
-          <div class="dash-card-body"><h3>Mail enseignant</h3><p>Invitation au module</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('examen')">
-          <div class="dash-card-ico" style="background:#fee2e2">📝</div>
-          <div class="dash-card-body"><h3>Consignes examen</h3><p>Mail d'épreuve en ligne</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('ics')">
-          <div class="dash-card-ico" style="background:#ede9fe">📅</div>
-          <div class="dash-card-body"><h3>Générateur ICS</h3><p>Invitation agenda</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('gift')">
-          <div class="dash-card-ico" style="background:#fef3c7">🎯</div>
-          <div class="dash-card-body"><h3>Quiz GIFT</h3><p>Import Moodle</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('syllabus')">
-          <div class="dash-card-ico" style="background:#e0f2fe">📚</div>
-          <div class="dash-card-body"><h3>Syllabus rapide</h3><p>Prompt FOAD complet</p></div>
+        <div class="dash-card" onclick="nav('cohortes')">
+          <div class="dash-card-ico" style="background:#e0f2fe">🎓</div>
+          <div class="dash-card-body"><h3>Cohortes</h3><p id="coh-tile-sub">Ajouter + importer les cours (JSON)</p></div>
         </div>
         <div class="dash-card" onclick="nav('epe')">
           <div class="dash-card-ico" style="background:#dcfce7">🗓️</div>
           <div class="dash-card-body"><h3>Planning EPE</h3><p>Bloc FOAD complet</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('m365')">
-          <div class="dash-card-ico" style="background:#ede9fe">☁️</div>
-          <div class="dash-card-body"><h3>Comptes M365</h3><p>Export CSV prêt à importer</p></div>
         </div>
         <div class="dash-card" onclick="nav('mailhistory')">
           <div class="dash-card-ico" style="background:#fce7f3">💾</div>
@@ -543,10 +499,6 @@ body.focus-mode #main{margin-left:0}
         <div class="dash-card" onclick="nav('hubfoad')">
           <div class="dash-card-ico" style="background:#ecfeff">📌</div>
           <div class="dash-card-body"><h3>Hub FOAD Personnel</h3><p>Suivi MBA CESAG/AUF</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('repertoire')">
-          <div class="dash-card-ico" style="background:#f0fdf4">🗂️</div>
-          <div class="dash-card-body"><h3>Répertoire évaluations</h3><p>Tous les programmes 2025-2026</p></div>
         </div>
         <div class="dash-card" onclick="nav('admin2026')">
           <div class="dash-card-ico" style="background:#ecfeff">🧭</div>
@@ -868,6 +820,42 @@ body.focus-mode #main{margin-left:0}
       </div>
     </div>
 
+    <!-- ═══════════════ EPE 26-27 ═════════════ -->
+    <div id="panel-epe27" class="panel">
+      <iframe src="epe-26-27.html" title="EPE 26-27" style="width:100%;height:84vh;border:1.5px solid var(--border);border-radius:12px;background:#fff"></iframe>
+    </div>
+
+    <!-- ═══════════════ COHORTES ═════════════ -->
+    <div id="panel-cohortes" class="panel">
+      <div class="card">
+        <div class="card-head"><div class="card-ico">🎓</div>Nouvelle cohorte</div>
+        <div class="hint">Renseigne la cohorte puis importe le JSON de ses cours (lien, fichier ou texte collé). Elle apparaît ensuite dans le Planning EPE avec tous ses modules et leurs liens de cours Moodle.</div>
+        <div class="row">
+          <div class="fld"><label>Nom de la cohorte <em>*</em></label><input type="text" id="coh-name" placeholder="ex : MBA GP – Promo 2026-27"></div>
+          <div class="fld"><label>Date de démarrage</label><input type="date" id="coh-start"></div>
+        </div>
+        <div class="row">
+          <div class="fld"><label>URL du JSON des cours</label><input type="url" id="coh-url" placeholder="https://…/cours.json"></div>
+          <div class="fld"><label>…ou fichier JSON</label><input type="file" id="coh-file" accept=".json,application/json"></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>…ou JSON collé</label><textarea id="coh-text" rows="4" placeholder='{"espaces":[{"espace":"…","cours":[{"cours":"…","lienCours":"…","salles":[{"nom":"…","lien":"…"}]}]}]}'></textarea></div>
+        </div>
+        <div class="row solo">
+          <div class="fld"><label>Lien de surveillance des examens (BigBlueButton, optionnel)</label><input type="url" id="coh-surv" placeholder="https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id=…"></div>
+        </div>
+        <div class="actions">
+          <button class="btn primary" onclick="cohAdd()">➕ Ajouter la cohorte</button>
+          <button class="btn green" onclick="cohPreload()">📥 Charger AG · GP · MSCH 26-27</button>
+          <span id="coh-msg" style="font-size:12px;color:var(--muted);align-self:center"></span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><div class="card-ico">📚</div>Mes cohortes</div>
+        <div id="coh-list"></div>
+      </div>
+    </div>
+
     <!-- ═══════════════ EPE PLANNING ═════════════ -->
     <div id="panel-epe" class="panel">
 
@@ -880,6 +868,7 @@ body.focus-mode #main{margin-left:0}
             <label>Programme <em>*</em></label>
             <select id="epe-prog" onchange="onEpeProg()">
               <option value="">— Sélectionner —</option>
+              <optgroup label="Mes cohortes" id="epe-coh-group"></optgroup>
               <optgroup label="MBA">
                 <option>MBA AG 2026 – Gestion des entreprises</option><option>MBA AG 2026 – Administration publique</option>
                 <option>MBA AG Classique</option><option>MBA AG AUF</option>
@@ -1365,10 +1354,9 @@ body.focus-mode #main{margin-left:0}
 <div id="speed-dial">
   <button class="sd-main" id="sd-btn" onclick="toggleSpeedDial()" title="Actions rapides">＋</button>
   <div class="sd-items" id="sd-items">
-    <div class="sd-item" onclick="closeSpeedDial();nav('ics')">📅 Générateur ICS</div>
     <div class="sd-item" onclick="closeSpeedDial();nav('epe')">🗓️ Planning EPE</div>
     <div class="sd-item" onclick="closeSpeedDial();nav('mailetudiant')">💬 Réponse étudiant</div>
-    <div class="sd-item" onclick="closeSpeedDial();nav('mailprof')">📧 Mail enseignant</div>
+    <div class="sd-item" onclick="closeSpeedDial();nav('cohortes')">🎓 Cohortes</div>
   </div>
 </div>
 
@@ -1424,7 +1412,7 @@ window.addEventListener('DOMContentLoaded', loadStats);
 
 /* ═══════════════ NAVIGATION ═══════════════════════════════════ */
 const TITLES = {
-  dashboard:'Tableau de bord',acces:'Accès numériques',reset:'Reset Moodle',
+  dashboard:'Tableau de bord',cohortes:'Cohortes',epe27:'EPE 26-27',acces:'Accès numériques',reset:'Reset Moodle',
   mailprof:'Mail enseignant',mailetudiant:'Réponse étudiant',
   examen:'Consignes examen',ics:'Générateur ICS',htmlmoodle:'Annonce HTML Moodle',
   gift:'Quiz GIFT',htmleditor:'HTML Live Editor',epe:'Planning FOAD (EPE)',
@@ -1434,7 +1422,7 @@ const TITLES = {
   notes:'Fiches de notes',
   m365:'Comptes Microsoft 365',mailhistory:'Mails sauvegardés'
 };
-const PANEL_ORDER = ['dashboard','acces','reset','mailprof','mailetudiant','examen','ics','htmlmoodle','gift','syllabus','htmleditor','m365','mailhistory','epe','github','hubfoad','repertoire','admin2026','notes'];
+const PANEL_ORDER = ['dashboard','mailetudiant','htmlmoodle','htmleditor','mailhistory','epe27','cohortes','epe','github','hubfoad','admin2026','notes'];
 let currentPanelIdx = 0;
 
 function nav(id){
@@ -1792,6 +1780,8 @@ const EPE_COURSE_LINKS=[["MBA AG 25-26 ONLINE","Fiscalité 25-26","1024","17730"
 
 function getEpeCatalogForProgram(){
   const prog=document.getElementById('epe-prog')?.value||'';
+  const coh=cohByProg(prog);
+  if(coh) return coh.modules.map(m=>[coh.name,m[0],m[1]||('https://formations.cesagonline.com/course/search.php?search='+encodeURIComponent(m[2]||m[0])),'']);
   const catalogProgram=EPE_PROGRAM_CATALOG[prog];
   const catalog=catalogProgram ? EPE_COURSE_LINKS.filter(c=>c[0]===catalogProgram) : [];
   const specialization=EPE_SPECIALIZATIONS[prog];
@@ -1805,7 +1795,7 @@ function getEpeCatalogForProgram(){
 function fillEpeExamSurveillance(wrap){
   if(!wrap)return;
   const prog=document.getElementById('epe-prog')?.value||'';
-  const link=EPE_EXAM_SURVEILLANCE[prog]||'';
+  const link=EPE_EXAM_SURVEILLANCE[prog]||cohByProg(prog)?.surv||'';
   const field=document.getElementById(wrap.id+'_surv');
   if(field && !field.value && link){
     field.value=link;
@@ -1824,10 +1814,121 @@ function fillEpeCourseLinks(moduleSelect){
     if(room)room.value='';
     return;
   }
-  if(moodle)moodle.value=course[2]?'https://formations.cesagonline.com/course/view.php?id='+course[2]:'';
+  if(moodle)moodle.value=course[2]?(/^http/.test(course[2])?course[2]:'https://formations.cesagonline.com/course/view.php?id='+course[2]):'';
   if(room)room.value=course[3]?'https://formations.cesagonline.com/mod/bigbluebuttonbn/view.php?id='+course[3]:'';
-  showToast('✓ Liens MBA AG Classique récupérés automatiquement');
+  showToast('✓ Liens Moodle et salle récupérés automatiquement');
 }
+
+
+/* ═══════════════ COHORTES ═══════════════════════════════════ */
+const COH_KEY='CESAG_COHORTS_V1';
+const COH_PREFIX='🎓 ';
+let cohorts=[];
+function cohLoad(){ try{ cohorts=JSON.parse(localStorage.getItem(COH_KEY)||'[]')||[]; }catch(e){ cohorts=[]; } }
+function cohSave(){ try{ localStorage.setItem(COH_KEY,JSON.stringify(cohorts)); }catch(e){ showToast('⚠ Sauvegarde locale impossible'); } }
+function cohByProg(v){ return v&&v.startsWith(COH_PREFIX) ? cohorts.find(c=>COH_PREFIX+c.name===v) : null; }
+const cohEsc=t=>String(t).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function cohIds(url){
+  const c=(String(url||'').match(/course\/view\.php\?id=(\d+)/)||[])[1]||'';
+  const r=(String(url||'').match(/[?&]id=(\d+)/)||[])[1]||'';
+  return {c,r};
+}
+/* Accepte {espaces:[{cours:[…]}]}, {cours:[…]} ou directement […] */
+function cohParse(data){
+  let list=[];
+  if(Array.isArray(data)) list=data;
+  else if(Array.isArray(data?.cohortes)) data.cohortes.forEach(e=>list.push(...(e.cours||[])));
+  else if(Array.isArray(data?.espaces)) data.espaces.forEach(e=>list.push(...(e.cours||[])));
+  else if(Array.isArray(data?.cours)) list=data.cours;
+  const seen=new Set(), out=[];
+  list.forEach(x=>{
+    if(!x||typeof x!=='object') return;
+    const name=x.cours||x.nom||x.name||x.titre||x.module||'';
+    const cl=x.lienCours||x.lien||x.url||x.link||'';
+    if(!name||seen.has(name)) return;
+    seen.add(name);
+    out.push([name, cohIds(cl).c||(/^\d+$/.test(String(x.id||cl))?String(x.id||cl):''), x.shortname||name]);
+  });
+  return out;
+}
+async function cohReadSource(){
+  const txt=document.getElementById('coh-text').value.trim();
+  const file=document.getElementById('coh-file').files[0];
+  const url=document.getElementById('coh-url').value.trim();
+  if(txt) return JSON.parse(txt);
+  if(file) return JSON.parse((await file.text()).replace(/^﻿/,''));
+  if(url){ const r=await fetch(url); if(!r.ok) throw new Error('HTTP '+r.status); return JSON.parse((await r.text()).replace(/^﻿/,'')); }
+  return null;
+}
+async function cohAdd(){
+  const msg=document.getElementById('coh-msg');
+  const name=document.getElementById('coh-name').value.trim();
+  if(!name){ msg.textContent='⚠ Donne un nom à la cohorte.'; return; }
+  if(cohorts.some(c=>c.name.toLowerCase()===name.toLowerCase())){ msg.textContent='⚠ Une cohorte porte déjà ce nom.'; return; }
+  let modules=[];
+  try{
+    const data=await cohReadSource();
+    if(data) modules=cohParse(data);
+    if(data&&!modules.length){ msg.textContent='⚠ JSON lu mais aucun cours reconnu.'; return; }
+  }catch(e){ msg.textContent='⚠ JSON illisible ('+e.message+'). Si c\'est une URL, essaie le fichier ou le texte collé (blocage CORS possible).'; return; }
+  cohorts.push({name,start:document.getElementById('coh-start').value,url:document.getElementById('coh-url').value.trim(),surv:document.getElementById('coh-surv').value.trim(),modules});
+  cohSave(); cohRender();
+  ['coh-name','coh-start','coh-url','coh-text','coh-surv','coh-file'].forEach(i=>document.getElementById(i).value='');
+  msg.textContent=modules.length?`✓ Cohorte ajoutée avec ${modules.length} cours.`:'✓ Cohorte ajoutée (sans cours — importe un JSON plus tard).';
+}
+async function cohPreload(){
+  const msg=document.getElementById('coh-msg');
+  try{
+    const r=await fetch('data/cohortes-26-27.json'); if(!r.ok) throw new Error('HTTP '+r.status);
+    const d=await r.json(); let n=0;
+    d.cohortes.forEach(c=>{ if(!cohorts.some(x=>x.name===c.nom)){ cohorts.push({name:c.nom,start:'',url:'',surv:'',modules:cohParse(c.cours)}); n++; } });
+    cohSave(); cohRender(); msg.textContent=n?`✓ ${n} cohorte(s) 26-27 ajoutée(s).`:'Les cohortes 26-27 sont déjà là.';
+  }catch(e){ msg.textContent='⚠ Chargement impossible ('+e.message+'). Ouvre le cockpit depuis GitHub Pages ou importe data/cohortes-26-27.json via le champ fichier.'; }
+}
+function cohSurv(i){
+  const u=prompt('Lien BigBlueButton de surveillance des examens :',cohorts[i].surv||''); if(u===null) return;
+  cohorts[i].surv=u.trim(); cohSave(); cohRender();
+}
+async function cohReimport(i){
+  const c=cohorts[i]; const u=prompt('URL du JSON (ou laisse vide pour coller le JSON) :',c.url||'');
+  if(u===null) return;
+  try{
+    let data;
+    if(u.trim()){ const r=await fetch(u.trim()); if(!r.ok) throw new Error('HTTP '+r.status); data=JSON.parse((await r.text()).replace(/^﻿/,'')); c.url=u.trim(); }
+    else { const t=prompt('Colle le JSON :'); if(!t) return; data=JSON.parse(t); }
+    const m=cohParse(data); if(!m.length) throw new Error('aucun cours reconnu');
+    c.modules=m; cohSave(); cohRender(); showToast('✓ '+m.length+' cours importés');
+  }catch(e){ alert('Import impossible : '+e.message); }
+}
+function cohDel(i){
+  if(!confirm('Supprimer la cohorte « '+cohorts[i].name+' » ?')) return;
+  cohorts.splice(i,1); cohSave(); cohRender();
+}
+function cohPlan(i){
+  nav('epe');
+  const sel=document.getElementById('epe-prog'); sel.value=COH_PREFIX+cohorts[i].name; onEpeProg();
+  const st=cohorts[i].start, l=document.getElementById('epe-lundi');
+  if(st&&l&&!l.value){ l.value=st; l.dispatchEvent(new Event('change')); }
+}
+function cohRender(){
+  const list=document.getElementById('coh-list');
+  list.innerHTML=cohorts.length ? cohorts.map((c,i)=>`
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--border)">
+      <div style="flex:1;min-width:200px"><strong>${cohEsc(c.name)}</strong>
+        <div style="font-size:12px;color:var(--muted)">${c.start?'Démarre le '+cohEsc(c.start)+' · ':''}${c.modules.length} cours</div></div>
+      <button class="btn primary" style="font-size:12px" onclick="cohPlan(${i})">🗓️ Planifier EPE</button>
+      <button class="btn outline" style="font-size:12px" onclick="cohSurv(${i})" title="${cohEsc(c.surv||'Aucun lien de surveillance')}">${c.surv?'🎥 Surveillance ✓':'🎥 Surveillance'}</button>
+      <button class="btn outline" style="font-size:12px" onclick="cohReimport(${i})">⟳ Importer JSON</button>
+      <button class="btn outline" style="font-size:12px" onclick="cohDel(${i})">🗑</button>
+    </div>`).join('') : '<p style="font-size:13px;color:var(--muted);padding:8px 0">Aucune cohorte pour l\'instant.</p>';
+  const grp=document.getElementById('epe-coh-group'), sel=document.getElementById('epe-prog'), cur=sel.value;
+  grp.innerHTML=cohorts.map(c=>`<option>${cohEsc(COH_PREFIX+c.name)}</option>`).join('');
+  grp.style.display=cohorts.length?'':'none';
+  if(cur) sel.value=cur;
+  document.getElementById('coh-badge').textContent=cohorts.length;
+  document.getElementById('coh-tile-sub').textContent=cohorts.length?cohorts.length+' cohorte'+(cohorts.length>1?'s':'')+' · planning EPE':'Ajouter + importer les cours (JSON)';
+}
+cohLoad(); window.addEventListener('DOMContentLoaded',cohRender);
 
 /* ═══════════════ EPE — STATE ════════════════════════════════════ */
 let epeCount=0;
