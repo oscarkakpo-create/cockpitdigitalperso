@@ -330,6 +330,195 @@ body.focus-mode #main{margin-left:0}
   #main{margin-left:0}
   .row,.row.trio{grid-template-columns:1fr}
 }
+
+
+/* ─── COCKPIT AVIONICS & FLIGHT DECK THEME ────────────────── */
+.cockpit-deck{
+  background: radial-gradient(circle at 50% 20%, #151e2e 0%, #090d16 100%);
+  border: 2px solid #1e293b;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.8), 0 8px 30px rgba(0,0,0,0.4);
+  color: #e2e8f0;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.cockpit-deck::before{
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, #10b981, #06b6d4, #3b82f6, #10b981);
+  background-size: 200% auto;
+  animation: cockpitGlow 4s linear infinite;
+}
+@keyframes cockpitGlow{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+.overhead-panel{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #1e293b;
+  margin-bottom: 20px;
+}
+.avionics-callsign{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.callsign-box{
+  background: #020617;
+  border: 1px solid #334155;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  color: #38bdf8;
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 10px rgba(56,189,248,0.2);
+}
+.annunciator-grid{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.annun{
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid transparent;
+}
+.annun.green{background:#064e3b;color:#34d399;border-color:#059669;box-shadow:0 0 8px rgba(52,211,153,0.3)}
+.annun.amber{background:#78350f;color:#fbbf24;border-color:#d97706;box-shadow:0 0 8px rgba(251,191,36,0.3)}
+.annun.blue{background:#0c4a6e;color:#38bdf8;border-color:#0284c7;box-shadow:0 0 8px rgba(56,189,248,0.3)}
+.annun.cyan{background:#134e4a;color:#2dd4bf;border-color:#0d9488}
+
+/* PFD & Instruments Layout */
+.instruments-cluster{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.instrument-gauge{
+  background: #0b111e;
+  border: 2px solid #1e293b;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+}
+.instrument-gauge:hover{border-color:#38bdf8;box-shadow:0 0 14px rgba(56,189,248,0.15)}
+.gauge-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  color: #64748b;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+.gauge-value{
+  font-family: 'Space Mono', monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.1;
+}
+.gauge-unit{font-size: 12px; color: #94a3b8; font-weight: 400; margin-left: 4px}
+.gauge-dial-wrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+}
+.avionics-pfd{
+  height: 90px;
+  background: linear-gradient(180deg, #1e3a8a 0%, #1e3a8a 50%, #78350f 50.1%, #451a03 100%);
+  border-radius: 8px;
+  border: 2px solid #334155;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.pfd-pitch-line{
+  width: 60%;
+  height: 2px;
+  background: #fff;
+  box-shadow: 0 0 6px #fff;
+}
+.pfd-chevron{
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #facc15;
+  border-top: none;
+  border-right: none;
+  transform: rotate(45deg);
+}
+
+/* Radio & Datalink Panel */
+.radio-pedestal{
+  background: #020617;
+  border: 1.5px solid #1e293b;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.radio-freq-strip{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.freq-box{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.freq-lbl{font-size: 10px; font-family: 'Space Mono', monospace; color: #64748b; text-transform: uppercase}
+.freq-val{font-size: 16px; font-family: 'Space Mono', monospace; color: #22c55e; font-weight: 700; letter-spacing: 0.05em}
+
+.btn-radio-ptt{
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  color: #fff;
+  border: 1px solid #38bdf8;
+  font-family: 'Space Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 12px rgba(2,132,199,0.4);
+  transition: .15s;
+}
+.btn-radio-ptt:hover{
+  background: #0284c7;
+  box-shadow: 0 0 18px rgba(56,189,248,0.7);
+  transform: translateY(-1px);
+}
+
 </style>
 </head>
 <body>
@@ -439,48 +628,131 @@ body.focus-mode #main{margin-left:0}
 
   <div class="content">
 
-    <!-- ═══════════════ DASHBOARD ═══════════════ -->
+        <!-- ═══════════════ DASHBOARD : FLIGHT DECK COCKPIT ═══════════════ -->
     <div id="panel-dashboard" class="panel active">
-      <div class="dash-banner">
-        <h2>CESAG ONLINE — Cockpit Final</h2>
-        <p>Cockpit unifié : Support, Mails, FOAD, Planning EPE et GitHub. Tout au même endroit.</p>
+      
+      <!-- MAIN COCKPIT FLIGHT DECK -->
+      <div class="cockpit-deck">
+        <!-- OVERHEAD & SYSTEM STATUS -->
+        <div class="overhead-panel">
+          <div class="avionics-callsign">
+            <div class="callsign-box">✈️ CESAG-FOAD-01</div>
+            <div>
+              <div style="font-size:14px;font-weight:800;letter-spacing:0.04em">COCKPIT DE VOL ACADÉMIQUE</div>
+              <div style="font-size:11px;color:#94a3b8">Bord de bord unifié • Cohortes 25-26 &amp; 26-27</div>
+            </div>
+          </div>
+
+          <div class="annunciator-grid">
+            <span class="annun green">● AP1 ENGAGED</span>
+            <span class="annun green">● MOODLE ONLINE</span>
+            <span class="annun blue">● DATALINK READY</span>
+            <span class="annun cyan">● WXR FAIR</span>
+            <span class="annun amber" id="annun-mails">✉️ 0 MAILS</span>
+          </div>
+        </div>
+
+        <!-- INSTRUMENTS DE BORD AVIONIQUE (GAUGES & PFD) -->
+        <div class="instruments-cluster">
+          
+          <!-- PFD (Primary Flight Display) -->
+          <div class="instrument-gauge">
+            <div class="gauge-header">
+              <span>ATTITUDE / PFD</span>
+              <span style="color:#38bdf8">HDG 260°</span>
+            </div>
+            <div class="avionics-pfd">
+              <div class="pfd-pitch-line"></div>
+              <div class="pfd-chevron"></div>
+              <div style="position:absolute;left:8px;font-family:'Space Mono';font-size:11px;color:#facc15;font-weight:700">IAS 250</div>
+              <div style="position:absolute;right:8px;font-family:'Space Mono';font-size:11px;color:#38bdf8;font-weight:700">ALT 2600</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-top:10px;font-family:'Space Mono';font-size:11px">
+              <span style="color:#94a3b8">STATUT VOL</span>
+              <span style="color:#4ade80;font-weight:700">EN CROISIÈRE</span>
+            </div>
+          </div>
+
+          <!-- ALTITUDE ACADÉMIQUE (ACTIONS TOTALES) -->
+          <div class="instrument-gauge">
+            <div class="gauge-header">
+              <span>ALTIMÈTRE / ACTIONS</span>
+              <span style="color:#a855f7">V/S +500</span>
+            </div>
+            <div class="gauge-dial-wrap">
+              <div class="gauge-value" id="stat-total">0<span class="gauge-unit">ACT</span></div>
+            </div>
+            <div class="stat-l" style="font-size:11px;color:#64748b;font-family:'Space Mono'">Opérations plateforme exécutées</div>
+          </div>
+
+          <!-- NIVEAU DE FLUX (SÉANCES & MAILS) -->
+          <div class="instrument-gauge">
+            <div class="gauge-header">
+              <span>FUEL / COHORTE EPE</span>
+              <span style="color:#22c55e">FLOW OK</span>
+            </div>
+            <div class="gauge-dial-wrap">
+              <div class="gauge-value" id="stat-epe" style="color:#22c55e">0<span class="gauge-unit">SÉANCES</span></div>
+            </div>
+            <div class="prog-bar-track" style="background:#1e293b;height:8px"><div class="prog-bar-fill" id="prog-mails" style="width:65%;background:linear-gradient(90deg,#22c55e,#06b6d4)"></div></div>
+            <div style="display:flex;justify-content:space-between;margin-top:6px;font-size:10px;color:#94a3b8;font-family:'Space Mono'">
+              <span>PLANIFIÉES</span>
+              <span>RÉSERVE 100%</span>
+            </div>
+          </div>
+
+          <!-- RADAR DE BORD & PROCHAINE SÉANCE -->
+          <div class="instrument-gauge">
+            <div class="gauge-header">
+              <span>RADAR NAVIGATION</span>
+              <span style="color:#f59e0b">TCAS 12 NM</span>
+            </div>
+            <div style="padding:4px 0">
+              <div style="font-size:13px;font-weight:700;color:#f8fafc;font-family:'Space Mono'" id="stat-next-seance">CAP SUR SÉANCE</div>
+              <div style="font-size:11px;color:#94a3b8;margin-top:3px" id="stat-next-prog">Prêt pour le prochain départ EPE</div>
+            </div>
+            <div style="margin-top:auto;padding-top:10px">
+              <span class="badge" style="background:#0f172a;border:1px solid #334155;color:#38bdf8;font-size:10px;padding:3px 8px;border-radius:4px">ILS FREQ 109.50 CESAG</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RADIO AVIONIQUE, DATALINK & ENVOI RAPIDE NOTIFICATION -->
+        <div class="radio-pedestal">
+          <div class="radio-freq-strip">
+            <div class="freq-box">
+              <span class="freq-lbl">COMM 1 (MOODLE)</span>
+              <span class="freq-val">118.450</span>
+            </div>
+            <div class="freq-box">
+              <span class="freq-lbl">COMM 2 (TEAMS)</span>
+              <span class="freq-val">124.800</span>
+            </div>
+            <div class="freq-box">
+              <span class="freq-lbl">XPDR / TRANSPONDEUR</span>
+              <span class="freq-val" style="color:#f59e0b">7700 ACTIVE</span>
+            </div>
+            <div class="freq-box">
+              <span class="freq-lbl">DESTINATAIRE NOTIF</span>
+              <span class="freq-val" style="color:#38bdf8">+221 77 388 41 20</span>
+            </div>
+          </div>
+
+          <div>
+            <button class="btn-radio-ptt" onclick="nav('api')">
+              <span>🎙️ TRANSMETTRE NOTIFICATION (PTT)</span>
+            </button>
+          </div>
+        </div>
       </div>
-      <!-- MÉTÉO ACADÉMIQUE -->
-      <div class="meteo-strip" id="meteo-strip">
-        <span class="meteo-chip green">✅ Moodle actif</span>
-        <span class="meteo-chip blue" id="chip-mails">✉️ 0 mail sauvegardé</span>
-        <span class="meteo-chip purple" id="chip-epe">🗓️ 0 séance planifiée</span>
-        <span class="meteo-chip amber" id="chip-next-epe">⏱ Aucune séance récente</span>
-      </div>
-      <div class="stat-strip">
-        <div class="stat">
-          <div class="stat-n" id="stat-total">0</div>
-          <div class="stat-l">Actions totales</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n" id="stat-mails">0</div>
-          <div class="stat-l">Mails &amp; Support</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n" id="stat-epe">0</div>
-          <div class="stat-l">Séances planifiées</div>
-        </div>
-        <div class="stat">
-          <div class="stat-n" id="stat-gh">0</div>
-          <div class="stat-l">Actions GitHub</div>
-        </div>
-        <div class="stat stat-prog">
-          <div class="stat-n" id="stat-mails-saved" style="color:var(--g)">0</div>
-          <div class="stat-l">Mails archivés</div>
-          <div class="prog-bar-track"><div class="prog-bar-fill" id="prog-mails" style="width:0%"></div></div>
-        </div>
-        <div class="stat">
-          <div style="font-size:12px;font-weight:700;color:var(--text);line-height:1.3" id="stat-next-seance">—</div>
-          <div class="stat-l" style="margin-top:3px">Dernière séance EPE</div>
-          <div style="font-size:11px;color:var(--muted);margin-top:2px;line-height:1.3" id="stat-next-prog">Aucune donnée</div>
-        </div>
-      </div>
+
+      <!-- SÉLECTION RAPIDE DES SYSTÈMES DE VOL -->
       <div class="dash-grid">
+        <div class="dash-card" onclick="nav('api')" style="border-left:4px solid #0284c7">
+          <div class="dash-card-ico" style="background:#e0f2fe;color:#0284c7">🔌</div>
+          <div class="dash-card-body"><h3>Passerelle API &amp; Radio</h3><p>Notifications SMS, Webhooks &amp; IA</p></div>
+        </div>
         <div class="dash-card" onclick="nav('epe27')">
           <div class="dash-card-ico" style="background:#dcfce7">✨</div>
           <div class="dash-card-body"><h3>EPE 26-27</h3><p>Cours partagés entre cohortes</p></div>
@@ -493,30 +765,27 @@ body.focus-mode #main{margin-left:0}
           <div class="dash-card-ico" style="background:#dcfce7">🗓️</div>
           <div class="dash-card-body"><h3>Planning EPE</h3><p>Bloc FOAD complet</p></div>
         </div>
+        <div class="dash-card" onclick="nav('notes')">
+          <div class="dash-card-ico" style="background:#fef3c7">📊</div>
+          <div class="dash-card-body"><h3>Fiches de notes</h3><p>MBA AG, GP, MSCH + publipostage</p></div>
+        </div>
         <div class="dash-card" onclick="nav('mailhistory')">
           <div class="dash-card-ico" style="background:#fce7f3">💾</div>
           <div class="dash-card-body"><h3>Mails sauvegardés</h3><p>Historique local</p></div>
         </div>
         <div class="dash-card" onclick="nav('github')">
           <div class="dash-card-ico" style="background:#f1f5f9">⚙️</div>
-          <div class="dash-card-body"><h3>GitHub Actions</h3><p>5 actions disponibles</p></div>
+          <div class="dash-card-body"><h3>GitHub Actions</h3><p>Synchronisation Cloud</p></div>
         </div>
         <div class="dash-card" onclick="nav('hubfoad')">
           <div class="dash-card-ico" style="background:#ecfeff">📌</div>
           <div class="dash-card-body"><h3>Hub FOAD Personnel</h3><p>Suivi MBA CESAG/AUF</p></div>
         </div>
-        <div class="dash-card" onclick="nav('admin2026')">
-          <div class="dash-card-ico" style="background:#ecfeff">🧭</div>
-          <div class="dash-card-body"><h3>CESAG ONLINE 2026</h3><p>Zone Administrative OneDrive</p></div>
-        </div>
-        <div class="dash-card" onclick="nav('notes')">
-          <div class="dash-card-ico" style="background:#fef3c7">📊</div>
-          <div class="dash-card-body"><h3>Fiches de notes</h3><p>MBA AG, GP, MSCH + publipostage</p></div>
-        </div>
       </div>
     </div>
 
-    <!-- ═══════════════ ACCÈS NUMÉRIQUES ═══════ -->
+
+    <!-- ═══════════════ ACCÈS NUMÉRIQUES    <!-- ═══════════════ ACCÈS NUMÉRIQUES ═══════ -->
     <div id="panel-acces" class="panel">
       <div class="card">
         <div class="card-head"><div class="card-ico">🔑</div>Accès numériques CESAG</div>
