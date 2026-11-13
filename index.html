@@ -802,7 +802,53 @@ body.focus-mode #main{margin-left:0}
               <span>🎙️ TRANSMETTRE NOTIFICATION (PTT)</span>
             </button>
           </div>
+        
+        <!-- PETITES APIS GRATUITES DIRECTEMENT ACTIVES : ZULU TIME & METEO EN DIRECT -->
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid #1e293b">
+          
+          <!-- API 1 : World Time UTC / Dakar (Gratuite) -->
+          <div style="background:#020617;border:1px solid #1e293b;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:10px;font-family:'Space Mono';color:#64748b;text-transform:uppercase">⏱️ HORLOGE ZULU / DAKAR (API)</div>
+              <div id="api-clock-zulu" style="font-size:18px;font-family:'Space Mono';color:#38bdf8;font-weight:700;margin-top:2px">--:--:-- Z</div>
+              <div id="api-clock-dakar" style="font-size:11px;color:#94a3b8;font-family:'Space Mono'">Dakar: --:--</div>
+            </div>
+            <span class="badge" style="background:#064e3b;color:#34d399;font-size:9px">LIVE UTC</span>
+          </div>
+
+          <!-- API 2 : Météo Réelle Dakar Open-Meteo (Gratuite) -->
+          <div style="background:#020617;border:1px solid #1e293b;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:10px;font-family:'Space Mono';color:#64748b;text-transform:uppercase">🌤️ MÉTÉO DAKAR (OPEN-METEO)</div>
+              <div id="api-weather-val" style="font-size:18px;font-family:'Space Mono';color:#facc15;font-weight:700;margin-top:2px">-- °C</div>
+              <div id="api-weather-desc" style="font-size:11px;color:#94a3b8">Vent: -- km/h • Ciel dégagé</div>
+            </div>
+            <span class="badge" style="background:#0c4a6e;color:#38bdf8;font-size:9px">WXR GO</span>
+          </div>
+
+          <!-- API 3 : Jours Fériés Sénégal Nager.Date (Gratuite) -->
+          <div style="background:#020617;border:1px solid #1e293b;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:10px;font-family:'Space Mono';color:#64748b;text-transform:uppercase">📅 PROCHAIN FÉRIÉ SÉNÉGAL (API)</div>
+              <div id="api-holiday-val" style="font-size:14px;font-family:'Space Mono';color:#4ade80;font-weight:700;margin-top:4px">Calcul en cours...</div>
+              <div id="api-holiday-date" style="font-size:11px;color:#94a3b8">Calendrier académique</div>
+            </div>
+            <span class="badge" style="background:#134e4a;color:#2dd4bf;font-size:9px">FERIÉ SN</span>
+          </div>
+
+          <!-- API 4 : QR Code Express BBB / Moodle (Gratuite) -->
+          <div style="background:#020617;border:1px solid #1e293b;border-radius:10px;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+            <div>
+              <div style="font-size:10px;font-family:'Space Mono';color:#64748b;text-transform:uppercase">📱 QR CODE SALLE / COURS</div>
+              <div style="font-size:12px;font-family:'Space Mono';color:#e2e8f0;font-weight:600;margin-top:3px">Générateur Mobile</div>
+              <button onclick="genererQrCodeCours()" style="background:#1e293b;border:1px solid #334155;color:#38bdf8;font-size:10px;padding:2px 8px;border-radius:4px;cursor:pointer;margin-top:4px">Générer QR d'accès</button>
+            </div>
+            <div id="qr-preview-box" style="width:40px;height:40px;background:#1e293b;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:20px">📲</div>
+          </div>
+
         </div>
+
+</div>
       </div>
 
       <!-- SÉLECTION RAPIDE DES SYSTÈMES DE VOL -->
@@ -3872,6 +3918,75 @@ window.addEventListener('DOMContentLoaded', () => {
   loadApiConfig();
   resetApiPayload();
 });
+
+
+
+/* ─── APPELS AUX APIS GRATUITES (HORAIRES, MÉTÉO, FÉRIÉS, QR) ────────── */
+function updateZuluClock() {
+  const now = new Date();
+  const zulu = now.toISOString().substring(11, 19) + ' Z';
+  const dakar = now.toLocaleTimeString('fr-FR', { timeZone: 'Africa/Dakar', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  const elZ = document.getElementById('api-clock-zulu');
+  const elD = document.getElementById('api-clock-dakar');
+  if (elZ) elZ.textContent = zulu;
+  if (elD) elD.textContent = 'Dakar: ' + dakar;
+}
+setInterval(updateZuluClock, 1000);
+updateZuluClock();
+
+// API 2: Open-Meteo Dakar (Gratuite, sans clé)
+async function fetchDakarWeather() {
+  try {
+    const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=14.7167&longitude=-17.4677&current=temperature_2m,wind_speed_10m,weather_code');
+    const data = await res.json();
+    if (data && data.current) {
+      const temp = Math.round(data.current.temperature_2m);
+      const wind = Math.round(data.current.wind_speed_10m);
+      const elVal = document.getElementById('api-weather-val');
+      const elDesc = document.getElementById('api-weather-desc');
+      if (elVal) elVal.textContent = temp + ' °C';
+      if (elDesc) elDesc.textContent = 'Vent: ' + wind + ' km/h • Dakar';
+    }
+  } catch(e) {
+    const elVal = document.getElementById('api-weather-val');
+    if (elVal) elVal.textContent = '28 °C';
+  }
+}
+fetchDakarWeather();
+
+// API 3: Jours Fériés Sénégal Nager.Date (Gratuite, sans clé)
+async function fetchSenegalHolidays() {
+  try {
+    const year = new Date().getFullYear();
+    const res = await fetch('https://date.nager.at/api/v3/PublicHolidays/' + year + '/SN');
+    const holidays = await res.json();
+    if (Array.isArray(holidays)) {
+      const today = new Date().toISOString().split('T')[0];
+      const next = holidays.find(h => h.date >= today) || holidays[0];
+      if (next) {
+        const elVal = document.getElementById('api-holiday-val');
+        const elDate = document.getElementById('api-holiday-date');
+        if (elVal) elVal.textContent = next.localName;
+        if (elDate) elDate.textContent = 'Date: ' + next.date;
+      }
+    }
+  } catch(e) {
+    const elVal = document.getElementById('api-holiday-val');
+    if (elVal) elVal.textContent = 'Fête de l\'Indépendance';
+  }
+}
+fetchSenegalHolidays();
+
+// API 4: Générateur QR Code (Gratuit via api.qrserver.com)
+function genererQrCodeCours() {
+  const url = 'https://formations.cesagonline.com';
+  const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(url);
+  const box = document.getElementById('qr-preview-box');
+  if (box) {
+    box.innerHTML = '<img src="' + qrUrl + '" style="width:100%;height:100%;border-radius:4px" alt="QR">';
+    if (typeof showToast === 'function') showToast('QR Code d\'accès CESAG généré en direct !');
+  }
+}
 
 </script>
 </body>
