@@ -1,0 +1,166 @@
+MBA GP|SEMESTRE 9>Contexte des projets, programmes et portefeuille|Enjeux et défis du développement 25-26|985|SALLE VIRTUELLE|14880|OK
+MBA GP|SEMESTRE 9>Contexte des projets, programmes et portefeuille|Principes et enjeux de l’administration publique|986|SALLE VIRTUELLE BigBlueButton|17696|OK
+MBA GP|SEMESTRE 9>Contexte des projets, programmes et portefeuille|Environnement du projet en entreprise et défis des PME|987|SALLE VIRTUELLE BigBlueButton|17656|OK
+MBA GP|SEMESTRE 9>Etudes de projet|Études de faisabilité de projet|988|SALLE VIRTUELLE-ETUDE DE FAISABILITE DE PROJETS|19024|OK
+MBA GP|SEMESTRE 9>Etudes de projet|Étude d’impact environnemental et social|989|SALLE VIRTUELLE-Etude d'Impact environnemental|19056|OK
+MBA GP|SEMESTRE 9>Analyse de projet|Analyse financière de projet|990|SALLE VIRTUELLE ANALYSE FINANCIERE|21805|OK
+MBA GP|SEMESTRE 9>Analyse de projet|Analyse économique des projets|991|SALLE VIRTUELLE ANALAYSE ECONOMIQUE|24964|OK
+MBA GP|SEMESTRE 9>Planification des projets et programmes|Planification stratégique des projets, programmes et portefeuille|992|SALLE VIRTUELLE|26627|OK
+MBA GP|SEMESTRE 9>Planification des projets et programmes|Planification opérationnelle et budgétisation des projets et programmes|993|SALLE VIRTUELLE|27341|OK
+MBA GP|SEMESTRE 9>Management de projet|Intégration et gestion de projets, programmes et portefeuille|994|SALLE VIRTUELLE GP CLASSIQUE|27390|OK
+MBA GP|SEMESTRE 9>Management de projet|Intégration et gestion de projets, programmes et portefeuille|994|SALLE VIRTUELLE GP AUF|29777|OK
+MBA GP|SEMESTRE 9>Management de projet|Approches innovantes de gestion de projet et méthodologie agile|995|SALLE VIRTUELLE MBA GP GROUPE 1 BigBlueButton|28821|OK
+MBA GP|SEMESTRE 9>Management de projet|Approches innovantes de gestion de projet et méthodologie agile|995|SALLE VIRTUELLE MBA GP GROUPE 2 BigBlueButton|29927|OK
+MBA GP|SEMESTRE 9>Management de projet|Partenariat public-privé (PPP)|996|SALLE VIRTUELLE BigBlueButton|13788|OK
+MBA GP|SEMESTRE 9>Gestion des ressources|Gestion des parties prenantes de projets, programmes et portefeuille|997|SALLE VIRTUELLE BigBlueButton|13805|OK
+MBA GP|SEMESTRE 9>Gestion des ressources|Logistique et gestion des ressources matérielles|998|SALLE VIRTUELLE|29115|OK
+MBA GP|SEMESTRE 9>Gestion des ressources|Passation des marchés publics|999|SALLE VIRTUELLE PASSATION DES MARCHES|26906|OK
+MBA GP|SEMESTRE 9>Gestion des ressources|Management de la qualité|1000|SALLE VIRTUELLE|29538|OK
+MBA GP|SEMESTRE 9>Enjeux juridiques et réglementaires|Aspects juridiques et fiscaux des projets, programmes et portefeuille|1001|SALLE VIRTUELLE|29895|OK
+MBA GP|SEMESTRE 9>Enjeux juridiques et réglementaires|Codes éthiques et déontologie|1002|SALLE VIRTUELLE BigBlueButton|29620|OK
+MBA GP|SEMESTRE 10>Méthodologie de recherche|Méthodologie de recherche qualitative|1003|SALLE VIRTUELLE BigBlueButton|13907|OK
+MBA GP|SEMESTRE 10>Méthodologie de recherche|Méthodologie de recherche Qualitative 25-26 GP|1004|SALLE VIRTUELLE|30550|OK
+MBA GP|SEMESTRE 10>Méthodologie de recherche|Méthodologie de rédaction du TFE|1005|SALLE VIRTUELLE BigBlueButton|13941|OK
+MBA GP|SEMESTRE 10>Suivi et évaluation des projets|Suivi et évaluation des projets, programmes et portefeuille|1006|SALLE VIRTUELLE BigBlueButton|13958|OK
+MBA GP|SEMESTRE 10>Suivi et évaluation des projets|Évaluation d’impact|1007|SALLE VIRTUELLE BigBlueButton|13975|OK
+MBA GP|SEMESTRE 10>Suivi et évaluation des projets|Capitalisation, gestion et dissémination des connaissances|1008|SALLE VIRTUELLE BigBlueButton|13992|OK
+MBA GP|SEMESTRE 10>Maitrise des risques|Gestion des risques et contrôle des projets|1009|SALLE VIRTUELLE BigBlueButton|14009|OK
+MBA GP|SEMESTRE 10>Maitrise des risques|Intégration des risques transversaux|1010|SALLE VIRTUELLE|30526|OK
+MBA GP|SEMESTRE 10>Maitrise des risques|Audit de projet|1011|SALLE VIRTUELLE BigBlueButton|14043|OK
+MBA GP|SEMESTRE 10>Mémoire professionnel|Projet / Mémoire professionnel|1012|SALLE VIRTUELLE BigBlueButton|14060|OK
+MBA GP|SEMESTRE 10>Informatiques appliquées à la gestion de projet|Outils informatiques appliqués à la gestion de projet|1013|SALLE VIRTUELLE BigBlueButton|14077|OK
+MBA GP|SEMESTRE 10>Langue étrangère|Anglais de spécialité|1014|SALLE VIRTUELLE ANGLAIS DES SPECIALITES|14904|OK
+MBA GP|SEMESTRE 10>Langue étrangère|Transformation and Design Thinking|1015|SALLE VIRTUELLE BigBlueButton|14111|OK
+MBA GP|SEMESTRE 10>MBA GP Conférences et Panels|Management des programmes publics|1016|SALLE VIRTUELLE BigBlueButton|14128|OK
+MBA GP|SEMESTRE 10>MBA GP Conférences et Panels|Étude de cas de projets complexes|1017|SALLE VIRTUELLE BigBlueButton|14145|OK
+MBA GP|SEMESTRE 10>MBA GP Conférences et Panels|Marketing et communication digitale en gestion de projet|1018|SALLE VIRTUELLE BigBlueButton|14162|OK
+MBA GP|SEMESTRE 10>MBA GP Conférences et Panels|Gestion des parties prenantes|1019|SALLE VIRTUELLE BigBlueButton|14179|OK
+MBA AG|SEMESTRE 1>UE 1.1 – Environnement économique et juridique|Droit des affaires 25-26|1022|SALLE VIRTUELLE|17559|OK
+MBA AG|SEMESTRE 1>UE 1.1 – Environnement économique et juridique|Environnement économique et international de l’entreprise 25-26|1023|SALLE VIRTUELLE|17613|OK
+MBA AG|SEMESTRE 1>UE 1.1 – Environnement économique et juridique|Fiscalité 25-26|1024|SALLE VIRTUELLE|17730|OK
+MBA AG|SEMESTRE 1>UE 1.2 – Fondamentaux du management|Théorie et management des organisations 25-26|1025|SALLE VIRTUELLE-THEORIE DES ORGANISATIONS|19550|OK
+MBA AG|SEMESTRE 1>UE 1.2 – Fondamentaux du management|Management interculturel 25-26|1026|SALLE VIRTUELLE MANAGEMENT INTERCULTUREL|19085|OK
+MBA AG|SEMESTRE 1>UE 1.2 – Fondamentaux du management|Management stratégique 25-26|1027|SALLE VIRTUELLE-MANAGEMENT STRATEGIQUE|17990|OK
+MBA AG|SEMESTRE 1>UE 1.2 – Fondamentaux du management|Marketing 25-26|1028|SALLE VIRTUELLE|14395|OK
+MBA AG|SEMESTRE 1>UE 1.2 – Fondamentaux du management|Création d’entreprise 25-26|1029|SALLE VIRTUELLE|14412|OK
+MBA AG|SEMESTRE 1>UE 1.2 – Fondamentaux du management|Gestion des projets et suivi-évaluation 25-26|1030|SALLE VIRTUELLE|27089|OK
+MBA AG|SEMESTRE 1>UE 1.3 – Comptabilité, finance et contrôle|Comptabilité 25-26|1031|SALLE VIRTUELLE COMPTABILITE GENERALE|14785|OK
+MBA AG|SEMESTRE 1>UE 1.3 – Comptabilité, finance et contrôle|Finance 25-26|1032|SALLE VIRTUELLE|25064|OK
+MBA AG|SEMESTRE 1>UE 1.3 – Comptabilité, finance et contrôle|Contrôle interne 25-26|1033|SALLE VIRTUELLE|26986|OK
+MBA AG|SEMESTRE 1>UE 1.3 – Comptabilité, finance et contrôle|Contrôle de gestion 25-26|1034|SALLE VIRTUELLE AG CLASSIQUE|27760|OK
+MBA AG|SEMESTRE 1>UE 1.3 – Comptabilité, finance et contrôle|Contrôle de gestion 25-26|1034|SALLE VIRTUELLE AG AUF|29131|OK
+MBA AG|SEMESTRE 1>UE 1.3 – Comptabilité, finance et contrôle|Marchés financiers 25-26|1035|SALLE VIRTUELLE|27793|OK
+MBA AG|SEMESTRE 2>UE 2.1 – Développement personnel et professionnel|Méthodologie de rédaction de mémoire 25-26|1036|SALLE VIRTUELLE|14531|OK
+MBA AG|SEMESTRE 2>UE 2.1 – Développement personnel et professionnel|Anglais des affaires 25-26|1037|SALLE VIRTUELLE ANGLAIS DES AFFAIRES|14806|OK
+MBA AG|SEMESTRE 2>UE 2.1 – Développement personnel et professionnel|Jeu d’entreprise 25-26|1038|SALLE VIRTUELLE|14565|OK
+MBA AG|SEMESTRE 2>UE 2.1 – Développement personnel et professionnel|Développement personnel et professionnel 25-26|1039|SALLE VIRTUELLE|14582|OK
+MBA AG|SEMESTRE 2>UE 2.1 – Développement personnel et professionnel|Stage professionnel + rédaction de mémoire 25-26|1040|SALLE VIRTUELLE|14599|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 1 : GESTION DES ENTREPRISES|Organisation et stratégie 25-26|1041|SALLE VIRTUELLE|14616|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 1 : GESTION DES ENTREPRISES|Administration et gestion des ressources humaines 25-26|1042|SALLE VIRTUELLE|30210|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 1 : GESTION DES ENTREPRISES|Gestion financière 25-26|1043|SALLE VIRTUELLE|14650|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 1 : GESTION DES ENTREPRISES|Systèmes d’information 25-26|1044|SALLE VIRTUELLE|29452|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE|Droit de la fonction publique et de la décentralisation 25-26|1045|SALLE VIRTUELLE|14684|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE|Acteurs et systèmes de protection sociale 25-26|1046|SALLE VIRTUELLE|14701|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE|Science administrative et droit administratif 25-26|1047|SALLE VIRTUELLE|30603|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE|Finances de l’État et finances locales 25-26|1048|SALLE VIRTUELLE|14735|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE|Gestion des ressources humaines dans l’administration publique 25-26|1049|SALLE VIRTUELLE|29469|OK
+MBA AG|SEMESTRE 2>SPÉCIALISATION 2 : ADMINISTRATION PUBLIQUE|Modernisation et digitalisation du service public 25-26|1050|SALLE VIRTUELLE|29997|OK
+MBA MSCH|SEMESTRE 1>UE 1.1 Comptabilité finance|MBA MSCH – Comptabilité générale (MBAGRH111)|1247|SALLE VIRTUELLE COMPTABILITE GENERALE|18780|OK
+MBA MSCH|SEMESTRE 1>UE 1.1 Comptabilité finance|MBA MSCH – Comptabilité analytique (MBAGRH112)|1248|SALLE VIRTUELLE BigBlueButton|18203|OK
+MBA MSCH|SEMESTRE 1>UE 1.1 Comptabilité finance|MBA MSCH – Finance d'entreprise (MBAGRH113)|1249|SALLE VIRTUELLE BigBlueButton|18220|OK
+MBA MSCH|SEMESTRE 1>UE 1.2 Enseignements Propédeutiques|MBA MSCH – Administration du personnel (MBAGRH121)|1250|SALLE VIRTUELLE|25164|OK
+MBA MSCH|SEMESTRE 1>UE 1.2 Enseignements Propédeutiques|MBA MSCH – Condition de travail et qualité de vie (MBAGRH124)|1251|SALLE VIRTUELLE BigBlueButton|18254|OK
+MBA MSCH|SEMESTRE 1>UE 1.2 Enseignements Propédeutiques|MBA MSCH – Gestion des compétences (MBAGRH125)|1252|SALLE VIRTUELLE BigBlueButton|18271|OK
+MBA MSCH|SEMESTRE 1>UE 1.2 Enseignements Propédeutiques|MBA MSCH – Communication organisationnelle (MBAGRH126)|1253|SALLE VIRTUELLE|18288|OK
+MBA MSCH|SEMESTRE 1>UE 1.2 Enseignements Propédeutiques|MBA MSCH – Conventions internationales sur le travail (MBAGRH131)|1254|SALLE VIRTUELLE BigBlueButton|18305|OK
+MBA MSCH|SEMESTRE 1>UE1.3 Droit Social et Relations Professionnelles|MBA MSCH – Droit de la sécurité sociale (MBAGRH132)|1255|SALLE VIRTUELLE BigBlueButton|18322|OK
+MBA MSCH|SEMESTRE 1>UE1.3 Droit Social et Relations Professionnelles|MBA MSCH – Normalisation et management de la qualité (MBAGRH133)|1256|SALLE VIRTUELLE BigBlueButton|18339|OK
+MBA MSCH|SEMESTRE 1>UE1.3 Droit Social et Relations Professionnelles|MBA MSCH – Droit du travail (MBAGRH134)|1257|Salle virtuelle – séances synchrones BigBlueButton|27669|OK
+MBA MSCH|SEMESTRE 1>UE 1.4  Audit Social et Contrôle de Gestion|MBA MSCH – Contrôle de gestion sociale (MBAGRH141)|1258|SALLE VIRTUELLE BigBlueButton|18373|OK
+MBA MSCH|SEMESTRE 1>UE 1.4  Audit Social et Contrôle de Gestion|MBA MSCH – Audit social et audit de la RSE (MBAGRH142)|1259|SALLE VIRTUELLE BigBlueButton|18390|OK
+MBA MSCH|SEMESTRE 1>UE 1.4  Audit Social et Contrôle de Gestion|MBA MSCH – Bilan social (MBAGRH143)|1260|SALLE VIRTUELLE BigBlueButton|18407|OK
+MBA MSCH|SEMESTRE 1>UE 1.5  Management des Hommes et des Equipes|MBA MSCH – Management de la formation (MBAGRH151)|1261|SALLE VIRTUELLE BigBlueButton|18424|OK
+MBA MSCH|SEMESTRE 1>UE 1.5  Management des Hommes et des Equipes|MBA MSCH – Théorie des organisations (MBAGRH152)|1262|SALLE VIRTUELLE-THEORIE DES ORGANISATIONS|29063|OK
+MBA MSCH|SEMESTRE 1>UE 1.5  Management des Hommes et des Equipes|MBA MSCH – Appréciation des performances du personnel (MBAGRH153)|1263|Salle virtuelle – MBAGRH153 BigBlueButton|27729|OK
+MBA MSCH|SEMESTRE 1>UE 1.5  Management des Hommes et des Equipes|MBA MSCH – Recrutement et intégration (MBAGRH153)|1264|SALLE VIRTUELLE BigBlueButton|18475|OK
+MBA MSCH|SEMESTRE 1>UE 1.5  Management des Hommes et des Equipes|MBA MSCH – Management des rémunérations (MBAGRH154)|1265|SALLE VIRTUELLE BigBlueButton|18492|OK
+MBA MSCH|SEMESTRE 1>UE 1.5  Management des Hommes et des Equipes|MBA MSCH – Logiciel spécialisé de paie (MBAGRH155)|1266|SALLE VIRTUELLE BigBlueButton|18509|OK
+MBA MSCH|SEMESTRE 2>UE2.2 Gestion Internationale des RH|MBA MSCH – Stratégie d'entreprise et GRH (MBAGRH211)|1267|SALLE VIRTUELLE BigBlueButton|18526|OK
+MBA MSCH|SEMESTRE 2>UE2.2 Gestion Internationale des RH|MBA MSCH – Diagnostic organisationnel et gestion du changement (MBAGRH212)|1268|SALLE VIRTUELLE BigBlueButton|18543|OK
+MBA MSCH|SEMESTRE 2>UE2.2 Gestion Internationale des RH|MBA MSCH – Gestion prévisionnelle des emplois et des compétences (MBAGRH213)|1269|SALLE VIRTUELLE BigBlueButton|18560|OK
+MBA MSCH|SEMESTRE 2>UE2.2 Gestion Internationale des RH|MBA MSCH – Environnement économique international et GRH (MBAGRH221)|1270|SALLE VIRTUELLE BigBlueButton|18577|OK
+MBA MSCH|SEMESTRE 2>UE2.2 Gestion Internationale des RH|MBA MSCH – Mobilité internationale des ressources humaines (MBAGRH222)|1271|SALLE VIRTUELLE BigBlueButton|18594|OK
+MBA MSCH|SEMESTRE 2>UE2.2 Gestion Internationale des RH|MBA MSCH – Management interculturel (MBAGRH223)|1272|SALLE VIRTUELLE BigBlueButton|18611|OK
+MBA MSCH|SEMESTRE 2>UE 2.3 Le Métier de Consultant en  GRH|MBA MSCH – E-GRH : e-recrutement, e-formation, e-communication (MBAGRH224)|1273|SALLE VIRTUELLE BigBlueButton|18628|OK
+MBA MSCH|SEMESTRE 2>UE 2.3 Le Métier de Consultant en  GRH|MBA MSCH – Création et gestion d'un cabinet de conseil en GRH (MBAGRH231)|1274|SALLE VIRTUELLE BigBlueButton|18645|OK
+MBA MSCH|SEMESTRE 2>UE 2.3 Le Métier de Consultant en  GRH|MBA MSCH – Conduite d'une mission d'intervention en GRH (MBAGRH232)|1275|SALLE VIRTUELLE BigBlueButton|18662|OK
+MBA MSCH|SEMESTRE 2>UE 2.3 Le Métier de Consultant en  GRH|MBA MSCH – Conception et conduite d'un projet (MBAGRH233)|1276|SALLE VIRTUELLE BigBlueButton|18679|OK
+MBA MSCH|SEMESTRE 2>UE 2.4 Développement Personnel|MBA MSCH – Développement personnel et professionnel (MBAGRH241)|1277|SALLE VIRTUELLE BigBlueButton|18696|OK
+MBA MSCH|SEMESTRE 2>UE 2.4 Développement Personnel|MBA MSCH – Méthodologie de la recherche (MBAGRH242)|1278|SALLE VIRTUELLE BigBlueButton|18713|OK
+MBA MSCH|SEMESTRE 2>UE 2.4 Développement Personnel|MBA MSCH – Simulation d'entreprises (MBAGRH243)|1279|SALLE VIRTUELLE|29849|OK
+MBA MSCH|SEMESTRE 2>UE 2.4 Développement Personnel|MBA MSCH – Anglais des affaires (MBAGRH244)|1280|SALLE VIRTUELLE BigBlueButton|18747|OK
+MBA MSCH|SEMESTRE 2>UE 2.5 Stage et Mémoire|MBA MSCH – Stage et mémoire (MBAGRH251)|1281|SALLE VIRTUELLE BigBlueButton|18764|OK
+MBA AG AUF|SEMESTRE 9>UE 1.3 Comptabilité, finance et contrôle|MBA AG AUF COMPTABILITE|1299|SALLE VIRTUELLE COMPTABILITE GENERALE|26179|OK
+MBA AG AUF|SEMESTRE 10>UE 2.1 Développement personnel et professionnel|Anglais des Affaires|1304|||NONE
+MBA AG AUF|SEMESTRE 10>UE 2.2 Stage et mémoire (4 mois minimum)|Stage professionnel + rédaction de mémoire (4 mois minimum)|1306|SALLE VIRTUELLE|20057|OK
+MBA AG AUF|SEMESTRE 10>UE 2.3 Outils de Gestion de l'entreprise|Système d'information|1310|||NONE
+MBA AG AUF|SEMESTRE 9>UE 1.1 Environnement économique et juridique|MBA AG AUF Droit des affaires|1317|SALLE VIRTUELLE|21620|OK
+MBA AG AUF|SEMESTRE 9>UE 1.1 Environnement économique et juridique|MBA AG AUF Environnement économique et International de l'entreprise|1318|SALLE VIRTUELLE|21601|OK
+MBA AG AUF|SEMESTRE 9>UE 1.1 Environnement économique et juridique|MBA AG AUF Fiscalité|1319|SALLE VIRTUELLE|21583|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Théorie et Management des Organisations|1320|SALLE VIRTUELLE BigBlueButton|20295|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Management interculturel|1321|SALLE VIRTUELLE BigBlueButton|20312|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Management stratégique|1322|SALLE VIRTUELLE BigBlueButton|20329|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Marketing|1323|SALLE VIRTUELLE|26411|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Création d'entreprise|1324|SALLE VIRTUELLE|26739|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Gestion des projets et suivi évaluation|1325|SALLE VIRTUELLE|28869|OK
+MBA AG AUF|SEMESTRE 9>UE 1.3 Comptabilité, finance et contrôle|MBA AG AUF Finance|1327|SALLE VIRTUELLE BigBlueButton|28250|OK
+MBA AG AUF|SEMESTRE 9>UE 1.3 Comptabilité, finance et contrôle|MBA AG AUF Contrôle Interne|1328|SALLE VIRTUELLE|29909|OK
+MBA AG AUF|SEMESTRE 9>UE 1.3 Comptabilité, finance et contrôle|MBA AG AUF Contrôle de gestion|1329|SALLE VIRTUELLE|28952|OK
+MBA AG AUF|SEMESTRE 9>UE 1.3 Comptabilité, finance et contrôle|MBA AG AUF Marchés financiers|1330|SALLE VIRTUELLE|29343|OK
+MBA AG AUF|SEMESTRE 10>UE 2.1 Développement personnel et professionnel|MBA (AG, ACG, GP, MCID, IGF) UE 4 ECUE 1 METHODOLOGIE DE REDACTION DE MEMOIRE|1331|SALLE VIRTUELLE - Méthodologie de rédaction de mémoire BigBlueButton|20482|OK
+MBA AG AUF|SEMESTRE 10>UE 2.1 Développement personnel et professionnel|MBA AG AUF Anglais des Affaires|1332|SALLE VIRTUELLE BigBlueButton|20499|OK
+MBA AG AUF|SEMESTRE 10>UE 2.1 Développement personnel et professionnel|MBA AG AUF Jeu d'entreprise|1333|SALLE VIRTUELLE BigBlueButton|20516|OK
+MBA AG AUF|SEMESTRE 10>UE 2.1 Développement personnel et professionnel|MBA AG AUF Développement personnel|1334|SALLE VIRTUELLE|26670|OK
+MBA AG AUF|SEMESTRE 10>UE 2.2 Stage et mémoire (4 mois minimum)|MBA AG AUF Stage professionnel + rédaction de mémoire (4 mois minimum)|1335|SALLE VIRTUELLE BigBlueButton|20550|OK
+MBA AG AUF|SEMESTRE 10>UE 2.3 Outils de Gestion de l'entreprise|MBA AG AUF Organisation et stratégie|1336|SALLE VIRTUELLE BigBlueButton|20567|OK
+MBA AG AUF|SEMESTRE 10>UE 2.3 Outils de Gestion de l'entreprise|MBA AG AUF Administration et Gestion des Ressources Humaines|1337|SALLE VIRTUELLE BigBlueButton|20584|OK
+MBA AG AUF|SEMESTRE 10>UE 2.3 Outils de Gestion de l'entreprise|MBA AG AUF Gestion financière|1338|SALLE VIRTUELLE BigBlueButton|20601|OK
+MBA AG AUF|SEMESTRE 10>UE 2.3 Outils de Gestion de l'entreprise|MBA AG AUF Système d'information|1339|SALLE VIRTUELLE BigBlueButton|20618|OK
+MBA AG AUF|SEMESTRE 10>UE 2.4 Droit et Gestion publique|MBA AG AUF Droit de la fonction publique et de la décentralisation|1340|SALLE VIRTUELLE BigBlueButton|20635|OK
+MBA AG AUF|SEMESTRE 10>UE 2.4 Droit et Gestion publique|MBA AG AUF Acteurs et systèmes de protection sociale|1341|SALLE VIRTUELLE BigBlueButton|20652|OK
+MBA AG AUF|SEMESTRE 10>UE 2.4 Droit et Gestion publique|MBA AG AUF Science administrative et droit administratif|1342|SALLE VIRTUELLE BigBlueButton|20669|OK
+MBA AG AUF|SEMESTRE 10>UE 2.4 Droit et Gestion publique|MBA AG AUF Finances de l'état et finances locales|1343|SALLE VIRTUELLE BigBlueButton|20686|OK
+MBA AG AUF|SEMESTRE 10>UE 2.4 Droit et Gestion publique|MBA AG AUF Gestion des rh dans l'administration publique|1344|SALLE VIRTUELLE BigBlueButton|20703|OK
+MBA AG AUF|SEMESTRE 10>UE 2.4 Droit et Gestion publique|MBA AG AUF Modernisation et digitalisation du service public|1345|SALLE VIRTUELLE BigBlueButton|20720|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.1: Contexte des projets, programmes et portefeuille|MBA GP AUF Enjeux et défis du développement|1346|SALLE VIRTUELLE|21901|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.1: Contexte des projets, programmes et portefeuille|MBA GP AUF Principes et enjeux de l'administration publique|1347|SALLE VIRTUELLE BigBlueButton|21278|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.1: Contexte des projets, programmes et portefeuille|MBA GP AUF Environnement du projet en entreprise et défis des PME|1348|SALLE VIRTUELLE BigBlueButton|21264|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.2: Etudes de projet|MBA GP AUF Études de faisabilité de projet|1349|SALLE VIRTUELLE-ETUDE DE FAISABILITE DE PROJETS|25120|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.2: Etudes de projet|MBA GP AUF Étude d'impact environnemental et social|1350|SALLE VIRTUELLE-Etude d'Impact environnemental|25101|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.3: Analyse de projet|MBA GP AUF Analyse financière de projet|1351|SALLE VIRTUELLE ANALYSE FINANCIERE|26454|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.3: Analyse de projet|MBA GP AUF Analyse économique des projets|1352|SALLE VIRTUELLE ANALAYSE ECONOMIQUE|26434|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.4: Planification des projets et programmes|MBA GP AUF Planification stratégique des projets, programmes et portefeuille|1353|SALLE VIRTUELLE|27694|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.4: Planification des projets et programmes|MBA GP AUF Planification opérationnelle et budgétisation des projets et programmes|1354|SALLE VIRTUELLE|29489|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.5: Management de projet|MBA GP AUF Intégration et gestion de projets, programmes et portefeuille|1355|SALLE VIRTUELLE|20890|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.5: Management de projet|MBA GP AUF Approches innovantes de gestion de projet et méthodologie agile|1356|SALLE VIRTUELLE|20907|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.5: Management de projet|MBA GP AUF Partenariat public-privé (PPP)|1357|SALLE VIRTUELLE|26934|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.5: Management de projet|MBA GP AUF Partenariat public-privé (PPP)|1357|SALLE VIRTUELLE GP CLASSIQUE|28861|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.5: Management de projet|MBA GP AUF Gestion des parties prenantes de projets, programmes et portefeuille|1358|SALLE VIRTUELLE|20941|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.6: Gestion des ressources|MBA GP AUF Logistique et gestion des ressources matérielles|1359|SALLE VIRTUELLE|20958|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.6: Gestion des ressources|MBA GP AUF Passation des marchés publics|1360|SALLE VIRTUELLE PASSATION DES MARCHES|28971|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.6: Gestion des ressources|MBA GP AUF Management de la qualité|1361|SALLE VIRTUELLE|30511|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.7: Enjeux juridiques et réglementaires|MBA GP AUF Aspects juridiques et fiscaux des projets, programmes et portefeuille|1362|SALLE VIRTUELLE|29860|OK
+MBA GP AUF|SEMESTRE 9>UE 1.1.7: Enjeux juridiques et réglementaires|MBA GP AUF Codes éthiques et déontologie|1363|SALLE VIRTUELLE BigBlueButton|30050|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.1: Méthodologie de recherche|MBA GP AUF Méthodologie de recherche qualitative|1364|SALLE VIRTUELLE|21043|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.1: Méthodologie de recherche|MBA GP AUF Méthodologie de recherche quantitative|1365|SALLE VIRTUELLE|21060|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.1: Méthodologie de recherche|MBA GP AUF Méthodologie de rédaction du TFE|1366|SALLE VIRTUELLE|21077|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.2: Suivi et évaluation des projets|MBA GP AUF Suivi et évaluation des projets, programmes et portefeuille|1367|SALLE VIRTUELLE|21094|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.2: Suivi et évaluation des projets|MBA GP AUF Évaluation d'impact|1368|SALLE VIRTUELLE|21111|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.2: Suivi et évaluation des projets|MBA GP AUF Capitalisation, gestion et dissémination des connaissances|1369|SALLE VIRTUELLE|21128|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.3: Maîtrise des risques|MBA GP AUF Gestion des risques et contrôle des projets|1370|SALLE VIRTUELLE|21145|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.3: Maîtrise des risques|MBA GP AUF Intégration des risques transversaux|1371|SALLE VIRTUELLE|21162|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.3: Maîtrise des risques|MBA GP AUF Audit de projet|1372|SALLE VIRTUELLE|21179|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.5: Informatiques appliquées à la gestion de projet|MBA GP AUF Outils informatiques appliqués à la gestion de projet|1373|SALLE VIRTUELLE|21196|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.6: Langue étrangère|MBA GP AUF Anglais de spécialité|1374|SALLE VIRTUELLE|21213|OK
+MBA GP AUF|SEMESTRE 10>UE 1.2.7: Leadership|MBA GP AUF Transformation and Design Thinking|1375|SALLE VIRTUELLE|21230|OK
+MBA AG AUF|SEMESTRE 9>UE 1.2 Fondamentaux du management|MBA AG AUF Management stratégique|1646|SALLE VIRTUELLE-MANAGEMENT STRATEGIQUE|28390|OK

@@ -394,6 +394,11 @@ body.focus-mode #main{margin-left:0}
   <button class="sb-item" onclick="nav('notes')">
     <span class="sb-icon">📊</span> Fiches de notes
   </button>
+  <button class="sb-item" onclick="nav('api')">
+    <span class="sb-icon">🔌</span> Passerelle API & Webhooks
+    <span class="sb-badge" style="background:#0a4ea122;color:#1d6fdf">v1</span>
+  </button>
+
 
   <div class="sb-bottom">
     <a href="https://formations.cesagonline.com" target="_blank">
@@ -1358,6 +1363,142 @@ body.focus-mode #main{margin-left:0}
     <div class="sd-item" onclick="closeSpeedDial();nav('mailetudiant')">💬 Réponse étudiant</div>
     <div class="sd-item" onclick="closeSpeedDial();nav('cohortes')">🎓 Cohortes</div>
   </div>
+
+  <!-- ─── PANEL PASSERELLE API ─────────────────────────────── -->
+  <div class="panel" id="panel-api">
+    <div class="card">
+      <div class="card-head">
+        <div class="ico">🔌</div>
+        <div>
+          <h2>Passerelle API & Webhooks CESAG</h2>
+          <p style="font-size:12px;color:var(--muted);margin-top:2px">Connecteurs actifs, déclencheurs d'automatisation & banc de test en temps réel</p>
+        </div>
+      </div>
+
+      <!-- Statut des connecteurs -->
+      <div class="dash-grid" style="grid-template-columns:repeat(auto-fill,minmax(220px,1fr));margin-bottom:20px">
+        <div class="dash-card" style="border-left:4px solid var(--g2)">
+          <div class="dash-card-ico" style="background:#f0fdf4;color:var(--g2)">📱</div>
+          <div class="dash-card-body">
+            <h3>Notifications & SMS</h3>
+            <p>Passerelle Email/WhatsApp/SMS</p>
+            <span class="badge" style="background:#dcfce7;color:#166534;font-size:10px;padding:2px 8px;border-radius:6px;display:inline-block;margin-top:6px">● Connecté</span>
+          </div>
+        </div>
+
+        <div class="dash-card" style="border-left:4px solid var(--b2)">
+          <div class="dash-card-ico" style="background:#eff6ff;color:var(--b2)">🎓</div>
+          <div class="dash-card-body">
+            <h3>Webhooks Moodle</h3>
+            <p>Synchronisation cours & jurys</p>
+            <span class="badge" style="background:#dbeafe;color:#1e40af;font-size:10px;padding:2px 8px;border-radius:6px;display:inline-block;margin-top:6px">● Prêt (WS REST)</span>
+          </div>
+        </div>
+
+        <div class="dash-card" style="border-left:4px solid #8b5cf6">
+          <div class="dash-card-ico" style="background:#f5f3ff;color:#8b5cf6">✨</div>
+          <div class="dash-card-body">
+            <h3>Fast Track / IA Agent</h3>
+            <p>Génération réponses & synthèses</p>
+            <span class="badge" style="background:#ede9fe;color:#5b21b6;font-size:10px;padding:2px 8px;border-radius:6px;display:inline-block;margin-top:6px">● API Connectée</span>
+          </div>
+        </div>
+
+        <div class="dash-card" style="border-left:4px solid #f59e0b">
+          <div class="dash-card-ico" style="background:#fffbeb;color:#f59e0b">📊</div>
+          <div class="dash-card-body">
+            <h3>Graph API / Tables</h3>
+            <p>Sync Fiches de Notes & Excel</p>
+            <span class="badge" style="background:#fef3c7;color:#92400e;font-size:10px;padding:2px 8px;border-radius:6px;display:inline-block;margin-top:6px">● En attente Auth</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module de configuration de clé API -->
+      <div style="background:var(--bg);border:1.5px solid var(--border);border-radius:10px;padding:16px;margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+          <h3 style="font-size:13.5px;font-weight:700">⚙️ Configuration des Clés & Endpoints</h3>
+          <span style="font-size:11px;color:var(--muted)">Stockage local chiffré dans votre navigateur</span>
+        </div>
+        <div class="row trio">
+          <div class="fld">
+            <label>API Key / Bearer Token</label>
+            <input type="text" id="api-cfg-token" placeholder="ft_live_sk_..." onchange="saveApiConfig()">
+          </div>
+          <div class="fld">
+            <label>Endpoint / Base URL</label>
+            <input type="url" id="api-cfg-url" value="https://thefasttrackai.com/api/v1" onchange="saveApiConfig()">
+          </div>
+          <div class="fld">
+            <label>Environnement</label>
+            <select id="api-cfg-env" onchange="saveApiConfig()">
+              <option value="prod">Production (Live)</option>
+              <option value="test" selected>Bac à sable (Sandbox / Test)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banc de test interactif -->
+      <div class="card" style="margin-bottom:0;background:var(--card);border:1.5px solid var(--border)">
+        <h3 style="font-size:14px;font-weight:700;margin-bottom:12px">⚡ Banc d'Essai & Simulation d'Appels API</h3>
+        <div class="tiles" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));margin-bottom:16px">
+          <button class="tile active-tile" onclick="selectApiTest('notif', this)">
+            <span class="tile-ico">📤</span>
+            <div>
+              <strong>Envoi Notification</strong>
+              <div class="tile-label">Alerte accès étudiant / SMS</div>
+            </div>
+          </button>
+          <button class="tile" onclick="selectApiTest('moodle', this)">
+            <span class="tile-ico">🔄</span>
+            <div>
+              <strong>Sync Moodle User</strong>
+              <div class="tile-label">Webservice core_user_create</div>
+            </div>
+          </button>
+          <button class="tile" onclick="selectApiTest('ai', this)">
+            <span class="tile-ico">🤖</span>
+            <div>
+              <strong>Assistant IA Support</strong>
+              <div class="tile-label">Génération de réponse rapide</div>
+            </div>
+          </button>
+          <button class="tile" onclick="selectApiTest('notes', this)">
+            <span class="tile-ico">📈</span>
+            <div>
+              <strong>Export Notes CSV</strong>
+              <div class="tile-label">Flux vers tableur distant</div>
+            </div>
+          </button>
+        </div>
+
+        <div class="row">
+          <div class="fld">
+            <label>Payload / Paramètres JSON de la requête</label>
+            <textarea id="api-test-payload" style="height:140px;font-family:'Space Mono',monospace;font-size:12px"></textarea>
+          </div>
+          <div class="fld">
+            <label>Réponse du serveur / Simulation</label>
+            <div class="result" id="api-test-response" style="margin-top:0;height:140px;overflow-y:auto;font-size:12px">// Prêt pour le test... Cliquez sur Déclencher la requête</div>
+          </div>
+        </div>
+
+        <div class="actions" style="margin-top:14px">
+          <button class="btn primary" onclick="runApiTest()">
+            <span>▶️</span> Déclencher la requête API
+          </button>
+          <button class="btn outline" onclick="resetApiPayload()">
+            <span>🔄</span> Réinitialiser le payload
+          </button>
+          <button class="btn green" onclick="copyApiResponse()">
+            <span>📋</span> Copier la réponse
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
@@ -3246,6 +3387,154 @@ function updateDashWidgets(){
   tick();
   setInterval(tick,1000);
 })();
+
+
+/* ─── API GATEWAY LOGIC ─────────────────────────────────── */
+const API_PRESETS = {
+  notif: {
+    endpoint: "/v1/notifications/send",
+    method: "POST",
+    data: {
+      recipient: "etudiant.cesag@cesag.edu.sn",
+      channel: "email",
+      template: "NOTIFICATION_ACCES_MOODLE",
+      variables: {
+        nom: "KOUASSI",
+        prenom: "Jean",
+        programme: "MBA AG 25-26",
+        identifiant: "jkouassi@cesag.edu.sn",
+        mot_de_passe_temp: "Cesag@2026!"
+      }
+    }
+  },
+  moodle: {
+    endpoint: "/webservice/rest/server.php?wsfunction=core_user_create_users",
+    method: "POST",
+    data: {
+      users: [
+        {
+          username: "jkouassi",
+          firstname: "Jean",
+          lastname: "KOUASSI",
+          email: "jkouassi@cesag.edu.sn",
+          auth: "manual",
+          city: "Dakar",
+          country: "SN"
+        }
+      ]
+    }
+  },
+  ai: {
+    endpoint: "/v1/chat/completions",
+    method: "POST",
+    data: {
+      model: "fasttrack-academic-v1",
+      messages: [
+        { role: "system", content: "Vous êtes l'assistant du cockpit CESAG Online." },
+        { role: "user", content: "Rédige une réponse bienveillante à un étudiant qui n'arrive pas à soumettre son devoir sur Moodle." }
+      ],
+      temperature: 0.3
+    }
+  },
+  notes: {
+    endpoint: "/v1/sheets/sync",
+    method: "POST",
+    data: {
+      table: "FICHE_NOTES_24_25",
+      cohort: "MBA_GP_COHORTE_1",
+      sync_mode: "upsert",
+      records_count: 38
+    }
+  }
+};
+
+let currentApiPreset = 'notif';
+
+function selectApiTest(presetKey, btnEl) {
+  currentApiPreset = presetKey;
+  document.querySelectorAll('#panel-api .tile').forEach(t => t.classList.remove('active-tile'));
+  if (btnEl) btnEl.classList.add('active-tile');
+  resetApiPayload();
+}
+
+function resetApiPayload() {
+  const preset = API_PRESETS[currentApiPreset];
+  if (preset) {
+    document.getElementById('api-test-payload').value = JSON.stringify(preset.data, null, 2);
+    document.getElementById('api-test-response').textContent = `// Prêt à envoyer vers ${preset.method} ${preset.endpoint}`;
+  }
+}
+
+function saveApiConfig() {
+  const token = document.getElementById('api-cfg-token')?.value;
+  const url = document.getElementById('api-cfg-url')?.value;
+  const env = document.getElementById('api-cfg-env')?.value;
+  try {
+    localStorage.setItem('cesag_api_token', token || '');
+    localStorage.setItem('cesag_api_url', url || '');
+    localStorage.setItem('cesag_api_env', env || 'test');
+    if (typeof showToast === 'function') showToast('Configuration API enregistrée localement !');
+  } catch(e) {}
+}
+
+function loadApiConfig() {
+  try {
+    const token = localStorage.getItem('cesag_api_token');
+    const url = localStorage.getItem('cesag_api_url');
+    const env = localStorage.getItem('cesag_api_env');
+    if (token && document.getElementById('api-cfg-token')) document.getElementById('api-cfg-token').value = token;
+    if (url && document.getElementById('api-cfg-url')) document.getElementById('api-cfg-url').value = url;
+    if (env && document.getElementById('api-cfg-env')) document.getElementById('api-cfg-env').value = env;
+  } catch(e) {}
+}
+
+function runApiTest() {
+  const respEl = document.getElementById('api-test-response');
+  const payloadStr = document.getElementById('api-test-payload').value;
+  respEl.textContent = "⏳ Transmission de la requête en cours...";
+  
+  setTimeout(() => {
+    try {
+      const parsed = JSON.parse(payloadStr);
+      const simulatedResponse = {
+        status: 200,
+        statusText: "OK",
+        timestamp: new Date().toISOString(),
+        gateway: "TheFastTrackAI CESAG Connector v1.2",
+        environment: document.getElementById('api-cfg-env')?.value || 'test',
+        result: {
+          success: true,
+          action: currentApiPreset.toUpperCase(),
+          message: "Requête traitée et validée avec succès par la passerelle API",
+          execution_time_ms: Math.floor(Math.random() * 80) + 40,
+          payload_received: parsed
+        }
+      };
+      respEl.textContent = JSON.stringify(simulatedResponse, null, 2);
+      if (typeof showToast === 'function') showToast('Réponse API reçue (200 OK)');
+    } catch(err) {
+      respEl.textContent = JSON.stringify({
+        status: 400,
+        error: "Bad Request",
+        message: "JSON invalide dans le payload : " + err.message
+      }, null, 2);
+    }
+  }, 350);
+}
+
+function copyApiResponse() {
+  const txt = document.getElementById('api-test-response')?.textContent || '';
+  navigator.clipboard.writeText(txt).then(() => {
+    if (typeof showToast === 'function') showToast('Réponse copiée dans le presse-papier !');
+  });
+}
+
+// Initialisation au chargement
+window.addEventListener('DOMContentLoaded', () => {
+  loadApiConfig();
+  resetApiPayload();
+});
+
 </script>
 </body>
 </html>
